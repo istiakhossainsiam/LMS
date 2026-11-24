@@ -1,0 +1,55 @@
+# Robots.txt for Learn With Maruf Ahmed (LWMA 2.0 Cloud LMS)
+# Complies with Claude-SEO standards, Google Search Essentials, and GEO/AEO 2026
+
+User-agent: *
+Allow: /
+Allow: /courses
+Allow: /courses/*
+Allow: /jobs
+Allow: /codelab
+Allow: /store
+Allow: /blog
+Allow: /blog/*
+Allow: /leaderboard
+Allow: /verify-certificate
+
+# Disallow authenticated private workspace routes
+Disallow: /dashboard
+Disallow: /dashboard/*
+Disallow: /trainer
+Disallow: /trainer/*
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /checkout
+Disallow: /checkout/*
+Disallow: /login
+Disallow: /api/v1/auth/
+Disallow: /api/v1/student/
+Disallow: /api/v1/admin/
+Disallow: /api/v1/trainer/
+Disallow: /api/v1/vault/
+
+# Allow Generative Engine Optimization (GEO) & AI Search Citations
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+# Agent-readiness and structured AI summaries
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /sitemap.xml
+Allow: /robots.txt
+
+Host: https://learnwithmarufahmed.com
+Sitemap: https://learnwithmarufahmed.com/sitemap.xml

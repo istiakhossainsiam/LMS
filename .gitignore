@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+.pnp/
+.pnp.js
+
+# Build outputs
+dist/
+frontend/dist/
+build/
+
+# Python
+__pycache__/
+backend/**/__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+.venv/
+backend/.venv/
+*.egg-info/
+
+# Environment & Local Secrets
+.env
+.env.local
+.env.*.local
+*.pem
+
+# Local Utilities & Test harness
+tools/git/
+tools/*.exe
+tools/*.zip
+.playwright-cli/
+
+# Logs & temp
+*.log
+*.db
+backend/*.db
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.DS_Store
+Thumbs.db

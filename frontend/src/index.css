@@ -1,0 +1,569 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-sans: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --font-display: 'Space Grotesk', 'Inter', 'Hind Siliguri', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+    overflow-x: clip;
+    touch-action: pan-y pinch-zoom;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Optical line-height compensation for Bangla script matras and ascenders */
+  :lang(bn), [lang="bn"] {
+    line-height: 1.45;
+  }
+
+  code, pre, .font-mono, .tabular-nums {
+    font-family: var(--font-mono);
+    font-feature-settings: "tnum" 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  body {
+    background-color: #F5F7FB;
+    color: #14213A;
+    min-height: 100vh;
+    overflow-x: clip;
+    touch-action: pan-y pinch-zoom;
+  }
+
+  .dark body {
+    background-color: #060B18;
+    color: #F5F8FF;
+    background-image: none;
+  }
+}
+
+/* Academic Aurora Design System Core Surfaces & Components */
+.aurora-surface-light {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F2;
+  color: #14213A;
+}
+
+.aurora-surface-dark {
+  background-color: #0C1528;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #F5F8FF;
+}
+
+.aurora-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F2;
+  color: #14213A;
+  border-radius: 1rem;
+  transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px 0 rgba(20, 33, 58, 0.04);
+}
+
+.dark .aurora-card {
+  background-color: #0C1528;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #F5F8FF;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+}
+
+.aurora-card:hover {
+  border-color: rgba(53, 109, 255, 0.35);
+}
+
+.aurora-card-raised {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F2;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 20px -4px rgba(20, 33, 58, 0.06);
+}
+
+.dark .aurora-card-raised {
+  background-color: #111F36;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.aurora-btn-primary {
+  background: linear-gradient(135deg, #356DFF 0%, #2955DE 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(53, 109, 255, 0.9);
+  box-shadow: 0 4px 14px -2px rgba(53, 109, 255, 0.35);
+  font-weight: 600;
+  transition: all 150ms ease;
+}
+
+.aurora-btn-primary:hover {
+  background: linear-gradient(135deg, #4B7EFF 0%, #356DFF 100%);
+  box-shadow: 0 6px 20px -2px rgba(53, 109, 255, 0.45);
+  transform: translateY(-1px);
+}
+
+.aurora-btn-secondary {
+  background-color: #FFFFFF;
+  color: #14213A;
+  border: 1px solid #E2E8F2;
+  font-weight: 600;
+  transition: all 150ms ease;
+}
+
+.dark .aurora-btn-secondary {
+  background-color: #111F36;
+  color: #F5F8FF;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.aurora-btn-secondary:hover {
+  border-color: #356DFF;
+  color: #356DFF;
+}
+
+.dark .aurora-btn-secondary:hover {
+  border-color: #35C6BE;
+  color: #35C6BE;
+}
+
+.aurora-pill-teal {
+  background: rgba(53, 198, 190, 0.12);
+  color: #0F766E;
+  border: 1px solid rgba(53, 198, 190, 0.28);
+}
+
+.dark .aurora-pill-teal {
+  background: rgba(53, 198, 190, 0.16);
+  color: #35C6BE;
+  border: 1px solid rgba(53, 198, 190, 0.35);
+}
+
+.aurora-pill-blue {
+  background: rgba(53, 109, 255, 0.12);
+  color: #1E40AF;
+  border: 1px solid rgba(53, 109, 255, 0.28);
+}
+
+.dark .aurora-pill-blue {
+  background: rgba(53, 109, 255, 0.16);
+  color: #6896FF;
+  border: 1px solid rgba(53, 109, 255, 0.35);
+}
+
+/* Apple WWDC Fluid Design Materials & Tactile Press States */
+.apple-glass {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.09);
+  box-shadow: 0 4px 24px -2px rgba(15, 23, 42, 0.03);
+}
+
+.dark .apple-glass {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.apple-glass-top {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border-top: 1px solid rgba(15, 23, 42, 0.09);
+  box-shadow: 0 -4px 25px -2px rgba(15, 23, 42, 0.04);
+}
+
+.dark .apple-glass-top {
+  background: rgba(15, 23, 42, 0.90);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Card Surface with Optical Border */
+.apple-card {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.03), 0 10px 25px -10px rgba(15, 23, 42, 0.04);
+}
+
+.dark .apple-card {
+  background: #0f1523;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+}
+
+/* Elevated Glass Card with Specular Highlight & Hover Float */
+.apple-card-elevated {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.11);
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06), 0 1px 3px 0 rgba(15, 23, 42, 0.03);
+  transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 260ms ease, border-color 200ms ease;
+}
+
+.dark .apple-card-elevated {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.45);
+}
+
+.apple-card-elevated:hover {
+  transform: translateY(-2px);
+  border-color: rgba(15, 23, 42, 0.16);
+  box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 1);
+}
+
+.dark .apple-card-elevated:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.6);
+}
+
+/* 3D Glassmorphism Cards with Optical Depth & Specular Bevel */
+.glass-card-3d {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(26px) saturate(190%);
+  -webkit-backdrop-filter: blur(26px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 
+    0 2px 4px 0 rgba(15, 23, 42, 0.03),
+    0 12px 28px -4px rgba(15, 23, 42, 0.06),
+    0 28px 64px -12px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 0 rgba(15, 23, 42, 0.04);
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 320ms ease, border-color 220ms ease;
+  transform-style: preserve-3d;
+}
+
+.dark .glass-card-3d {
+  background: rgba(15, 23, 42, 0.78);
+  backdrop-filter: blur(26px) saturate(190%);
+  -webkit-backdrop-filter: blur(26px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 2px 4px 0 rgba(0, 0, 0, 0.25),
+    0 16px 36px -6px rgba(0, 0, 0, 0.5),
+    0 32px 72px -12px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.35);
+}
+
+.glass-card-3d:hover {
+  border-color: rgba(15, 23, 42, 0.2);
+  box-shadow: 
+    0 8px 24px -2px rgba(15, 23, 42, 0.06),
+    0 24px 48px -6px rgba(15, 23, 42, 0.10),
+    0 36px 80px -12px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 0 rgba(255, 255, 255, 1);
+}
+
+.dark .glass-card-3d:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 8px 24px -2px rgba(0, 0, 0, 0.4),
+    0 24px 48px -6px rgba(0, 0, 0, 0.6),
+    0 40px 90px -12px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
+}
+
+/* 3D Depth Layering Utilities */
+.translate-z-10 {
+  transform: translateZ(12px);
+}
+.translate-z-20 {
+  transform: translateZ(24px);
+}
+.translate-z-30 {
+  transform: translateZ(36px);
+}
+
+/* Ambient 3D Float Animation */
+@keyframes float3d {
+  0%, 100% {
+    transform: translateY(0px) rotateX(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotateX(1.2deg);
+  }
+}
+
+.card-3d-floating {
+  animation: float3d 5.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+/* Mobile Performance & Zero-Jank Overrides */
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  html,
+  body {
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y pinch-zoom;
+  }
+
+  /* Eliminate expensive multi-pass Gaussian blur rasterization on mobile screens */
+  .apple-glass,
+  .apple-glass-top,
+  .glass-card-3d,
+  .apple-card-elevated {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    transform: none !important;
+    transform-style: flat !important;
+  }
+
+  .apple-glass {
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.1) !important;
+  }
+
+  .dark .apple-glass {
+    background-color: rgba(9, 13, 22, 0.98) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .glass-card-3d,
+  .apple-card-elevated {
+    background-color: #ffffff !important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  .dark .glass-card-3d,
+  .dark .apple-card-elevated {
+    background-color: #0f1523 !important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3) !important;
+  }
+
+  .card-3d-floating {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .translate-z-10,
+  .translate-z-20,
+  .translate-z-30 {
+    transform: none !important;
+  }
+}
+
+
+
+
+/* Luxury Editorial Typography (No blue gradients) */
+.text-gradient-sky {
+  background: linear-gradient(180deg, #09090b 0%, #334155 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .text-gradient-sky {
+  background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-amber {
+  background: linear-gradient(180deg, #b45309 0%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Academic Aurora Signature Gradient */
+.text-gradient-aurora {
+  background: linear-gradient(135deg, #6896FF 0%, #35C6BE 50%, #86EFAC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hero Sequential Entrance Animation */
+@keyframes heroEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-1 {
+  animation: heroEntrance 450ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-hero-2 {
+  animation: heroEntrance 500ms cubic-bezier(0.16, 1, 0.3, 1) 90ms both;
+}
+.animate-hero-3 {
+  animation: heroEntrance 550ms cubic-bezier(0.16, 1, 0.3, 1) 180ms both;
+}
+.animate-hero-4 {
+  animation: heroEntrance 600ms cubic-bezier(0.16, 1, 0.3, 1) 270ms both;
+}
+.animate-hero-5 {
+  animation: heroEntrance 650ms cubic-bezier(0.16, 1, 0.3, 1) 360ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-1,
+  .animate-hero-2,
+  .animate-hero-3,
+  .animate-hero-4,
+  .animate-hero-5 {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Specular Optical Edge Glows (Clean Neutral & Emerald) */
+.border-glow-sky {
+  box-shadow: 0 12px 35px -10px rgba(15, 23, 42, 0.06), 0 0 0 1px rgba(15, 23, 42, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+}
+
+.dark .border-glow-sky {
+  box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.border-glow-emerald {
+  box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.15), 0 0 0 1px rgba(16, 185, 129, 0.25);
+}
+
+/* Premium High-End Buttons (Minimalist Obsidian & Frosted Glass) */
+.btn-luxury-primary {
+  background: #0f172a;
+  color: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.9);
+  box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+  transition: all 180ms ease;
+}
+.btn-luxury-primary:hover {
+  background: #000000;
+  box-shadow: 0 6px 20px -2px rgba(15, 23, 42, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+.btn-luxury-primary:active {
+  transform: scale(0.98);
+}
+
+.dark .btn-luxury-primary {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.18);
+}
+.dark .btn-luxury-primary:hover {
+  background: #f1f5f9;
+}
+
+.btn-luxury-glass {
+  background: rgba(255, 255, 255, 0.85);
+  color: #0f172a;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 0 2px 8px 0 rgba(15, 23, 42, 0.03), inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+  transition: all 180ms ease;
+}
+.btn-luxury-glass:hover {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(15, 23, 42, 0.2);
+  box-shadow: 0 4px 14px 0 rgba(15, 23, 42, 0.06);
+  transform: translateY(-1px);
+}
+.btn-luxury-glass:active {
+  transform: scale(0.98);
+}
+
+.dark .btn-luxury-glass {
+  background: rgba(30, 41, 59, 0.6);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.dark .btn-luxury-glass:hover {
+  background: rgba(51, 65, 85, 0.7);
+}
+
+/* Subtle Shimmer Animation for Badges & Accents */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+  animation: shimmer 2.8s infinite;
+}
+
+/* Instant pointer-down response (Apple Principle #1: Kill Latency) */
+.tactile-press {
+  transition: transform 110ms cubic-bezier(0.22, 1, 0.36, 1), background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.tactile-press:active {
+  transform: scale(0.975);
+}
+
+/* Safe-Area Insets for Mobile Native Ergonomics */
+.pb-safe {
+  padding-bottom: max(0.6rem, env(safe-area-inset-bottom, 0px));
+}
+
+.mb-safe-nav {
+  padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* Hide scrollbar for clean horizontal pill ribbons */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Respect Reduced Motion & Reduced Transparency */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .tactile-press:active {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .apple-glass, .apple-glass-top {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}

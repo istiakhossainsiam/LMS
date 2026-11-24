@@ -1,0 +1,36 @@
+# Learn With Maruf Ahmed (LWMA 2.0) — Complete Architecture & Syllabus
+
+## Platform Specifications
+- **Frontend Architecture**: React 19, TypeScript, Tailwind CSS v4, Apple WWDC fluid spring physics, full bilingual localization (Bangla/English).
+- **Backend Architecture**: Python 3.14, FastAPI Async ASGI, SQLAlchemy 2.0 ORM with prepared AST parameters, Argon2id password hashing, Redis/in-memory session invalidation.
+- **Security Standard**: OWASP Top 10 strict compliance, single-device active session enforcement, signed media vault tokens (10-minute expiry), server-side lesson watch-time heartbeat verification (minimum 80% genuine watch requirement before unlocking quizzes).
+
+## Master Curriculum & Career Tracks
+
+### Track 1: Full-Stack Cloud Engineering with React 19, FastAPI & PostgreSQL
+- **Format**: Live Batch (Hybrid) + Lifetime HD On-Demand Access
+- **Duration**: 56+ Hours
+- **Prerequisites**: Basic programming logic in Python or JavaScript
+- **Modules**:
+  1. Production Python & Async Event Loops (async/await, coroutines, uvloop)
+  2. FastAPI Microservice Architecture & Pydantic v2 Type Safety
+  3. Relational Database Modeling with PostgreSQL & Async SQLAlchemy 2.0
+  4. Zero-Trust Authentication: JWT Rotation, Cookie Guards & Single-Device Sessions
+  5. React 19 Modern Ergonomics: Server Actions, Transitions, and Custom Hooks
+  6. Tailwind CSS & Apple-Grade UI Polish: Damped springs, translucent chrome, mobile ergonomics
+  7. Containerization, Docker Compose & Cloud Deployment Pipelines
+  8. Capstone Project: Multi-Tenant SaaS Platform with Verified Certificate
+
+### Track 2: Advanced Backend Architecture & Distributed Systems
+- **Format**: Masterclass Series
+- **Topics**: Message queues (Celery/RabbitMQ), Redis caching patterns, database connection pooling, AST query inspection, horizontal scaling.
+
+## Career Placement Camp Partners
+- **Brain Station 23**: Enterprise cloud and financial software engineering.
+- **Astha IT**: High-throughput distributed payment and communication pipelines.
+- **REVE Systems**: Conversational AI, NLP, and telecommunication infrastructure.
+- **Technosoft BD**: Mobile-first enterprise web applications.
+- **TigerIT Bangladesh**: Biometric identification, Kubernetes infrastructure, and cloud security.
+
+## Verification & Trust (E-E-A-T)
+Every certificate issued contains an authenticated alphanumeric ID and QR code pointing to `https://learnwithmarufahmed.com/verify-certificate`. Third-party employers can instantly verify course completion, final capstone project grade, assessment scores, and issuance dates directly without contacting the institution.

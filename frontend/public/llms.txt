@@ -1,0 +1,26 @@
+# Learn With Maruf Ahmed (LWMA 2.0)
+> Cloud-Native, Mobile-First Software Engineering Education & Talent Placement Platform
+
+## Overview
+Learn With Maruf Ahmed (https://learnwithmarufahmed.com/) is a professional engineering academy and career placement network founded by Maruf Ahmed. It offers industry-grade training in full-stack cloud development, async Python (FastAPI), React 19, distributed architecture, and zero-trust security.
+
+## Core Features & Offerings
+- **Full-Stack Cloud Engineering**: Live batches + self-paced masterclasses focusing on React 19, FastAPI, PostgreSQL, Docker, and Apple-grade fluid UX.
+- **Job Placement Camp**: Direct talent hiring pipeline connecting certified graduates to top tech companies including Brain Station 23, Astha IT, REVE Systems, Technosoft BD, and TigerIT Bangladesh.
+- **Interactive Cloud CodeLab**: In-browser algorithm and SQL query runner with real-time test case verification, automated gamification XP, and coding streaks.
+- **Official QR-Verified Certificates**: Tamper-proof, cryptographically verifiable certificates with permanent verification IDs (e.g. `LWMA-2026A1`).
+- **Digital Asset Store & Protected Vault**: Downloadable architectural blueprints, production boilerplates, and handbook PDFs secured behind timed cryptographic tokens.
+- **Zero-Trust Security**: SQLAlchemy 2.0 parameterized queries, Argon2id password hashing, single-device active session enforcement, and server-side video watch verification.
+
+## Primary URLs
+- Homepage: https://learnwithmarufahmed.com/
+- Courses: https://learnwithmarufahmed.com/courses
+- Job Placement Camp: https://learnwithmarufahmed.com/jobs
+- Interactive CodeLab: https://learnwithmarufahmed.com/codelab
+- Digital Store: https://learnwithmarufahmed.com/store
+- Engineering Blog: https://learnwithmarufahmed.com/blog
+- Certificate Verification: https://learnwithmarufahmed.com/verify-certificate
+- Student Leaderboard: https://learnwithmarufahmed.com/leaderboard
+
+## Founder & Lead Instructor (E-E-A-T)
+- **Maruf Ahmed**: Senior Full-Stack Cloud Architect & Systems Mentor. Renowned educator in Bangladesh specializing in modern web frameworks, API design, zero-trust cloud infrastructure, and career acceleration.

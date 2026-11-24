@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- 1. Homepage -->
+  <url>
+    <loc>https://learnwithmarufahmed.com/</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://learnwithmarufahmed.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnwithmarufahmed.com/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnwithmarufahmed.com/" />
+  </url>
+
+  <!-- 2. Courses Directory -->
+  <url>
+    <loc>https://learnwithmarufahmed.com/courses</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://learnwithmarufahmed.com/courses" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnwithmarufahmed.com/courses?lang=en" />
+  </url>
+
+  <!-- 3. Job Placement Camp -->
+  <url>
+    <loc>https://learnwithmarufahmed.com/jobs</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://learnwithmarufahmed.com/jobs" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnwithmarufahmed.com/jobs?lang=en" />
+  </url>
+
+  <!-- 4. Interactive Cloud CodeLab -->
+  <url>
+    <loc>https://learnwithmarufahmed.com/codelab</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://learnwithmarufahmed.com/codelab" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnwithmarufahmed.com/codelab?lang=en" />
+  </url>
+
+  <!-- 5. Digital Assets Store -->
+  <url>
+    <loc>https://learnwithmarufahmed.com/store</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://learnwithmarufahmed.com/store" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnwithmarufahmed.com/store?lang=en" />
+  </url>
+
+  <!-- 6. Engineering Blog -->
+  <url>
+    <loc>https://learnwithmarufahmed.com/blog</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://learnwithmarufahmed.com/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnwithmarufahmed.com/blog?lang=en" />
+  </url>
+
+  <!-- 7. Certificate Verification Portal -->
+  <url>
+    <loc>https://learnwithmarufahmed.com/verify-certificate</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://learnwithmarufahmed.com/verify-certificate" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnwithmarufahmed.com/verify-certificate?lang=en" />
+  </url>
+
+  <!-- 8. Student Leaderboard & Gamification -->
+  <url>
+    <loc>https://learnwithmarufahmed.com/leaderboard</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://learnwithmarufahmed.com/leaderboard" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnwithmarufahmed.com/leaderboard?lang=en" />
+  </url>
+</urlset>
