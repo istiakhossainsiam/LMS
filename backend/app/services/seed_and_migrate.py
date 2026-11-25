@@ -915,6 +915,397 @@ async def seed_initial_data(db: AsyncSession) -> None:
     await seed_jobs_and_challenges_if_empty(db)
 
 
+# ---------------------------------------------------------------------------
+# Demo lessons + quizzes (idempotent; safe to run on every startup).
+# Adds 2 free-preview "Demo Classes" lessons per course (8 total, all
+# freeCodeCamp.org full courses on YouTube) plus 3 MCQ questions per demo
+# lesson, and 3 MCQs each for the two existing lessons that had no quiz
+# (c1 l3 Apple spring physics, c4 l_c4_1 fake payment bypass).
+# Lookups are by (course title) / (course_id, module title) /
+# (course_id, lesson title); only missing rows are inserted, and a
+# lesson's questions are skipped once it already has >= 3.
+# ---------------------------------------------------------------------------
+
+async def seed_demo_content_if_missing(db: AsyncSession) -> None:
+    async def _add_mcqs(lesson: Lesson, qa: list) -> None:
+        count = (await db.execute(select(func.count(Question.id)).where(Question.lesson_id == lesson.id))).scalar() or 0
+        if count >= 3:
+            return
+        for text, text_bn, choices in qa:
+            q = Question(lesson_id=lesson.id, text=text, text_bn=text_bn, question_type="MCQ", marks=1)
+            db.add(q)
+            await db.flush()
+            db.add_all(
+                [Choice(question_id=q.id, text=ct, text_bn=ct_bn, is_correct=ok) for ct, ct_bn, ok in choices]
+            )
+        await db.flush()
+
+    def _mcq(text, text_bn, correct, correct_bn, wrongs):
+        # wrongs: list of (text, text_bn); correct choice placed first here,
+        # the player shuffles nothing — order is stable, which is fine.
+        choices = [(correct, correct_bn, True)] + [(t, b, False) for t, b in wrongs]
+        return (text, text_bn, choices)
+
+    demo_specs = [
+        (
+            "Full-Stack Cloud Engineering with React 19, FastAPI & PostgreSQL",
+            [
+                (
+                    "Demo: HTML & CSS — Full Course for Beginners",
+                    "ডেমো: এইচটিএমএল ও সিএসএস — বিগিনারদের জন্য সম্পূর্ণ কোর্স",
+                    "A complete freeCodeCamp full course on HTML and CSS fundamentals — semantic markup, the box model, Flexbox, Grid and responsive layouts. Watch it free as a preview of this track.",
+                    "এইচটিএমএল ও সিএসএসের মৌলিক বিষয় নিয়ে freeCodeCamp-এর সম্পূর্ণ কোর্স — সিম্যান্টিক মার্কআপ, বক্স মডেল, ফ্লেক্সবক্স, গ্রিড ও রেসপন্সিভ লেআউট। এই ট্র্যাকের ফ্রি প্রিভিউ হিসেবে দেখুন।",
+                    "a_iQb1lnAEQ",
+                    300,
+                ),
+                (
+                    "Demo: React Course — Beginner's Tutorial",
+                    "ডেমো: রিয়্যাক্ট কোর্স — বিগিনারদের টিউটোরিয়াল",
+                    "freeCodeCamp's full React beginner course — components, props, state, hooks and building real apps. A free preview that pairs with the React 19 modules in this track.",
+                    "freeCodeCamp-এর সম্পূর্ণ রিয়্যাক্ট বিগিনার কোর্স — কম্পোনেন্ট, প্রপস, স্টেট, হুকস এবং বাস্তব অ্যাপ তৈরি। এই ট্র্যাকের রিয়্যাক্ট ১৯ মডিউলের সাথে মানানসই ফ্রি প্রিভিউ।",
+                    "bMknfKXIFA8",
+                    660,
+                ),
+            ],
+            {
+                "Demo: HTML & CSS — Full Course for Beginners": [
+                    _mcq(
+                        "Which HTML element defines the largest (most important) heading on a page?",
+                        "একটি পেজের সবচেয়ে বড় (সবচেয়ে গুরুত্বপূর্ণ) হেডিং কোন এইচটিএমএল এলিমেন্ট দিয়ে তৈরি করা হয়?",
+                        "<h1>", "<h1>",
+                        [("<h6>", "<h6>"), ("<header>", "<header>"), ("<head>", "<head>")],
+                    ),
+                    _mcq(
+                        "Which CSS property is used to change the colour of text?",
+                        "টেক্সটের রং পরিবর্তন করতে কোন সিএসএস প্রোপার্টি ব্যবহার করা হয়?",
+                        "color", "color",
+                        [("text-color", "text-color"), ("font-color", "font-color"), ("background-color", "background-color")],
+                    ),
+                    _mcq(
+                        "Which CSS declaration turns an element into a flex container?",
+                        "কোন সিএসএস ডিক্লারেশন একটি এলিমেন্টকে ফ্লেক্স কন্টেইনার বানায়?",
+                        "display: flex", "display: flex",
+                        [("display: block", "display: block"), ("position: flex", "position: flex"), ("float: flex", "float: flex")],
+                    ),
+                ],
+                "Demo: React Course — Beginner's Tutorial": [
+                    _mcq(
+                        "Which React hook is used to add state to a function component?",
+                        "ফাংশন কম্পোনেন্টে স্টেট যোগ করতে কোন রিয়্যাক্ট হুক ব্যবহার করা হয়?",
+                        "useState", "useState",
+                        [("useEffect", "useEffect"), ("useProps", "useProps"), ("useClass", "useClass")],
+                    ),
+                    _mcq(
+                        "How does a parent component pass data down to a child component in React?",
+                        "রিয়্যাক্টে প্যারেন্ট কম্পোনেন্ট থেকে চাইল্ড কম্পোনেন্টে ডেটা কীভাবে পাঠানো হয়?",
+                        "Through props", "প্রপসের মাধ্যমে",
+                        [("Through state only", "শুধু স্টেটের মাধ্যমে"), ("Through CSS classes", "সিএসএস ক্লাসের মাধ্যমে"), ("Through the DOM directly", "সরাসরি ডমের মাধ্যমে")],
+                    ),
+                    _mcq(
+                        "What must a React component's render output always resolve to?",
+                        "রিয়্যাক্ট কম্পোনেন্টের রেন্ডার আউটপুট সবসময় কী হতে হয়?",
+                        "A single root element (or a fragment)", "একটি একক রুট এলিমেন্ট (অথবা ফ্র্যাগমেন্ট)",
+                        [("At least three sibling elements", "কমপক্ষে তিনটি সিবলিং এলিমেন্ট"), ("A plain string only", "শুধু একটি সাধারণ স্ট্রিং"), ("An HTML file", "একটি এইচটিএমএল ফাইল")],
+                    ),
+                ],
+            },
+        ),
+        (
+            "Python, Django & AI Automation Bootcamp for Freelancers",
+            [
+                (
+                    "Demo: Learn Python — Full Course for Beginners",
+                    "ডেমো: পাইথন শিখুন — বিগিনারদের জন্য সম্পূর্ণ কোর্স",
+                    "freeCodeCamp's full Python course for beginners — variables, data types, control flow, functions and files. A free preview of the Python foundations in this bootcamp.",
+                    "freeCodeCamp-এর বিগিনারদের জন্য সম্পূর্ণ পাইথন কোর্স — ভেরিয়েবল, ডেটা টাইপ, কন্ট্রোল ফ্লো, ফাংশন ও ফাইল। এই বুটক্যাম্পের পাইথন ভিত্তির ফ্রি প্রিভিউ।",
+                    "rfscVS0vtbw",
+                    270,
+                ),
+                (
+                    "Demo: Python Django Web Framework — Full Course",
+                    "ডেমো: পাইথন জ্যাঙ্গো ওয়েব ফ্রেমওয়ার্ক — সম্পূর্ণ কোর্স",
+                    "freeCodeCamp's full Django course — models, views, templates, URLs, the admin and building a complete web app. A free preview of the Django track in this bootcamp.",
+                    "freeCodeCamp-এর সম্পূর্ণ জ্যাঙ্গো কোর্স — মডেল, ভিউ, টেমপ্লেট, ইউআরএল, অ্যাডমিন এবং একটি সম্পূর্ণ ওয়েব অ্যাপ তৈরি। এই বুটক্যাম্পের জ্যাঙ্গো ট্র্যাকের ফ্রি প্রিভিউ।",
+                    "F5mRW0jo-U4",
+                    240,
+                ),
+            ],
+            {
+                "Demo: Learn Python — Full Course for Beginners": [
+                    _mcq(
+                        "Which keyword is used to define a function in Python?",
+                        "পাইথনে ফাংশন ডিফাইন করতে কোন কীওয়ার্ড ব্যবহার করা হয়?",
+                        "def", "def",
+                        [("function", "function"), ("func", "func"), ("define", "define")],
+                    ),
+                    _mcq(
+                        "What does Python's built-in len() function return?",
+                        "পাইথনের বিল্ট-ইন len() ফাংশন কী রিটার্ন করে?",
+                        "The number of items in a sequence or collection", "একটি সিকোয়েন্স বা কালেকশনে আইটেমের সংখ্যা",
+                        [("The largest item", "সবচেয়ে বড় আইটেম"), ("The memory size in bytes", "বাইটে মেমোরি সাইজ"), ("The type of the object", "অবজেক্টের টাইপ")],
+                    ),
+                    _mcq(
+                        "Which of these Python data types is mutable?",
+                        "নিচের কোন পাইথন ডেটা টাইপটি মিউটেবল (পরিবর্তনযোগ্য)?",
+                        "list", "list",
+                        [("tuple", "tuple"), ("string (str)", "স্ট্রিং (str)"), ("int", "int")],
+                    ),
+                ],
+                "Demo: Python Django Web Framework — Full Course": [
+                    _mcq(
+                        "Django is most commonly described as following which architectural pattern?",
+                        "জ্যাঙ্গো সাধারণত কোন আর্কিটেকচারাল প্যাটার্ন অনুসরণ করে বলে বর্ণনা করা হয়?",
+                        "MTV — Model, Template, View", "এমটিভি — মডেল, টেমপ্লেট, ভিউ",
+                        [("MVC — Model, View, Controller only", "শুধু এমভিসি — মডেল, ভিউ, কন্ট্রোলার"), ("MVVM — Model, View, ViewModel", "এমভিভিএম — মডেল, ভিউ, ভিউমডেল"), ("Microservices only", "শুধু মাইক্রোসার্ভিস")],
+                    ),
+                    _mcq(
+                        "In a Django project, which file is where URL routes are normally defined?",
+                        "জ্যাঙ্গো প্রজেক্টে ইউআরএল রুট সাধারণত কোন ফাইলে ডিফাইন করা হয়?",
+                        "urls.py", "urls.py",
+                        [("routes.py", "routes.py"), ("views.py", "views.py"), ("settings.py", "settings.py")],
+                    ),
+                    _mcq(
+                        "Which command starts Django's built-in development server?",
+                        "জ্যাঙ্গোর বিল্ট-ইন ডেভেলপমেন্ট সার্ভার চালু করতে কোন কমান্ড ব্যবহার করা হয়?",
+                        "python manage.py runserver", "python manage.py runserver",
+                        [("python manage.py startserver", "python manage.py startserver"), ("django run", "django run"), ("python manage.py serve", "python manage.py serve")],
+                    ),
+                ],
+            },
+        ),
+        (
+            "Product UI/UX Engineering, Design Systems & Fluid Motion",
+            [
+                (
+                    "Demo: Figma Course — Web Design Tutorial for Beginners",
+                    "ডেমো: ফিগমা কোর্স — বিগিনারদের ওয়েব ডিজাইন টিউটোরিয়াল",
+                    "freeCodeCamp's Figma course for beginners — frames, shapes, text, Auto Layout and designing a complete web page. A free preview for the design-system modules in this track.",
+                    "freeCodeCamp-এর বিগিনারদের ফিগমা কোর্স — ফ্রেম, শেপ, টেক্সট, অটো লেআউট এবং একটি সম্পূর্ণ ওয়েব পেজ ডিজাইন। এই ট্র্যাকের ডিজাইন-সিস্টেম মডিউলের ফ্রি প্রিভিউ।",
+                    "D56hs0Twfco",
+                    180,
+                ),
+                (
+                    "Demo: Learn Figma in 6 Hours — Full Course",
+                    "ডেমো: ৬ ঘণ্টায় ফিগমা শিখুন — সম্পূর্ণ কোর্স",
+                    "A full six-hour Figma course — vector tools, components, variants, prototyping and handoff. A free preview that covers the hands-on Figma skills in this track.",
+                    "ছয় ঘণ্টার সম্পূর্ণ ফিগমা কোর্স — ভেক্টর টুল, কম্পোনেন্ট, ভ্যারিয়েন্ট, প্রোটোটাইপিং ও হ্যান্ডঅফ। এই ট্র্যাকের হাতে-কলমে ফিগমা দক্ষতার ফ্রি প্রিভিউ।",
+                    "mT_Jjn8RJdo",
+                    376,
+                ),
+            ],
+            {
+                "Demo: Figma Course — Web Design Tutorial for Beginners": [
+                    _mcq(
+                        "In Figma, what are Frames primarily used for?",
+                        "ফিগমায় ফ্রেম মূলত কী কাজে ব্যবহার করা হয়?",
+                        "As containers / artboards that hold a screen or section of a design", "একটি স্ক্রিন বা ডিজাইনের অংশ ধারণকারী কন্টেইনার / আর্টবোর্ড হিসেবে",
+                        [("To store colour palettes only", "শুধু কালার প্যালেট সংরক্ষণে"), ("To export code automatically", "স্বয়ংক্রিয়ভাবে কোড এক্সপোর্ট করতে"), ("To record video tutorials", "ভিডিও টিউটোরিয়াল রেকর্ড করতে")],
+                    ),
+                    _mcq(
+                        "What does Auto Layout do in Figma?",
+                        "ফিগমায় অটো লেআউট কী করে?",
+                        "Automatically sizes and spaces elements as content changes", "কন্টেন্ট পরিবর্তনের সাথে সাথে এলিমেন্টের সাইজ ও স্পেসিং স্বয়ংক্রিয়ভাবে ঠিক করে",
+                        [("Generates random placeholder images", "এলোমেলো প্লেসহোল্ডার ছবি তৈরি করে"), ("Locks a layer so it cannot be edited", "একটি লেয়ার লক করে দেয়"), ("Converts text to outlines permanently", "টেক্সটকে স্থায়ীভাবে আউটলাইনে বদলে দেয়")],
+                    ),
+                    _mcq(
+                        "What is the main benefit of turning a repeated element into a Figma Component?",
+                        "একটি বারবার ব্যবহৃত এলিমেন্টকে ফিগমা কম্পোনেন্ট বানানোর প্রধান সুবিধা কী?",
+                        "Editing the main component updates every instance at once", "মূল কম্পোনেন্ট সম্পাদনা করলে সব ইনস্ট্যান্স একসাথে আপডেট হয়",
+                        [("It makes the file smaller by deleting the element", "এটি এলিমেন্ট মুছে ফাইলের সাইজ ছোট করে"), ("It prevents anyone from copying the design", "এটি ডিজাইন কপি করা আটকায়"), ("It exports the element as a video", "এটি এলিমেন্টকে ভিডিও হিসেবে এক্সপোর্ট করে")],
+                    ),
+                ],
+                "Demo: Learn Figma in 6 Hours — Full Course": [
+                    _mcq(
+                        "Which Figma tool is used to draw custom vector shapes and paths?",
+                        "ফিগমায় কাস্টম ভেক্টর শেপ ও পাথ আঁকতে কোন টুল ব্যবহার করা হয়?",
+                        "The Pen tool", "পেন টুল",
+                        [("The Slice tool", "স্লাইস টুল"), ("The Hand tool", "হ্যান্ড টুল"), ("The Zoom tool", "জুম টুল")],
+                    ),
+                    _mcq(
+                        "In Figma prototyping, what connects one frame to another to simulate a user flow?",
+                        "ফিগমা প্রোটোটাইপিংয়ে একটি ফ্রেম থেকে আরেকটি ফ্রেমে ইউজার ফ্লো সিমুলেট করতে কী সংযোগ দেয়?",
+                        "An interaction (trigger + action) between frames", "ফ্রেমের মধ্যে একটি ইন্টারঅ্যাকশন (ট্রিগার + অ্যাকশন)",
+                        [("A shared font style", "একটি শেয়ার করা ফন্ট স্টাইল"), ("A colour variable", "একটি কালার ভ্যারিয়েবল"), ("A grid setting", "একটি গ্রিড সেটিং")],
+                    ),
+                    _mcq(
+                        "What kind of design tool is Figma, first and foremost?",
+                        "ফিগমা সর্বপ্রথম কী ধরনের ডিজাইন টুল?",
+                        "A cloud-based, collaborative interface-design tool", "ক্লাউড-ভিত্তিক, কোলাবোরেটিভ ইন্টারফেস-ডিজাইন টুল",
+                        [("An offline-only desktop photo editor", "শুধু অফলাইন ডেস্কটপ ফটো এডিটর"), ("A 3D modelling program", "একটি থ্রিডি মডেলিং প্রোগ্রাম"), ("A video-editing suite", "একটি ভিডিও এডিটিং স্যুট")],
+                    ),
+                ],
+            },
+        ),
+        (
+            "Cybersecurity, Ethical API Hardening & Bug Bounty Fundamentals",
+            [
+                (
+                    "Demo: Harvard CS50's Intro to Cybersecurity",
+                    "ডেমো: হার্ভার্ড সিএস৫০-এর সাইবার সিকিউরিটি পরিচিতি",
+                    "Harvard CS50's introduction to cybersecurity — the CIA triad, threats, passwords, phishing and how systems are attacked and defended. A free preview for this security track.",
+                    "হার্ভার্ড সিএস৫০-এর সাইবার সিকিউরিটি পরিচিতি — সিআইএ ট্রায়াড, হুমকি, পাসওয়ার্ড, ফিশিং এবং সিস্টেম কীভাবে আক্রান্ত ও সুরক্ষিত হয়। এই সিকিউরিটি ট্র্যাকের ফ্রি প্রিভিউ।",
+                    "9HOpanT0GRs",
+                    480,
+                ),
+                (
+                    "Demo: Hands-On Cybersecurity and Ethical Hacking",
+                    "ডেমো: হাতে-কলমে সাইবার সিকিউরিটি ও এথিক্যাল হ্যাকিং",
+                    "A hands-on ethical hacking course — reconnaissance, vulnerability scanning, exploitation in a lab and reporting, all with proper authorization. A free preview for this security track.",
+                    "হাতে-কলমে এথিক্যাল হ্যাকিং কোর্স — রিকনেসান্স, ভালনারেবিলিটি স্ক্যানিং, ল্যাবে এক্সপ্লয়টেশন ও রিপোর্টিং, সবই যথাযথ অনুমতি নিয়ে। এই সিকিউরিটি ট্র্যাকের ফ্রি প্রিভিউ।",
+                    "ug8W0sFiVJo",
+                    240,
+                ),
+            ],
+            {
+                "Demo: Harvard CS50's Intro to Cybersecurity": [
+                    _mcq(
+                        "What does the CIA triad in cybersecurity stand for?",
+                        "সাইবার সিকিউরিটিতে সিআইএ ট্রায়াড বলতে কী বোঝায়?",
+                        "Confidentiality, Integrity, Availability", "কনফিডেনশিয়ালিটি, ইন্টিগ্রিটি, অ্যাভেইলেবিলিটি",
+                        [("Control, Inspection, Audit", "কন্ট্রোল, ইনস্পেকশন, অডিট"), ("Cryptography, Internet, Access", "ক্রিপ্টোগ্রাফি, ইন্টারনেট, অ্যাকসেস"), ("Confidentiality, Identity, Authentication", "কনফিডেনশিয়ালিটি, আইডেন্টিটি, অথেনটিকেশন")],
+                    ),
+                    _mcq(
+                        "What is phishing?",
+                        "ফিশিং কী?",
+                        "Deceptive messages that trick people into revealing passwords or other secrets", "প্রতারণামূলক মেসেজ যা মানুষকে পাসওয়ার্ড বা অন্য গোপন তথ্য দিতে প্রলুব্ধ করে",
+                        [("A way to speed up a network", "নেটওয়ার্ক দ্রুত করার একটি উপায়"), ("A type of antivirus software", "এক ধরনের অ্যান্টিভাইরাস সফটওয়্যার"), ("A backup method for servers", "সার্ভার ব্যাকআপের একটি পদ্ধতি")],
+                    ),
+                    _mcq(
+                        "Which of these is the strongest everyday password practice?",
+                        "নিচের কোনটি দৈনন্দিন পাসওয়ার্ড ব্যবহারের সবচেয়ে শক্তিশালী অভ্যাস?",
+                        "A long, unique password per account plus multi-factor authentication", "প্রতি অ্যাকাউন্টে দীর্ঘ, ইউনিক পাসওয়ার্ড এবং মাল্টি-ফ্যাক্টর অথেনটিকেশন",
+                        [("Reusing one short password everywhere", "সব জায়গায় একই ছোট পাসওয়ার্ড ব্যবহার"), ("Writing passwords on a sticky note", "পাসওয়ার্ড স্টিকি নোটে লিখে রাখা"), ("Using your birthdate as the password", "জন্মতারিখ পাসওয়ার্ড হিসেবে ব্যবহার")],
+                    ),
+                ],
+                "Demo: Hands-On Cybersecurity and Ethical Hacking": [
+                    _mcq(
+                        "What must an ethical hacker obtain BEFORE testing a system they do not own?",
+                        "নিজের নয় এমন কোনো সিস্টেম পরীক্ষা করার আগে এথিক্যাল হ্যাকারকে কী নিতে হয়?",
+                        "Explicit written permission / authorization from the owner", "মালিকের কাছ থেকে সুস্পষ্ট লিখিত অনুমতি",
+                        [("A faster computer", "একটি দ্রুত কম্পিউটার"), ("A public Wi-Fi connection", "একটি পাবলিক ওয়াই-ফাই সংযোগ"), ("A VPN subscription only", "শুধু একটি ভিপিএন সাবস্ক্রিপশন")],
+                    ),
+                    _mcq(
+                        "What does a vulnerability scan do?",
+                        "ভালনারেবিলিটি স্ক্যান কী করে?",
+                        "Automatically checks a system for known weaknesses and misconfigurations", "সিস্টেমে পরিচিত দুর্বলতা ও ভুল কনফিগারেশন স্বয়ংক্রিয়ভাবে যাচাই করে",
+                        [("Deletes all user passwords", "সব ইউজারের পাসওয়ার্ড মুছে দেয়"), ("Encrypts the whole hard drive", "পুরো হার্ড ড্রাইভ এনক্রিপ্ট করে"), ("Blocks all incoming network traffic", "সব ইনকামিং নেটওয়ার্ক ট্রাফিক ব্লক করে")],
+                    ),
+                    _mcq(
+                        "What does a penetration test simulate?",
+                        "পেনিট্রেশন টেস্ট কী সিমুলেট করে?",
+                        "A real attacker trying to exploit weaknesses, so they can be fixed first", "একজন বাস্তব আক্রমণকারী দুর্বলতা কাজে লাগানোর চেষ্টা করছে — যাতে আগেই তা ঠিক করা যায়",
+                        [("A hardware failure", "একটি হার্ডওয়্যার ব্যর্থতা"), ("A marketing campaign", "একটি মার্কেটিং ক্যাম্পেইন"), ("A software update rollout", "একটি সফটওয়্যার আপডেট")],
+                    ),
+                ],
+            },
+        ),
+    ]
+
+    # Quizzes for the two existing lessons that currently have no questions.
+    existing_lesson_quizzes = {
+        (
+            "Full-Stack Cloud Engineering with React 19, FastAPI & PostgreSQL",
+            "03. Apple WWDC Spring Physics, Safe-Area Insets & 48dp Mobile Touch Ergonomics",
+        ): [
+            _mcq(
+                "What is the key behaviour of a critically damped spring animation?",
+                "ক্রিটিক্যালি ড্যাম্পড স্প্রিং অ্যানিমেশনের মূল বৈশিষ্ট্য কী?",
+                "It reaches its target as fast as possible without overshooting or oscillating",
+                "এটি ওভারশুট বা দোলন ছাড়াই যত দ্রুত সম্ভব লক্ষ্যে পৌঁছায়",
+                [("It bounces back and forth several times", "এটি কয়েকবার সামনে-পেছনে দোলে"), ("It moves at a constant speed", "এটি ধ্রুব গতিতে চলে"), ("It never quite reaches its target", "এটি কখনোই পুরোপুরি লক্ষ্যে পৌঁছায় না")],
+            ),
+            _mcq(
+                "What are safe-area insets for on mobile devices?",
+                "মোবাইল ডিভাইসে সেফ-এরিয়া ইনসেট কীসের জন্য?",
+                "Keeping content clear of notches, the home indicator and rounded corners",
+                "কন্টেন্টকে নচ, হোম ইন্ডিকেটর ও গোলাকার কোণা থেকে দূরে রাখা",
+                [("Making text bigger on small screens", "ছোট স্ক্রিনে টেক্সট বড় করা"), ("Speeding up animations", "অ্যানিমেশন দ্রুত করা"), ("Hiding the status bar permanently", "স্ট্যাটাস বার স্থায়ীভাবে লুকানো")],
+            ),
+            _mcq(
+                "According to this lesson, what is the recommended minimum touch-target size for mobile controls?",
+                "এই লেসন অনুযায়ী মোবাইল কন্ট্রোলের জন্য সুপারিশকৃত ন্যূনতম টাচ-টার্গেট সাইজ কত?",
+                "48dp", "৪৮ডিপি",
+                [("16dp", "১৬ডিপি"), ("24dp", "২৪ডিপি"), ("96dp", "৯৬ডিপি")],
+            ),
+        ],
+        (
+            "Cybersecurity, Ethical API Hardening & Bug Bounty Fundamentals",
+            "01. Preventing Fake Payment Bypass & Securing Media Vaults",
+        ): [
+            _mcq(
+                "Why must a payment amount be verified on the server, never trusted from the client?",
+                "পেমেন্টের পরিমাণ সার্ভারে যাচাই করতে হয় কেন — ক্লায়েন্টের পাঠানো মান বিশ্বাস করা যায় না কেন?",
+                "Because a client can tamper with the amount before sending it", "কারণ ক্লায়েন্ট পাঠানোর আগেই পরিমাণ বদলে দিতে পারে",
+                [("Because servers are slower than browsers", "কারণ সার্ভার ব্রাউজারের চেয়ে ধীর"), ("Because bKash requires it for all apps", "কারণ বিকাশ সব অ্যাপে এটি বাধ্যতামূলক করেছে"), ("Because amounts change with the exchange rate", "কারণ বিনিময় হারের সাথে পরিমাণ বদলায়")],
+            ),
+            _mcq(
+                "What do signed download tokens in a media vault prevent?",
+                "মিডিয়া ভল্টে সাইনড ডাউনলোড টোকেন কী প্রতিরোধ করে?",
+                "Unauthorized sharing or guessing of direct file URLs", "সরাসরি ফাইল ইউআরএল অননুমোদিতভাবে শেয়ার বা অনুমান করা",
+                [("Videos playing too slowly", "ভিডিও ধীরে চলা"), ("Users downloading their own purchases", "ইউজারদের নিজের কেনা ফাইল ডাউনলোড"), ("Files taking up disk space", "ফাইল ডিস্ক জায়গা নেওয়া")],
+            ),
+            _mcq(
+                "How are payment webhooks protected against replay attacks?",
+                "পেমেন্ট ওয়েবহুক রিপ্লে আক্রমণ থেকে কীভাবে সুরক্ষিত করা হয়?",
+                "By verifying the provider's signature and checking the timestamp / nonce", "প্রোভাইডারের সিগনেচার যাচাই এবং টাইমস্ট্যাম্প / নন্স পরীক্ষা করে",
+                [("By accepting every webhook twice", "প্রতিটি ওয়েবহুক দুবার গ্রহণ করে"), ("By disabling HTTPS", "এইচটিটিপিএস বন্ধ করে"), ("By storing webhooks in plain text", "ওয়েবহুক প্লেইন টেক্সটে সংরক্ষণ করে")],
+            ),
+        ],
+    }
+
+    for course_title, lessons, quizzes_by_title in demo_specs:
+        course = (await db.execute(select(Course).where(Course.title == course_title))).scalar_one_or_none()
+        if course is None:
+            continue
+        max_module_order = (await db.execute(select(func.max(Module.order)).where(Module.course_id == course.id))).scalar() or 0
+        module = (
+            await db.execute(
+                select(Module).where(Module.course_id == course.id, Module.title == "Demo Classes")
+            )
+        ).scalar_one_or_none()
+        if module is None:
+            module = Module(course_id=course.id, title="Demo Classes", title_bn="ডেমো ক্লাস", order=max_module_order + 1)
+            db.add(module)
+            await db.flush()
+        max_lesson_order = (await db.execute(select(func.max(Lesson.order)).where(Lesson.course_id == course.id))).scalar() or 0
+        for title, title_bn, desc, desc_bn, video_id, duration in lessons:
+            lesson = (
+                await db.execute(
+                    select(Lesson).where(Lesson.course_id == course.id, Lesson.title == title)
+                )
+            ).scalar_one_or_none()
+            if lesson is None:
+                max_lesson_order += 1
+                lesson = Lesson(
+                    course_id=course.id,
+                    module_id=module.id,
+                    title=title,
+                    title_bn=title_bn,
+                    description=desc,
+                    description_bn=desc_bn,
+                    video_id=video_id,
+                    duration_minutes=duration,
+                    pass_mark=50,
+                    is_free_preview=True,
+                    order=max_lesson_order,
+                )
+                db.add(lesson)
+                await db.flush()
+            await _add_mcqs(lesson, quizzes_by_title[title])
+
+    for (course_title, lesson_title), qa in existing_lesson_quizzes.items():
+        course = (await db.execute(select(Course).where(Course.title == course_title))).scalar_one_or_none()
+        if course is None:
+            continue
+        lesson = (
+            await db.execute(select(Lesson).where(Lesson.course_id == course.id, Lesson.title == lesson_title))
+        ).scalar_one_or_none()
+        if lesson is not None:
+            await _add_mcqs(lesson, qa)
+
+    await db.commit()
+
+
 async def seed_jobs_and_challenges_if_empty(db: AsyncSession) -> None:
     job_count = (await db.execute(select(func.count(JobPosting.id)))).scalar() or 0
     if job_count == 0:

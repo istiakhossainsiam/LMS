@@ -1,0 +1,25 @@
+# Render Blueprint — Training Pundit LMS (single Web Service: FastAPI API + built React frontend)
+# In the Render dashboard: New > Blueprint > connect this repo, or
+# New > Web Service > pick this repo and use the commands below manually.
+services:
+  - type: web
+    name: training-pundit-lms
+    env: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt && cd frontend && npm ci && npm run build
+    startCommand: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.4
+      - key: NODE_VERSION
+        value: 20.18.0
+      - key: ENVIRONMENT
+        value: production
+      # Single-file SQLite DB inside the service (ephemeral on free plan:
+      # data resets on redeploy/restart unless a persistent disk is added).
+      - key: DATABASE_URL
+        value: sqlite+aiosqlite:///./lwma_v2.db
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FERNET_MASTER_KEY
+        generateValue: true
