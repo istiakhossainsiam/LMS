@@ -11,50 +11,50 @@ interface SEOProps {
 
 const routeSEOMap: Record<string, { titleBn: string; titleEn: string; descBn: string; descEn: string }> = {
   '/': {
-    titleBn: 'Learn With Maruf Ahmed — Full-Stack Cloud & Software Engineering LMS',
-    titleEn: 'Learn With Maruf Ahmed — Full-Stack Cloud & Software Engineering LMS',
+    titleBn: 'Training Pundit — Full-Stack Cloud & Software Engineering LMS',
+    titleEn: 'Training Pundit — Full-Stack Cloud & Software Engineering LMS',
     descBn: 'বাংলায় প্রোডাকশন-রেডি ক্লাউড ইঞ্জিনিয়ারিং, রিয়্যাক্ট ১৯, ফাস্টএপিআই ও ডিস্ট্রিবিউটেড সিস্টেমস শিখুন। সরাসরি লাইভ মেন্টরশিপ ও জব প্লেসমেন্ট।',
     descEn: 'Master production-grade cloud engineering, React 19, FastAPI, and distributed systems in Bengali & English with 1-on-1 mentorship.',
   },
   '/courses': {
-    titleBn: 'কোর্সসমূহ ও ক্যারিয়ার ট্র্যাকস | Learn With Maruf Ahmed',
-    titleEn: 'Career Tracks & Cloud Courses | Learn With Maruf Ahmed',
+    titleBn: 'কোর্সসমূহ ও ক্যারিয়ার ট্র্যাকস | Training Pundit',
+    titleEn: 'Career Tracks & Cloud Courses | Training Pundit',
     descBn: 'আধুনিক সফটওয়্যার ডেভেলপমেন্ট, ক্লাউড আর্কিটেকচার ও ডেভঅপসের সকল মাস্টারক্লাস ও লাইভ ব্যাচ এক্সপ্লোর করুন।',
     descEn: 'Explore industry-vetted career tracks in modern web, cloud infrastructure, and zero-trust backend systems.',
   },
   '/jobs': {
-    titleBn: 'জব প্লেসমেন্ট ক্যাম্প ও গ্র্যাজুয়েট হায়ার | Learn With Maruf Ahmed',
-    titleEn: 'Job Placement Camp & Talent Pipeline | Learn With Maruf Ahmed',
+    titleBn: 'জব প্লেসমেন্ট ক্যাম্প ও গ্র্যাজুয়েট হায়ার | Training Pundit',
+    titleEn: 'Job Placement Camp & Talent Pipeline | Training Pundit',
     descBn: 'সার্টিফাইড গ্র্যাজুয়েটদের জন্য দেশের শীর্ষ টেক কোম্পানি ব্রেন স্টেশন ২৩, আস্থা আইটি ও রিভ সিস্টেমে সরাসরি ইন্টারভিউ ও ক্যারিয়ার সুযোগ।',
     descEn: 'Direct career placement pipeline for certified engineers at top tech firms including Brain Station 23, Astha IT, and REVE Systems.',
   },
   '/codelab': {
-    titleBn: 'ইন্টারেক্টিভ ক্লাউড কোডল্যাব | Learn With Maruf Ahmed',
-    titleEn: 'Interactive Cloud CodeLab & Evaluator | Learn With Maruf Ahmed',
+    titleBn: 'ইন্টারেক্টিভ ক্লাউড কোডল্যাব | Training Pundit',
+    titleEn: 'Interactive Cloud CodeLab & Evaluator | Training Pundit',
     descBn: 'ব্রাউজারেই বাস্তব জীবনের অ্যালগরিদম ও এসকিউএল সিকিউরিটি প্রবলেম সমাধান করুন। রিয়েল-টাইম টেস্ট কেস ও এক্সপি আর্ন করুন।',
     descEn: 'Solve real-world algorithm and database security challenges in your browser with instant test validation and gamification XP.',
   },
   '/store': {
-    titleBn: 'ডিজিটাল অ্যাসেট স্টোর ও আর্কিটেকচার হ্যান্ডবুক | Learn With Maruf Ahmed',
-    titleEn: 'Digital Asset Store & Architecture Vault | Learn With Maruf Ahmed',
+    titleBn: 'ডিজিটাল অ্যাসেট স্টোর ও আর্কিটেকচার হ্যান্ডবুক | Training Pundit',
+    titleEn: 'Digital Asset Store & Architecture Vault | Training Pundit',
     descBn: 'প্রোডাকশন-গ্রেড বয়লারপ্লেট, ক্লাউড ব্লুপ্রিন্ট ও আর্কিটেকচার হ্যান্ডবুক সংগ্রহ করুন।',
     descEn: 'Download production-ready microservice boilerplates, architectural handbooks, and design token kits.',
   },
   '/blog': {
-    titleBn: 'ইঞ্জিনিয়ারিং ও সাইবার সিকিউরিটি ব্লগ | Learn With Maruf Ahmed',
-    titleEn: 'Engineering & Cybersecurity Articles | Learn With Maruf Ahmed',
+    titleBn: 'ইঞ্জিনিয়ারিং ও সাইবার সিকিউরিটি ব্লগ | Training Pundit',
+    titleEn: 'Engineering & Cybersecurity Articles | Training Pundit',
     descBn: 'ফাস্টএপিআই, এসকিউএল ইনজেকশন প্রতিরোধ, রিয়্যাক্ট ১৯ পারফরম্যান্স ও ক্লাউড সিস্টেম নিয়ে টেকনিক্যাল আর্টিকেল।',
     descEn: 'Deep-dive technical articles on FastAPI, OWASP security defenses, React 19 performance, and cloud systems.',
   },
   '/verify-certificate': {
-    titleBn: 'অফিশিয়াল সার্টিফিকেট ভেরিফিকেশন পোর্টাল | Learn With Maruf Ahmed',
-    titleEn: 'Official Certificate Verification Portal | Learn With Maruf Ahmed',
+    titleBn: 'অফিশিয়াল সার্টিফিকেট ভেরিফিকেশন পোর্টাল | Training Pundit',
+    titleEn: 'Official Certificate Verification Portal | Training Pundit',
     descBn: 'সার্টিফিকেট আইডি অথবা কিউআর কোডের মাধ্যমে তাৎক্ষণিকভাবে প্রজেক্ট গ্রেড ও কোর্স সমাপ্তির সত্যতা যাচাই করুন।',
     descEn: 'Verify genuine student credentials, course completion, and capstone grades via authenticated cryptographic IDs.',
   },
   '/leaderboard': {
-    titleBn: 'স্টুডেন্ট লিডারবোর্ড ও লার্নিং স্ট্রিক | Learn With Maruf Ahmed',
-    titleEn: 'Student Leaderboard & Learning Streaks | Learn With Maruf Ahmed',
+    titleBn: 'স্টুডেন্ট লিডারবোর্ড ও লার্নিং স্ট্রিক | Training Pundit',
+    titleEn: 'Student Leaderboard & Learning Streaks | Training Pundit',
     descBn: 'নিয়মিত পড়াশোনার ধারাবাহিকতা বজায় রেখে লিডারবোর্ডের শীর্ষে পৌঁছান এবং বিশেষ ব্যাজ আনলক করুন।',
     descEn: 'Track continuous learning streaks, assessment milestones, and compete on the global cohort leaderboard.',
   },
@@ -74,7 +74,7 @@ export const SEOHead: React.FC<SEOProps> = ({ title, description, canonicalUrl, 
       resolvedTitle = lang === 'bn' ? routeInfo.titleBn : routeInfo.titleEn
     }
     if (!resolvedTitle) {
-      resolvedTitle = 'Learn With Maruf Ahmed — Cloud LMS 2.0'
+      resolvedTitle = 'Training Pundit — Cloud LMS 2.0'
     }
 
     if (!resolvedDesc && routeInfo) {
@@ -115,7 +115,7 @@ export const SEOHead: React.FC<SEOProps> = ({ title, description, canonicalUrl, 
 
     // 5. Update Canonical Tag
     let canonical = document.querySelector('link[rel="canonical"]')
-    const targetUrl = canonicalUrl || `https://learnwithmarufahmed.com${location.pathname}`
+    const targetUrl = canonicalUrl || `https://trainingpundit.com${location.pathname}`
     if (!canonical) {
       canonical = document.createElement('link')
       canonical.setAttribute('rel', 'canonical')

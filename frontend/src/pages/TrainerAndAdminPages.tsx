@@ -182,21 +182,21 @@ export const TrainerStudioPage: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6 sm:space-y-10">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full aurora-pill-teal font-mono text-xs font-semibold uppercase tracking-wider">
-            <Wrench className="w-3.5 h-3.5 text-[#35C6BE]" /> Instructor & Mentor Workspace
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full aurora-pill-accent font-mono text-xs font-semibold uppercase tracking-wider">
+            <Wrench className="w-3.5 h-3.5 text-[#F97316]" /> Instructor & Mentor Workspace
           </span>
-          <h1 className="font-display font-bold text-2xl sm:text-3xl text-[#14213A] dark:text-[#F5F8FF] mt-1.5">
+          <h1 className="font-display font-bold text-2xl sm:text-3xl text-[#0F2A44] dark:text-[#FFF7E8] mt-1.5">
             Trainer Studio — Curriculum & Assessment Builder
           </h1>
         </div>
         <div className="grid grid-cols-3 gap-2 sm:flex sm:gap-3 text-xs font-mono w-full sm:w-auto">
-          <div className="p-2.5 sm:px-4 sm:py-2.5 rounded-xl bg-white dark:bg-[#0C1528] border border-[#E2E8F2] dark:border-slate-800 text-center sm:text-left shadow-xs">
-            <span className="text-[10px] sm:text-xs text-[#5D6B82] dark:text-[#A8B7CE] block sm:inline">Courses: </span>
-            <strong className="text-[#14213A] dark:text-[#F5F8FF]">{data.stats.managed_courses}</strong>
+          <div className="p-2.5 sm:px-4 sm:py-2.5 rounded-xl bg-[#FBF3DC] dark:bg-[#102A44] border border-[#E0D3AF] dark:border-slate-800 text-center sm:text-left shadow-xs">
+            <span className="text-[10px] sm:text-xs text-[#6B7280] dark:text-[#D9CDB8] block sm:inline">Courses: </span>
+            <strong className="text-[#0F2A44] dark:text-[#FFF7E8]">{data.stats.managed_courses}</strong>
           </div>
-          <div className="p-2.5 sm:px-4 sm:py-2.5 rounded-xl bg-white dark:bg-[#0C1528] border border-[#E2E8F2] dark:border-slate-800 text-center sm:text-left shadow-xs">
-            <span className="text-[10px] sm:text-xs text-[#5D6B82] dark:text-[#A8B7CE] block sm:inline">Lessons: </span>
-            <strong className="text-[#14213A] dark:text-[#F5F8FF]">{data.stats.total_lessons}</strong>
+          <div className="p-2.5 sm:px-4 sm:py-2.5 rounded-xl bg-[#FBF3DC] dark:bg-[#102A44] border border-[#E0D3AF] dark:border-slate-800 text-center sm:text-left shadow-xs">
+            <span className="text-[10px] sm:text-xs text-[#6B7280] dark:text-[#D9CDB8] block sm:inline">Lessons: </span>
+            <strong className="text-[#0F2A44] dark:text-[#FFF7E8]">{data.stats.total_lessons}</strong>
           </div>
           <div className="p-2.5 sm:px-4 sm:py-2.5 rounded-xl bg-amber-500/15 text-amber-500 font-bold border border-amber-500/30 text-center sm:text-left">
             <span className="text-[10px] sm:text-xs block sm:inline">Pending: </span>
@@ -209,10 +209,10 @@ export const TrainerStudioPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <form
           onSubmit={handleCreateCourse}
-          className="rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] p-6 space-y-4 shadow-sm"
+          className="rounded-2xl border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] p-6 space-y-4 shadow-sm"
         >
-          <h2 className="font-display font-bold text-lg text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
-            <Plus className="w-5 h-5 text-[#356DFF]" /> Launch New Course Track
+          <h2 className="font-display font-bold text-lg text-[#0F2A44] dark:text-[#FFF7E8] flex items-center gap-2">
+            <Plus className="w-5 h-5 text-[#F97316]" /> Launch New Course Track
           </h2>
           <input
             type="text"
@@ -220,14 +220,14 @@ export const TrainerStudioPage: React.FC = () => {
             value={courseForm.title}
             onChange={(e) => setCourseForm({ ...courseForm, title: e.target.value })}
             placeholder="Course Title (English)"
-            className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-sm text-[#14213A] dark:text-[#F5F8FF] focus:outline-hidden focus:border-[#356DFF]"
+            className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-sm text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-hidden focus:border-[#F97316]"
           />
           <input
             type="text"
             value={courseForm.title_bn}
             onChange={(e) => setCourseForm({ ...courseForm, title_bn: e.target.value })}
             placeholder="কোর্সের নাম (বাংলা)"
-            className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-sm text-[#14213A] dark:text-[#F5F8FF] focus:outline-hidden focus:border-[#356DFF]"
+            className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-sm text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-hidden focus:border-[#F97316]"
           />
           <textarea
             rows={2}
@@ -235,7 +235,7 @@ export const TrainerStudioPage: React.FC = () => {
             value={courseForm.description}
             onChange={(e) => setCourseForm({ ...courseForm, description: e.target.value })}
             placeholder="Detailed course description..."
-            className="w-full p-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-sm text-[#14213A] dark:text-[#F5F8FF] focus:outline-hidden focus:border-[#356DFF]"
+            className="w-full p-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-sm text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-hidden focus:border-[#F97316]"
           />
           <div className="grid grid-cols-2 gap-3">
             <input
@@ -244,14 +244,14 @@ export const TrainerStudioPage: React.FC = () => {
               value={courseForm.price}
               onChange={(e) => setCourseForm({ ...courseForm, price: Number(e.target.value) })}
               placeholder="Price (BDT)"
-              className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-sm font-mono text-[#14213A] dark:text-[#F5F8FF] focus:outline-hidden focus:border-[#356DFF]"
+              className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-sm font-mono text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-hidden focus:border-[#F97316]"
             />
             <input
               type="text"
               value={courseForm.category}
               onChange={(e) => setCourseForm({ ...courseForm, category: e.target.value })}
               placeholder="Category"
-              className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-sm text-[#14213A] dark:text-[#F5F8FF] focus:outline-hidden focus:border-[#356DFF]"
+              className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-sm text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-hidden focus:border-[#F97316]"
             />
           </div>
           <button
@@ -266,15 +266,15 @@ export const TrainerStudioPage: React.FC = () => {
         <div className="space-y-6">
           <form
             onSubmit={handleCreateLesson}
-            className="rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] p-6 space-y-3 shadow-sm"
+            className="rounded-2xl border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] p-6 space-y-3 shadow-sm"
           >
-            <h2 className="font-display font-bold text-lg text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
-              <Video className="w-5 h-5 text-[#35C6BE]" /> Add Sequential Lesson
+            <h2 className="font-display font-bold text-lg text-[#0F2A44] dark:text-[#FFF7E8] flex items-center gap-2">
+              <Video className="w-5 h-5 text-[#F97316]" /> Add Sequential Lesson
             </h2>
             <select
               value={selectedCourseId}
               onChange={(e) => setSelectedCourseId(Number(e.target.value))}
-              className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs font-semibold text-[#14213A] dark:text-[#F5F8FF] focus:outline-hidden focus:border-[#356DFF]"
+              className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs font-semibold text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-hidden focus:border-[#F97316]"
             >
               {data.courses.map((c: any) => (
                 <option key={c.id} value={c.id}>
@@ -289,7 +289,7 @@ export const TrainerStudioPage: React.FC = () => {
                 value={lessonForm.title}
                 onChange={(e) => setLessonForm({ ...lessonForm, title: e.target.value })}
                 placeholder="Lesson Title"
-                className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-sm text-[#14213A] dark:text-[#F5F8FF] focus:outline-hidden focus:border-[#356DFF]"
+                className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-sm text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-hidden focus:border-[#F97316]"
               />
               <input
                 type="text"
@@ -297,7 +297,7 @@ export const TrainerStudioPage: React.FC = () => {
                 value={lessonForm.video_id}
                 onChange={(e) => setLessonForm({ ...lessonForm, video_id: e.target.value })}
                 placeholder="YouTube Video ID"
-                className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-sm font-mono text-[#14213A] dark:text-[#F5F8FF] focus:outline-hidden focus:border-[#356DFF]"
+                className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-sm font-mono text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-hidden focus:border-[#F97316]"
               />
             </div>
             <button
@@ -310,15 +310,15 @@ export const TrainerStudioPage: React.FC = () => {
 
           <form
             onSubmit={handleCreateQuestion}
-            className="rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] p-6 space-y-3 shadow-sm"
+            className="rounded-2xl border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] p-6 space-y-3 shadow-sm"
           >
-            <h2 className="font-display font-bold text-lg text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
+            <h2 className="font-display font-bold text-lg text-[#0F2A44] dark:text-[#FFF7E8] flex items-center gap-2">
               <HelpCircle className="w-5 h-5 text-amber-500" /> Add Short-Answer Quiz Question
             </h2>
             <select
               value={quizForm.lesson_id}
               onChange={(e) => setQuizForm({ ...quizForm, lesson_id: Number(e.target.value) })}
-              className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs font-semibold text-[#14213A] dark:text-[#F5F8FF] focus:outline-hidden focus:border-[#356DFF]"
+              className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs font-semibold text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-hidden focus:border-[#F97316]"
             >
               {data.lessons.map((l: any) => (
                 <option key={l.id} value={l.id}>
@@ -332,7 +332,7 @@ export const TrainerStudioPage: React.FC = () => {
               value={quizForm.text}
               onChange={(e) => setQuizForm({ ...quizForm, text: e.target.value })}
               placeholder="Question prompt..."
-              className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-sm text-[#14213A] dark:text-[#F5F8FF] focus:outline-hidden focus:border-[#356DFF]"
+              className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-sm text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-hidden focus:border-[#F97316]"
             />
             <input
               type="text"
@@ -340,7 +340,7 @@ export const TrainerStudioPage: React.FC = () => {
               value={quizForm.correct_answer}
               onChange={(e) => setQuizForm({ ...quizForm, correct_answer: e.target.value })}
               placeholder="Exact expected short answer..."
-              className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-sm font-mono text-[#14213A] dark:text-[#F5F8FF] focus:outline-hidden focus:border-[#356DFF]"
+              className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-sm font-mono text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-hidden focus:border-[#F97316]"
             />
             <button
               type="submit"
@@ -353,32 +353,32 @@ export const TrainerStudioPage: React.FC = () => {
       </div>
 
       {/* Capstone Project Submissions Workstation */}
-      <div className="rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] p-6 space-y-4 shadow-sm">
-        <h2 className="font-display font-bold text-lg text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
-          <FolderGit2 className="w-5 h-5 text-[#356DFF]" /> Student Capstone Project Submissions
+      <div className="rounded-2xl border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] p-6 space-y-4 shadow-sm">
+        <h2 className="font-display font-bold text-lg text-[#0F2A44] dark:text-[#FFF7E8] flex items-center gap-2">
+          <FolderGit2 className="w-5 h-5 text-[#F97316]" /> Student Capstone Project Submissions
         </h2>
         {(data.submissions || []).length === 0 ? (
-          <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE]">No capstone project submissions yet.</p>
+          <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8]">No capstone project submissions yet.</p>
         ) : (
           <div className="space-y-3">
             {data.submissions.map((s: any) => (
               <div
                 key={s.id}
-                className="p-4 rounded-xl border border-[#E2E8F2] dark:border-slate-800 flex flex-wrap items-center justify-between gap-4 bg-[#F5F7FB] dark:bg-[#111F36]/50"
+                className="p-4 rounded-xl border border-[#E0D3AF] dark:border-slate-800 flex flex-wrap items-center justify-between gap-4 bg-[#E9D9B4] dark:bg-[#16324F]/50"
               >
                 <div className="space-y-1">
-                  <div className="font-semibold text-sm text-[#14213A] dark:text-[#F5F8FF]">
+                  <div className="font-semibold text-sm text-[#0F2A44] dark:text-[#FFF7E8]">
                     {s.user_name} • {s.course_title}
                   </div>
                   <a
                     href={s.github_or_live_url}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-xs font-mono text-[#356DFF] dark:text-[#35C6BE] hover:underline block"
+                    className="text-xs font-mono text-[#F97316] dark:text-[#F97316] hover:underline block"
                   >
                     {s.github_or_live_url}
                   </a>
-                  <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE]">{s.notes}</p>
+                  <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8]">{s.notes}</p>
                 </div>
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
                   <div className="grid grid-cols-2 sm:flex sm:items-center gap-2">
@@ -394,7 +394,7 @@ export const TrainerStudioPage: React.FC = () => {
                           [s.id]: { grade: e.target.value, feedback: gradeInputs[s.id]?.feedback || '' },
                         })
                       }
-                      className="w-full sm:w-28 min-h-[42px] px-3 rounded-xl bg-white dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs font-mono font-bold text-[#14213A] dark:text-[#F5F8FF]"
+                      className="w-full sm:w-28 min-h-[42px] px-3 rounded-xl bg-[#FBF3DC] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs font-mono font-bold text-[#0F2A44] dark:text-[#FFF7E8]"
                     />
                     <input
                       type="text"
@@ -406,7 +406,7 @@ export const TrainerStudioPage: React.FC = () => {
                           [s.id]: { grade: gradeInputs[s.id]?.grade || '95', feedback: e.target.value },
                         })
                       }
-                      className="w-full sm:w-44 min-h-[42px] px-3 rounded-xl bg-white dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs text-[#14213A] dark:text-[#F5F8FF]"
+                      className="w-full sm:w-44 min-h-[42px] px-3 rounded-xl bg-[#FBF3DC] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs text-[#0F2A44] dark:text-[#FFF7E8]"
                     />
                   </div>
                   <button
@@ -484,7 +484,7 @@ export const AdminConsolePage: React.FC = () => {
 
   // Academy Settings & Gateway State
   const [settingsData, setSettingsData] = useState<any>({
-    site_title: 'TrainingPundit Autonomous Academy',
+    site_title: 'Training Pundit',
     support_email: 'support@trainingpundit.com',
     support_phone: '+880 1712-345678',
     trade_license: 'TRAD/DNCC/001332/2026',
@@ -1145,8 +1145,6 @@ export const AdminConsolePage: React.FC = () => {
     <div className="relative min-h-screen w-full min-w-0 overflow-x-clip">
       {/* Lightweight GPU-friendly ambient background (no heavy 64px Gaussian blur convolution on mobile) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
-        <div className="hidden sm:block absolute top-0 left-1/4 w-[400px] h-[400px] bg-gradient-to-br from-indigo-500/10 via-sky-500/5 to-transparent rounded-full blur-2xl" />
-        <div className="hidden sm:block absolute top-1/3 right-10 w-[350px] h-[350px] bg-gradient-to-bl from-amber-500/10 via-purple-500/5 to-transparent rounded-full blur-2xl" />
         <div
           className="absolute inset-0 opacity-[0.03] dark:opacity-[0.06]"
           style={{
@@ -1158,7 +1156,7 @@ export const AdminConsolePage: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-3 sm:px-6 py-4 sm:py-8 space-y-5 sm:space-y-8 w-full min-w-0">
         {/* Header Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 pb-4 border-b border-[#E2E8F2] dark:border-slate-800 w-full min-w-0">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 pb-4 border-b border-[#E0D3AF] dark:border-slate-800 w-full min-w-0">
           <div className="min-w-0">
             <div className="flex items-center gap-2">
               <span className="px-2.5 py-0.5 rounded text-xs font-mono font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
@@ -1166,7 +1164,7 @@ export const AdminConsolePage: React.FC = () => {
               </span>
               <span className="text-xs font-mono text-slate-400">Zero-Trust v2.0</span>
             </div>
-            <h1 className="font-display font-bold text-xl sm:text-2xl text-[#14213A] dark:text-[#F5F8FF] mt-1 tracking-tight">
+            <h1 className="font-display font-bold text-xl sm:text-2xl text-[#0F2A44] dark:text-[#FFF7E8] mt-1 tracking-tight">
               Academy Operations & Management
             </h1>
           </div>
@@ -1184,7 +1182,7 @@ export const AdminConsolePage: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsCertModalOpen(true)}
-              className="min-h-[40px] px-3.5 rounded-xl aurora-pill-teal border text-xs font-bold font-mono flex items-center gap-1.5 whitespace-nowrap tactile-press cursor-pointer shrink-0"
+              className="min-h-[40px] px-3.5 rounded-xl aurora-pill-accent border text-xs font-bold font-mono flex items-center gap-1.5 whitespace-nowrap tactile-press cursor-pointer shrink-0"
             >
               <Award className="w-3.5 h-3.5" />
               <span>Mint Cert</span>
@@ -1195,16 +1193,16 @@ export const AdminConsolePage: React.FC = () => {
               disabled={syncingLegacy}
               className="min-h-[40px] px-3.5 rounded-xl aurora-btn-secondary text-xs font-mono font-semibold flex items-center gap-1.5 whitespace-nowrap cursor-pointer shrink-0"
             >
-              <Database className="w-3.5 h-3.5 text-[#356DFF] dark:text-[#35C6BE]" />
+              <Database className="w-3.5 h-3.5 text-[#F97316] dark:text-[#F97316]" />
               <span>{syncingLegacy ? 'Syncing...' : 'Sync v1'}</span>
             </button>
           </div>
         </div>
 
         {/* Mobile-Optimized Sticky Segmented Tab Strip */}
-        <div className="sticky top-14 sm:top-16 z-30 bg-white/95 dark:bg-[#060B18]/95 backdrop-blur-md py-2 border-b border-[#E2E8F2] dark:border-slate-800 w-full max-w-full overflow-hidden">
+        <div className="sticky top-14 sm:top-16 z-30 bg-[#FBF3DC]/95 dark:bg-[#0A1E33]/95 backdrop-blur-md py-2 border-b border-[#E0D3AF] dark:border-slate-800 w-full max-w-full overflow-hidden">
           <div className="w-full max-w-full overflow-x-auto overscroll-x-contain no-scrollbar py-0.5">
-            <div className="inline-flex items-center gap-1.5 p-1 bg-[#F5F7FB] dark:bg-[#0C1528] rounded-2xl border border-[#E2E8F2] dark:border-slate-800 whitespace-nowrap">
+            <div className="inline-flex items-center gap-1.5 p-1 bg-[#E9D9B4] dark:bg-[#102A44] rounded-2xl border border-[#E0D3AF] dark:border-slate-800 whitespace-nowrap">
               {tabs.map((tab) => {
                 const Icon = tab.icon
                 const isActive = activeTab === tab.id
@@ -1216,17 +1214,17 @@ export const AdminConsolePage: React.FC = () => {
                     className={`min-h-[42px] px-3.5 sm:px-4 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                       isActive
                         ? 'aurora-btn-primary shadow-sm font-bold'
-                        : 'text-[#5D6B82] dark:text-[#A8B7CE] hover:text-[#14213A] dark:hover:text-[#F5F8FF] hover:bg-slate-200/50 dark:hover:bg-slate-800/40'
+                        : 'text-[#6B7280] dark:text-[#D9CDB8] hover:text-[#0F2A44] dark:hover:text-[#FFF7E8] hover:bg-slate-200/50 dark:hover:bg-slate-800/40'
                     }`}
                   >
-                    <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-[#5D6B82] dark:text-[#A8B7CE]'}`} />
+                    <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-[#6B7280] dark:text-[#D9CDB8]'}`} />
                     <span>{tab.label}</span>
                     {tab.badge !== undefined && (
                       <span
                         className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono font-bold ${
                           isActive
-                            ? 'bg-white/25 text-white'
-                            : 'bg-slate-200 dark:bg-slate-800 text-[#14213A] dark:text-[#F5F8FF]'
+                            ? 'bg-[#FBF3DC]/25 text-white'
+                            : 'bg-slate-200 dark:bg-slate-800 text-[#0F2A44] dark:text-[#FFF7E8]'
                         }`}
                       >
                         {tab.badge}
@@ -1283,13 +1281,13 @@ export const AdminConsolePage: React.FC = () => {
                 return (
                   <div
                     key={idx}
-                    className="p-3.5 sm:p-5 rounded-xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] relative overflow-hidden shadow-xs min-w-0"
+                    className="p-3.5 sm:p-5 rounded-xl border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] relative overflow-hidden shadow-xs min-w-0"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-[10px] sm:text-[11px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] truncate">{kpi.label}</span>
+                      <span className="text-[10px] sm:text-[11px] font-mono text-[#6B7280] dark:text-[#D9CDB8] truncate">{kpi.label}</span>
                       <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-400 dark:text-slate-500 shrink-0" />
                     </div>
-                    <div className="font-mono font-bold text-lg sm:text-2xl text-[#14213A] dark:text-[#F5F8FF] mt-1.5 sm:mt-2 truncate tabular-nums">
+                    <div className="font-mono font-bold text-lg sm:text-2xl text-[#0F2A44] dark:text-[#FFF7E8] mt-1.5 sm:mt-2 truncate tabular-nums">
                       {kpi.value}
                     </div>
                   </div>
@@ -1301,13 +1299,13 @@ export const AdminConsolePage: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               {/* Left Column: Fast Action Hub & Top Course Breakdown */}
               <div className="lg:col-span-7 space-y-6">
-                <div className="p-5 sm:p-6 rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] space-y-4 shadow-xs">
+                <div className="p-5 sm:p-6 rounded-2xl border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] space-y-4 shadow-xs">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h2 className="font-display font-bold text-lg text-[#14213A] dark:text-[#F5F8FF]">
+                      <h2 className="font-display font-bold text-lg text-[#0F2A44] dark:text-[#FFF7E8]">
                         Management Command Shortcuts
                       </h2>
-                      <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] mt-0.5">
+                      <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8] mt-0.5">
                         Perform routine administrative operations with 1-click workflows.
                       </p>
                     </div>
@@ -1320,13 +1318,13 @@ export const AdminConsolePage: React.FC = () => {
                         setActiveTab('enrollments')
                         setIsEnrollModalOpen(true)
                       }}
-                      className="p-4 rounded-xl border border-[#356DFF]/30 bg-[#356DFF]/10 hover:bg-[#356DFF]/20 text-left transition-all cursor-pointer tactile-press space-y-1.5"
+                      className="p-4 rounded-xl border border-[#F97316]/30 bg-[#F97316]/10 hover:bg-[#F97316]/20 text-left transition-all cursor-pointer tactile-press space-y-1.5"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-[#356DFF]/20 text-[#356DFF] flex items-center justify-center font-bold">
+                      <div className="w-8 h-8 rounded-lg bg-[#F97316]/20 text-[#F97316] flex items-center justify-center font-bold">
                         <UserPlus className="w-4 h-4" />
                       </div>
-                      <div className="font-semibold text-sm text-[#14213A] dark:text-[#F5F8FF]">Enroll Student</div>
-                      <div className="text-[11px] text-[#5D6B82] dark:text-[#A8B7CE] leading-tight">Add learner directly to any track</div>
+                      <div className="font-semibold text-sm text-[#0F2A44] dark:text-[#FFF7E8]">Enroll Student</div>
+                      <div className="text-[11px] text-[#6B7280] dark:text-[#D9CDB8] leading-tight">Add learner directly to any track</div>
                     </button>
 
                     <button
@@ -1335,13 +1333,13 @@ export const AdminConsolePage: React.FC = () => {
                         setActiveTab('certificates')
                         setIsCertModalOpen(true)
                       }}
-                      className="p-4 rounded-xl border border-purple-500/30 bg-purple-500/10 hover:bg-purple-500/20 text-left transition-all cursor-pointer tactile-press space-y-1.5"
+                      className="p-4 rounded-xl border border-orange-500/30 bg-orange-500/10 hover:bg-orange-500/20 text-left transition-all cursor-pointer tactile-press space-y-1.5"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-500 flex items-center justify-center font-bold">
+                      <div className="w-8 h-8 rounded-lg bg-orange-500/20 text-orange-500 flex items-center justify-center font-bold">
                         <Award className="w-4 h-4" />
                       </div>
-                      <div className="font-semibold text-sm text-[#14213A] dark:text-[#F5F8FF]">Mint Certificate</div>
-                      <div className="text-[11px] text-[#5D6B82] dark:text-[#A8B7CE] leading-tight">Generate verified QR certificate</div>
+                      <div className="font-semibold text-sm text-[#0F2A44] dark:text-[#FFF7E8]">Mint Certificate</div>
+                      <div className="text-[11px] text-[#6B7280] dark:text-[#D9CDB8] leading-tight">Generate verified QR certificate</div>
                     </button>
 
                     <button
@@ -1350,46 +1348,46 @@ export const AdminConsolePage: React.FC = () => {
                         setActiveTab('payouts')
                         setIsPayoutModalOpen(true)
                       }}
-                      className="p-4 rounded-xl border border-[#35C6BE]/30 bg-[#35C6BE]/10 hover:bg-[#35C6BE]/20 text-left transition-all cursor-pointer tactile-press space-y-1.5"
+                      className="p-4 rounded-xl border border-[#F97316]/30 bg-[#F97316]/10 hover:bg-[#F97316]/20 text-left transition-all cursor-pointer tactile-press space-y-1.5"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-[#35C6BE]/20 text-[#35C6BE] flex items-center justify-center font-bold">
+                      <div className="w-8 h-8 rounded-lg bg-[#F97316]/20 text-[#F97316] flex items-center justify-center font-bold">
                         <Wallet className="w-4 h-4" />
                       </div>
-                      <div className="font-semibold text-sm text-[#14213A] dark:text-[#F5F8FF]">Disburse Payout</div>
-                      <div className="text-[11px] text-[#5D6B82] dark:text-[#A8B7CE] leading-tight">Record trainer commission transfer</div>
+                      <div className="font-semibold text-sm text-[#0F2A44] dark:text-[#FFF7E8]">Disburse Payout</div>
+                      <div className="text-[11px] text-[#6B7280] dark:text-[#D9CDB8] leading-tight">Record trainer commission transfer</div>
                     </button>
                   </div>
                 </div>
 
                 {/* Course Track Enrollment Breakdown */}
-                <div className="p-5 sm:p-6 rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] space-y-4 shadow-xs">
+                <div className="p-5 sm:p-6 rounded-2xl border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] space-y-4 shadow-xs">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-display font-bold text-base text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
-                      <BookOpen className="w-4 h-4 text-[#356DFF]" />
+                    <h3 className="font-display font-bold text-base text-[#0F2A44] dark:text-[#FFF7E8] flex items-center gap-2">
+                      <BookOpen className="w-4 h-4 text-[#F97316]" />
                       <span>Active Course Enrollment Capacity</span>
                     </h3>
-                    <span className="text-xs font-mono text-[#5D6B82] dark:text-[#A8B7CE]">Real-time</span>
+                    <span className="text-xs font-mono text-[#6B7280] dark:text-[#D9CDB8]">Real-time</span>
                   </div>
 
                   <div className="space-y-3">
                     {data.course_enrollment_breakdown?.map((c: any, idx: number) => (
                       <div
                         key={idx}
-                        className="p-3.5 sm:p-4 rounded-xl border border-[#E2E8F2] dark:border-slate-800 bg-[#F5F7FB] dark:bg-[#111F36]/50 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 text-xs min-w-0"
+                        className="p-3.5 sm:p-4 rounded-xl border border-[#E0D3AF] dark:border-slate-800 bg-[#E9D9B4] dark:bg-[#16324F]/50 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 text-xs min-w-0"
                       >
                         <div className="space-y-1 min-w-0 flex-1">
-                          <div className="font-semibold text-sm text-[#14213A] dark:text-[#F5F8FF] break-words leading-snug">
+                          <div className="font-semibold text-sm text-[#0F2A44] dark:text-[#FFF7E8] break-words leading-snug">
                             {c.title}
                           </div>
-                          <div className="flex items-center gap-2 text-[#5D6B82] dark:text-[#A8B7CE] font-mono text-[11px]">
+                          <div className="flex items-center gap-2 text-[#6B7280] dark:text-[#D9CDB8] font-mono text-[11px]">
                             <span>Price: ৳{c.price?.toLocaleString()}</span>
                             <span>•</span>
                             <span className="text-emerald-600 dark:text-emerald-400 font-semibold">Active Curriculum</span>
                           </div>
                         </div>
-                        <div className="flex items-center justify-between sm:justify-end gap-3 sm:text-right shrink-0 pt-1 sm:pt-0 border-t sm:border-0 border-[#E2E8F2] dark:border-slate-800">
+                        <div className="flex items-center justify-between sm:justify-end gap-3 sm:text-right shrink-0 pt-1 sm:pt-0 border-t sm:border-0 border-[#E0D3AF] dark:border-slate-800">
                           <div>
-                            <span className="font-mono font-bold text-[#356DFF] dark:text-[#35C6BE] text-sm">{c.students} Learners</span>
+                            <span className="font-mono font-bold text-[#F97316] dark:text-[#F97316] text-sm">{c.students} Learners</span>
                             <div className="text-[11px] text-emerald-600 dark:text-emerald-400 font-mono font-semibold">
                               ৳{(c.students * c.price).toLocaleString()} gross
                             </div>
@@ -1403,7 +1401,7 @@ export const AdminConsolePage: React.FC = () => {
 
               {/* Right Column: Security Defense & Verification Checklist */}
               <div className="lg:col-span-5 space-y-6">
-                <div className="p-5 sm:p-6 rounded-2xl border border-emerald-500/30 bg-white/80 dark:bg-[#111827]/80 backdrop-blur-md space-y-4">
+                <div className="p-5 sm:p-6 rounded-2xl border border-emerald-500/30 bg-[#FBF3DC]/80 dark:bg-[#102A44]/80 backdrop-blur-md space-y-4">
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <h2 className="font-display font-bold text-base text-slate-900 dark:text-white flex items-center gap-2">
@@ -1436,7 +1434,7 @@ export const AdminConsolePage: React.FC = () => {
                 </div>
 
                 {/* Revenue Trend pill */}
-                <div className="p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-[#111827]/80 backdrop-blur-md space-y-3">
+                <div className="p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-[#FBF3DC]/80 dark:bg-[#102A44]/80 backdrop-blur-md space-y-3">
                   <h3 className="font-display font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
                     <span>Monthly Trajectory</span>
                     <span className="text-xs font-mono text-emerald-500">+28% MoM</span>
@@ -1446,7 +1444,7 @@ export const AdminConsolePage: React.FC = () => {
                       <div key={idx} className="text-center space-y-1">
                         <div className="h-16 w-full rounded bg-slate-100 dark:bg-slate-800 flex items-end justify-center p-1">
                           <div
-                            className="w-full bg-sky-500 rounded-sm"
+                            className="w-full bg-orange-500 rounded-sm"
                             style={{ height: `${Math.min(100, (m.revenue / 140000) * 100)}%` }}
                           />
                         </div>
@@ -1465,11 +1463,11 @@ export const AdminConsolePage: React.FC = () => {
           <div className="space-y-6 animate-fadeIn">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <h2 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
-                  <Layers className="w-5 h-5 text-[#356DFF]" />
+                <h2 className="font-display font-bold text-xl text-[#0F2A44] dark:text-[#FFF7E8] flex items-center gap-2">
+                  <Layers className="w-5 h-5 text-[#F97316]" />
                   <span>Course Catalog & Curriculum Architect</span>
                 </h2>
-                <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] mt-0.5">
+                <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8] mt-0.5">
                   Manage course syllabi, module tracks, publishing states, and tuition fees.
                 </p>
               </div>
@@ -1477,7 +1475,7 @@ export const AdminConsolePage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => navigate('/courses')}
-                  className="min-h-[40px] px-4 rounded-xl border border-[#E2E8F2] dark:border-slate-800 text-xs font-semibold font-mono flex items-center gap-1.5 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer"
+                  className="min-h-[40px] px-4 rounded-xl border border-[#E0D3AF] dark:border-slate-800 text-xs font-semibold font-mono flex items-center gap-1.5 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer"
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   <span>View Public Catalog</span>
@@ -1493,7 +1491,7 @@ export const AdminConsolePage: React.FC = () => {
                   placeholder="Search tracks by title, category, or slug..."
                   value={courseSearch}
                   onChange={(e) => setCourseSearch(e.target.value)}
-                  className="w-full min-h-[42px] pl-10 pr-4 rounded-xl bg-white dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs text-[#14213A] dark:text-[#F5F8FF] focus:outline-hidden focus:border-[#356DFF]"
+                  className="w-full min-h-[42px] pl-10 pr-4 rounded-xl bg-[#FBF3DC] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-hidden focus:border-[#F97316]"
                 />
               </div>
               <div className="flex items-center gap-2">
@@ -1548,11 +1546,11 @@ export const AdminConsolePage: React.FC = () => {
                 .map((c: any) => (
                   <div
                     key={c.id}
-                    className="p-5 rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] shadow-xs flex flex-col justify-between gap-4"
+                    className="p-5 rounded-2xl border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] shadow-xs flex flex-col justify-between gap-4"
                   >
                     <div className="space-y-2">
                       <div className="flex items-center justify-between gap-2">
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold aurora-pill-teal">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold aurora-pill-accent">
                           {c.category || 'Engineering'}
                         </span>
                         <span
@@ -1565,24 +1563,24 @@ export const AdminConsolePage: React.FC = () => {
                           {c.is_published !== false ? 'PUBLISHED' : 'DRAFT'}
                         </span>
                       </div>
-                      <h3 className="font-display font-bold text-sm text-[#14213A] dark:text-[#F5F8FF] line-clamp-2">
+                      <h3 className="font-display font-bold text-sm text-[#0F2A44] dark:text-[#FFF7E8] line-clamp-2">
                         {c.title}
                       </h3>
                       {c.title_bn && (
-                        <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] font-sans line-clamp-1">{c.title_bn}</p>
+                        <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8] font-sans line-clamp-1">{c.title_bn}</p>
                       )}
                     </div>
 
-                    <div className="pt-3 border-t border-[#E2E8F2] dark:border-slate-800/80 flex items-center justify-between text-xs">
+                    <div className="pt-3 border-t border-[#E0D3AF] dark:border-slate-800/80 flex items-center justify-between text-xs">
                       <div>
-                        <span className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] uppercase">Tuition</span>
-                        <div className="font-mono font-bold text-sm text-[#356DFF] dark:text-[#35C6BE]">
+                        <span className="text-[10px] font-mono text-[#6B7280] dark:text-[#D9CDB8] uppercase">Tuition</span>
+                        <div className="font-mono font-bold text-sm text-[#F97316] dark:text-[#F97316]">
                           ৳{c.price?.toLocaleString()}
                         </div>
                       </div>
                       <div className="text-right">
-                        <span className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] uppercase">Students</span>
-                        <div className="font-mono font-semibold text-xs text-[#14213A] dark:text-[#F5F8FF]">
+                        <span className="text-[10px] font-mono text-[#6B7280] dark:text-[#D9CDB8] uppercase">Students</span>
+                        <div className="font-mono font-semibold text-xs text-[#0F2A44] dark:text-[#FFF7E8]">
                           {c.students_count || c.students || 0} Enrolled
                         </div>
                       </div>
@@ -1598,11 +1596,11 @@ export const AdminConsolePage: React.FC = () => {
           <div className="space-y-6 animate-fadeIn">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <h2 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
-                  <HelpCircle className="w-5 h-5 text-[#356DFF]" />
+                <h2 className="font-display font-bold text-xl text-[#0F2A44] dark:text-[#FFF7E8] flex items-center gap-2">
+                  <HelpCircle className="w-5 h-5 text-[#F97316]" />
                   <span>Question Bank & Assessments Central</span>
                 </h2>
-                <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] mt-0.5">
+                <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8] mt-0.5">
                   MCQs, short problem prompts, grading keys, and bulk CSV/Excel question ingestion.
                 </p>
               </div>
@@ -1610,9 +1608,9 @@ export const AdminConsolePage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsImportModalOpen(true)}
-                  className="min-h-[40px] px-3.5 rounded-xl border border-[#E2E8F2] dark:border-slate-800 text-xs font-semibold font-mono flex items-center gap-1.5 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer"
+                  className="min-h-[40px] px-3.5 rounded-xl border border-[#E0D3AF] dark:border-slate-800 text-xs font-semibold font-mono flex items-center gap-1.5 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer"
                 >
-                  <UploadCloud className="w-4 h-4 text-[#356DFF]" />
+                  <UploadCloud className="w-4 h-4 text-[#F97316]" />
                   <span>Import Questions (CSV)</span>
                 </button>
                 <button
@@ -1634,7 +1632,7 @@ export const AdminConsolePage: React.FC = () => {
                   placeholder="Search questions or course modules..."
                   value={qbSearch}
                   onChange={(e) => setQbSearch(e.target.value)}
-                  className="w-full min-h-[42px] pl-10 pr-4 rounded-xl bg-white dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs text-[#14213A] dark:text-[#F5F8FF] focus:outline-hidden focus:border-[#356DFF]"
+                  className="w-full min-h-[42px] pl-10 pr-4 rounded-xl bg-[#FBF3DC] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-hidden focus:border-[#F97316]"
                 />
               </div>
               <div className="flex items-center gap-2">
@@ -1677,7 +1675,7 @@ export const AdminConsolePage: React.FC = () => {
             {loadingQuestions ? (
               <div className="p-8 text-center text-xs font-mono text-slate-400">Loading Question Bank...</div>
             ) : (questionBankData.questions || []).length === 0 ? (
-              <div className="p-8 text-center text-xs text-[#5D6B82] dark:text-[#A8B7CE] border border-dashed border-[#E2E8F2] dark:border-slate-800 rounded-2xl">
+              <div className="p-8 text-center text-xs text-[#6B7280] dark:text-[#D9CDB8] border border-dashed border-[#E0D3AF] dark:border-slate-800 rounded-2xl">
                 No questions found. Use "+ Add Assessment" or "Import Questions" to populate the question bank.
               </div>
             ) : (
@@ -1695,11 +1693,11 @@ export const AdminConsolePage: React.FC = () => {
                   .map((q: any) => (
                     <div
                       key={q.id}
-                      className="p-4 sm:p-5 rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] shadow-xs space-y-3"
+                      className="p-4 sm:p-5 rounded-2xl border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] shadow-xs space-y-3"
                     >
                       <div className="flex items-center justify-between gap-3">
                         <div className="flex items-center gap-2">
-                          <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold aurora-pill-teal">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold aurora-pill-accent">
                             {q.course_title}
                           </span>
                           <span className="text-xs font-mono text-slate-400">Lesson #{q.lesson_id}</span>
@@ -1709,7 +1707,7 @@ export const AdminConsolePage: React.FC = () => {
                         </span>
                       </div>
 
-                      <div className="font-semibold text-sm text-[#14213A] dark:text-[#F5F8FF]">
+                      <div className="font-semibold text-sm text-[#0F2A44] dark:text-[#FFF7E8]">
                         {q.text}
                       </div>
 
@@ -1724,7 +1722,7 @@ export const AdminConsolePage: React.FC = () => {
                                 className={`p-2.5 rounded-xl border text-xs flex items-center justify-between ${
                                   isCorrect
                                     ? 'border-emerald-500/40 bg-emerald-500/5 text-emerald-700 dark:text-emerald-300 font-semibold'
-                                    : 'border-[#E2E8F2] dark:border-slate-800/80 text-[#5D6B82] dark:text-[#A8B7CE]'
+                                    : 'border-[#E0D3AF] dark:border-slate-800/80 text-[#6B7280] dark:text-[#D9CDB8]'
                                 }`}
                               >
                                 <span className="flex items-center gap-2">
@@ -1741,8 +1739,8 @@ export const AdminConsolePage: React.FC = () => {
                       )}
 
                       {(!q.options || q.options.length === 0) && (
-                        <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-[#E2E8F2] dark:border-slate-800 text-xs font-mono text-slate-600 dark:text-slate-400">
-                          Expected Answer: <span className="font-bold text-[#356DFF] dark:text-[#35C6BE]">{q.correct_answer}</span>
+                        <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-[#E0D3AF] dark:border-slate-800 text-xs font-mono text-slate-600 dark:text-slate-400">
+                          Expected Answer: <span className="font-bold text-[#F97316] dark:text-[#F97316]">{q.correct_answer}</span>
                         </div>
                       )}
                     </div>
@@ -1756,24 +1754,24 @@ export const AdminConsolePage: React.FC = () => {
         {activeTab === 'notifications' && (
           <div className="space-y-6 animate-fadeIn">
             <div>
-              <h2 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
-                <Bell className="w-5 h-5 text-[#356DFF]" />
+              <h2 className="font-display font-bold text-xl text-[#0F2A44] dark:text-[#FFF7E8] flex items-center gap-2">
+                <Bell className="w-5 h-5 text-[#F97316]" />
                 <span>Real-time Activity Stream & Announcement Broadcast</span>
               </h2>
-              <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] mt-0.5">
+              <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8] mt-0.5">
                 Push global announcements to student dashboards and track real-time payments, enrollments, and cert minting.
               </p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
               {/* Broadcast Announcement Form */}
-              <div className="lg:col-span-5 rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] p-6 space-y-4 shadow-xs">
-                <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F2] dark:border-slate-800">
-                  <h3 className="font-display font-bold text-sm text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
-                    <Radio className="w-4 h-4 text-[#356DFF]" />
+              <div className="lg:col-span-5 rounded-2xl border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] p-6 space-y-4 shadow-xs">
+                <div className="flex items-center justify-between pb-3 border-b border-[#E0D3AF] dark:border-slate-800">
+                  <h3 className="font-display font-bold text-sm text-[#0F2A44] dark:text-[#FFF7E8] flex items-center gap-2">
+                    <Radio className="w-4 h-4 text-[#F97316]" />
                     <span>Broadcast Notice</span>
                   </h3>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold aurora-pill-teal">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold aurora-pill-accent">
                     GLOBAL PUSH
                   </span>
                 </div>
@@ -1787,7 +1785,7 @@ export const AdminConsolePage: React.FC = () => {
                       value={broadcastForm.title}
                       onChange={(e) => setBroadcastForm({ ...broadcastForm, title: e.target.value })}
                       placeholder="e.g. Scheduled Live Q&A Batch Session tonight at 9 PM"
-                      className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs text-[#14213A] dark:text-[#F5F8FF] focus:outline-hidden focus:border-[#356DFF]"
+                      className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-hidden focus:border-[#F97316]"
                     />
                   </div>
 
@@ -1799,7 +1797,7 @@ export const AdminConsolePage: React.FC = () => {
                       value={broadcastForm.message}
                       onChange={(e) => setBroadcastForm({ ...broadcastForm, message: e.target.value })}
                       placeholder="Provide detailed instructions or notice details..."
-                      className="w-full p-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs text-[#14213A] dark:text-[#F5F8FF] focus:outline-hidden focus:border-[#356DFF]"
+                      className="w-full p-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-hidden focus:border-[#F97316]"
                     />
                   </div>
 
@@ -1808,7 +1806,7 @@ export const AdminConsolePage: React.FC = () => {
                     <select
                       value={broadcastForm.target_role}
                       onChange={(e) => setBroadcastForm({ ...broadcastForm, target_role: e.target.value })}
-                      className="w-full min-h-[42px] px-3 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs font-semibold text-[#14213A] dark:text-[#F5F8FF]"
+                      className="w-full min-h-[42px] px-3 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs font-semibold text-[#0F2A44] dark:text-[#FFF7E8]"
                     >
                       <option value="all">Broadcast to All Active Users</option>
                       <option value="students">Enrolled Students Only</option>
@@ -1829,9 +1827,9 @@ export const AdminConsolePage: React.FC = () => {
               </div>
 
               {/* Real-time Activity Feed */}
-              <div className="lg:col-span-7 rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] p-6 space-y-4 shadow-xs">
-                <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F2] dark:border-slate-800">
-                  <h3 className="font-display font-bold text-sm text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
+              <div className="lg:col-span-7 rounded-2xl border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] p-6 space-y-4 shadow-xs">
+                <div className="flex items-center justify-between pb-3 border-b border-[#E0D3AF] dark:border-slate-800">
+                  <h3 className="font-display font-bold text-sm text-[#0F2A44] dark:text-[#FFF7E8] flex items-center gap-2">
                     <TrendingUp className="w-4 h-4 text-emerald-500" />
                     <span>Live System Event Stream</span>
                   </h3>
@@ -1840,21 +1838,21 @@ export const AdminConsolePage: React.FC = () => {
 
                 <div className="space-y-2.5 max-h-[500px] overflow-y-auto pr-1">
                   {(notifsData.activity_feed || []).length === 0 ? (
-                    <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] text-center py-6">No recent events logged.</p>
+                    <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8] text-center py-6">No recent events logged.</p>
                   ) : (
                     (notifsData.activity_feed || []).map((ev: any, idx: number) => (
                       <div
                         key={idx}
-                        className="p-3.5 rounded-xl border border-[#E2E8F2] dark:border-slate-800 bg-[#F5F7FB] dark:bg-[#111F36]/50 flex items-start justify-between gap-3 text-xs"
+                        className="p-3.5 rounded-xl border border-[#E0D3AF] dark:border-slate-800 bg-[#E9D9B4] dark:bg-[#16324F]/50 flex items-start justify-between gap-3 text-xs"
                       >
                         <div className="space-y-1 min-w-0">
                           <div className="flex items-center gap-2">
-                            <span className="font-semibold text-[#14213A] dark:text-[#F5F8FF]">{ev.title}</span>
+                            <span className="font-semibold text-[#0F2A44] dark:text-[#FFF7E8]">{ev.title}</span>
                             <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
                               {ev.type || 'SYSTEM'}
                             </span>
                           </div>
-                          <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE]">{ev.message}</p>
+                          <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8]">{ev.message}</p>
                         </div>
                         <span className="text-[10px] font-mono text-slate-400 shrink-0">
                           {ev.time ? new Date(ev.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Just now'}
@@ -1873,11 +1871,11 @@ export const AdminConsolePage: React.FC = () => {
           <div className="space-y-6 animate-fadeIn">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <h2 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
-                  <Settings className="w-5 h-5 text-[#356DFF]" />
+                <h2 className="font-display font-bold text-xl text-[#0F2A44] dark:text-[#FFF7E8] flex items-center gap-2">
+                  <Settings className="w-5 h-5 text-[#F97316]" />
                   <span>Academy Settings & Payment Gateways</span>
                 </h2>
-                <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] mt-0.5">
+                <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8] mt-0.5">
                   Configure branding, MFS merchant numbers, SMTP credentials, SEO metadata, and security locks.
                 </p>
               </div>
@@ -1886,8 +1884,8 @@ export const AdminConsolePage: React.FC = () => {
             <form onSubmit={handleSaveSettings} className="space-y-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Brand & Organization Information */}
-                <div className="p-6 rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] space-y-4 shadow-xs">
-                  <h3 className="font-display font-bold text-base text-[#14213A] dark:text-[#F5F8FF]">
+                <div className="p-6 rounded-2xl border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] space-y-4 shadow-xs">
+                  <h3 className="font-display font-bold text-base text-[#0F2A44] dark:text-[#FFF7E8]">
                     Academy Identity & Contact
                   </h3>
                   <div className="space-y-3">
@@ -1897,7 +1895,7 @@ export const AdminConsolePage: React.FC = () => {
                         type="text"
                         value={settingsData.site_title || ''}
                         onChange={(e) => setSettingsData({ ...settingsData, site_title: e.target.value })}
-                        className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs font-semibold text-[#14213A] dark:text-[#F5F8FF]"
+                        className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs font-semibold text-[#0F2A44] dark:text-[#FFF7E8]"
                       />
                     </div>
 
@@ -1908,7 +1906,7 @@ export const AdminConsolePage: React.FC = () => {
                           type="email"
                           value={settingsData.support_email || ''}
                           onChange={(e) => setSettingsData({ ...settingsData, support_email: e.target.value })}
-                          className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs text-[#14213A] dark:text-[#F5F8FF]"
+                          className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs text-[#0F2A44] dark:text-[#FFF7E8]"
                         />
                       </div>
                       <div className="space-y-1">
@@ -1917,7 +1915,7 @@ export const AdminConsolePage: React.FC = () => {
                           type="text"
                           value={settingsData.support_phone || ''}
                           onChange={(e) => setSettingsData({ ...settingsData, support_phone: e.target.value })}
-                          className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs text-[#14213A] dark:text-[#F5F8FF]"
+                          className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs text-[#0F2A44] dark:text-[#FFF7E8]"
                         />
                       </div>
                     </div>
@@ -1928,7 +1926,7 @@ export const AdminConsolePage: React.FC = () => {
                         type="text"
                         value={settingsData.trade_license || ''}
                         onChange={(e) => setSettingsData({ ...settingsData, trade_license: e.target.value })}
-                        className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs font-mono text-[#14213A] dark:text-[#F5F8FF]"
+                        className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs font-mono text-[#0F2A44] dark:text-[#FFF7E8]"
                       />
                     </div>
 
@@ -1938,15 +1936,15 @@ export const AdminConsolePage: React.FC = () => {
                         rows={2}
                         value={settingsData.address || ''}
                         onChange={(e) => setSettingsData({ ...settingsData, address: e.target.value })}
-                        className="w-full p-3 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs text-[#14213A] dark:text-[#F5F8FF]"
+                        className="w-full p-3 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs text-[#0F2A44] dark:text-[#FFF7E8]"
                       />
                     </div>
                   </div>
                 </div>
 
                 {/* MFS Gateways & Payment Details */}
-                <div className="p-6 rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] space-y-4 shadow-xs">
-                  <h3 className="font-display font-bold text-base text-[#14213A] dark:text-[#F5F8FF]">
+                <div className="p-6 rounded-2xl border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] space-y-4 shadow-xs">
+                  <h3 className="font-display font-bold text-base text-[#0F2A44] dark:text-[#FFF7E8]">
                     MFS Merchant Accounts & Gateways
                   </h3>
                   <div className="space-y-3">
@@ -1956,7 +1954,7 @@ export const AdminConsolePage: React.FC = () => {
                         type="text"
                         value={settingsData.bkash_merchant_number || ''}
                         onChange={(e) => setSettingsData({ ...settingsData, bkash_merchant_number: e.target.value })}
-                        className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs font-mono font-bold text-[#14213A] dark:text-[#F5F8FF]"
+                        className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs font-mono font-bold text-[#0F2A44] dark:text-[#FFF7E8]"
                       />
                     </div>
 
@@ -1966,7 +1964,7 @@ export const AdminConsolePage: React.FC = () => {
                         type="text"
                         value={settingsData.nagad_merchant_number || ''}
                         onChange={(e) => setSettingsData({ ...settingsData, nagad_merchant_number: e.target.value })}
-                        className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs font-mono font-bold text-[#14213A] dark:text-[#F5F8FF]"
+                        className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs font-mono font-bold text-[#0F2A44] dark:text-[#FFF7E8]"
                       />
                     </div>
 
@@ -1976,16 +1974,16 @@ export const AdminConsolePage: React.FC = () => {
                         type="text"
                         value={settingsData.seo_keywords || ''}
                         onChange={(e) => setSettingsData({ ...settingsData, seo_keywords: e.target.value })}
-                        className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs text-[#14213A] dark:text-[#F5F8FF]"
+                        className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs text-[#0F2A44] dark:text-[#FFF7E8]"
                       />
                     </div>
 
                     <div className="pt-2 flex items-center justify-between">
                       <div>
-                        <div className="text-xs font-semibold text-[#14213A] dark:text-[#F5F8FF]">
+                        <div className="text-xs font-semibold text-[#0F2A44] dark:text-[#FFF7E8]">
                           IP Blocking & Zero-Trust Defense
                         </div>
-                        <div className="text-[11px] text-[#5D6B82] dark:text-[#A8B7CE]">
+                        <div className="text-[11px] text-[#6B7280] dark:text-[#D9CDB8]">
                           Enforce rate limiting on login & OTP endpoints
                         </div>
                       </div>
@@ -1993,7 +1991,7 @@ export const AdminConsolePage: React.FC = () => {
                         type="checkbox"
                         checked={settingsData.ip_blocking_enabled ?? true}
                         onChange={(e) => setSettingsData({ ...settingsData, ip_blocking_enabled: e.target.checked })}
-                        className="w-4 h-4 rounded text-[#356DFF]"
+                        className="w-4 h-4 rounded text-[#F97316]"
                       />
                     </div>
                   </div>
@@ -2018,23 +2016,23 @@ export const AdminConsolePage: React.FC = () => {
         {activeTab === 'pos' && (
           <div className="space-y-6 animate-fadeIn">
             <div>
-              <h2 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
-                <ShoppingBag className="w-5 h-5 text-[#356DFF]" />
-                <span>TrainingPundit Point of Sale (POS) — Counter Admission Desk</span>
+              <h2 className="font-display font-bold text-xl text-[#0F2A44] dark:text-[#FFF7E8] flex items-center gap-2">
+                <ShoppingBag className="w-5 h-5 text-[#F97316]" />
+                <span>Training Pundit Point of Sale (POS) — Counter Admission Desk</span>
               </h2>
-              <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] mt-0.5">
+              <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8] mt-0.5">
                 Fast walk-in student enrollment, cash/MFS payment ledger verification, and instant official receipt generation.
               </p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
               {/* Admission Registration Form */}
-              <div className="lg:col-span-7 aurora-card-raised rounded-3xl p-6 border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] shadow-md space-y-5">
-                <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F2] dark:border-slate-800">
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#356DFF] dark:text-[#35C6BE]">
+              <div className="lg:col-span-7 aurora-card-raised rounded-3xl p-6 border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] shadow-md space-y-5">
+                <div className="flex items-center justify-between pb-3 border-b border-[#E0D3AF] dark:border-slate-800">
+                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#F97316] dark:text-[#F97316]">
                     Walk-in Admission Terminal
                   </span>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold aurora-pill-teal">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold aurora-pill-accent">
                     ACTIVE DESK
                   </span>
                 </div>
@@ -2042,7 +2040,7 @@ export const AdminConsolePage: React.FC = () => {
                 <form onSubmit={handlePosCheckout} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-bold text-[#14213A] dark:text-[#F5F8FF] mb-1">
+                      <label className="block text-xs font-bold text-[#0F2A44] dark:text-[#FFF7E8] mb-1">
                         Student Full Name *
                       </label>
                       <input
@@ -2051,11 +2049,11 @@ export const AdminConsolePage: React.FC = () => {
                         value={posForm.full_name}
                         onChange={(e) => setPosForm({ ...posForm, full_name: e.target.value })}
                         placeholder="e.g. Tanvir Ahmed"
-                        className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-700 text-xs text-[#14213A] dark:text-[#F5F8FF]"
+                        className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-700 text-xs text-[#0F2A44] dark:text-[#FFF7E8]"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-bold text-[#14213A] dark:text-[#F5F8FF] mb-1">
+                      <label className="block text-xs font-bold text-[#0F2A44] dark:text-[#FFF7E8] mb-1">
                         Mobile Phone Number *
                       </label>
                       <input
@@ -2064,13 +2062,13 @@ export const AdminConsolePage: React.FC = () => {
                         value={posForm.phone_number}
                         onChange={(e) => setPosForm({ ...posForm, phone_number: e.target.value })}
                         placeholder="017XXXXXXXX"
-                        className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-700 text-xs text-[#14213A] dark:text-[#F5F8FF]"
+                        className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-700 text-xs text-[#0F2A44] dark:text-[#FFF7E8]"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-[#14213A] dark:text-[#F5F8FF] mb-1">
+                    <label className="block text-xs font-bold text-[#0F2A44] dark:text-[#FFF7E8] mb-1">
                       Email Address *
                     </label>
                     <input
@@ -2079,13 +2077,13 @@ export const AdminConsolePage: React.FC = () => {
                       value={posForm.email}
                       onChange={(e) => setPosForm({ ...posForm, email: e.target.value })}
                       placeholder="student@example.com"
-                      className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-700 text-xs text-[#14213A] dark:text-[#F5F8FF]"
+                      className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-700 text-xs text-[#0F2A44] dark:text-[#FFF7E8]"
                     />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-bold text-[#14213A] dark:text-[#F5F8FF] mb-1">
+                      <label className="block text-xs font-bold text-[#0F2A44] dark:text-[#FFF7E8] mb-1">
                         Enrolled Course Track *
                       </label>
                       <select
@@ -2099,7 +2097,7 @@ export const AdminConsolePage: React.FC = () => {
                             amount_paid: found ? found.price : posForm.amount_paid,
                           })
                         }}
-                        className="w-full min-h-[44px] px-3 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-700 text-xs text-[#14213A] dark:text-[#F5F8FF]"
+                        className="w-full min-h-[44px] px-3 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-700 text-xs text-[#0F2A44] dark:text-[#FFF7E8]"
                       >
                         {data.courses?.map((c: any) => (
                           <option key={c.id} value={c.id}>
@@ -2110,7 +2108,7 @@ export const AdminConsolePage: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-[#14213A] dark:text-[#F5F8FF] mb-1">
+                      <label className="block text-xs font-bold text-[#0F2A44] dark:text-[#FFF7E8] mb-1">
                         Amount Paid (BDT) *
                       </label>
                       <input
@@ -2119,20 +2117,20 @@ export const AdminConsolePage: React.FC = () => {
                         min="0"
                         value={posForm.amount_paid}
                         onChange={(e) => setPosForm({ ...posForm, amount_paid: Number(e.target.value) })}
-                        className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-700 text-xs font-mono font-bold text-[#14213A] dark:text-[#F5F8FF]"
+                        className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-700 text-xs font-mono font-bold text-[#0F2A44] dark:text-[#FFF7E8]"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-bold text-[#14213A] dark:text-[#F5F8FF] mb-1">
+                      <label className="block text-xs font-bold text-[#0F2A44] dark:text-[#FFF7E8] mb-1">
                         Payment Method *
                       </label>
                       <select
                         value={posForm.payment_method}
                         onChange={(e) => setPosForm({ ...posForm, payment_method: e.target.value })}
-                        className="w-full min-h-[44px] px-3 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-700 text-xs text-[#14213A] dark:text-[#F5F8FF]"
+                        className="w-full min-h-[44px] px-3 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-700 text-xs text-[#0F2A44] dark:text-[#FFF7E8]"
                       >
                         <option value="Cash">Cash (Counter)</option>
                         <option value="bKash">bKash (Merchant)</option>
@@ -2143,7 +2141,7 @@ export const AdminConsolePage: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-[#14213A] dark:text-[#F5F8FF] mb-1">
+                      <label className="block text-xs font-bold text-[#0F2A44] dark:text-[#FFF7E8] mb-1">
                         Counter Notes
                       </label>
                       <input
@@ -2151,7 +2149,7 @@ export const AdminConsolePage: React.FC = () => {
                         value={posForm.notes}
                         onChange={(e) => setPosForm({ ...posForm, notes: e.target.value })}
                         placeholder="e.g. Walk-in admission"
-                        className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-700 text-xs text-[#14213A] dark:text-[#F5F8FF]"
+                        className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-700 text-xs text-[#0F2A44] dark:text-[#FFF7E8]"
                       />
                     </div>
                   </div>
@@ -2170,24 +2168,24 @@ export const AdminConsolePage: React.FC = () => {
               {/* Receipt Preview & Terminal Status */}
               <div className="lg:col-span-5 space-y-6">
                 {posReceipt ? (
-                  <div className="aurora-card-raised rounded-3xl p-6 border-2 border-[#35C6BE]/40 bg-white dark:bg-[#0C1528] shadow-2xl space-y-4">
-                    <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F2] dark:border-slate-800">
+                  <div className="aurora-card-raised rounded-3xl p-6 border-2 border-[#F97316]/40 bg-[#FBF3DC] dark:bg-[#102A44] shadow-2xl space-y-4">
+                    <div className="flex items-center justify-between pb-3 border-b border-[#E0D3AF] dark:border-slate-800">
                       <div>
-                        <div className="font-display font-extrabold text-sm text-[#14213A] dark:text-[#F5F8FF]">
-                          TRAININGPUNDIT ACADEMY
+                        <div className="font-display font-extrabold text-sm text-[#0F2A44] dark:text-[#FFF7E8]">
+                          TRAINING PUNDIT
                         </div>
-                        <div className="text-[10px] font-mono text-[#35C6BE]">OFFICIAL ADMISSION RECEIPT</div>
+                        <div className="text-[10px] font-mono text-[#F97316]">OFFICIAL ADMISSION RECEIPT</div>
                       </div>
-                      <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold aurora-pill-teal">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold aurora-pill-accent">
                         PAID & ENROLLED
                       </span>
                     </div>
 
-                    <div className="space-y-2 font-mono text-xs text-[#14213A] dark:text-[#F5F8FF] bg-[#F5F7FB] dark:bg-[#111F36] p-4 rounded-2xl">
-                      <div>Receipt No: <span className="font-bold text-[#356DFF]">{posReceipt.invoice_number}</span></div>
+                    <div className="space-y-2 font-mono text-xs text-[#0F2A44] dark:text-[#FFF7E8] bg-[#E9D9B4] dark:bg-[#16324F] p-4 rounded-2xl">
+                      <div>Receipt No: <span className="font-bold text-[#F97316]">{posReceipt.invoice_number}</span></div>
                       <div>Student: <span className="font-bold">{posReceipt.student_name}</span></div>
                       <div>Course: <span className="font-bold">{posReceipt.course_title}</span></div>
-                      <div>Amount: <span className="font-bold text-[#35C6BE]">৳{posReceipt.amount} BDT</span></div>
+                      <div>Amount: <span className="font-bold text-[#F97316]">৳{posReceipt.amount} BDT</span></div>
                       <div>Method: <span>{posReceipt.payment_method}</span></div>
                       <div>Date: <span>{posReceipt.issued_at}</span></div>
                     </div>
@@ -2211,15 +2209,15 @@ export const AdminConsolePage: React.FC = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="aurora-card-raised rounded-3xl p-6 border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] shadow-md space-y-4">
-                    <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#356DFF] dark:text-[#35C6BE]">
+                  <div className="aurora-card-raised rounded-3xl p-6 border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] shadow-md space-y-4">
+                    <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#F97316] dark:text-[#F97316]">
                       <Receipt className="w-4 h-4" />
                       <span>POS COUNTER SPECS</span>
                     </div>
-                    <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] leading-relaxed">
+                    <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8] leading-relaxed">
                       The Point of Sale (POS) system handles walk-in candidates without requiring them to complete online self-checkout. Submitting the form:
                     </p>
-                    <ul className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] space-y-1.5 list-disc list-inside">
+                    <ul className="text-xs text-[#6B7280] dark:text-[#D9CDB8] space-y-1.5 list-disc list-inside">
                       <li>Creates a zero-trust student account (if not already existing)</li>
                       <li>Records an <strong className="text-emerald-500">Approved</strong> payment in the financial ledger</li>
                       <li>Instantly grants course enrollment with lifetime access</li>
@@ -2236,26 +2234,26 @@ export const AdminConsolePage: React.FC = () => {
         {activeTab === 'coupons' && (
           <div className="space-y-6 animate-fadeIn">
             <div>
-              <h2 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
+              <h2 className="font-display font-bold text-xl text-[#0F2A44] dark:text-[#FFF7E8] flex items-center gap-2">
                 <Tag className="w-5 h-5 text-amber-500" />
                 <span>Promotional & Discount Coupons Engine</span>
               </h2>
-              <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] mt-0.5">
+              <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8] mt-0.5">
                 Generate and monitor discount vouchers for marketing campaigns and special seasonal promotions.
               </p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
               {/* Create Coupon Form */}
-              <div className="lg:col-span-5 aurora-card-raised rounded-3xl p-6 border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] shadow-md space-y-4">
-                <h3 className="font-display font-bold text-base text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
-                  <Plus className="w-4 h-4 text-[#356DFF]" />
+              <div className="lg:col-span-5 aurora-card-raised rounded-3xl p-6 border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] shadow-md space-y-4">
+                <h3 className="font-display font-bold text-base text-[#0F2A44] dark:text-[#FFF7E8] flex items-center gap-2">
+                  <Plus className="w-4 h-4 text-[#F97316]" />
                   <span>Create New Discount Coupon</span>
                 </h3>
 
                 <form onSubmit={handleCreateCoupon} className="space-y-4">
                   <div>
-                    <label className="block text-xs font-bold text-[#14213A] dark:text-[#F5F8FF] mb-1">
+                    <label className="block text-xs font-bold text-[#0F2A44] dark:text-[#FFF7E8] mb-1">
                       Coupon Code *
                     </label>
                     <input
@@ -2264,13 +2262,13 @@ export const AdminConsolePage: React.FC = () => {
                       value={couponForm.code}
                       onChange={(e) => setCouponForm({ ...couponForm, code: e.target.value.toUpperCase() })}
                       placeholder="e.g. PUNDIT2026"
-                      className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-700 font-mono text-xs font-bold uppercase text-[#14213A] dark:text-[#F5F8FF]"
+                      className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-700 font-mono text-xs font-bold uppercase text-[#0F2A44] dark:text-[#FFF7E8]"
                     />
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs font-bold text-[#14213A] dark:text-[#F5F8FF] mb-1">
+                      <label className="block text-xs font-bold text-[#0F2A44] dark:text-[#FFF7E8] mb-1">
                         Discount % *
                       </label>
                       <input
@@ -2280,11 +2278,11 @@ export const AdminConsolePage: React.FC = () => {
                         max="100"
                         value={couponForm.discount_percentage}
                         onChange={(e) => setCouponForm({ ...couponForm, discount_percentage: Number(e.target.value) })}
-                        className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-700 font-mono text-xs font-bold text-[#14213A] dark:text-[#F5F8FF]"
+                        className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-700 font-mono text-xs font-bold text-[#0F2A44] dark:text-[#FFF7E8]"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-bold text-[#14213A] dark:text-[#F5F8FF] mb-1">
+                      <label className="block text-xs font-bold text-[#0F2A44] dark:text-[#FFF7E8] mb-1">
                         Max Uses *
                       </label>
                       <input
@@ -2293,7 +2291,7 @@ export const AdminConsolePage: React.FC = () => {
                         min="1"
                         value={couponForm.max_uses}
                         onChange={(e) => setCouponForm({ ...couponForm, max_uses: Number(e.target.value) })}
-                        className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-700 font-mono text-xs text-[#14213A] dark:text-[#F5F8FF]"
+                        className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-700 font-mono text-xs text-[#0F2A44] dark:text-[#FFF7E8]"
                       />
                     </div>
                   </div>
@@ -2310,15 +2308,15 @@ export const AdminConsolePage: React.FC = () => {
               </div>
 
               {/* Coupons List */}
-              <div className="lg:col-span-7 aurora-card-raised rounded-3xl p-6 border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] shadow-md space-y-4">
+              <div className="lg:col-span-7 aurora-card-raised rounded-3xl p-6 border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] shadow-md space-y-4">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-display font-bold text-base text-[#14213A] dark:text-[#F5F8FF]">
+                  <h3 className="font-display font-bold text-base text-[#0F2A44] dark:text-[#FFF7E8]">
                     Active Coupons ({coupons.length})
                   </h3>
                   <button
                     type="button"
                     onClick={loadCoupons}
-                    className="text-xs text-[#356DFF] dark:text-[#35C6BE] hover:underline font-bold"
+                    className="text-xs text-[#F97316] dark:text-[#F97316] hover:underline font-bold"
                   >
                     Refresh
                   </button>
@@ -2331,18 +2329,18 @@ export const AdminConsolePage: React.FC = () => {
                     {coupons.map((c) => (
                       <div
                         key={c.id}
-                        className="p-4 rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-[#F5F7FB] dark:bg-[#111F36] flex items-center justify-between gap-4"
+                        className="p-4 rounded-2xl border border-[#E0D3AF] dark:border-slate-800 bg-[#E9D9B4] dark:bg-[#16324F] flex items-center justify-between gap-4"
                       >
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
-                            <span className="font-mono font-extrabold text-sm text-[#356DFF] dark:text-[#35C6BE]">
+                            <span className="font-mono font-extrabold text-sm text-[#F97316] dark:text-[#F97316]">
                               {c.code}
                             </span>
                             <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/15 text-amber-500">
                               {c.discount_percentage}% OFF
                             </span>
                           </div>
-                          <div className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] font-mono">
+                          <div className="text-xs text-[#6B7280] dark:text-[#D9CDB8] font-mono">
                             Used: {c.times_used} / {c.max_uses}
                           </div>
                         </div>
@@ -2369,7 +2367,7 @@ export const AdminConsolePage: React.FC = () => {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
                 <h2 className="font-display font-bold text-xl text-slate-900 dark:text-white flex items-center gap-2">
-                  <GraduationCap className="w-5 h-5 text-sky-500" /> Student Enrollment Management
+                  <GraduationCap className="w-5 h-5 text-orange-500" /> Student Enrollment Management
                 </h2>
                 <p className="text-xs text-slate-500 mt-0.5">
                   View, manually enroll, or revoke student access to academy courses and live batches.
@@ -2388,7 +2386,7 @@ export const AdminConsolePage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsEnrollModalOpen(true)}
-                  className="min-h-[42px] px-4 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs font-mono flex items-center gap-2 tactile-press cursor-pointer"
+                  className="min-h-[42px] px-4 rounded-xl bg-orange-500 hover:bg-orange-400 text-slate-950 font-bold text-xs font-mono flex items-center gap-2 tactile-press cursor-pointer"
                 >
                   <UserPlus className="w-4 h-4" />
                   <span>+ Manual Enroll</span>
@@ -2404,7 +2402,7 @@ export const AdminConsolePage: React.FC = () => {
                 value={enrollSearch}
                 onChange={(e) => setEnrollSearch(e.target.value)}
                 placeholder="Search enrollments by student name, email, or course..."
-                className="w-full min-h-[44px] pl-10 pr-4 rounded-xl bg-white dark:bg-[#111827] border border-slate-200/80 dark:border-slate-800/80 text-sm focus:outline-none focus:border-sky-500"
+                className="w-full min-h-[44px] pl-10 pr-4 rounded-xl bg-[#FBF3DC] dark:bg-[#102A44] border border-slate-200/80 dark:border-slate-800/80 text-sm focus:outline-none focus:border-orange-500"
               />
             </div>
 
@@ -2420,14 +2418,14 @@ export const AdminConsolePage: React.FC = () => {
                 filteredEnrollments.map((en) => (
                   <div
                     key={en.id}
-                    className="p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-[#111827]/80 backdrop-blur-md space-y-3 min-w-0"
+                    className="p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-[#FBF3DC]/80 dark:bg-[#102A44]/80 backdrop-blur-md space-y-3 min-w-0"
                   >
                     <div className="flex items-start justify-between gap-2 min-w-0">
                       <div className="min-w-0 flex-1">
                         <div className="font-bold text-sm text-slate-900 dark:text-white truncate">{en.student_name}</div>
                         <div className="text-xs text-slate-500 font-mono truncate">{en.student_email}</div>
                       </div>
-                      <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-sky-500/15 text-sky-500 font-bold shrink-0">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-orange-500/15 text-orange-500 font-bold shrink-0">
                         ID: #{en.user_id}
                       </span>
                     </div>
@@ -2461,7 +2459,7 @@ export const AdminConsolePage: React.FC = () => {
             </div>
 
             {/* Desktop Table View (hidden on mobile) */}
-            <div className="hidden md:block overflow-hidden rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-[#111827]/80 backdrop-blur-md">
+            <div className="hidden md:block overflow-hidden rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-[#FBF3DC]/80 dark:bg-[#102A44]/80 backdrop-blur-md">
               <table className="w-full text-left text-xs">
                 <thead className="bg-slate-50 dark:bg-slate-900/80 border-b border-slate-200/80 dark:border-slate-800/80 text-slate-500 font-mono">
                   <tr>
@@ -2530,7 +2528,7 @@ export const AdminConsolePage: React.FC = () => {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
                 <h2 className="font-display font-bold text-xl text-slate-900 dark:text-white flex items-center gap-2">
-                  <Users className="w-5 h-5 text-sky-500" /> User & ID Identity Management
+                  <Users className="w-5 h-5 text-orange-500" /> User & ID Identity Management
                 </h2>
                 <p className="text-xs text-slate-500 mt-0.5">
                   Inspect user accounts, manage suspension status, and grant Trainer or Staff privileges.
@@ -2546,7 +2544,7 @@ export const AdminConsolePage: React.FC = () => {
                     onClick={() => setUserRoleFilter(rf)}
                     className={`min-h-[34px] px-3 rounded-lg text-xs font-mono font-semibold capitalize cursor-pointer transition-all shrink-0 ${
                       userRoleFilter === rf
-                        ? 'bg-white dark:bg-slate-800 text-sky-500 shadow-sm'
+                        ? 'bg-[#FBF3DC] dark:bg-slate-800 text-orange-500 shadow-sm'
                         : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
                     }`}
                   >
@@ -2564,7 +2562,7 @@ export const AdminConsolePage: React.FC = () => {
                 value={userSearch}
                 onChange={(e) => setUserSearch(e.target.value)}
                 placeholder="Search by ID (e.g. 1), student name, or email..."
-                className="w-full min-h-[44px] pl-10 pr-4 rounded-xl bg-white dark:bg-[#111827] border border-slate-200/80 dark:border-slate-800/80 text-sm focus:outline-none focus:border-sky-500"
+                className="w-full min-h-[44px] pl-10 pr-4 rounded-xl bg-[#FBF3DC] dark:bg-[#102A44] border border-slate-200/80 dark:border-slate-800/80 text-sm focus:outline-none focus:border-orange-500"
               />
             </div>
 
@@ -2576,12 +2574,12 @@ export const AdminConsolePage: React.FC = () => {
                   className={`p-4 sm:p-5 rounded-2xl border transition-all space-y-4 min-w-0 ${
                     u.is_active === false
                       ? 'border-rose-500/40 bg-rose-500/5 dark:bg-rose-950/10'
-                      : 'border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-[#111827]/80 backdrop-blur-md'
+                      : 'border-slate-200/80 dark:border-slate-800/80 bg-[#FBF3DC]/80 dark:bg-[#102A44]/80 backdrop-blur-md'
                   }`}
                 >
                   <div className="flex items-start justify-between gap-2 sm:gap-3 min-w-0">
                     <div className="flex items-center gap-3 min-w-0 flex-1">
-                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500/20 to-indigo-500/20 border border-sky-500/30 flex items-center justify-center font-display font-bold text-sky-500 shrink-0">
+                      <div className="w-10 h-10 rounded-xl bg-[#F97316] border border-orange-500/30 flex items-center justify-center font-display font-bold text-orange-500 shrink-0">
                         {u.full_name?.charAt(0) || u.email?.charAt(0) || 'U'}
                       </div>
                       <div className="min-w-0 flex-1">
@@ -2616,7 +2614,7 @@ export const AdminConsolePage: React.FC = () => {
                       </span>
                     )}
                     {u.is_trainer && (
-                      <span className="px-2 py-0.5 rounded bg-sky-500/15 text-sky-500 font-mono text-[10px] font-bold">
+                      <span className="px-2 py-0.5 rounded bg-orange-500/15 text-orange-500 font-mono text-[10px] font-bold">
                         TRAINER / MENTOR
                       </span>
                     )}
@@ -2647,7 +2645,7 @@ export const AdminConsolePage: React.FC = () => {
                       onClick={() => handleToggleUserRole(u.id, u.is_staff, !u.is_trainer)}
                       className={`min-h-[40px] px-3.5 rounded-xl text-xs font-semibold border flex items-center gap-1.5 cursor-pointer ${
                         u.is_trainer
-                          ? 'border-sky-500/40 bg-sky-500/10 text-sky-500'
+                          ? 'border-orange-500/40 bg-orange-500/10 text-orange-500'
                           : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400'
                       }`}
                     >
@@ -2667,7 +2665,7 @@ export const AdminConsolePage: React.FC = () => {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
                 <h2 className="font-display font-bold text-xl text-slate-900 dark:text-white flex items-center gap-2">
-                  <Award className="w-5 h-5 text-purple-500" /> Certificate Registry & Minting
+                  <Award className="w-5 h-5 text-orange-500" /> Certificate Registry & Minting
                 </h2>
                 <p className="text-xs text-slate-500 mt-0.5">
                   Inspect cryptographic graduation certificates, mint certificates manually, or revoke credentials.
@@ -2686,7 +2684,7 @@ export const AdminConsolePage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsCertModalOpen(true)}
-                  className="min-h-[42px] px-4 rounded-xl bg-purple-500 hover:bg-purple-400 text-white font-bold text-xs font-mono flex items-center gap-2 tactile-press cursor-pointer"
+                  className="min-h-[42px] px-4 rounded-xl bg-orange-500 hover:bg-orange-400 text-[#FBF3DC] font-bold text-xs font-mono flex items-center gap-2 tactile-press cursor-pointer"
                 >
                   <Award className="w-4 h-4" />
                   <span>+ Mint Certificate</span>
@@ -2702,7 +2700,7 @@ export const AdminConsolePage: React.FC = () => {
                 value={certSearch}
                 onChange={(e) => setCertSearch(e.target.value)}
                 placeholder="Search by Cert ID (LWMA-...), student name, or course..."
-                className="w-full min-h-[44px] pl-10 pr-4 rounded-xl bg-white dark:bg-[#111827] border border-slate-200/80 dark:border-slate-800/80 text-sm focus:outline-none focus:border-purple-500"
+                className="w-full min-h-[44px] pl-10 pr-4 rounded-xl bg-[#FBF3DC] dark:bg-[#102A44] border border-slate-200/80 dark:border-slate-800/80 text-sm focus:outline-none focus:border-orange-500"
               />
             </div>
 
@@ -2720,11 +2718,11 @@ export const AdminConsolePage: React.FC = () => {
                 filteredCerts.map((cert) => (
                   <div
                     key={cert.id}
-                    className="p-4 sm:p-5 rounded-2xl border border-purple-500/25 bg-white/80 dark:bg-[#111827]/80 backdrop-blur-md space-y-4 min-w-0"
+                    className="p-4 sm:p-5 rounded-2xl border border-orange-500/25 bg-[#FBF3DC]/80 dark:bg-[#102A44]/80 backdrop-blur-md space-y-4 min-w-0"
                   >
                     <div className="flex items-start justify-between gap-2 min-w-0">
                       <div className="space-y-1 min-w-0 flex-1">
-                        <div className="flex items-center gap-1.5 font-mono font-bold text-xs text-purple-600 dark:text-purple-400 min-w-0">
+                        <div className="flex items-center gap-1.5 font-mono font-bold text-xs text-orange-600 dark:text-orange-400 min-w-0">
                           <span className="truncate">{cert.certificate_id}</span>
                           <button
                             type="button"
@@ -2742,7 +2740,7 @@ export const AdminConsolePage: React.FC = () => {
                         </div>
                       </div>
 
-                      <span className="px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-purple-500/15 text-purple-600 dark:text-purple-400 border border-purple-500/30 shrink-0">
+                      <span className="px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-orange-500/15 text-orange-600 dark:text-orange-400 border border-orange-500/30 shrink-0">
                         {cert.grade_score}%
                       </span>
                     </div>
@@ -2788,7 +2786,7 @@ export const AdminConsolePage: React.FC = () => {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
                 <h2 className="font-display font-bold text-xl text-slate-900 dark:text-white flex items-center gap-2">
-                  <BookOpen className="w-5 h-5 text-indigo-500" /> Trainer & Mentor Studio Management
+                  <BookOpen className="w-5 h-5 text-orange-500" /> Trainer & Mentor Studio Management
                 </h2>
                 <p className="text-xs text-slate-500 mt-0.5">
                   Manage certified instructors, course assignments, and inspect their active mentorship metrics.
@@ -2807,7 +2805,7 @@ export const AdminConsolePage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsAssignModalOpen(true)}
-                  className="min-h-[42px] px-4 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white font-bold text-xs font-mono flex items-center gap-2 tactile-press cursor-pointer"
+                  className="min-h-[42px] px-4 rounded-xl bg-orange-500 hover:bg-orange-400 text-[#FBF3DC] font-bold text-xs font-mono flex items-center gap-2 tactile-press cursor-pointer"
                 >
                   <Plus className="w-4 h-4" />
                   <span>Assign Course Track</span>
@@ -2827,15 +2825,15 @@ export const AdminConsolePage: React.FC = () => {
                 trainers.map((t) => (
                   <div
                     key={t.id}
-                    className="p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-[#111827]/80 backdrop-blur-md space-y-4 min-w-0"
+                    className="p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-[#FBF3DC]/80 dark:bg-[#102A44]/80 backdrop-blur-md space-y-4 min-w-0"
                   >
                     <div className="flex items-start justify-between gap-3 min-w-0">
                       <div className="min-w-0 flex-1">
                         <div className="font-bold text-base text-slate-900 dark:text-white truncate">{t.full_name}</div>
                         <div className="text-xs text-slate-500 font-mono truncate">{t.email}</div>
-                        <div className="text-[11px] text-sky-500 mt-0.5 truncate">{t.occupation}</div>
+                        <div className="text-[11px] text-orange-500 mt-0.5 truncate">{t.occupation}</div>
                       </div>
-                      <span className="px-2.5 py-1 rounded-full text-[11px] font-mono font-bold bg-indigo-500/15 text-indigo-500 border border-indigo-500/30 shrink-0">
+                      <span className="px-2.5 py-1 rounded-full text-[11px] font-mono font-bold bg-orange-500/15 text-orange-500 border border-orange-500/30 shrink-0">
                         {t.courses_count} Tracks
                       </span>
                     </div>
@@ -2881,7 +2879,7 @@ export const AdminConsolePage: React.FC = () => {
                           setAssignForm((prev) => ({ ...prev, trainer_id: t.id }))
                           setIsAssignModalOpen(true)
                         }}
-                        className="min-h-[38px] px-3.5 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 text-sky-500 font-semibold text-xs flex items-center gap-1.5 cursor-pointer"
+                        className="min-h-[38px] px-3.5 rounded-xl bg-orange-500/15 hover:bg-orange-500/25 text-orange-500 font-semibold text-xs flex items-center gap-1.5 cursor-pointer"
                       >
                         <Plus className="w-3.5 h-3.5" />
                         <span>Assign Course</span>
@@ -2929,7 +2927,7 @@ export const AdminConsolePage: React.FC = () => {
 
             {/* Financial Summary Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <Card3D maxTilt={6} className="p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-[#111827]/80 backdrop-blur-md space-y-1 min-w-0">
+              <Card3D maxTilt={6} className="p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-[#FBF3DC]/80 dark:bg-[#102A44]/80 backdrop-blur-md space-y-1 min-w-0">
                 <div className="text-xs font-mono text-slate-500 truncate">Total 70% Share Earned</div>
                 <div className="font-display font-black text-xl sm:text-2xl text-slate-900 dark:text-white truncate">
                   ৳{(payoutsData.summary?.total_earned_bdt || 0).toLocaleString()}
@@ -2950,7 +2948,7 @@ export const AdminConsolePage: React.FC = () => {
             </div>
 
             {/* Trainers Payout Ledger */}
-            <div className="p-4 sm:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-[#111827]/80 backdrop-blur-md space-y-4">
+            <div className="p-4 sm:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-[#FBF3DC]/80 dark:bg-[#102A44]/80 backdrop-blur-md space-y-4">
               <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">
                 Trainer Commission Ledger
               </h3>
@@ -2972,7 +2970,7 @@ export const AdminConsolePage: React.FC = () => {
                       </div>
                       <div>
                         <span className="text-slate-400">70% Earned: </span>
-                        <span className="font-bold text-sky-500">৳{tl.earned_70pct.toLocaleString()}</span>
+                        <span className="font-bold text-orange-500">৳{tl.earned_70pct.toLocaleString()}</span>
                       </div>
                       <div>
                         <span className="text-slate-400">Disbursed: </span>
@@ -3006,7 +3004,7 @@ export const AdminConsolePage: React.FC = () => {
             </div>
 
             {/* Payout History */}
-            <div className="p-4 sm:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-[#111827]/80 backdrop-blur-md space-y-4">
+            <div className="p-4 sm:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-[#FBF3DC]/80 dark:bg-[#102A44]/80 backdrop-blur-md space-y-4">
               <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">
                 Disbursement History & Receipts
               </h3>
@@ -3024,7 +3022,7 @@ export const AdminConsolePage: React.FC = () => {
                           ৳{ph.amount.toLocaleString()} → {ph.trainer_name} ({ph.method})
                         </div>
                         <div className="text-slate-500 font-mono text-[11px] break-all">
-                          Acc: {ph.account_number || 'N/A'} • Ref: <span className="text-sky-500">{ph.transaction_ref}</span> • {new Date(ph.disbursed_at).toLocaleDateString()}
+                          Acc: {ph.account_number || 'N/A'} • Ref: <span className="text-orange-500">{ph.transaction_ref}</span> • {new Date(ph.disbursed_at).toLocaleDateString()}
                         </div>
                       </div>
                       <span className="px-2.5 py-0.5 rounded font-mono font-bold bg-emerald-500/15 text-emerald-500 shrink-0">
@@ -3041,7 +3039,7 @@ export const AdminConsolePage: React.FC = () => {
         {/* ----------------- TAB 7: MFS & STORE APPROVALS ----------------- */}
         {activeTab === 'payments' && (
           <div className="space-y-6">
-            <div className="p-5 sm:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-[#111827]/80 backdrop-blur-md space-y-4">
+            <div className="p-5 sm:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-[#FBF3DC]/80 dark:bg-[#102A44]/80 backdrop-blur-md space-y-4">
               <h2 className="font-display font-bold text-lg text-slate-900 dark:text-white flex items-center justify-between">
                 <span>1-Click Course & Gift MFS Payment Verification Queue</span>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-amber-500/15 text-amber-500">
@@ -3060,7 +3058,7 @@ export const AdminConsolePage: React.FC = () => {
                         {p.invoice_number} • {p.user_name} • ৳{p.amount.toLocaleString()}
                       </div>
                       <div className="text-slate-500 break-words text-[11px]">
-                        {p.item_title} | {p.method} ({p.sender_number}) • TrxID: <code className="text-sky-500 font-bold break-all">{p.transaction_id}</code>
+                        {p.item_title} | {p.method} ({p.sender_number}) • TrxID: <code className="text-orange-500 font-bold break-all">{p.transaction_id}</code>
                       </div>
                     </div>
                     <div className="flex items-center gap-2 shrink-0 pt-1 sm:pt-0">
@@ -3117,7 +3115,7 @@ export const AdminConsolePage: React.FC = () => {
                       </div>
                     </div>
                     <div className="flex items-center gap-2 shrink-0 pt-1 sm:pt-0">
-                      <span className="font-mono font-bold text-sky-500">{o.status}</span>
+                      <span className="font-mono font-bold text-orange-500">{o.status}</span>
                       {o.status === 'Pending' && (
                         <button
                           type="button"
@@ -3141,7 +3139,7 @@ export const AdminConsolePage: React.FC = () => {
             <div className="lg:col-span-7">
               <form
                 onSubmit={handleGenerateAiBlog}
-                className="rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-[#111827]/80 backdrop-blur-md p-6 space-y-4"
+                className="rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-[#FBF3DC]/80 dark:bg-[#102A44]/80 backdrop-blur-md p-6 space-y-4"
               >
                 <h2 className="font-display font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
                   <Cpu className="w-5 h-5 text-slate-500" /> Technical blog generator (Gemini)
@@ -3178,9 +3176,9 @@ export const AdminConsolePage: React.FC = () => {
             </div>
 
             <div className="lg:col-span-5 space-y-4">
-              <div className="rounded-2xl border border-sky-500/30 bg-sky-500/5 dark:bg-sky-950/10 p-6 space-y-3">
+              <div className="rounded-2xl border border-orange-500/30 bg-orange-500/5 dark:bg-orange-950/10 p-6 space-y-3">
                 <h3 className="font-display font-bold text-base text-slate-900 dark:text-white flex items-center gap-2">
-                  <Database className="w-4 h-4 text-sky-500" /> 1-Click Legacy SQLite DB Sync
+                  <Database className="w-4 h-4 text-orange-500" /> 1-Click Legacy SQLite DB Sync
                 </h3>
                 <p className="text-xs text-slate-500 leading-relaxed">
                   Imports course curricula, video order keys, FAQ records, and user enrollments from LMS 1.0 SQLite database safely into the PostgreSQL 16 schema.
@@ -3189,7 +3187,7 @@ export const AdminConsolePage: React.FC = () => {
                   type="button"
                   onClick={handleLegacySync}
                   disabled={syncingLegacy}
-                  className="min-h-[44px] w-full px-4 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-mono font-bold flex items-center justify-center gap-2 cursor-pointer tactile-press"
+                  className="min-h-[44px] w-full px-4 rounded-xl bg-orange-500 hover:bg-orange-400 text-slate-950 text-xs font-mono font-bold flex items-center justify-center gap-2 cursor-pointer tactile-press"
                 >
                   <Database className="w-4 h-4" />
                   <span>{syncingLegacy ? 'Syncing...' : 'Trigger Full Legacy Migration'}</span>
@@ -3204,10 +3202,10 @@ export const AdminConsolePage: React.FC = () => {
       {/* 1. Manual Enroll Student Modal */}
       {isEnrollModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full max-w-md rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111827] p-6 space-y-4 shadow-2xl">
+          <div className="w-full max-w-md rounded-3xl border border-slate-200 dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] p-6 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between">
               <h3 className="font-display font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
-                <UserPlus className="w-5 h-5 text-sky-500" /> Manual Student Enrollment
+                <UserPlus className="w-5 h-5 text-orange-500" /> Manual Student Enrollment
               </h3>
               <button
                 type="button"
@@ -3227,7 +3225,7 @@ export const AdminConsolePage: React.FC = () => {
                   placeholder="e.g. student@example.com or 42"
                   value={enrollForm.user_identifier}
                   onChange={(e) => setEnrollForm({ ...enrollForm, user_identifier: e.target.value })}
-                  className="w-full min-h-[44px] px-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:border-sky-500"
+                  className="w-full min-h-[44px] px-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:border-orange-500"
                 />
               </div>
 
@@ -3261,7 +3259,7 @@ export const AdminConsolePage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={submittingEnroll}
-                  className="min-h-[44px] px-5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-bold font-mono tactile-press cursor-pointer"
+                  className="min-h-[44px] px-5 rounded-xl bg-orange-500 hover:bg-orange-400 text-slate-950 text-xs font-bold font-mono tactile-press cursor-pointer"
                 >
                   {submittingEnroll ? 'Enrolling...' : 'Confirm Enrollment'}
                 </button>
@@ -3274,10 +3272,10 @@ export const AdminConsolePage: React.FC = () => {
       {/* 2. Manual Mint Certificate Modal */}
       {isCertModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full max-w-md rounded-3xl border border-purple-500/30 bg-white dark:bg-[#111827] p-6 space-y-4 shadow-2xl">
+          <div className="w-full max-w-md rounded-3xl border border-orange-500/30 bg-[#FBF3DC] dark:bg-[#102A44] p-6 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between">
               <h3 className="font-display font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
-                <Award className="w-5 h-5 text-purple-500" /> Mint Verified Certificate
+                <Award className="w-5 h-5 text-orange-500" /> Mint Verified Certificate
               </h3>
               <button
                 type="button"
@@ -3297,7 +3295,7 @@ export const AdminConsolePage: React.FC = () => {
                   placeholder="e.g. learner@example.com or 5"
                   value={certForm.user_identifier}
                   onChange={(e) => setCertForm({ ...certForm, user_identifier: e.target.value })}
-                  className="w-full min-h-[44px] px-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:border-purple-500"
+                  className="w-full min-h-[44px] px-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:border-orange-500"
                 />
               </div>
 
@@ -3333,7 +3331,7 @@ export const AdminConsolePage: React.FC = () => {
                   max="100"
                   value={certForm.grade_score}
                   onChange={(e) => setCertForm({ ...certForm, grade_score: Number(e.target.value) })}
-                  className="w-full accent-purple-500"
+                  className="w-full accent-orange-500"
                 />
               </div>
 
@@ -3348,7 +3346,7 @@ export const AdminConsolePage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={submittingCert}
-                  className="min-h-[44px] px-5 rounded-xl bg-purple-500 hover:bg-purple-400 text-white text-xs font-bold font-mono tactile-press cursor-pointer"
+                  className="min-h-[44px] px-5 rounded-xl bg-orange-500 hover:bg-orange-400 text-[#FBF3DC] text-xs font-bold font-mono tactile-press cursor-pointer"
                 >
                   {submittingCert ? 'Minting...' : 'Mint & Issue'}
                 </button>
@@ -3361,10 +3359,10 @@ export const AdminConsolePage: React.FC = () => {
       {/* 3. Assign Course to Trainer Modal */}
       {isAssignModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full max-w-md rounded-3xl border border-indigo-500/30 bg-white dark:bg-[#111827] p-6 space-y-4 shadow-2xl">
+          <div className="w-full max-w-md rounded-3xl border border-orange-500/30 bg-[#FBF3DC] dark:bg-[#102A44] p-6 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between">
               <h3 className="font-display font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
-                <BookOpen className="w-5 h-5 text-indigo-500" /> Assign Track to Trainer
+                <BookOpen className="w-5 h-5 text-orange-500" /> Assign Track to Trainer
               </h3>
               <button
                 type="button"
@@ -3388,7 +3386,7 @@ export const AdminConsolePage: React.FC = () => {
                       {t.full_name} ({t.email})
                     </option>
                   ))}
-                  {trainers.length === 0 && <option value={1}>TrainingPundit Lead Faculty</option>}
+                  {trainers.length === 0 && <option value={1}>Training Pundit Lead Faculty</option>}
                 </select>
               </div>
 
@@ -3416,7 +3414,7 @@ export const AdminConsolePage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={submittingAssign}
-                  className="min-h-[44px] px-5 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white text-xs font-bold font-mono tactile-press cursor-pointer"
+                  className="min-h-[44px] px-5 rounded-xl bg-orange-500 hover:bg-orange-400 text-[#FBF3DC] text-xs font-bold font-mono tactile-press cursor-pointer"
                 >
                   {submittingAssign ? 'Assigning...' : 'Assign Track'}
                 </button>
@@ -3429,7 +3427,7 @@ export const AdminConsolePage: React.FC = () => {
       {/* 4. Record Payout Disbursement Modal */}
       {isPayoutModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full max-w-md rounded-3xl border border-emerald-500/30 bg-white dark:bg-[#111827] p-6 space-y-4 shadow-2xl">
+          <div className="w-full max-w-md rounded-3xl border border-emerald-500/30 bg-[#FBF3DC] dark:bg-[#102A44] p-6 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between">
               <h3 className="font-display font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
                 <Wallet className="w-5 h-5 text-emerald-500" /> Record Trainer Payout
@@ -3457,7 +3455,7 @@ export const AdminConsolePage: React.FC = () => {
                     </option>
                   ))}
                   {(!payoutsData.trainers_ledger || payoutsData.trainers_ledger.length === 0) && (
-                    <option value={1}>TrainingPundit Lead Faculty</option>
+                    <option value={1}>Training Pundit Lead Faculty</option>
                   )}
                 </select>
               </div>
@@ -3535,10 +3533,10 @@ export const AdminConsolePage: React.FC = () => {
       {/* 5. Add Assessment Question Modal */}
       {isAddQuestionModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full max-w-lg rounded-3xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#111827] p-6 space-y-4 shadow-2xl">
+          <div className="w-full max-w-lg rounded-3xl border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] p-6 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between">
               <h3 className="font-display font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
-                <HelpCircle className="w-5 h-5 text-[#356DFF]" />
+                <HelpCircle className="w-5 h-5 text-[#F97316]" />
                 <span>Add Assessment Question</span>
               </h3>
               <button
@@ -3698,10 +3696,10 @@ export const AdminConsolePage: React.FC = () => {
       {/* 6. Bulk Import Questions Modal */}
       {isImportModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full max-w-lg rounded-3xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#111827] p-6 space-y-4 shadow-2xl">
+          <div className="w-full max-w-lg rounded-3xl border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] p-6 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between">
               <h3 className="font-display font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
-                <UploadCloud className="w-5 h-5 text-[#356DFF]" />
+                <UploadCloud className="w-5 h-5 text-[#F97316]" />
                 <span>Bulk Import Questions (CSV)</span>
               </h3>
               <button
@@ -3714,8 +3712,8 @@ export const AdminConsolePage: React.FC = () => {
             </div>
 
             <form onSubmit={handleImportQuestions} className="space-y-4">
-              <div className="p-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs space-y-1 text-[#5D6B82] dark:text-[#A8B7CE]">
-                <div className="font-semibold text-[#14213A] dark:text-[#F5F8FF]">Format Specification (Comma Separated):</div>
+              <div className="p-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs space-y-1 text-[#6B7280] dark:text-[#D9CDB8]">
+                <div className="font-semibold text-[#0F2A44] dark:text-[#FFF7E8]">Format Specification (Comma Separated):</div>
                 <div className="font-mono text-[11px]">
                   Question, Option A, Option B, Option C, Option D, Correct Answer
                 </div>
@@ -3741,7 +3739,7 @@ export const AdminConsolePage: React.FC = () => {
                       `What is Argon2id?,A memory-hard password hash,A symmetric cipher,A TLS certificate,A database engine,A memory-hard password hash\nWhat does JWT stand for?,JSON Web Token,Java Web Target,JavaScript Web Tool,Joint Wire Test,JSON Web Token`
                     )
                   }
-                  className="text-xs font-mono text-[#356DFF] dark:text-[#35C6BE] hover:underline cursor-pointer"
+                  className="text-xs font-mono text-[#F97316] dark:text-[#F97316] hover:underline cursor-pointer"
                 >
                   Insert Sample CSV
                 </button>

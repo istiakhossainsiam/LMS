@@ -30,6 +30,7 @@ import { useAppStore, bf } from '../stores/useAppStore'
 import { Card3D } from '../components/common/Card3D'
 import { LandingHero } from '../components/hero/LandingHero'
 import { ThreeModelViewer } from '../components/three/ThreeModelViewer'
+import { ErrorBoundary } from '../components/common/ErrorBoundary'
 import { Box } from 'lucide-react'
 
 export const HomePage: React.FC = () => {
@@ -139,20 +140,20 @@ export const HomePage: React.FC = () => {
 
       {/* Active Flash Sale Ribbon */}
       {flashSale && (
-        <div className="relative bg-amber-500/10 border-b border-amber-500/20 text-amber-950 dark:text-amber-200">
+        <div className="relative bg-[#0F2A44] dark:bg-[#0A1E33] border-b border-[#16324F] text-[#FBF3DC] dark:text-[#FFF7E8]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex items-center justify-between gap-2 text-xs">
             <div className="flex items-center gap-2 min-w-0">
               <span className="px-2 py-0.5 rounded bg-amber-500 text-slate-950 font-mono font-bold text-[10px] tracking-wide shrink-0">
                 Flat {flashSale.discount_percentage}% off
               </span>
-              <span className="truncate font-medium text-slate-900 dark:text-amber-100">
+              <span className="truncate font-medium text-[#FBF3DC] dark:text-[#FFF7E8]">
                 {bf(flashSale, 'title', lang)}
               </span>
             </div>
             <button
               type="button"
               onClick={() => handleCopyPromo(flashSale.promo_code)}
-              className="h-7 px-2.5 rounded-lg bg-white dark:bg-slate-900 border border-amber-500/30 font-mono text-[11px] font-bold text-amber-950 dark:text-amber-300 flex items-center gap-1.5 shrink-0 tactile-press cursor-pointer hover:border-amber-500"
+              className="h-7 px-2.5 rounded-lg bg-[#16324F] dark:bg-[#16324F] border border-[#16324F] font-mono text-[11px] font-bold text-[#FBF3DC] dark:text-[#FFF7E8] hover:border-[#F97316] flex items-center gap-1.5 shrink-0 tactile-press cursor-pointer hover:border-amber-500"
               title="Copy promo code"
             >
               <span>{flashSale.promo_code}</span>
@@ -170,17 +171,17 @@ export const HomePage: React.FC = () => {
       />
 
       {/* 2. HIRING PARTNERS LOGO RIBBON */}
-      <section className="border-y border-[#E2E8F2] dark:border-slate-800/80 bg-white/70 dark:bg-[#0C1528]/50 py-5">
+      <section className="border-y border-[#16324F] bg-[#0F2A44] dark:bg-[#0A1E33] py-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <span className="text-xs font-mono font-medium text-[#5D6B82] dark:text-[#A8B7CE] shrink-0">
+            <span className="text-xs font-mono font-medium text-[#D9CDB8] dark:text-[#D9CDB8] shrink-0">
               {lang === 'bn' ? 'আমাদের গ্র্যাজুয়েটরা যেখানে কাজ করছেন' : 'Graduates hired at leading engineering teams'}
             </span>
             <div className="flex flex-wrap items-center gap-3 sm:gap-6 justify-center">
               {['Brain Station 23', 'Astha IT', 'REVE Systems', 'Technosoft BD', 'TigerIT Bangladesh'].map((co) => (
                 <div
                   key={co}
-                  className="px-3 py-1.5 rounded-lg border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#111F36] text-xs sm:text-sm font-display font-medium text-[#14213A] dark:text-[#F5F8FF]"
+                  className="px-3 py-1.5 rounded-lg border border-[#16324F] bg-[#16324F] dark:bg-[#16324F] text-xs sm:text-sm font-display font-medium text-[#FBF3DC] dark:text-[#FFF7E8]"
                 >
                   {co}
                 </div>
@@ -192,19 +193,19 @@ export const HomePage: React.FC = () => {
 
       {/* 3. INTERACTIVE CODELAB TEASER PLAYGROUND */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="aurora-card-raised p-6 sm:p-8 text-[#14213A] dark:text-[#F5F8FF] relative overflow-hidden bg-white dark:bg-[#0C1528]">
+        <div className="aurora-card-raised p-6 sm:p-8 text-[#0F2A44] dark:text-[#FFF7E8] relative overflow-hidden bg-[#FBF3DC] dark:bg-[#102A44]">
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-5 space-y-4">
-              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md aurora-pill-teal text-xs font-mono font-medium">
+              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md aurora-pill-accent text-xs font-mono font-medium">
                 <Code2 className="w-3.5 h-3.5 text-slate-400" />
                 <span>{lang === 'bn' ? 'ব্রাউজার কোডিং ল্যাব' : 'Cloud CodeLab'}</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-display font-bold leading-tight text-[#14213A] dark:text-[#F5F8FF]">
+              <h2 className="text-2xl sm:text-3xl font-display font-bold leading-tight text-[#0F2A44] dark:text-[#FFF7E8]">
                 {lang === 'bn'
                   ? 'থিওরির সাথে প্র্যাকটিক্যাল কোডিং অনুশীলন'
                   : 'Write, test, and solve engineering challenges'}
               </h2>
-              <p className="text-xs sm:text-sm text-[#5D6B82] dark:text-[#A8B7CE] leading-relaxed font-sans">
+              <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#D9CDB8] leading-relaxed font-sans">
                 {lang === 'bn'
                   ? 'কোনো লোকাল এনভায়রনমেন্ট কনফিগারেশন ছাড়াই সরাসরি অ্যালগরিদম ও এসকিউএল সিকিউরিটি টেস্ট রান করুন।'
                   : 'Zero local environment setup needed. Solve technical assessment problems and evaluate unit tests in under 50ms.'}
@@ -223,14 +224,14 @@ export const HomePage: React.FC = () => {
             <div className="lg:col-span-7 space-y-3">
               {/* Mode Switcher Tabs */}
               <div className="flex items-center justify-between pb-1">
-                <div className="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs font-mono">
+                <div className="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs font-mono">
                   <button
                     type="button"
                     onClick={() => setCodeLabMode('3d')}
                     className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors cursor-pointer tactile-press ${
                       codeLabMode === '3d'
-                        ? 'bg-[#356DFF] text-white font-bold shadow-xs'
-                        : 'text-[#5D6B82] dark:text-[#A8B7CE] hover:text-[#14213A] dark:hover:text-white'
+                        ? 'bg-[#F97316] text-[#FBF3DC] font-bold shadow-xs'
+                        : 'text-[#6B7280] dark:text-[#D9CDB8] hover:text-[#0F2A44] dark:hover:text-white'
                     }`}
                   >
                     <Box className="w-3.5 h-3.5" />
@@ -241,8 +242,8 @@ export const HomePage: React.FC = () => {
                     onClick={() => setCodeLabMode('editor')}
                     className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors cursor-pointer tactile-press ${
                       codeLabMode === 'editor'
-                        ? 'bg-[#356DFF] text-white font-bold shadow-xs'
-                        : 'text-[#5D6B82] dark:text-[#A8B7CE] hover:text-[#14213A] dark:hover:text-white'
+                        ? 'bg-[#F97316] text-[#FBF3DC] font-bold shadow-xs'
+                        : 'text-[#6B7280] dark:text-[#D9CDB8] hover:text-[#0F2A44] dark:hover:text-white'
                     }`}
                   >
                     <Terminal className="w-3.5 h-3.5" />
@@ -250,25 +251,27 @@ export const HomePage: React.FC = () => {
                   </button>
                 </div>
 
-                <span className="hidden sm:inline text-[11px] font-mono text-[#5D6B82] dark:text-[#A8B7CE]">
+                <span className="hidden sm:inline text-[11px] font-mono text-[#6B7280] dark:text-[#D9CDB8]">
                   WebGL 2.0 • 60 FPS
                 </span>
               </div>
 
               {codeLabMode === '3d' ? (
-                <ThreeModelViewer
-                  title={lang === 'bn' ? 'ডিস্ট্রিবিউটেড মাইক্রোসার্ভিস নোড' : 'Distributed Microservice Node'}
-                  subtitle={lang === 'bn' ? 'ব্লেন্ডার ৩ডি প্রসিডিউরাল কোর • থ্রি.জেএস ও অ্যামো.জেএস ভিউয়ার' : 'Blender 3D Procedural Core • Three.js WebGL Inspector'}
-                  height="h-64 sm:h-72"
-                />
+                <ErrorBoundary fallback={<div className="p-6 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-sm text-[#6B7280] dark:text-[#D9CDB8]">{lang === 'bn' ? '3D প্রিভিউ এই ডিভাইসে চালু করা যায়নি (WebGL প্রয়োজন)। কোড এডিটর ব্যবহার করুন।' : '3D preview is unavailable on this device (WebGL required). Use the code editor instead.'}</div>}>
+                  <ThreeModelViewer
+                    title={lang === 'bn' ? 'ডিস্ট্রিবিউটেড মাইক্রোসার্ভিস নোড' : 'Distributed Microservice Node'}
+                    subtitle={lang === 'bn' ? 'ব্লেন্ডার ৩ডি প্রসিডিউরাল কোর • থ্রি.জেএস ও অ্যামো.জেএস ভিউয়ার' : 'Blender 3D Procedural Core • Three.js WebGL Inspector'}
+                    height="h-64 sm:h-72"
+                  />
+                </ErrorBoundary>
               ) : (
-                <div className="p-4 rounded-xl bg-[#060B18] text-slate-100 font-mono text-xs space-y-3 border border-slate-800 shadow-xl">
+                <div className="p-4 rounded-xl bg-[#0A1E33] text-slate-100 font-mono text-xs space-y-3 border border-slate-800 shadow-xl">
                   <div className="flex items-center justify-between text-[11px] text-slate-400 pb-2 border-b border-slate-800">
                     <span className="flex items-center gap-1.5">
                       <Terminal className="w-3.5 h-3.5 text-slate-400" />
                       <span>ast_query_validator.py</span>
                     </span>
-                    <span className="text-[#35C6BE] font-medium">Python 3.14 runtime</span>
+                    <span className="text-[#F97316] font-medium">Python 3.14 runtime</span>
                   </div>
 
                   <textarea
@@ -280,7 +283,7 @@ export const HomePage: React.FC = () => {
                   />
 
                   <div className="flex items-center justify-between pt-2 border-t border-slate-800">
-                    <span className="text-[11px] text-[#A8B7CE] font-mono">
+                    <span className="text-[11px] text-[#D9CDB8] font-mono">
                       {teaserResult || 'Input: Safe AST parameters'}
                     </span>
                     <button
@@ -304,10 +307,10 @@ export const HomePage: React.FC = () => {
       <section id="curriculum" className="max-w-7xl mx-auto px-4 sm:px-6 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
           <div>
-            <span className="text-xs font-mono text-[#5D6B82] dark:text-[#A8B7CE] font-medium">
+            <span className="text-xs font-mono text-[#6B7280] dark:text-[#D9CDB8] font-medium">
               {lang === 'bn' ? 'প্র্যাকটিক্যাল কারিকুলাম' : 'Structured career tracks'}
             </span>
-            <h2 className="font-display font-bold text-xl sm:text-2xl text-[#14213A] dark:text-[#F5F8FF] mt-0.5">
+            <h2 className="font-display font-bold text-xl sm:text-2xl text-[#0F2A44] dark:text-[#FFF7E8] mt-0.5">
               {lang === 'bn' ? 'আমাদের ফ্ল্যাগশিপ কোর্সসমূহ' : 'Flagship engineering tracks'}
             </h2>
           </div>
@@ -326,10 +329,10 @@ export const HomePage: React.FC = () => {
             return (
               <div
                 key={course.id}
-                className="aurora-card rounded-xl overflow-hidden flex flex-col justify-between hover:border-[#356DFF] dark:hover:border-[#35C6BE] transition-colors"
+                className="aurora-card rounded-xl overflow-hidden flex flex-col justify-between hover:border-[#F97316] dark:hover:border-[#FB923C] transition-colors"
               >
                 <div>
-                  <div className="relative aspect-video bg-[#060B18] overflow-hidden">
+                  <div className="relative aspect-video bg-[#0A1E33] overflow-hidden">
                     <img
                       src={course.thumbnail_url}
                       alt={bf(course, 'title', lang)}
@@ -337,7 +340,7 @@ export const HomePage: React.FC = () => {
                       loading="lazy"
                     />
                     <div className="absolute top-3 left-3 flex items-center gap-2">
-                      <span className="px-2.5 py-1 rounded-md bg-[#060B18]/90 text-[#F5F8FF] text-[10px] font-mono font-medium border border-slate-800">
+                      <span className="px-2.5 py-1 rounded-md bg-[#0A1E33]/90 text-[#FFF7E8] text-[10px] font-mono font-medium border border-slate-800">
                         {bf(course, 'category', lang)}
                       </span>
                       {course.is_live_course && (
@@ -350,7 +353,7 @@ export const HomePage: React.FC = () => {
                   </div>
 
                   <div className="p-5 space-y-3">
-                    <div className="flex items-center justify-between text-xs text-[#5D6B82] dark:text-[#A8B7CE] font-mono">
+                    <div className="flex items-center justify-between text-xs text-[#6B7280] dark:text-[#D9CDB8] font-mono">
                       <span className="flex items-center gap-1.5">
                         <Clock className="w-3.5 h-3.5 text-slate-400" />
                         <span className="tabular-nums">{course.duration_hours}h • {course.lesson_count} lessons</span>
@@ -362,30 +365,30 @@ export const HomePage: React.FC = () => {
                     </div>
 
                     <Link to={`/courses/${course.id}`} className="block group">
-                      <h3 className="font-display font-bold text-base text-[#14213A] dark:text-[#F5F8FF] group-hover:text-[#356DFF] dark:group-hover:text-[#35C6BE] transition-colors line-clamp-2 leading-snug">
+                      <h3 className="font-display font-bold text-base text-[#0F2A44] dark:text-[#FFF7E8] group-hover:text-[#F97316] dark:group-hover:text-[#FB923C] transition-colors line-clamp-2 leading-snug">
                         {bf(course, 'title', lang)}
                       </h3>
                     </Link>
 
-                    <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] line-clamp-2 leading-relaxed font-sans">
+                    <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8] line-clamp-2 leading-relaxed font-sans">
                       {bf(course, 'description', lang)}
                     </p>
                   </div>
                 </div>
 
                 <div className="p-5 pt-0 space-y-3.5">
-                  <div className="pt-3 border-t border-[#E2E8F2] dark:border-slate-800/80 flex items-center justify-between">
+                  <div className="pt-3 border-t border-[#E0D3AF] dark:border-slate-800/80 flex items-center justify-between">
                     <div>
-                      <span className="font-mono font-bold text-lg text-[#14213A] dark:text-[#F5F8FF] tabular-nums">
+                      <span className="font-mono font-bold text-lg text-[#0F2A44] dark:text-[#FFF7E8] tabular-nums">
                         ৳{course.price.toLocaleString()}
                       </span>
                       {course.original_price > course.price && (
-                        <span className="ml-2 text-xs font-mono line-through text-[#5D6B82] dark:text-[#A8B7CE] tabular-nums">
+                        <span className="ml-2 text-xs font-mono line-through text-[#6B7280] dark:text-[#D9CDB8] tabular-nums">
                           ৳{course.original_price.toLocaleString()}
                         </span>
                       )}
                     </div>
-                    <span className="text-[11px] text-[#5D6B82] dark:text-[#A8B7CE] font-mono tabular-nums">
+                    <span className="text-[11px] text-[#6B7280] dark:text-[#D9CDB8] font-mono tabular-nums">
                       {course.students_count}+ {lang === 'bn' ? 'শিক্ষার্থী' : 'enrolled'}
                     </span>
                   </div>
@@ -403,8 +406,8 @@ export const HomePage: React.FC = () => {
                       onClick={() => toggleCompareCourse(course)}
                       className={`min-h-[42px] min-w-[42px] rounded-xl border flex items-center justify-center tactile-press cursor-pointer transition-colors ${
                         isCompared
-                          ? 'bg-[#356DFF]/10 border-[#356DFF] text-[#356DFF]'
-                          : 'border-[#E2E8F2] dark:border-slate-800 text-[#5D6B82] dark:text-[#A8B7CE] hover:text-[#14213A] dark:hover:text-white'
+                          ? 'bg-[#F97316]/10 border-[#F97316] text-[#F97316]'
+                          : 'border-[#E0D3AF] dark:border-slate-800 text-[#6B7280] dark:text-[#D9CDB8] hover:text-[#0F2A44] dark:hover:text-white'
                       }`}
                       aria-label="Compare course"
                       title={lang === 'bn' ? 'তুলনা করুন' : 'Compare course'}
@@ -420,12 +423,13 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 5. WHY LMS 2.0 (ENGINEERING ADVANTAGE BENTO GRID) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 space-y-6">
+      <section className="bg-[#0F2A44] dark:bg-[#0A1E33] py-12 sm:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-6">
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-mono text-[#5D6B82] dark:text-[#A8B7CE] font-semibold">
+          <span className="text-xs font-mono text-[#FB923C] dark:text-[#FB923C] font-semibold">
             {lang === 'bn' ? 'আর্কিটেকচারাল মানদণ্ড' : 'Zero-trust architecture'}
           </span>
-          <h2 className="font-display font-bold text-2xl sm:text-3xl text-[#14213A] dark:text-[#F5F8FF]">
+          <h2 className="font-display font-bold text-2xl sm:text-3xl text-[#FBF3DC] dark:text-[#FFF7E8]">
             {lang === 'bn'
               ? 'কেন ট্রেনিং পণ্ডিতের আর্কিটেকচার আলাদা?'
               : 'Engineered for reliability, security, and real work'}
@@ -467,20 +471,21 @@ export const HomePage: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="aurora-card p-6 space-y-3.5"
+                className="rounded-2xl border border-[#16324F] bg-[#16324F] p-6 space-y-3.5"
               >
-                <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 flex items-center justify-center text-slate-700 dark:text-slate-300">
+                <div className="w-10 h-10 rounded-xl bg-[#0A1E33] dark:bg-[#0A1E33] border border-[#0A1E33] flex items-center justify-center text-[#FB923C] dark:text-[#FB923C]">
                   <Icon className="w-5 h-5" />
                 </div>
-                <h3 className="font-display font-bold text-base text-[#14213A] dark:text-[#F5F8FF]">
+                <h3 className="font-display font-bold text-base text-[#FBF3DC] dark:text-[#FFF7E8]">
                   {item.title}
                 </h3>
-                <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] leading-relaxed">
+                <p className="text-xs text-[#D9CDB8] dark:text-[#D9CDB8] leading-relaxed">
                   {item.desc}
                 </p>
               </div>
             )
           })}
+        </div>
         </div>
       </section>
 
@@ -490,20 +495,20 @@ export const HomePage: React.FC = () => {
           {data.workshops.slice(0, 1).map((ws: any) => (
             <div
               key={ws.id}
-              className="aurora-card-raised p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white dark:bg-[#0C1528]"
+              className="aurora-card-raised p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#FBF3DC] dark:bg-[#102A44]"
             >
               <div className="lg:col-span-7 space-y-4">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full aurora-pill-teal text-xs font-mono font-medium">
-                  <Video className="w-3.5 h-3.5 text-[#35C6BE]" />
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full aurora-pill-accent text-xs font-mono font-medium">
+                  <Video className="w-3.5 h-3.5 text-[#F97316]" />
                   <span>Live workshop • {ws.platform}</span>
                 </div>
-                <h2 className="font-display font-bold text-2xl sm:text-3xl text-[#14213A] dark:text-[#F5F8FF] leading-snug">
+                <h2 className="font-display font-bold text-2xl sm:text-3xl text-[#0F2A44] dark:text-[#FFF7E8] leading-snug">
                   {bf(ws, 'title', lang)}
                 </h2>
-                <p className="text-xs sm:text-sm text-[#5D6B82] dark:text-[#A8B7CE] leading-relaxed font-sans">
+                <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#D9CDB8] leading-relaxed font-sans">
                   {bf(ws, 'description', lang)}
                 </p>
-                <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-[#5D6B82] dark:text-[#A8B7CE] pt-1">
+                <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-[#6B7280] dark:text-[#D9CDB8] pt-1">
                   <span className="flex items-center gap-1.5">
                     <Calendar className="w-4 h-4 text-slate-400" />
                     <span className="tabular-nums">{new Date(ws.date_time).toLocaleDateString()} ({ws.duration_minutes}m)</span>
@@ -517,13 +522,13 @@ export const HomePage: React.FC = () => {
 
               <form
                 onSubmit={(e) => handleWorkshopRegister(e, ws.id)}
-                className="lg:col-span-5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 p-5 sm:p-6 space-y-3.5 shadow-xs"
+                className="lg:col-span-5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 p-5 sm:p-6 space-y-3.5 shadow-xs"
               >
-                <h3 className="font-display font-bold text-sm sm:text-base text-[#14213A] dark:text-[#F5F8FF]">
+                <h3 className="font-display font-bold text-sm sm:text-base text-[#0F2A44] dark:text-[#FFF7E8]">
                   {lang === 'bn' ? 'ফ্রি সিট বুক করুন' : 'Reserve free seat'}
                 </h3>
                 <div>
-                  <label className="block text-[11px] text-[#5D6B82] dark:text-[#A8B7CE] mb-1 font-medium">
+                  <label className="block text-[11px] text-[#6B7280] dark:text-[#D9CDB8] mb-1 font-medium">
                     {lang === 'bn' ? 'আপনার নাম' : 'Full name'}
                   </label>
                   <input
@@ -532,11 +537,11 @@ export const HomePage: React.FC = () => {
                     value={wsForm.name}
                     onChange={(e) => setWsForm({ ...wsForm, name: e.target.value })}
                     placeholder={lang === 'bn' ? 'যেমন: আরিফুর রহমান' : 'e.g. Arifur Rahman'}
-                    className="w-full min-h-[42px] px-3.5 rounded-xl bg-white dark:bg-[#0C1528] border border-[#E2E8F2] dark:border-slate-800 text-sm text-[#14213A] dark:text-[#F5F8FF] focus:outline-none focus:border-[#356DFF]"
+                    className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#FBF3DC] dark:bg-[#102A44] border border-[#E0D3AF] dark:border-slate-800 text-sm text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-none focus:border-[#F97316]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] text-[#5D6B82] dark:text-[#A8B7CE] mb-1 font-medium">
+                  <label className="block text-[11px] text-[#6B7280] dark:text-[#D9CDB8] mb-1 font-medium">
                     {lang === 'bn' ? 'ইমেইল অ্যাড্রেস' : 'Email address'}
                   </label>
                   <input
@@ -545,11 +550,11 @@ export const HomePage: React.FC = () => {
                     value={wsForm.email}
                     onChange={(e) => setWsForm({ ...wsForm, email: e.target.value })}
                     placeholder="you@example.com"
-                    className="w-full min-h-[42px] px-3.5 rounded-xl bg-white dark:bg-[#0C1528] border border-[#E2E8F2] dark:border-slate-800 text-sm text-[#14213A] dark:text-[#F5F8FF] focus:outline-none focus:border-[#356DFF]"
+                    className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#FBF3DC] dark:bg-[#102A44] border border-[#E0D3AF] dark:border-slate-800 text-sm text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-none focus:border-[#F97316]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] text-[#5D6B82] dark:text-[#A8B7CE] mb-1 font-medium">
+                  <label className="block text-[11px] text-[#6B7280] dark:text-[#D9CDB8] mb-1 font-medium">
                     {lang === 'bn' ? 'মোবাইল নাম্বার' : 'Mobile number'}
                   </label>
                   <input
@@ -558,7 +563,7 @@ export const HomePage: React.FC = () => {
                     value={wsForm.phone}
                     onChange={(e) => setWsForm({ ...wsForm, phone: e.target.value })}
                     placeholder="017XXXXXXXX"
-                    className="w-full min-h-[42px] px-3.5 rounded-xl bg-white dark:bg-[#0C1528] border border-[#E2E8F2] dark:border-slate-800 text-sm text-[#14213A] dark:text-[#F5F8FF] focus:outline-none focus:border-[#356DFF]"
+                    className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#FBF3DC] dark:bg-[#102A44] border border-[#E0D3AF] dark:border-slate-800 text-sm text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-none focus:border-[#F97316]"
                   />
                 </div>
                 <button
@@ -581,13 +586,36 @@ export const HomePage: React.FC = () => {
         </section>
       )}
 
+      {/* 6.5 NAVY CTA BAND — Explore courses */}
+      <section className="bg-[#0F2A44] dark:bg-[#0A1E33] py-12 sm:py-14">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="text-center sm:text-left space-y-2">
+            <h2 className="font-display font-bold text-2xl sm:text-3xl text-[#FBF3DC] dark:text-[#FFF7E8]">
+              {lang === 'bn' ? 'আজই শেখা শুরু করুন' : 'Start learning today'}
+            </h2>
+            <p className="text-sm text-[#D9CDB8] dark:text-[#D9CDB8] max-w-xl">
+              {lang === 'bn'
+                ? 'ফ্ল্যাগশিপ ক্যারিয়ার ট্র্যাকগুলো দেখুন — Flat 25% ছাড় চলছে।'
+                : 'Browse the flagship career tracks — Flat 25% off is live now.'}
+            </p>
+          </div>
+          <Link
+            to="/courses"
+            className="aurora-btn-primary inline-flex items-center gap-2 px-7 py-3 rounded-xl text-sm font-semibold tactile-press shrink-0"
+          >
+            <span>{lang === 'bn' ? 'কোর্স ক্যাটালগ দেখুন' : 'Explore courses'}</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </section>
+
       {/* 7. FREQUENTLY ASKED QUESTIONS ACCORDION */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
         <div className="text-center space-y-1.5">
-          <span className="text-xs font-mono text-[#5D6B82] dark:text-[#A8B7CE] font-semibold">
+          <span className="text-xs font-mono text-[#6B7280] dark:text-[#D9CDB8] font-semibold">
             {lang === 'bn' ? 'সাধারণ জিজ্ঞাসা' : 'Common questions'}
           </span>
-          <h2 className="font-display font-bold text-xl sm:text-3xl text-[#14213A] dark:text-[#F5F8FF]">
+          <h2 className="font-display font-bold text-xl sm:text-3xl text-[#0F2A44] dark:text-[#FFF7E8]">
             {lang === 'bn' ? 'ভর্তি, পেমেন্ট ও সার্টিফিকেট বিষয়ক প্রশ্নোত্তর' : 'Curriculum, enrollment, and credentials'}
           </h2>
         </div>
@@ -598,23 +626,23 @@ export const HomePage: React.FC = () => {
             return (
               <div
                 key={faq.id}
-                className="aurora-card rounded-2xl overflow-hidden hover:border-[#356DFF] transition-all"
+                className="aurora-card rounded-2xl overflow-hidden hover:border-[#F97316] transition-all"
               >
                 <button
                   type="button"
                   onClick={() => setOpenFaq(isOpen ? null : idx)}
                   aria-expanded={isOpen}
-                  className="w-full min-h-[52px] px-5 py-4 text-left flex items-center justify-between gap-3 font-semibold text-xs sm:text-sm text-[#14213A] dark:text-[#F5F8FF] cursor-pointer"
+                  className="w-full min-h-[52px] px-5 py-4 text-left flex items-center justify-between gap-3 font-semibold text-xs sm:text-sm text-[#0F2A44] dark:text-[#FFF7E8] cursor-pointer"
                 >
                   <span>{bf(faq, 'question', lang)}</span>
                   <ChevronDown
-                    className={`w-4 h-4 text-[#5D6B82] dark:text-[#A8B7CE] shrink-0 transition-transform duration-200 ${
-                      isOpen ? 'rotate-180 text-[#356DFF]' : ''
+                    className={`w-4 h-4 text-[#6B7280] dark:text-[#D9CDB8] shrink-0 transition-transform duration-200 ${
+                      isOpen ? 'rotate-180 text-[#F97316]' : ''
                     }`}
                   />
                 </button>
                 {isOpen && (
-                  <div className="px-5 pb-5 text-xs sm:text-sm text-[#5D6B82] dark:text-[#A8B7CE] leading-relaxed border-t border-[#E2E8F2] dark:border-slate-800/80 pt-3">
+                  <div className="px-5 pb-5 text-xs sm:text-sm text-[#6B7280] dark:text-[#D9CDB8] leading-relaxed border-t border-[#E0D3AF] dark:border-slate-800/80 pt-3">
                     {bf(faq, 'answer', lang)}
                   </div>
                 )}

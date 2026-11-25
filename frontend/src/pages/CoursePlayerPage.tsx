@@ -303,7 +303,7 @@ export const CoursePlayerPage: React.FC = () => {
               {data.certificate && (
                 <Link
                   to={`/verify-certificate?id=${data.certificate.certificate_id}`}
-                  className="text-amber-500 font-bold hover:underline flex items-center gap-1"
+                  className="text-[#D97706] font-bold hover:underline flex items-center gap-1"
                 >
                   <Award className="w-3.5 h-3.5" /> Cert: {data.certificate.certificate_id}
                 </Link>
@@ -315,7 +315,7 @@ export const CoursePlayerPage: React.FC = () => {
         <button
           type="button"
           onClick={() => setShowReportModal(true)}
-          className="min-h-[38px] px-3 rounded-xl border border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-500 hover:text-amber-500 flex items-center gap-1.5 cursor-pointer"
+          className="min-h-[38px] px-3 rounded-xl border border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-500 hover:text-[#D97706] flex items-center gap-1.5 cursor-pointer"
         >
           <AlertTriangle className="w-3.5 h-3.5" />
           <span>{lang === 'bn' ? 'সমস্যা রিপোর্ট' : 'Report Issue'}</span>
@@ -361,7 +361,7 @@ export const CoursePlayerPage: React.FC = () => {
                     <span className="text-slate-400">Watch: </span>
                     <span
                       className={`font-bold ${
-                        activeLesson.watch_percentage >= 80 ? 'text-emerald-400' : 'text-amber-400'
+                        activeLesson.watch_percentage >= 80 ? 'text-[#34D399]' : 'text-[#F59E0B]'
                       }`}
                     >
                       {activeLesson.watch_percentage}%
@@ -371,7 +371,7 @@ export const CoursePlayerPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => handleWatchHeartbeat(Math.min(100, (activeLesson.watch_percentage || 0) + 45))}
-                    className="h-8 px-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-sky-400 text-[10px] sm:text-[11px] font-mono font-semibold cursor-pointer tactile-press"
+                    className="h-8 px-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-[#FB923C] text-[10px] sm:text-[11px] font-mono font-semibold cursor-pointer tactile-press"
                     title="Sync watch progress heartbeat to server"
                   >
                     + Sync 85% Heartbeat
@@ -386,7 +386,7 @@ export const CoursePlayerPage: React.FC = () => {
                       rel="noreferrer"
                       className="min-h-[36px] sm:min-h-[38px] px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 tactile-press"
                     >
-                      <Download className="w-3.5 h-3.5 text-sky-400" />
+                      <Download className="w-3.5 h-3.5 text-[#FB923C]" />
                       <span className="hidden sm:inline">{lang === 'bn' ? 'রিসোর্স ফাইল' : 'Resource Vault'}</span>
                       <span className="sm:hidden">{lang === 'bn' ? 'ফাইল' : 'Vault'}</span>
                     </a>
@@ -396,7 +396,7 @@ export const CoursePlayerPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setActiveTab('quiz')}
-                      className="min-h-[36px] sm:min-h-[38px] px-3.5 sm:px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold flex items-center gap-1.5 tactile-press cursor-pointer"
+                      className="min-h-[36px] sm:min-h-[38px] px-3.5 sm:px-4 rounded-xl bg-[#D97706] hover:bg-[#F59E0B] text-slate-950 text-xs font-bold flex items-center gap-1.5 tactile-press cursor-pointer"
                     >
                       <HelpCircle className="w-3.5 h-3.5" />
                       <span>{lang === 'bn' ? 'কুইজ দিন' : 'Take Quiz'}</span>
@@ -405,7 +405,7 @@ export const CoursePlayerPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={handleCompleteLesson}
-                      className="min-h-[36px] sm:min-h-[38px] px-3.5 sm:px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold flex items-center gap-1.5 tactile-press cursor-pointer"
+                      className="min-h-[36px] sm:min-h-[38px] px-3.5 sm:px-4 rounded-xl bg-[#059669] hover:bg-[#34D399] text-slate-950 text-xs font-bold flex items-center gap-1.5 tactile-press cursor-pointer"
                     >
                       <CheckCircle2 className="w-3.5 h-3.5" />
                       <span>
@@ -449,7 +449,7 @@ export const CoursePlayerPage: React.FC = () => {
                     className={`min-h-[40px] sm:min-h-[44px] px-3.5 sm:px-4 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap flex items-center gap-1.5 tactile-press cursor-pointer shrink-0 transition-all ${
                       active
                         ? 'aurora-btn-primary shadow-sm'
-                        : 'text-[#5D6B82] dark:text-[#A8B7CE] hover:text-[#14213A] dark:hover:text-[#F5F8FF] hover:bg-slate-100 dark:hover:bg-[#111F36]'
+                        : 'text-[#6B7280] dark:text-[#D9CDB8] hover:text-[#0F2A44] dark:hover:text-[#FFF7E8] hover:bg-slate-100 dark:hover:bg-[#16324F]'
                     }`}
                   >
                     <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -462,36 +462,36 @@ export const CoursePlayerPage: React.FC = () => {
             {/* TAB 1: Curriculum & Active Lesson Overview + Mobile Lesson Playlist */}
             {activeTab === 'curriculum' && activeLesson && (
               <div className="space-y-4">
-                <div className="aurora-card rounded-2xl p-4 sm:p-5 space-y-3 sm:space-y-4 bg-white dark:bg-[#0C1528] border border-[#E2E8F2] dark:border-slate-800">
+                <div className="aurora-card rounded-2xl p-4 sm:p-5 space-y-3 sm:space-y-4 bg-[#FBF3DC] dark:bg-[#102A44] border border-[#E0D3AF] dark:border-slate-800">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="px-2.5 py-1 rounded-md aurora-pill-blue font-mono text-xs font-semibold">
+                    <span className="px-2.5 py-1 rounded-md aurora-pill-accent font-mono text-xs font-semibold">
                       Lesson #{activeLesson.order} • Pass Mark {activeLesson.pass_mark}%
                     </span>
                     {activeLesson.quiz_passed && (
-                      <span className="px-2.5 py-1 rounded-md aurora-pill-teal font-mono text-xs font-bold">
+                      <span className="px-2.5 py-1 rounded-md aurora-pill-accent font-mono text-xs font-bold">
                         Quiz Passed ({activeLesson.quiz_score}%)
                       </span>
                     )}
                   </div>
-                  <h2 className="font-display font-bold text-base sm:text-xl text-[#14213A] dark:text-[#F5F8FF]">
+                  <h2 className="font-display font-bold text-base sm:text-xl text-[#0F2A44] dark:text-[#FFF7E8]">
                     {bf(activeLesson, 'title', lang)}
                   </h2>
-                  <p className="text-xs sm:text-sm text-[#5D6B82] dark:text-[#A8B7CE] leading-relaxed font-sans">
+                  <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#D9CDB8] leading-relaxed font-sans">
                     {bf(activeLesson, 'description', lang)}
                   </p>
                 </div>
 
                 {/* Mobile In-Tab Playlist (Instantly accessible on phones) */}
-                <div className="lg:hidden aurora-card rounded-2xl overflow-hidden bg-white dark:bg-[#0C1528] border border-[#E2E8F2] dark:border-slate-800">
-                  <div className="p-3.5 border-b border-[#E2E8F2] dark:border-slate-800 flex items-center justify-between">
-                    <span className="font-display font-bold text-sm text-[#14213A] dark:text-[#F5F8FF]">
+                <div className="lg:hidden aurora-card rounded-2xl overflow-hidden bg-[#FBF3DC] dark:bg-[#102A44] border border-[#E0D3AF] dark:border-slate-800">
+                  <div className="p-3.5 border-b border-[#E0D3AF] dark:border-slate-800 flex items-center justify-between">
+                    <span className="font-display font-bold text-sm text-[#0F2A44] dark:text-[#FFF7E8]">
                       {lang === 'bn' ? 'সকল লেসন তালিকা' : 'Lesson Playlist'}
                     </span>
-                    <span className="text-xs font-mono text-[#356DFF] dark:text-[#35C6BE] font-semibold">
+                    <span className="text-xs font-mono text-[#F97316] dark:text-[#F97316] font-semibold">
                       {data.lessons.filter((l: any) => l.is_completed).length}/{data.lessons.length} Done
                     </span>
                   </div>
-                  <div className="divide-y divide-[#E2E8F2] dark:divide-slate-800">
+                  <div className="divide-y divide-[#E0D3AF] dark:divide-slate-800">
                     {data.lessons.map((les: any) => {
                       const isCurrent = activeLesson?.id === les.id
                       return (
@@ -501,33 +501,33 @@ export const CoursePlayerPage: React.FC = () => {
                           onClick={() => selectLesson(les)}
                           className={`w-full p-3.5 text-left flex items-start justify-between gap-3 transition-colors cursor-pointer ${
                             isCurrent
-                              ? 'bg-[#356DFF]/15 border-l-4 border-[#356DFF]'
-                              : 'hover:bg-[#F5F7FB] dark:hover:bg-[#111F36]/60'
+                              ? 'bg-[#F97316]/15 border-l-4 border-[#F97316]'
+                              : 'hover:bg-[#E9D9B4] dark:hover:bg-[#16324F]/60'
                           }`}
                         >
                           <div className="flex items-start gap-2.5">
                             <div className="mt-0.5">
                               {les.is_completed ? (
-                                <CheckCircle2 className="w-4 h-4 text-[#35C6BE]" />
+                                <CheckCircle2 className="w-4 h-4 text-[#F97316]" />
                               ) : les.is_locked ? (
                                 <Lock className="w-4 h-4 text-slate-400" />
                               ) : (
-                                <Play className="w-4 h-4 text-[#356DFF]" />
+                                <Play className="w-4 h-4 text-[#F97316]" />
                               )}
                             </div>
                             <div>
                               <div
                                 className={`text-xs font-semibold ${
                                   isCurrent
-                                    ? 'text-[#356DFF] dark:text-[#35C6BE]'
-                                    : 'text-[#14213A] dark:text-[#F5F8FF]'
+                                    ? 'text-[#F97316] dark:text-[#F97316]'
+                                    : 'text-[#0F2A44] dark:text-[#FFF7E8]'
                                 }`}
                               >
                                 #{les.order}. {bf(les, 'title', lang)}
                               </div>
-                              <div className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] flex items-center gap-1.5 mt-0.5">
+                              <div className="text-[10px] font-mono text-[#6B7280] dark:text-[#D9CDB8] flex items-center gap-1.5 mt-0.5">
                                 <span>{les.duration_minutes}m</span>
-                                {les.is_completed && <span className="text-[#35C6BE]">✓ Completed</span>}
+                                {les.is_completed && <span className="text-[#F97316]">✓ Completed</span>}
                               </div>
                             </div>
                           </div>
@@ -541,7 +541,7 @@ export const CoursePlayerPage: React.FC = () => {
 
             {/* TAB 2: Server-Verified Quiz Engine (Zero Answer Leakage on Fail!) */}
             {activeTab === 'quiz' && activeLesson && (
-              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111827] p-5 sm:p-6 space-y-6">
+              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] p-5 sm:p-6 space-y-6">
                 <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-4">
                   <div>
                     <h2 className="font-display font-bold text-lg text-slate-900 dark:text-white">
@@ -552,7 +552,7 @@ export const CoursePlayerPage: React.FC = () => {
                     </p>
                   </div>
                   {activeLesson.quiz_score !== null && (
-                    <span className="px-3 py-1 rounded-full bg-sky-500/15 text-sky-500 font-mono text-xs font-bold">
+                    <span className="px-3 py-1 rounded-full bg-[#F97316]/15 text-[#F97316] font-mono text-xs font-bold">
                       Best Score: {activeLesson.quiz_score}%
                     </span>
                   )}
@@ -583,7 +583,7 @@ export const CoursePlayerPage: React.FC = () => {
                             value={quizAnswers[String(q.id)] || ''}
                             onChange={(e) => setQuizAnswers({ ...quizAnswers, [String(q.id)]: e.target.value })}
                             placeholder={lang === 'bn' ? 'আপনার উত্তর লিখুন...' : 'Type your concise answer...'}
-                            className="w-full min-h-[44px] px-3.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-base"
+                            className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FBF3DC] dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-base"
                           />
                         ) : (
                           <div className="space-y-2">
@@ -594,8 +594,8 @@ export const CoursePlayerPage: React.FC = () => {
                                   key={ch.id}
                                   className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-colors ${
                                     checked
-                                      ? 'border-sky-500 bg-sky-500/10'
-                                      : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950'
+                                      ? 'border-[#F97316] bg-[#F97316]/10'
+                                      : 'border-slate-200 dark:border-slate-800 bg-[#FBF3DC] dark:bg-slate-950'
                                   }`}
                                 >
                                   <input
@@ -606,7 +606,7 @@ export const CoursePlayerPage: React.FC = () => {
                                     onChange={() =>
                                       setQuizAnswers({ ...quizAnswers, [String(q.id)]: String(ch.id) })
                                     }
-                                    className="w-4 h-4 accent-sky-600"
+                                    className="w-4 h-4 accent-orange-600"
                                   />
                                   <span className="text-sm text-slate-800 dark:text-slate-200">
                                     {bf(ch, 'text', lang)}
@@ -620,7 +620,7 @@ export const CoursePlayerPage: React.FC = () => {
                         {quizResult?.question_results && (
                           <div className="text-xs font-mono">
                             {quizResult.question_results[String(q.id)] ? (
-                              <span className="text-emerald-500 font-semibold">✓ Correct</span>
+                              <span className="text-[#059669] font-semibold">✓ Correct</span>
                             ) : (
                               <span className="text-rose-500 font-semibold">
                                 ✗ Incorrect (Answer key protected by Zero-Leakage Policy)
@@ -652,7 +652,7 @@ export const CoursePlayerPage: React.FC = () => {
 
             {/* TAB 3: Timestamped Smart Notes (Preserves SQL/Code safely + PDF Export) */}
             {activeTab === 'notes' && activeLesson && (
-              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111827] p-5 sm:p-6 space-y-4">
+              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] p-5 sm:p-6 space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div>
                     <h2 className="font-display font-bold text-lg text-slate-900 dark:text-white">
@@ -668,7 +668,7 @@ export const CoursePlayerPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={handleInsertTimestamp}
-                      className="min-h-[40px] px-3 rounded-xl bg-slate-900/5 dark:bg-white/10 text-slate-800 dark:text-slate-200 text-xs font-mono font-semibold flex items-center gap-1.5 tactile-press cursor-pointer"
+                      className="min-h-[40px] px-3 rounded-xl bg-slate-900/5 dark:bg-[#FBF3DC]/10 text-slate-800 dark:text-slate-200 text-xs font-mono font-semibold flex items-center gap-1.5 tactile-press cursor-pointer"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       <span>+ Timestamp</span>
@@ -705,7 +705,7 @@ export const CoursePlayerPage: React.FC = () => {
 
             {/* TAB 4: Threaded Q&A Discussions (XSS Sanitized) */}
             {activeTab === 'discussions' && activeLesson && (
-              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111827] p-5 sm:p-6 space-y-6">
+              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] p-5 sm:p-6 space-y-6">
                 <form onSubmit={handlePostDiscussion} className="space-y-3">
                   <label className="block font-display font-bold text-base text-slate-900 dark:text-white">
                     {replyParentId
@@ -749,12 +749,12 @@ export const CoursePlayerPage: React.FC = () => {
                             {d.user_name}
                           </span>
                           {d.is_mentor_reply && (
-                            <span className="px-2 py-0.5 rounded bg-sky-500/20 text-sky-400 text-[10px] font-mono font-bold">
+                            <span className="px-2 py-0.5 rounded bg-[#F97316]/20 text-[#FB923C] text-[10px] font-mono font-bold">
                               MENTOR
                             </span>
                           )}
                           {d.is_pinned && (
-                            <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 text-[10px] font-mono font-bold">
+                            <span className="px-2 py-0.5 rounded bg-[#D97706]/20 text-[#F59E0B] text-[10px] font-mono font-bold">
                               PINNED
                             </span>
                           )}
@@ -762,7 +762,7 @@ export const CoursePlayerPage: React.FC = () => {
                         <button
                           type="button"
                           onClick={() => setReplyParentId(d.id)}
-                          className="text-xs text-sky-500 hover:underline cursor-pointer"
+                          className="text-xs text-[#F97316] hover:underline cursor-pointer"
                         >
                           Reply
                         </button>
@@ -770,7 +770,7 @@ export const CoursePlayerPage: React.FC = () => {
                       <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">{d.comment}</p>
 
                       {(d.replies || []).length > 0 && (
-                        <div className="pl-4 border-l-2 border-sky-500/40 space-y-2.5 pt-2">
+                        <div className="pl-4 border-l-2 border-[#F97316]/40 space-y-2.5 pt-2">
                           {d.replies.map((rep: any) => (
                             <div key={rep.id} className="text-xs sm:text-sm space-y-1">
                               <div className="flex items-center gap-2">
@@ -778,7 +778,7 @@ export const CoursePlayerPage: React.FC = () => {
                                   {rep.user_name}
                                 </span>
                                 {rep.is_mentor_reply && (
-                                  <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-mono font-bold">
+                                  <span className="px-1.5 py-0.5 rounded bg-[#059669]/20 text-[#34D399] text-[10px] font-mono font-bold">
                                     VERIFIED MENTOR
                                   </span>
                                 )}
@@ -798,7 +798,7 @@ export const CoursePlayerPage: React.FC = () => {
             {activeTab === 'project' && (
               <div className="space-y-6">
                 {data.course.final_project_title && (
-                  <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111827] p-5 sm:p-6 space-y-4">
+                  <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] p-5 sm:p-6 space-y-4">
                     <h2 className="font-display font-bold text-lg text-slate-900 dark:text-white">
                       Final Capstone Project: {data.course.final_project_title}
                     </h2>
@@ -807,8 +807,8 @@ export const CoursePlayerPage: React.FC = () => {
                     </p>
 
                     {data.project_submission?.grade !== null && data.project_submission?.grade !== undefined && (
-                      <div className="p-4 rounded-xl bg-emerald-500/12 border border-emerald-500/30 text-sm">
-                        <div className="font-bold text-emerald-500">
+                      <div className="p-4 rounded-xl bg-[#059669]/12 border border-[#059669]/30 text-sm">
+                        <div className="font-bold text-[#059669]">
                           Graded by Mentor: {data.project_submission.grade} / 100
                         </div>
                         <div className="text-xs text-slate-600 dark:text-slate-300 mt-1">
@@ -843,7 +843,7 @@ export const CoursePlayerPage: React.FC = () => {
                   </div>
                 )}
 
-                <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111827] p-5 sm:p-6 space-y-4">
+                <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] p-5 sm:p-6 space-y-4">
                   <h3 className="font-display font-bold text-base text-slate-900 dark:text-white flex items-center gap-2">
                     <Video className="w-4 h-4 text-slate-900 dark:text-white" />
                     <span>{lang === 'bn' ? 'নির্ধারিত লাইভ ক্লাস' : 'Scheduled Live Classes'}</span>
@@ -881,7 +881,7 @@ export const CoursePlayerPage: React.FC = () => {
                 <div className="apple-card rounded-2xl p-5 sm:p-6 space-y-4">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-200 dark:border-slate-800">
                     <div>
-                      <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-500 text-xs font-mono font-semibold">
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#059669]/15 text-[#059669] text-xs font-mono font-semibold">
                         <Zap className="w-3.5 h-3.5" />
                         <span>Interactive Code Practice</span>
                       </div>
@@ -907,12 +907,12 @@ export const CoursePlayerPage: React.FC = () => {
                   <div className="p-4 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs space-y-2 border border-slate-800">
                     <div className="flex items-center justify-between text-slate-400 text-[11px] pb-2 border-b border-slate-800">
                       <span>Python 3.14 • Zero-Sandboxed Runtime</span>
-                      <span className="text-emerald-400 font-bold">Ready</span>
+                      <span className="text-[#34D399] font-bold">Ready</span>
                     </div>
                     <p className="text-slate-400">
                       # Problem: Safe Parameterized DB Query Formulation
                     </p>
-                    <pre className="text-emerald-400 overflow-x-auto whitespace-pre-wrap">
+                    <pre className="text-[#34D399] overflow-x-auto whitespace-pre-wrap">
                       {`def filter_students(min_score: int):\n    # Return parameterized SQL bindings to eliminate injection risks\n    return ("SELECT * FROM users WHERE score >= :min_score", {"min_score": min_score})`}
                     </pre>
                   </div>
@@ -957,14 +957,14 @@ export const CoursePlayerPage: React.FC = () => {
                     onClick={() => selectLesson(les)}
                     className={`w-full p-4 text-left flex items-start justify-between gap-3 transition-colors cursor-pointer ${
                       isCurrent
-                        ? 'bg-slate-900/10 dark:bg-white/10 border-l-4 border-slate-900 dark:border-white'
+                        ? 'bg-slate-900/10 dark:bg-[#FBF3DC]/10 border-l-4 border-slate-900 dark:border-white'
                         : 'hover:bg-slate-50 dark:hover:bg-slate-900/60'
                     }`}
                   >
                     <div className="flex items-start gap-3">
                       <div className="mt-0.5">
                         {les.is_completed ? (
-                          <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                          <CheckCircle2 className="w-4 h-4 text-[#059669]" />
                         ) : les.is_locked ? (
                           <Lock className="w-4 h-4 text-slate-400" />
                         ) : (
@@ -1004,7 +1004,7 @@ export const CoursePlayerPage: React.FC = () => {
         <div className="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
           <form
             onSubmit={handleReportIssue}
-            className="w-full max-w-md rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 space-y-4 shadow-2xl"
+            className="w-full max-w-md rounded-2xl bg-[#FBF3DC] dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 space-y-4 shadow-2xl"
           >
             <h3 className="font-display font-bold text-lg text-slate-900 dark:text-white">
               Report Lesson Issue

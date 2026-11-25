@@ -78,85 +78,75 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50/50 text-slate-900 dark:bg-[#090D16] dark:text-slate-100 mb-safe-nav md:pb-0 overflow-x-clip">
+    <div className="min-h-screen flex flex-col bg-[#FBF3DC] text-[#0F2A44] dark:bg-[#0A1E33] dark:text-slate-100 mb-safe-nav md:pb-0 overflow-x-clip">
       {/* Top Translucent Apple Glass Header — Context & Role Sensitive */}
       <header
-        className={`sticky top-0 z-40 apple-glass border-b transition-colors ${
-          isHomeRoute
-            ? 'border-slate-800/80 bg-[#060B18]/90 text-slate-100 backdrop-blur-md'
-            : isAdminRoute
-            ? 'border-amber-500/25 bg-amber-500/5 dark:bg-amber-950/15'
-            : isTrainerRoute
-            ? 'border-sky-500/25 bg-sky-500/5 dark:bg-sky-950/15'
-            : isStudentRoute
-            ? 'border-emerald-500/25 bg-emerald-500/5 dark:bg-emerald-950/15'
-            : 'border-slate-200/80 dark:border-slate-800'
-        }`}
+        className="sticky top-0 z-40 bg-[#0F2A44] dark:bg-[#0A1E33] border-b border-[#16324F] shadow-sm transition-colors"
       >
         <div className="max-w-7xl mx-auto px-3 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-3 sm:gap-6">
           {/* Brand Identity — Changes dynamically with active Context */}
           {isAdminRoute ? (
             <Link
               to="/admin"
-              className="flex items-center gap-2.5 tactile-press focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-xl shrink-0 select-none"
+              className="flex items-center gap-2.5 tactile-press focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F97316] rounded-xl shrink-0 select-none"
             >
-              <div className="w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center shadow-xs shrink-0 font-bold">
+              <div className="w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-xl bg-[#F97316] text-[#FBF3DC] flex items-center justify-center shadow-xs shrink-0 font-bold">
                 <ShieldCheck className="w-4.5 h-4.5 sm:w-5.5 sm:h-5.5 stroke-[2.2]" />
               </div>
               <div className="leading-tight shrink-0">
                 <div className="flex items-center gap-1.5">
-                  <span className="font-display font-bold text-sm sm:text-base tracking-tight text-slate-950 dark:text-white whitespace-nowrap">
+                  <span className="font-display font-bold text-sm sm:text-base tracking-tight text-[#FBF3DC] dark:text-[#FFF7E8] whitespace-nowrap">
                     {lang === 'bn' ? 'অ্যাডমিন কনসোল' : 'Admin Console'}
                   </span>
-                  <span className="px-1.5 py-0.2 rounded-md bg-amber-500/20 border border-amber-500/30 text-amber-700 dark:text-amber-400 font-mono text-[9px] font-semibold">
+                  <span className="px-1.5 py-0.2 rounded-md bg-[#16324F] dark:bg-[#16324F] border border-[#16324F] text-[#D9CDB8] dark:text-[#D9CDB8] font-mono text-[9px] font-semibold">
                     Console
                   </span>
                 </div>
-                <span className="text-[10px] font-mono font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap block">
-                  TrainingPundit • Management
+                <span className="text-[10px] font-mono font-medium text-[#D9CDB8] dark:text-[#D9CDB8] whitespace-nowrap block">
+                  Training Pundit • Management
                 </span>
               </div>
             </Link>
           ) : isTrainerRoute ? (
             <Link
               to="/trainer"
-              className="flex items-center gap-2.5 tactile-press focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 rounded-xl shrink-0 select-none"
+              className="flex items-center gap-2.5 tactile-press focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F97316] rounded-xl shrink-0 select-none"
             >
-              <div className="w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-xl bg-sky-500 text-slate-950 flex items-center justify-center shadow-xs shrink-0 font-bold">
+              <div className="w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-xl bg-[#F97316] text-[#FBF3DC] flex items-center justify-center shadow-xs shrink-0 font-bold">
                 <Wrench className="w-4.5 h-4.5 sm:w-5.5 sm:h-5.5 stroke-[2.2]" />
               </div>
               <div className="leading-tight shrink-0">
                 <div className="flex items-center gap-1.5">
-                  <span className="font-display font-bold text-sm sm:text-base tracking-tight text-slate-950 dark:text-white whitespace-nowrap">
+                  <span className="font-display font-bold text-sm sm:text-base tracking-tight text-[#FBF3DC] dark:text-[#FFF7E8] whitespace-nowrap">
                     {lang === 'bn' ? 'ইন্সট্রাক্টর স্টুডিও' : 'Trainer Studio'}
                   </span>
-                  <span className="px-1.5 py-0.2 rounded-md bg-sky-500/20 border border-sky-500/30 text-sky-700 dark:text-sky-400 font-mono text-[9px] font-semibold">
+                  <span className="px-1.5 py-0.2 rounded-md bg-[#16324F] dark:bg-[#16324F] border border-[#16324F] text-[#D9CDB8] dark:text-[#D9CDB8] font-mono text-[9px] font-semibold">
                     Studio
                   </span>
                 </div>
-                <span className="text-[10px] font-mono font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap block">
-                  TrainingPundit Authoring
+                <span className="text-[10px] font-mono font-medium text-[#D9CDB8] dark:text-[#D9CDB8] whitespace-nowrap block">
+                  Training Pundit Authoring
                 </span>
               </div>
             </Link>
           ) : isStudentRoute ? (
             <Link
               to="/dashboard"
-              className="flex items-center gap-2.5 tactile-press focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-xl shrink-0 select-none"
+              className="flex items-center gap-2.5 tactile-press focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F97316] rounded-xl shrink-0 select-none"
             >
-              <div className="w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-xl bg-emerald-500 text-slate-950 flex items-center justify-center shadow-xs shrink-0 font-bold">
+              <div className="w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-xl bg-[#F97316] text-[#FBF3DC] flex items-center justify-center shadow-xs shrink-0 font-bold">
                 <BookOpen className="w-4.5 h-4.5 sm:w-5.5 sm:h-5.5 stroke-[2.2]" />
               </div>
               <div className="leading-tight shrink-0">
                 <div className="flex items-center gap-1.5">
-                  <span className="font-display font-bold text-sm sm:text-base tracking-tight text-slate-950 dark:text-white whitespace-nowrap">
+                  <span className="font-display font-bold text-sm sm:text-base tracking-tight text-[#FBF3DC] dark:text-[#FFF7E8] whitespace-nowrap">
                     {lang === 'bn' ? 'লার্নিং পোর্টাল' : 'Student Hub'}
                   </span>
-                  <span className="px-1.5 py-0.2 rounded-md bg-emerald-500/20 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 font-mono text-[9px] font-semibold">
+                  <span className="px-1.5 py-0.2 rounded-md bg-[#16324F] dark:bg-[#16324F] border border-[#16324F] text-[#D9CDB8] dark:text-[#D9CDB8] font-mono text-[9px] font-semibold">
                     Classroom
                   </span>
                 </div>
-                <span className="text-[10px] font-mono font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap block">
+                <span className="text-[10px] font-mono font-medium text-[#D9CDB8] dark:text-[#D9CDB8] whitespace-nowrap block">
                   TrainingPundit Academy
                 </span>
               </div>
@@ -164,17 +154,17 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
           ) : (
             <Link
               to="/"
-              className="flex items-center gap-2.5 tactile-press focus:outline-none focus-visible:ring-2 focus-visible:ring-[#356DFF] rounded-xl shrink-0 select-none"
+              className="flex items-center gap-2.5 tactile-press focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F97316] rounded-xl shrink-0 select-none"
             >
-              <div className="w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-xl bg-[#356DFF] text-white flex items-center justify-center shadow-xs shrink-0 border border-[#356DFF]/50">
+              <div className="w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-xl bg-[#F97316] text-[#FBF3DC] flex items-center justify-center shadow-xs shrink-0 border border-[#F97316]/50">
                 <GraduationCap className="w-4.5 h-4.5 sm:w-5.5 sm:h-5.5 stroke-[2.2]" aria-hidden="true" />
               </div>
-              <div className="leading-tight shrink-0 hidden xs:block">
-                <span className="font-display font-bold text-sm sm:text-base tracking-tight text-slate-950 dark:text-white whitespace-nowrap block">
-                  {lang === 'bn' ? 'ট্রেনিং পণ্ডিত' : 'TrainingPundit'}
+              <div className="leading-tight shrink-0 hidden sm:block">
+                <span className="font-display font-bold text-sm sm:text-base tracking-tight text-[#FBF3DC] dark:text-[#FFF7E8] whitespace-nowrap block">
+                  {lang === 'bn' ? 'ট্রেনিং পণ্ডিত' : 'Training Pundit'}
                 </span>
-                <span className="text-[10px] font-mono font-medium text-[#356DFF] dark:text-[#35C6BE] whitespace-nowrap block">
-                  Autonomous Academy
+                <span className="text-[10px] font-mono font-medium text-[#F97316] dark:text-[#F97316] whitespace-nowrap block">
+                  Cloud LMS 2.0
                 </span>
               </div>
             </Link>
@@ -184,60 +174,60 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
           {isAdminRoute ? (
             /* Admin Center Navigation */
             <nav className="hidden lg:flex items-center gap-1 xl:gap-2 shrink-0" aria-label="Admin Navigation">
-              <span className="px-2.5 py-1 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-800 dark:text-amber-300 font-mono text-xs font-semibold flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+              <span className="px-2.5 py-1 rounded-lg bg-[#F97316]/10 border border-[#F97316]/20 text-[#FB923C] dark:text-[#FB923C] font-mono text-xs font-semibold flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F97316]" />
                 <span>Console mode</span>
               </span>
               <Link
                 to="/trainer"
-                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium flex items-center gap-1.5 whitespace-nowrap tactile-press text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium flex items-center gap-1.5 whitespace-nowrap tactile-press text-[#D9CDB8] dark:text-[#D9CDB8] hover:text-[#FBF3DC] dark:hover:text-[#FFF7E8] hover:bg-[#16324F] dark:hover:bg-[#16324F]"
               >
-                <Wrench className="w-3.5 h-3.5 text-sky-500" />
+                <Wrench className="w-3.5 h-3.5 text-[#F97316]" />
                 <span>{lang === 'bn' ? 'ইন্সট্রাক্টর স্টুডিও' : 'Trainer studio'}</span>
               </Link>
               <Link
                 to="/dashboard"
-                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium flex items-center gap-1.5 whitespace-nowrap tactile-press text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium flex items-center gap-1.5 whitespace-nowrap tactile-press text-[#D9CDB8] dark:text-[#D9CDB8] hover:text-[#FBF3DC] dark:hover:text-[#FFF7E8] hover:bg-[#16324F] dark:hover:bg-[#16324F]"
               >
-                <BookOpen className="w-3.5 h-3.5 text-emerald-500" />
+                <BookOpen className="w-3.5 h-3.5 text-[#F97316]" />
                 <span>{lang === 'bn' ? 'স্টুডেন্ট ভিউ' : 'Student view'}</span>
               </Link>
               <Link
                 to="/courses"
-                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium flex items-center gap-1.5 whitespace-nowrap tactile-press text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium flex items-center gap-1.5 whitespace-nowrap tactile-press text-[#D9CDB8] dark:text-[#D9CDB8] hover:text-[#FBF3DC] dark:hover:text-[#FFF7E8] hover:bg-[#16324F] dark:hover:bg-[#16324F]"
               >
-                <Compass className="w-3.5 h-3.5 text-slate-500" />
+                <Compass className="w-3.5 h-3.5 text-[#D9CDB8]" />
                 <span>{lang === 'bn' ? 'কোর্স ক্যাটালগ' : 'Course catalog'}</span>
               </Link>
             </nav>
           ) : isTrainerRoute ? (
             /* Trainer Studio Center Navigation */
             <nav className="hidden lg:flex items-center gap-1 xl:gap-2 shrink-0" aria-label="Trainer Navigation">
-              <span className="px-2.5 py-1 rounded-lg bg-sky-500/10 border border-sky-500/20 text-sky-800 dark:text-sky-300 font-mono text-xs font-semibold flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-500" />
+              <span className="px-2.5 py-1 rounded-lg bg-[#F97316]/10 border border-[#F97316]/20 text-[#FB923C] dark:text-[#FB923C] font-mono text-xs font-semibold flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F97316]" />
                 <span>Studio workspace</span>
               </span>
               <Link
                 to="/dashboard"
-                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium flex items-center gap-1.5 whitespace-nowrap tactile-press text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium flex items-center gap-1.5 whitespace-nowrap tactile-press text-[#D9CDB8] dark:text-[#D9CDB8] hover:text-[#FBF3DC] dark:hover:text-[#FFF7E8] hover:bg-[#16324F] dark:hover:bg-[#16324F]"
               >
-                <BookOpen className="w-3.5 h-3.5 text-emerald-500" />
+                <BookOpen className="w-3.5 h-3.5 text-[#F97316]" />
                 <span>{lang === 'bn' ? 'লার্নিং ক্লাসরুম' : 'Student classroom'}</span>
               </Link>
               {(user?.is_staff || user?.is_superuser) && (
                 <Link
                   to="/admin"
-                  className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium flex items-center gap-1.5 whitespace-nowrap tactile-press bg-amber-500/10 text-amber-700 dark:text-amber-400 hover:bg-amber-500/20"
+                  className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium flex items-center gap-1.5 whitespace-nowrap tactile-press bg-[#F97316]/10 text-[#FB923C] dark:text-[#FB923C] hover:bg-[#F97316]/20"
                 >
-                  <ShieldCheck className="w-3.5 h-3.5 text-amber-500" />
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#F97316]" />
                   <span>{lang === 'bn' ? 'অ্যাডমিন কনসোল' : 'Admin console'}</span>
                 </Link>
               )}
               <Link
                 to="/courses"
-                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium flex items-center gap-1.5 whitespace-nowrap tactile-press text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium flex items-center gap-1.5 whitespace-nowrap tactile-press text-[#D9CDB8] dark:text-[#D9CDB8] hover:text-[#FBF3DC] dark:hover:text-[#FFF7E8] hover:bg-[#16324F] dark:hover:bg-[#16324F]"
               >
-                <Compass className="w-3.5 h-3.5 text-slate-500" />
+                <Compass className="w-3.5 h-3.5 text-[#D9CDB8]" />
                 <span>{lang === 'bn' ? 'কোর্স ক্যাটালগ' : 'Course catalog'}</span>
               </Link>
             </nav>
@@ -246,30 +236,30 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
             <nav className="hidden lg:flex items-center gap-1 xl:gap-2 shrink-0" aria-label="Student Navigation">
               <Link
                 to="/dashboard"
-                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-bold flex items-center gap-1.5 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20"
+                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-bold flex items-center gap-1.5 bg-[#F97316]/10 text-[#FB923C] dark:text-[#FB923C] border border-[#F97316]/20"
               >
-                <BookOpen className="w-3.5 h-3.5 text-emerald-500" />
+                <BookOpen className="w-3.5 h-3.5 text-[#F97316]" />
                 <span>{lang === 'bn' ? 'আমার কোর্স ও অগ্রগতি' : 'My Courses'}</span>
               </Link>
               <Link
                 to="/courses"
-                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap tactile-press text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap tactile-press text-[#D9CDB8] dark:text-[#D9CDB8] hover:text-[#FBF3DC] dark:hover:text-[#FFF7E8] hover:bg-[#16324F] dark:hover:bg-[#16324F]"
               >
-                <Compass className="w-3.5 h-3.5 text-slate-500" />
+                <Compass className="w-3.5 h-3.5 text-[#D9CDB8]" />
                 <span>{lang === 'bn' ? 'কোর্স ক্যাটালগ' : 'Explore Courses'}</span>
               </Link>
               <Link
                 to="/codelab"
-                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap tactile-press text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap tactile-press text-[#D9CDB8] dark:text-[#D9CDB8] hover:text-[#FBF3DC] dark:hover:text-[#FFF7E8] hover:bg-[#16324F] dark:hover:bg-[#16324F]"
               >
-                <Code2 className="w-3.5 h-3.5 text-sky-500" />
+                <Code2 className="w-3.5 h-3.5 text-[#F97316]" />
                 <span>{lang === 'bn' ? 'কোডল্যাব' : 'CodeLab'}</span>
               </Link>
               <Link
                 to="/jobs"
-                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap tactile-press text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap tactile-press text-[#D9CDB8] dark:text-[#D9CDB8] hover:text-[#FBF3DC] dark:hover:text-[#FFF7E8] hover:bg-[#16324F] dark:hover:bg-[#16324F]"
               >
-                <Briefcase className="w-3.5 h-3.5 text-amber-500" />
+                <Briefcase className="w-3.5 h-3.5 text-[#F97316]" />
                 <span>{lang === 'bn' ? 'জব ক্যাম্প' : 'Career Placement'}</span>
               </Link>
             </nav>
@@ -290,8 +280,8 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                     to={item.to}
                     className={`px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap tactile-press transition-colors ${
                       active
-                        ? 'bg-slate-900/10 text-slate-950 dark:bg-white/10 dark:text-white font-bold'
-                        : 'text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60'
+                        ? 'bg-[#16324F] text-[#FBF3DC] dark:bg-[#16324F] dark:text-[#FFF7E8] font-bold'
+                        : 'text-[#D9CDB8] dark:text-[#D9CDB8] hover:text-[#FBF3DC] dark:hover:text-[#FFF7E8] hover:bg-[#16324F] dark:hover:bg-[#16324F]'
                     }`}
                   >
                     <Icon className="w-3.5 h-3.5 xl:w-4 xl:h-4 stroke-[2]" aria-hidden="true" />
@@ -307,8 +297,8 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                   onClick={() => setMoreMenuOpen(!isMoreMenuOpen)}
                   className={`px-2.5 py-1.5 rounded-xl text-xs xl:text-sm font-semibold flex items-center gap-1 whitespace-nowrap tactile-press transition-colors cursor-pointer ${
                     isMoreActive
-                      ? 'bg-slate-900/10 text-slate-950 dark:bg-white/10 dark:text-white font-bold'
-                      : 'text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60'
+                      ? 'bg-[#16324F] text-[#FBF3DC] dark:bg-[#16324F] dark:text-[#FFF7E8] font-bold'
+                      : 'text-[#D9CDB8] dark:text-[#D9CDB8] hover:text-[#FBF3DC] dark:hover:text-[#FFF7E8] hover:bg-[#16324F] dark:hover:bg-[#16324F]'
                   }`}
                   aria-expanded={isMoreMenuOpen}
                   aria-label="More navigation options"
@@ -358,14 +348,14 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                             onClick={() => setMoreMenuOpen(false)}
                             className={`flex items-start gap-2.5 px-3 py-2 rounded-xl transition-colors ${
                               active
-                                ? 'bg-slate-900/10 text-slate-950 dark:bg-white/10 dark:text-white font-bold'
+                                ? 'bg-[#16324F] text-[#FBF3DC] dark:bg-[#16324F] dark:text-[#FFF7E8] font-bold'
                                 : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60'
                             }`}
                           >
-                            <Icon className="w-4 h-4 mt-0.5 text-sky-500 shrink-0" />
+                            <Icon className="w-4 h-4 mt-0.5 text-[#F97316] shrink-0" />
                             <div className="min-w-0">
                               <div className="text-xs font-semibold">{m.label}</div>
-                              <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">
+                              <div className="text-[10px] text-[#D9CDB8] dark:text-[#D9CDB8] font-mono">
                                 {m.sub}
                               </div>
                             </div>
@@ -385,10 +375,10 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
             {(isAdminRoute || isTrainerRoute) && (
               <Link
                 to="/"
-                className="h-8 sm:h-8.5 px-2.5 sm:px-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 text-xs font-semibold flex items-center gap-1.5 text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-600 tactile-press shadow-2xs"
+                className="h-8 sm:h-8.5 px-2.5 sm:px-3 rounded-xl border border-[#16324F] bg-[#16324F] dark:bg-[#16324F] text-xs font-semibold flex items-center gap-1.5 text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-600 tactile-press shadow-2xs"
                 title="View Live Platform"
               >
-                <ExternalLink className="w-3.5 h-3.5 text-sky-500" />
+                <ExternalLink className="w-3.5 h-3.5 text-[#F97316]" />
                 <span className="hidden sm:inline">{lang === 'bn' ? 'লাইভ সাইট' : 'Live Site'}</span>
               </Link>
             )}
@@ -399,10 +389,10 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                 {(user.is_staff || user.is_superuser) && (
                   <Link
                     to="/admin"
-                    className="h-8 sm:h-8.5 px-2.5 sm:px-3 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-700 dark:text-amber-300 text-xs font-semibold flex items-center gap-1.5 tactile-press shadow-2xs hover:bg-amber-500/25"
+                    className="h-8 sm:h-8.5 px-2.5 sm:px-3 rounded-xl bg-[#F97316]/15 border border-[#F97316]/30 text-[#FB923C] dark:text-[#FB923C] text-xs font-semibold flex items-center gap-1.5 tactile-press shadow-2xs hover:bg-[#F97316]/25"
                     title="Executive Admin Console"
                   >
-                    <ShieldCheck className="w-3.5 h-3.5 text-amber-500" />
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#F97316]" />
                     <span>{lang === 'bn' ? 'অ্যাডমিন' : 'Admin'}</span>
                   </Link>
                 )}
@@ -410,10 +400,10 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                 {(user.is_trainer || user.is_staff || user.is_superuser) && !isTrainerRoute && (
                   <Link
                     to="/trainer"
-                    className="h-8 sm:h-8.5 px-2.5 sm:px-3 rounded-xl bg-sky-500/15 border border-sky-500/30 text-sky-700 dark:text-sky-300 text-xs font-semibold flex items-center gap-1.5 tactile-press shadow-2xs hover:bg-sky-500/25"
+                    className="h-8 sm:h-8.5 px-2.5 sm:px-3 rounded-xl bg-[#F97316]/15 border border-[#F97316]/30 text-[#FB923C] dark:text-[#FB923C] text-xs font-semibold flex items-center gap-1.5 tactile-press shadow-2xs hover:bg-[#F97316]/25"
                     title="Instructor Studio"
                   >
-                    <Wrench className="w-3.5 h-3.5 text-sky-500" />
+                    <Wrench className="w-3.5 h-3.5 text-[#F97316]" />
                     <span>{lang === 'bn' ? 'স্টুডিও' : 'Studio'}</span>
                   </Link>
                 )}
@@ -421,10 +411,10 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                 {!isStudentRoute && (
                   <Link
                     to="/dashboard"
-                    className="h-8 sm:h-8.5 px-2.5 sm:px-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 text-xs font-semibold flex items-center gap-1.5 text-slate-800 dark:text-slate-200 hover:border-slate-400 tactile-press shadow-2xs"
+                    className="h-8 sm:h-8.5 px-2.5 sm:px-3 rounded-xl border border-[#16324F] bg-[#16324F] dark:bg-[#16324F] text-xs font-semibold flex items-center gap-1.5 text-slate-800 dark:text-slate-200 hover:border-slate-400 tactile-press shadow-2xs"
                     title="My Learning Dashboard"
                   >
-                    <BookOpen className="w-3.5 h-3.5 text-emerald-500" />
+                    <BookOpen className="w-3.5 h-3.5 text-[#F97316]" />
                     <span className="hidden xl:inline">{lang === 'bn' ? 'ক্লাসরুম' : 'Classroom'}</span>
                   </Link>
                 )}
@@ -436,41 +426,41 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
               <button
                 type="button"
                 onClick={() => setCompareDrawerOpen(true)}
-                className="h-8 sm:h-8.5 px-2 sm:px-2.5 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-700 dark:text-amber-300 text-xs font-semibold flex items-center gap-1 tactile-press cursor-pointer"
+                className="h-8 sm:h-8.5 px-2 sm:px-2.5 rounded-xl bg-[#F97316]/15 border border-[#F97316]/30 text-[#FB923C] dark:text-[#FB923C] text-xs font-semibold flex items-center gap-1 tactile-press cursor-pointer"
                 aria-label="Open course comparison drawer"
               >
                 <Layers className="w-3.5 h-3.5" aria-hidden="true" />
                 <span className="hidden sm:inline">{lang === 'bn' ? 'তুলনা' : 'Compare'}</span>
-                <span className="font-mono px-1 py-0.2 rounded bg-amber-500 text-slate-950 font-bold text-[10px]">
+                <span className="font-mono px-1 py-0.2 rounded bg-[#F97316] text-[#FBF3DC] font-bold text-[10px]">
                   {compareCourses.length}
                 </span>
               </button>
             )}
 
             {/* Segmented Utility Capsule (Language + Theme) */}
-            <div className="flex items-center rounded-xl border border-slate-200/90 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 p-0.5 shadow-2xs backdrop-blur-md">
+            <div className="flex items-center rounded-xl border border-[#16324F] bg-[#16324F] dark:bg-[#16324F] p-0.5 shadow-2xs backdrop-blur-md">
               <button
                 type="button"
                 onClick={toggleLang}
-                className="h-7 sm:h-7.5 px-2 rounded-lg text-[11px] font-mono font-bold text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer flex items-center gap-1"
+                className="h-7 sm:h-7.5 px-2 rounded-lg text-[11px] font-mono font-bold text-[#FBF3DC] dark:text-[#FBF3DC] hover:text-white dark:hover:text-white hover:bg-[#0F2A44] dark:hover:bg-[#0F2A44] transition-colors cursor-pointer flex items-center gap-1"
                 aria-label="Toggle Language"
                 title="Toggle Language"
               >
-                <Languages className="w-3 h-3 text-slate-500" />
+                <Languages className="w-3 h-3 text-[#D9CDB8]" />
                 <span>{lang === 'bn' ? 'EN' : 'বাং'}</span>
               </button>
 
-              <div className="w-px h-3.5 bg-slate-200 dark:bg-slate-800 mx-0.5" />
+              <div className="w-px h-3.5 bg-[#0F2A44] dark:bg-[#0F2A44] mx-0.5" />
 
               <button
                 type="button"
                 onClick={toggleTheme}
-                className="w-7 h-7 sm:w-7.5 sm:h-7.5 rounded-lg flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+                className="w-7 h-7 sm:w-7.5 sm:h-7.5 rounded-lg flex items-center justify-center text-[#FBF3DC] dark:text-[#FBF3DC] hover:text-white dark:hover:text-white hover:bg-[#0F2A44] dark:hover:bg-[#0F2A44] transition-colors cursor-pointer"
                 aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
                 title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
               >
                 {theme === 'dark' ? (
-                  <Sun className="w-3.5 h-3.5 text-amber-400" />
+                  <Sun className="w-3.5 h-3.5 text-[#FB923C]" />
                 ) : (
                   <Moon className="w-3.5 h-3.5 text-slate-700" />
                 )}
@@ -483,22 +473,22 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                 <button
                   type="button"
                   onClick={() => setUserMenuOpen(!isUserMenuOpen)}
-                  className="h-8 sm:h-8.5 pl-1.5 pr-2 sm:pr-2.5 rounded-xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-900 dark:text-white text-xs font-semibold flex items-center gap-1.5 sm:gap-2 tactile-press cursor-pointer shadow-2xs"
+                  className="h-8 sm:h-8.5 pl-1.5 pr-2 sm:pr-2.5 rounded-xl border border-[#16324F] bg-[#16324F] dark:bg-[#16324F] hover:bg-[#0A1E33] dark:hover:bg-[#0A1E33] text-[#FBF3DC] dark:text-[#FFF7E8] text-xs font-semibold flex items-center gap-1.5 sm:gap-2 tactile-press cursor-pointer shadow-2xs"
                   aria-expanded={isUserMenuOpen}
                   aria-label="User Account Menu"
                 >
-                  <div className="w-6 h-6 rounded-lg bg-slate-950 text-white dark:bg-white dark:text-slate-950 flex items-center justify-center font-bold text-[11px] shrink-0">
+                  <div className="w-6 h-6 rounded-lg bg-[#F97316] text-[#FBF3DC] dark:bg-[#F97316] dark:text-[#FBF3DC] flex items-center justify-center font-bold text-[11px] shrink-0">
                     {user.full_name?.charAt(0)?.toUpperCase() || 'U'}
                   </div>
                   <span className="hidden sm:inline max-w-[90px] xl:max-w-[120px] truncate font-medium">
                     {user.full_name}
                   </span>
                   {user.is_staff ? (
-                    <span className="hidden md:inline px-1.5 py-0.2 rounded-md bg-amber-500/15 text-amber-700 dark:text-amber-400 text-[10px] font-mono font-bold">
+                    <span className="hidden md:inline px-1.5 py-0.2 rounded-md bg-[#F97316]/15 text-[#FB923C] dark:text-[#FB923C] text-[10px] font-mono font-bold">
                       Admin
                     </span>
                   ) : user.is_trainer ? (
-                    <span className="hidden md:inline px-1.5 py-0.2 rounded-md bg-sky-500/15 text-sky-700 dark:text-sky-400 text-[10px] font-mono font-bold">
+                    <span className="hidden md:inline px-1.5 py-0.2 rounded-md bg-[#F97316]/15 text-[#FB923C] dark:text-[#FB923C] text-[10px] font-mono font-bold">
                       Studio
                     </span>
                   ) : null}
@@ -522,7 +512,7 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                         <div className="font-bold text-slate-900 dark:text-white truncate text-sm">
                           {user.full_name}
                         </div>
-                        <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 truncate">
+                        <div className="text-[11px] font-mono text-[#D9CDB8] dark:text-[#D9CDB8] truncate">
                           {user.email || 'student@lwma.io'}
                         </div>
                       </div>
@@ -533,7 +523,7 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                           onClick={() => setUserMenuOpen(false)}
                           className="w-full px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 font-medium flex items-center gap-2.5 transition-colors"
                         >
-                          <BookOpen className="w-4 h-4 text-emerald-500" />
+                          <BookOpen className="w-4 h-4 text-[#F97316]" />
                           <span>{lang === 'bn' ? 'আমার ক্লাসরুম ও কোর্স' : 'My Learning Classroom'}</span>
                         </Link>
 
@@ -541,9 +531,9 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                           <Link
                             to="/admin"
                             onClick={() => setUserMenuOpen(false)}
-                            className="w-full px-3 py-2 rounded-xl text-amber-700 dark:text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 font-semibold flex items-center gap-2.5 transition-colors"
+                            className="w-full px-3 py-2 rounded-xl text-[#FB923C] dark:text-[#FB923C] bg-[#F97316]/10 hover:bg-[#F97316]/20 font-semibold flex items-center gap-2.5 transition-colors"
                           >
-                            <ShieldCheck className="w-4 h-4 text-amber-500" />
+                            <ShieldCheck className="w-4 h-4 text-[#F97316]" />
                             <span>{lang === 'bn' ? 'অ্যাডমিন কনসোল' : 'Admin Console'}</span>
                           </Link>
                         )}
@@ -554,7 +544,7 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                             onClick={() => setUserMenuOpen(false)}
                             className="w-full px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 font-medium flex items-center gap-2.5 transition-colors"
                           >
-                            <Wrench className="w-4 h-4 text-slate-500" />
+                            <Wrench className="w-4 h-4 text-[#D9CDB8]" />
                             <span>{lang === 'bn' ? 'ইন্সট্রাক্টর স্টুডিও' : 'Instructor Studio'}</span>
                           </Link>
                         )}
@@ -564,7 +554,7 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                           onClick={() => setUserMenuOpen(false)}
                           className="w-full px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 font-medium flex items-center gap-2.5 transition-colors"
                         >
-                          <Compass className="w-4 h-4 text-sky-500" />
+                          <Compass className="w-4 h-4 text-[#F97316]" />
                           <span>{lang === 'bn' ? 'পাবলিক হোম ও ক্যাটালগ' : 'Public Website'}</span>
                         </Link>
 
@@ -573,7 +563,7 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                           onClick={() => setUserMenuOpen(false)}
                           className="w-full px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 font-medium flex items-center gap-2.5 transition-colors"
                         >
-                          <ShieldCheck className="w-4 h-4 text-emerald-500" />
+                          <ShieldCheck className="w-4 h-4 text-[#F97316]" />
                           <span>{lang === 'bn' ? 'সার্টিফিকেট যাচাই' : 'Verify Certificate'}</span>
                         </Link>
                       </div>
@@ -613,15 +603,15 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
         <div
           role="status"
           aria-live="polite"
-          className="fixed top-18 right-3 sm:right-4 z-50 max-w-sm rounded-2xl px-4 py-3 shadow-xl border backdrop-blur-xl flex items-center gap-3 text-xs sm:text-sm font-medium bg-[#0C1528]/95 text-[#F5F8FF] border-slate-700/80"
+          className="fixed top-18 right-3 sm:right-4 z-50 max-w-sm rounded-2xl px-4 py-3 shadow-xl border backdrop-blur-xl flex items-center gap-3 text-xs sm:text-sm font-medium bg-[#102A44]/95 text-[#FFF7E8] border-slate-700/80"
         >
           <span
             className={`w-2.5 h-2.5 rounded-full shrink-0 ${
               toastMessage.type === 'error'
                 ? 'bg-rose-500'
                 : toastMessage.type === 'success'
-                ? 'bg-[#35C6BE]'
-                : 'bg-[#356DFF]'
+                ? 'bg-[#F97316]'
+                : 'bg-[#F97316]'
             }`}
           />
           <span>{toastMessage.title}</span>
@@ -632,56 +622,56 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
       <main className="flex-1 min-w-0 overflow-x-clip">{children}</main>
 
       {/* Desktop / Tablet Academic Aurora Footer */}
-      <footer className="border-t border-slate-200/90 dark:border-slate-800/80 bg-white dark:bg-[#060B18] py-12 sm:py-16 mt-16 text-[#14213A] dark:text-[#F5F8FF]">
+      <footer className="border-t border-slate-200/90 dark:border-slate-800/80 bg-[#0A1E33] dark:bg-[#0A1E33] py-12 sm:py-16 mt-16 text-[#FBF3DC] dark:text-[#FFF7E8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12">
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#356DFF] to-[#35C6BE] text-white flex items-center justify-center shadow-md">
+              <div className="w-9 h-9 rounded-xl bg-[#F97316] text-[#FBF3DC] flex items-center justify-center shadow-md">
                 <GraduationCap className="w-5 h-5 stroke-[2.2]" aria-hidden="true" />
               </div>
-              <span className="font-display font-extrabold text-lg sm:text-xl text-[#14213A] dark:text-[#F5F8FF] tracking-tight">
-                {lang === 'bn' ? 'ট্রেনিং পণ্ডিত একাডেমি' : 'TrainingPundit'}
+              <span className="font-display font-extrabold text-lg sm:text-xl text-[#FBF3DC] dark:text-[#FFF7E8] tracking-tight">
+                {lang === 'bn' ? 'ট্রেনিং পণ্ডিত একাডেমি' : 'Training Pundit'}
               </span>
             </div>
-            <p className="text-sm text-[#5D6B82] dark:text-[#A8B7CE] max-w-md leading-relaxed font-sans">
+            <p className="text-sm text-[#D9CDB8] dark:text-[#D9CDB8] max-w-md leading-relaxed font-sans">
               {lang === 'bn'
                 ? 'প্র্যাকটিক্যাল প্রোডাকশন প্রজেক্ট, সার্ভার-ভেরিফাইড অ্যাসেসমেন্ট এবং সরাসরি ক্যারিয়ার মেন্টরশিপের মাধ্যমে ক্লাউড ও সফটওয়্যার ইঞ্জিনিয়ারিং শেখার আধুনিক প্ল্যাটফর্ম।'
                 : 'Enterprise-grade cloud engineering, distributed systems, and career placement platform engineered with zero-trust security and fluid mobile ergonomics.'}
             </p>
-            <div className="flex flex-wrap items-center gap-3 pt-1 text-xs font-mono text-[#5D6B82] dark:text-[#A8B7CE]">
+            <div className="flex flex-wrap items-center gap-3 pt-1 text-xs font-mono text-[#D9CDB8] dark:text-[#D9CDB8]">
               <span>support@trainingpundit.com</span>
               <span>•</span>
               <span>+880 1711-223344</span>
               <span>•</span>
-              <span className="px-2 py-0.5 rounded-full aurora-pill-teal text-[10px] font-bold">
+              <span className="px-2 py-0.5 rounded-full aurora-pill-accent text-[10px] font-bold">
                 OWASP Zero-Trust Verified
               </span>
             </div>
           </div>
 
           <div className="space-y-3">
-            <h3 className="text-xs font-mono uppercase tracking-wider text-[#5D6B82] dark:text-[#A8B7CE] font-bold">
+            <h3 className="text-xs font-mono uppercase tracking-wider text-[#FB923C] dark:text-[#FB923C] font-bold">
               {lang === 'bn' ? 'প্ল্যাটফর্ম ও একাডেমি' : 'Platform & Tracks'}
             </h3>
-            <ul className="space-y-2 text-sm text-[#5D6B82] dark:text-[#A8B7CE]">
-              <li><Link to="/courses" className="hover:text-[#356DFF] dark:hover:text-[#35C6BE] transition-colors">{lang === 'bn' ? 'সকল কোর্স ক্যাটালগ' : 'All Courses'}</Link></li>
-              <li><Link to="/jobs" className="hover:text-[#356DFF] dark:hover:text-[#35C6BE] transition-colors">{lang === 'bn' ? 'জব প্লেসমেন্ট ক্যাম্প' : 'Career Placement Camp'}</Link></li>
-              <li><Link to="/codelab" className="hover:text-[#356DFF] dark:hover:text-[#35C6BE] transition-colors">{lang === 'bn' ? 'ইন্টারেক্টিভ কোডল্যাব' : 'Interactive CodeLab'}</Link></li>
-              <li><Link to="/store" className="hover:text-[#356DFF] dark:hover:text-[#35C6BE] transition-colors">{lang === 'bn' ? 'ডিজিটাল স্টোর ও রিসোর্স' : 'Digital Asset Store'}</Link></li>
-              <li><Link to="/verify-certificate" className="hover:text-[#356DFF] dark:hover:text-[#35C6BE] transition-colors">{lang === 'bn' ? 'সার্টিফিকেট যাচাই' : 'Verify Certificate'}</Link></li>
-              <li><Link to="/leaderboard" className="hover:text-[#356DFF] dark:hover:text-[#35C6BE] transition-colors">{lang === 'bn' ? 'স্টুডেন্ট লিডারবোর্ড' : 'Student Leaderboard'}</Link></li>
+            <ul className="space-y-2 text-sm text-[#D9CDB8] dark:text-[#D9CDB8]">
+              <li><Link to="/courses" className="hover:text-[#F97316] dark:hover:text-[#FB923C] transition-colors">{lang === 'bn' ? 'সকল কোর্স ক্যাটালগ' : 'All Courses'}</Link></li>
+              <li><Link to="/jobs" className="hover:text-[#F97316] dark:hover:text-[#FB923C] transition-colors">{lang === 'bn' ? 'জব প্লেসমেন্ট ক্যাম্প' : 'Career Placement Camp'}</Link></li>
+              <li><Link to="/codelab" className="hover:text-[#F97316] dark:hover:text-[#FB923C] transition-colors">{lang === 'bn' ? 'ইন্টারেক্টিভ কোডল্যাব' : 'Interactive CodeLab'}</Link></li>
+              <li><Link to="/store" className="hover:text-[#F97316] dark:hover:text-[#FB923C] transition-colors">{lang === 'bn' ? 'ডিজিটাল স্টোর ও রিসোর্স' : 'Digital Asset Store'}</Link></li>
+              <li><Link to="/verify-certificate" className="hover:text-[#F97316] dark:hover:text-[#FB923C] transition-colors">{lang === 'bn' ? 'সার্টিফিকেট যাচাই' : 'Verify Certificate'}</Link></li>
+              <li><Link to="/leaderboard" className="hover:text-[#F97316] dark:hover:text-[#FB923C] transition-colors">{lang === 'bn' ? 'স্টুডেন্ট লিডারবোর্ড' : 'Student Leaderboard'}</Link></li>
             </ul>
           </div>
 
           <div className="space-y-3">
-            <h3 className="text-xs font-mono uppercase tracking-wider text-[#5D6B82] dark:text-[#A8B7CE] font-bold">
+            <h3 className="text-xs font-mono uppercase tracking-wider text-[#FB923C] dark:text-[#FB923C] font-bold">
               {lang === 'bn' ? 'ওয়ার্কস্পেস পোর্টাল' : 'Portals'}
             </h3>
-            <ul className="space-y-2 text-sm text-[#5D6B82] dark:text-[#A8B7CE]">
-              <li><Link to="/dashboard" className="hover:text-[#356DFF] dark:hover:text-[#35C6BE] transition-colors">{lang === 'bn' ? 'স্টুডেন্ট ক্লাসরুম' : 'Student Dashboard'}</Link></li>
-              <li><Link to="/trainer" className="hover:text-[#356DFF] dark:hover:text-[#35C6BE] transition-colors">{lang === 'bn' ? 'ইন্সট্রাক্টর স্টুডিও' : 'Trainer Studio'}</Link></li>
-              <li><Link to="/admin" className="hover:text-[#356DFF] dark:hover:text-[#35C6BE] transition-colors">{lang === 'bn' ? 'অ্যাডমিন কনসোল' : 'Admin Console'}</Link></li>
-              <li><Link to="/blog" className="hover:text-[#356DFF] dark:hover:text-[#35C6BE] transition-colors">{lang === 'bn' ? 'ইঞ্জিনিয়ারিং ব্লগ' : 'Engineering Articles'}</Link></li>
+            <ul className="space-y-2 text-sm text-[#D9CDB8] dark:text-[#D9CDB8]">
+              <li><Link to="/dashboard" className="hover:text-[#F97316] dark:hover:text-[#FB923C] transition-colors">{lang === 'bn' ? 'স্টুডেন্ট ক্লাসরুম' : 'Student Dashboard'}</Link></li>
+              <li><Link to="/trainer" className="hover:text-[#F97316] dark:hover:text-[#FB923C] transition-colors">{lang === 'bn' ? 'ইন্সট্রাক্টর স্টুডিও' : 'Trainer Studio'}</Link></li>
+              <li><Link to="/admin" className="hover:text-[#F97316] dark:hover:text-[#FB923C] transition-colors">{lang === 'bn' ? 'অ্যাডমিন কনসোল' : 'Admin Console'}</Link></li>
+              <li><Link to="/blog" className="hover:text-[#F97316] dark:hover:text-[#FB923C] transition-colors">{lang === 'bn' ? 'ইঞ্জিনিয়ারিং ব্লগ' : 'Engineering Articles'}</Link></li>
             </ul>
           </div>
         </div>
@@ -690,22 +680,22 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
       {/* Course Comparison Slide-Up Sheet */}
       {isCompareDrawerOpen && compareCourses.length > 0 && (
         <div
-          className="fixed inset-0 z-50 bg-[#060B18]/70 backdrop-blur-sm flex items-end justify-center p-0 sm:p-4"
+          className="fixed inset-0 z-50 bg-[#0A1E33]/70 backdrop-blur-sm flex items-end justify-center p-0 sm:p-4"
           role="dialog"
           aria-modal="true"
           aria-label="Course Comparison Sheet"
           onClick={() => setCompareDrawerOpen(false)}
         >
           <div
-            className="w-full max-w-5xl rounded-t-3xl sm:rounded-3xl bg-white dark:bg-[#0C1528] border border-slate-200 dark:border-slate-800 shadow-2xl p-5 sm:p-6 max-h-[85vh] overflow-y-auto"
+            className="w-full max-w-5xl rounded-t-3xl sm:rounded-3xl bg-[#FBF3DC] dark:bg-[#102A44] border border-slate-200 dark:border-slate-800 shadow-2xl p-5 sm:p-6 max-h-[85vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
               <div>
-                <h2 className="font-display font-bold text-lg text-[#14213A] dark:text-[#F5F8FF]">
+                <h2 className="font-display font-bold text-lg text-[#0F2A44] dark:text-[#FFF7E8]">
                   {lang === 'bn' ? 'কোর্স তুলনা টেবিল' : 'Side-by-Side Course Comparison'}
                 </h2>
-                <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE]">
+                <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8]">
                   {lang === 'bn'
                     ? 'আপনার জন্য সেরা ক্যারিয়ার ট্র্যাকটি বেছে নিন'
                     : 'Compare pricing, hours, format, and curriculum depth'}
@@ -725,11 +715,11 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
               {compareCourses.map((c) => (
                 <div
                   key={c.id}
-                  className="rounded-2xl border border-slate-200 dark:border-slate-800/90 p-4 bg-slate-50/70 dark:bg-[#111F36] flex flex-col justify-between gap-4"
+                  className="rounded-2xl border border-slate-200 dark:border-slate-800/90 p-4 bg-slate-50/70 dark:bg-[#16324F] flex flex-col justify-between gap-4"
                 >
                   <div className="space-y-2">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-[11px] font-mono uppercase px-2 py-0.5 rounded-md aurora-pill-blue font-semibold">
+                      <span className="text-[11px] font-mono uppercase px-2 py-0.5 rounded-md aurora-pill-accent font-semibold">
                         {c.category}
                       </span>
                       <button
@@ -740,13 +730,13 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                         {lang === 'bn' ? 'সরান' : 'Remove'}
                       </button>
                     </div>
-                    <h3 className="font-display font-bold text-base text-[#14213A] dark:text-[#F5F8FF]">
+                    <h3 className="font-display font-bold text-base text-[#0F2A44] dark:text-[#FFF7E8]">
                       {bf(c, 'title', lang)}
                     </h3>
-                    <div className="space-y-1.5 pt-2 text-xs text-[#5D6B82] dark:text-[#A8B7CE] border-t border-slate-200/70 dark:border-slate-800">
+                    <div className="space-y-1.5 pt-2 text-xs text-[#6B7280] dark:text-[#D9CDB8] border-t border-slate-200/70 dark:border-slate-800">
                       <div className="flex justify-between">
                         <span>{lang === 'bn' ? 'কোর্স ফি:' : 'Tuition Fee:'}</span>
-                        <span className="font-mono font-bold text-[#14213A] dark:text-[#F5F8FF]">৳{c.price.toLocaleString()}</span>
+                        <span className="font-mono font-bold text-[#0F2A44] dark:text-[#FFF7E8]">৳{c.price.toLocaleString()}</span>
                       </div>
                       <div className="flex justify-between">
                         <span>{lang === 'bn' ? 'সময়কাল:' : 'Duration:'}</span>
@@ -786,7 +776,7 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
       {/* Mobile Native Floating Bottom Navigation Dock (< 768px) — Clean Floating Dock */}
       <nav
         aria-label="Mobile Primary Navigation"
-        className="md:hidden fixed bottom-2 inset-x-2.5 sm:inset-x-6 z-40 bg-white/95 dark:bg-[#0C1528]/95 rounded-2xl border border-slate-200/90 dark:border-slate-800/90 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.45)] backdrop-blur-md transform-gpu"
+        className="md:hidden fixed bottom-2 inset-x-2.5 sm:inset-x-6 z-40 bg-[#0F2A44]/95 dark:bg-[#102A44]/95 rounded-2xl border border-[#16324F] dark:border-slate-800/90 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.45)] backdrop-blur-md transform-gpu"
         style={{ touchAction: 'manipulation' }}
       >
         <div className="grid grid-cols-5 gap-1 px-1.5 py-1.5 items-center">
@@ -809,8 +799,8 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                 to={tab.to}
                 className={`min-h-[46px] rounded-xl flex flex-col items-center justify-center gap-0.5 tactile-press transition-colors duration-150 ${
                   active
-                    ? 'bg-[#356DFF] text-white font-bold shadow-xs'
-                    : 'text-[#5D6B82] dark:text-[#A8B7CE] hover:text-[#14213A] dark:hover:text-[#F5F8FF] hover:bg-slate-100/60 dark:hover:bg-slate-800/40 font-medium'
+                    ? 'bg-[#F97316] text-[#FBF3DC] font-bold shadow-xs'
+                    : 'text-[#D9CDB8] dark:text-[#D9CDB8] hover:text-[#FBF3DC] dark:hover:text-[#FFF7E8] hover:bg-[#16324F] dark:hover:bg-[#16324F] font-medium'
                 }`}
               >
                 <Icon className="w-4 h-4 stroke-[2.2]" aria-hidden="true" />

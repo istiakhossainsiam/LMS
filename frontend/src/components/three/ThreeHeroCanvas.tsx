@@ -26,7 +26,7 @@ export const ThreeHeroCanvas: React.FC<ThreeHeroCanvasProps> = ({ className = ''
 
     // 1. Scene, Camera, Renderer
     const scene = new THREE.Scene()
-    // Soft atmospheric fog matching deep navy background (#060B18)
+    // Soft atmospheric fog matching deep navy background (#0A1E33)
     scene.fog = new THREE.FogExp2(0x060b18, 0.035)
 
     const camera = new THREE.PerspectiveCamera(
@@ -63,36 +63,36 @@ export const ThreeHeroCanvas: React.FC<ThreeHeroCanvasProps> = ({ className = ''
     keyLight.shadow.bias = -0.0005
     scene.add(keyLight)
 
-    // Fill Light (Deep academic blue #356DFF)
-    const fillLight = new THREE.DirectionalLight(0x356dff, 1.4)
+    // Fill Light (warm orange accent #F97316)
+    const fillLight = new THREE.DirectionalLight(0xF97316, 1.4)
     fillLight.position.set(-8, 4, -4)
     scene.add(fillLight)
 
-    // Rim / Edge Light (Luminous teal accent #35C6BE)
-    const rimLight = new THREE.DirectionalLight(0x35c6be, 2.0)
+    // Rim / Edge Light (light orange accent #FB923C)
+    const rimLight = new THREE.DirectionalLight(0xFB923C, 2.0)
     rimLight.position.set(0, -6, -6)
     scene.add(rimLight)
 
     // Ambient soft base
-    const ambientLight = new THREE.AmbientLight(0x0c1528, 1.2)
+    const ambientLight = new THREE.AmbientLight(0x102A44, 1.2)
     scene.add(ambientLight)
 
     // 3. Materials (Blender Clay & Architectural Shading)
     const materials = [
       new THREE.MeshStandardMaterial({
-        color: 0x14213a,
+        color: 0x0F2A44,
         roughness: 0.35,
         metalness: 0.65,
         wireframe: false,
       }),
       new THREE.MeshStandardMaterial({
-        color: 0x356dff,
+        color: 0xF97316,
         roughness: 0.25,
         metalness: 0.5,
         wireframe: false,
       }),
       new THREE.MeshStandardMaterial({
-        color: 0x35c6be,
+        color: 0xFB923C,
         roughness: 0.2,
         metalness: 0.8,
         wireframe: false,
@@ -399,17 +399,17 @@ export const ThreeHeroCanvas: React.FC<ThreeHeroCanvasProps> = ({ className = ''
 
       {/* Floating Blender HUD Controller Strip */}
       <div className="absolute top-3 right-3 sm:right-6 z-20 flex items-center gap-2 pointer-events-auto">
-        <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#0C1528]/80 backdrop-blur-md border border-slate-800 text-[10px] font-mono text-slate-300 shadow-sm">
+        <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#102A44]/80 backdrop-blur-md border border-slate-800 text-[10px] font-mono text-slate-300 shadow-sm">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
           <span>THREE.JS + AMMO.JS {physicsReady ? 'READY' : 'INIT'}</span>
           <span className="text-slate-500">•</span>
-          <span className="text-[#35C6BE]">{objectsCount} BODIES</span>
+          <span className="text-[#F97316]">{objectsCount} BODIES</span>
         </div>
 
         <button
           type="button"
           onClick={() => triggerDropRef.current?.()}
-          className="px-2.5 py-1 rounded-lg bg-[#111F36]/90 hover:bg-[#162744] border border-slate-700/80 text-[11px] font-mono text-slate-200 hover:text-white transition-colors cursor-pointer shadow-sm tactile-press flex items-center gap-1"
+          className="px-2.5 py-1 rounded-lg bg-[#16324F]/90 hover:bg-[#16324F] border border-slate-700/80 text-[11px] font-mono text-slate-200 hover:text-white transition-colors cursor-pointer shadow-sm tactile-press flex items-center gap-1"
           title="Drop 3D physics geometry blocks"
         >
           <span>+ Drop 3D</span>
@@ -420,8 +420,8 @@ export const ThreeHeroCanvas: React.FC<ThreeHeroCanvasProps> = ({ className = ''
           onClick={() => toggleWireframeRef.current?.()}
           className={`px-2.5 py-1 rounded-lg border text-[11px] font-mono transition-colors cursor-pointer shadow-sm tactile-press ${
             wireframeMode
-              ? 'bg-[#356DFF] text-white border-[#356DFF]'
-              : 'bg-[#111F36]/90 hover:bg-[#162744] border-slate-700/80 text-slate-200 hover:text-white'
+              ? 'bg-[#F97316] text-[#FBF3DC] border-[#F97316]'
+              : 'bg-[#16324F]/90 hover:bg-[#16324F] border-slate-700/80 text-slate-200 hover:text-white'
           }`}
           title="Toggle Blender wireframe viewport shading"
         >

@@ -94,12 +94,12 @@ export const AuthPage: React.FC = () => {
 
   return (
     <div className="max-w-md mx-auto px-4 py-12">
-      <div className="aurora-card-raised rounded-3xl border border-[#E2E8F2] dark:border-slate-800 p-6 sm:p-8 shadow-xl space-y-6 bg-white dark:bg-[#0C1528]">
+      <div className="aurora-card-raised rounded-3xl border border-[#E0D3AF] dark:border-slate-800 p-6 sm:p-8 shadow-xl space-y-6 bg-[#FBF3DC] dark:bg-[#102A44]">
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#356DFF] to-[#35C6BE] text-white flex items-center justify-center mx-auto shadow-md">
+          <div className="w-12 h-12 rounded-2xl bg-[#F97316] text-[#FBF3DC] flex items-center justify-center mx-auto shadow-md">
             <Lock className="w-5 h-5 stroke-[2.2]" />
           </div>
-          <h1 className="font-display font-bold text-2xl text-[#14213A] dark:text-[#F5F8FF]">
+          <h1 className="font-display font-bold text-2xl text-[#0F2A44] dark:text-[#FFF7E8]">
             {mode === 'login'
               ? lang === 'bn'
                 ? 'অ্যাকাউন্টে লগইন করুন'
@@ -108,18 +108,18 @@ export const AuthPage: React.FC = () => {
               ? 'নতুন স্টুডেন্ট অ্যাকাউন্ট খুলুন'
               : 'Create Your Learner Account'}
           </h1>
-          <p className="text-xs font-mono text-[#5D6B82] dark:text-[#A8B7CE]">
+          <p className="text-xs font-mono text-[#6B7280] dark:text-[#D9CDB8]">
             Argon2id Encrypted • Single-Device Session Protected
           </p>
         </div>
 
         {/* Mode Toggle */}
-        <div className="grid grid-cols-2 gap-1 p-1 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800">
+        <div className="grid grid-cols-2 gap-1 p-1 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800">
           <button
             type="button"
             onClick={() => setMode('login')}
             className={`min-h-[40px] rounded-lg text-xs font-bold cursor-pointer transition-all ${
-              mode === 'login' ? 'aurora-btn-primary shadow-sm' : 'text-[#5D6B82] dark:text-[#A8B7CE] hover:text-[#14213A] dark:hover:text-white'
+              mode === 'login' ? 'aurora-btn-primary shadow-sm' : 'text-[#6B7280] dark:text-[#D9CDB8] hover:text-[#0F2A44] dark:hover:text-white'
             }`}
           >
             {lang === 'bn' ? 'লগইন' : 'Sign In'}
@@ -128,7 +128,7 @@ export const AuthPage: React.FC = () => {
             type="button"
             onClick={() => setMode('signup')}
             className={`min-h-[40px] rounded-lg text-xs font-bold cursor-pointer transition-all ${
-              mode === 'signup' ? 'aurora-btn-primary shadow-sm' : 'text-[#5D6B82] dark:text-[#A8B7CE] hover:text-[#14213A] dark:hover:text-white'
+              mode === 'signup' ? 'aurora-btn-primary shadow-sm' : 'text-[#6B7280] dark:text-[#D9CDB8] hover:text-[#0F2A44] dark:hover:text-white'
             }`}
           >
             {lang === 'bn' ? 'রেজিস্ট্রেশন' : 'Create Account'}
@@ -139,31 +139,31 @@ export const AuthPage: React.FC = () => {
           {mode === 'signup' && (
             <>
               <div>
-                <label className="block text-xs font-bold text-[#14213A] dark:text-[#F5F8FF] mb-1.5">Full Name</label>
+                <label className="block text-xs font-bold text-[#0F2A44] dark:text-[#FFF7E8] mb-1.5">Full Name</label>
                 <input
                   type="text"
                   required
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="Arifur Rahman"
-                  className="w-full min-h-[46px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-700/80 text-[#14213A] dark:text-[#F5F8FF] text-base focus:outline-none focus:border-[#356DFF]"
+                  className="w-full min-h-[46px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-700/80 text-[#0F2A44] dark:text-[#FFF7E8] text-base focus:outline-none focus:border-[#F97316]"
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-[#14213A] dark:text-[#F5F8FF] mb-1.5">Mobile Phone</label>
+                <label className="block text-xs font-bold text-[#0F2A44] dark:text-[#FFF7E8] mb-1.5">Mobile Phone</label>
                 <input
                   type="tel"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="017XXXXXXXX"
-                  className="w-full min-h-[46px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-700/80 text-[#14213A] dark:text-[#F5F8FF] text-base focus:outline-none focus:border-[#356DFF]"
+                  className="w-full min-h-[46px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-700/80 text-[#0F2A44] dark:text-[#FFF7E8] text-base focus:outline-none focus:border-[#F97316]"
                 />
               </div>
             </>
           )}
 
           <div>
-            <label className="block text-xs font-bold text-[#14213A] dark:text-[#F5F8FF] mb-1.5">
+            <label className="block text-xs font-bold text-[#0F2A44] dark:text-[#FFF7E8] mb-1.5">
               {mode === 'login' ? 'Email or Username' : 'Email Address'}
             </label>
             <input
@@ -173,12 +173,12 @@ export const AuthPage: React.FC = () => {
               value={identifier}
               onChange={(e) => setIdentifier(e.target.value)}
               placeholder="student@trainingpundit.com"
-              className="w-full min-h-[46px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-700/80 text-[#14213A] dark:text-[#F5F8FF] text-base focus:outline-none focus:border-[#356DFF]"
+              className="w-full min-h-[46px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-700/80 text-[#0F2A44] dark:text-[#FFF7E8] text-base focus:outline-none focus:border-[#F97316]"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-[#14213A] dark:text-[#F5F8FF] mb-1.5">Password</label>
+            <label className="block text-xs font-bold text-[#0F2A44] dark:text-[#FFF7E8] mb-1.5">Password</label>
             <input
               type="password"
               required
@@ -186,13 +186,13 @@ export const AuthPage: React.FC = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full min-h-[46px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-700/80 text-[#14213A] dark:text-[#F5F8FF] text-base focus:outline-none focus:border-[#356DFF]"
+              className="w-full min-h-[46px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-700/80 text-[#0F2A44] dark:text-[#FFF7E8] text-base focus:outline-none focus:border-[#F97316]"
             />
           </div>
 
           {mode === 'signup' && (
             <div>
-              <label className="block text-xs font-medium text-[#5D6B82] dark:text-[#A8B7CE] mb-1">
+              <label className="block text-xs font-medium text-[#6B7280] dark:text-[#D9CDB8] mb-1">
                 Referral Code (Optional — Grants 20% Reward)
               </label>
               <input
@@ -200,7 +200,7 @@ export const AuthPage: React.FC = () => {
                 value={refCode}
                 onChange={(e) => setRefCode(e.target.value)}
                 placeholder="e.g. ARIF2026"
-                className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-700/80 font-mono text-sm text-[#14213A] dark:text-[#F5F8FF]"
+                className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-700/80 font-mono text-sm text-[#0F2A44] dark:text-[#FFF7E8]"
               />
             </div>
           )}
@@ -223,8 +223,8 @@ export const AuthPage: React.FC = () => {
         </form>
 
         {/* 1-Click Role Demo Buttons */}
-        <div className="pt-4 border-t border-[#E2E8F2] dark:border-slate-800 space-y-2">
-          <p className="text-[11px] font-mono uppercase text-[#5D6B82] dark:text-[#A8B7CE] text-center font-bold">
+        <div className="pt-4 border-t border-[#E0D3AF] dark:border-slate-800 space-y-2">
+          <p className="text-[11px] font-mono uppercase text-[#6B7280] dark:text-[#D9CDB8] text-center font-bold">
             Instant Demo Role Logins
           </p>
           <div className="grid grid-cols-3 gap-2">
@@ -245,7 +245,7 @@ export const AuthPage: React.FC = () => {
             <button
               type="button"
               onClick={() => quickLogin('admin@trainingpundit.com', 'Admin@1234', '/admin')}
-              className="min-h-[40px] rounded-xl aurora-pill-teal text-xs font-bold cursor-pointer tactile-press"
+              className="min-h-[40px] rounded-xl aurora-pill-accent text-xs font-bold cursor-pointer tactile-press"
             >
               Admin
             </button>
@@ -426,67 +426,67 @@ export const StudentDashboardPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-3 sm:px-6 py-6 sm:py-8 space-y-6 sm:space-y-8 w-full min-w-0">
       {/* Header & Learner Profile Banner */}
-      <div className="aurora-card-raised rounded-3xl p-5 sm:p-8 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6 border border-[#E2E8F2] dark:border-slate-800 shadow-xl bg-white dark:bg-[#0C1528]">
+      <div className="rounded-3xl p-5 sm:p-8 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6 border border-[#16324F] shadow-xl bg-[#0F2A44] dark:bg-[#0A1E33]">
         <div className="space-y-1.5">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-mono tracking-wider text-slate-500 dark:text-slate-400 font-medium">
+            <span className="text-xs font-mono tracking-wider text-[#D9CDB8] dark:text-[#D9CDB8] font-medium">
               {lang === 'bn' ? 'ট্রেনিং পণ্ডিত একাডেমি' : 'TrainingPundit Academy'}
             </span>
-            <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+            <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#16324F] dark:bg-[#16324F] text-[#FBF3DC] dark:text-[#FFF7E8]">
               ID: {idCard?.roll_number || `TP-${user?.id}`}
             </span>
           </div>
-          <h1 className="font-display font-bold text-2xl sm:text-3xl text-[#14213A] dark:text-[#F5F8FF]">
+          <h1 className="font-display font-bold text-2xl sm:text-3xl text-[#FBF3DC] dark:text-[#FFF7E8]">
             {lang === 'bn' ? 'স্টুডেন্ট পোর্টাল' : 'Learner Portal'}
           </h1>
-          <p className="text-xs sm:text-sm text-[#5D6B82] dark:text-[#A8B7CE]">
-            {user?.full_name || user?.username} • Single-device session protected • Referral ID: <code className="font-mono text-slate-800 dark:text-slate-200">{data.stats?.referral_code}</code>
+          <p className="text-xs sm:text-sm text-[#D9CDB8] dark:text-[#D9CDB8]">
+            {user?.full_name || user?.username} • Single-device session protected • Referral ID: <code className="font-mono text-[#FBF3DC] dark:text-[#FFF7E8]">{data.stats?.referral_code}</code>
           </p>
         </div>
 
         {/* 4 KPI Stat Pills */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 w-full lg:w-auto">
-          <div className="p-3 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 flex items-center gap-2.5">
-            <Flame className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
+          <div className="p-3 rounded-xl bg-[#16324F] dark:bg-[#16324F] border border-[#16324F] flex items-center gap-2.5">
+            <Flame className="w-4 h-4 text-[#FB923C] dark:text-[#FB923C] shrink-0" />
             <div className="min-w-0">
-              <div className="font-mono font-bold text-base sm:text-lg text-[#14213A] dark:text-[#F5F8FF] tabular-nums">
+              <div className="font-mono font-bold text-base sm:text-lg text-[#FBF3DC] dark:text-[#FFF7E8] tabular-nums">
                 {data.stats?.current_streak || 1}d
               </div>
-              <div className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] truncate">Active streak</div>
+              <div className="text-[10px] font-mono text-[#D9CDB8] dark:text-[#D9CDB8] truncate">Active streak</div>
             </div>
           </div>
-          <div className="p-3 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 flex items-center gap-2.5">
-            <BookOpen className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
+          <div className="p-3 rounded-xl bg-[#16324F] dark:bg-[#16324F] border border-[#16324F] flex items-center gap-2.5">
+            <BookOpen className="w-4 h-4 text-[#FB923C] dark:text-[#FB923C] shrink-0" />
             <div className="min-w-0">
-              <div className="font-mono font-bold text-base sm:text-lg text-[#14213A] dark:text-[#F5F8FF] tabular-nums">
+              <div className="font-mono font-bold text-base sm:text-lg text-[#FBF3DC] dark:text-[#FFF7E8] tabular-nums">
                 {data.stats?.enrolled_count || 0}
               </div>
-              <div className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] truncate">Tracks enrolled</div>
+              <div className="text-[10px] font-mono text-[#D9CDB8] dark:text-[#D9CDB8] truncate">Tracks enrolled</div>
             </div>
           </div>
-          <div className="p-3 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 flex items-center gap-2.5">
-            <CheckCircle2 className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
+          <div className="p-3 rounded-xl bg-[#16324F] dark:bg-[#16324F] border border-[#16324F] flex items-center gap-2.5">
+            <CheckCircle2 className="w-4 h-4 text-[#FB923C] dark:text-[#FB923C] shrink-0" />
             <div className="min-w-0">
-              <div className="font-mono font-bold text-base sm:text-lg text-[#14213A] dark:text-[#F5F8FF] tabular-nums">
+              <div className="font-mono font-bold text-base sm:text-lg text-[#FBF3DC] dark:text-[#FFF7E8] tabular-nums">
                 {data.stats?.completed_lessons || 0}
               </div>
-              <div className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] truncate">Lessons passed</div>
+              <div className="text-[10px] font-mono text-[#D9CDB8] dark:text-[#D9CDB8] truncate">Lessons passed</div>
             </div>
           </div>
-          <div className="p-3 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 flex items-center gap-2.5">
-            <Award className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
+          <div className="p-3 rounded-xl bg-[#16324F] dark:bg-[#16324F] border border-[#16324F] flex items-center gap-2.5">
+            <Award className="w-4 h-4 text-[#FB923C] dark:text-[#FB923C] shrink-0" />
             <div className="min-w-0">
-              <div className="font-mono font-bold text-base sm:text-lg text-[#14213A] dark:text-[#F5F8FF] tabular-nums">
+              <div className="font-mono font-bold text-base sm:text-lg text-[#FBF3DC] dark:text-[#FFF7E8] tabular-nums">
                 {data.stats?.certificates_earned || 0}
               </div>
-              <div className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] truncate">Certificates</div>
+              <div className="text-[10px] font-mono text-[#D9CDB8] dark:text-[#D9CDB8] truncate">Certificates</div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Mobile-Friendly Sticky Segmented Tab Navigation Bar */}
-      <div className="sticky top-14 sm:top-16 z-20 bg-[#F5F7FB]/90 dark:bg-[#060B18]/90 backdrop-blur-md py-2 border-b border-[#E2E8F2] dark:border-slate-800 -mx-3 px-3 sm:mx-0 sm:px-0">
+      <div className="sticky top-14 sm:top-16 z-20 bg-[#E9D9B4]/90 dark:bg-[#0A1E33]/90 backdrop-blur-md py-2 border-b border-[#E0D3AF] dark:border-slate-800 -mx-3 px-3 sm:mx-0 sm:px-0">
         <div className="flex items-center gap-2 overflow-x-auto overscroll-x-contain no-scrollbar py-1">
           {tabs.map((tab) => {
             const Icon = tab.icon
@@ -499,15 +499,15 @@ export const StudentDashboardPage: React.FC = () => {
                 className={`min-h-[42px] px-3.5 sm:px-4 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                   isActive
                     ? 'aurora-btn-primary shadow-sm font-bold'
-                    : 'text-[#5D6B82] dark:text-[#A8B7CE] hover:text-[#14213A] dark:hover:text-[#F5F8FF] bg-white dark:bg-[#0C1528] border border-[#E2E8F2] dark:border-slate-800/80'
+                    : 'text-[#6B7280] dark:text-[#D9CDB8] hover:text-[#0F2A44] dark:hover:text-[#FFF7E8] bg-[#FBF3DC] dark:bg-[#102A44] border border-[#E0D3AF] dark:border-slate-800/80'
                 }`}
               >
-                <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-[#5D6B82] dark:text-[#A8B7CE]'}`} />
+                <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-[#6B7280] dark:text-[#D9CDB8]'}`} />
                 <span>{tab.label}</span>
                 {tab.badge !== undefined && tab.badge > 0 && (
                   <span
                     className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono font-bold ${
-                      isActive ? 'bg-white/25 text-white' : 'bg-slate-200 dark:bg-slate-800 text-[#14213A] dark:text-[#F5F8FF]'
+                      isActive ? 'bg-[#FBF3DC]/25 text-white' : 'bg-slate-200 dark:bg-slate-800 text-[#0F2A44] dark:text-[#FFF7E8]'
                     }`}
                   >
                     {tab.badge}
@@ -524,20 +524,20 @@ export const StudentDashboardPage: React.FC = () => {
         <div className="space-y-8 animate-fadeIn">
           {/* Quick Resume Card */}
           {data.enrolled_courses?.length > 0 && (
-            <div className="aurora-card-raised rounded-3xl p-5 sm:p-6 border border-[#356DFF]/30 bg-gradient-to-br from-white via-white to-blue-50/40 dark:from-[#0C1528] dark:via-[#0C1528] dark:to-[#111F36] shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="aurora-card-raised rounded-3xl p-5 sm:p-6 border border-[#F97316]/30 bg-[#FBF3DC] dark:bg-[#102A44] shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
               <div className="space-y-2">
-                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold aurora-pill-blue">
+                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold aurora-pill-accent">
                   {lang === 'bn' ? 'চলমান কোর্স' : 'Currently Learning'}
                 </span>
-                <h3 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF]">
+                <h3 className="font-display font-bold text-xl text-[#0F2A44] dark:text-[#FFF7E8]">
                   {bf(data.enrolled_courses[0], 'title', lang)}
                 </h3>
-                <p className="text-xs sm:text-sm text-[#5D6B82] dark:text-[#A8B7CE]">
+                <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#D9CDB8]">
                   {data.enrolled_courses[0].progress}% completed • Instructor: {data.enrolled_courses[0].instructor_name}
                 </p>
                 <div className="w-full sm:w-80 h-2.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-[#356DFF] to-[#35C6BE] rounded-full"
+                    className="h-full bg-[#F97316] rounded-full"
                     style={{ width: `${data.enrolled_courses[0].progress}%` }}
                   />
                 </div>
@@ -556,9 +556,9 @@ export const StudentDashboardPage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             <div className="lg:col-span-7 space-y-6">
               {/* Badges */}
-              <div className="aurora-card-raised rounded-2xl p-5 sm:p-6 space-y-4 border border-[#E2E8F2] dark:border-slate-800 shadow-md bg-white dark:bg-[#0C1528]">
-                <h2 className="font-display font-bold text-lg text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
-                  <Zap className="w-5 h-5 text-amber-500" />
+              <div className="aurora-card-raised rounded-2xl p-5 sm:p-6 space-y-4 border border-[#E0D3AF] dark:border-slate-800 shadow-md bg-[#FBF3DC] dark:bg-[#102A44]">
+                <h2 className="font-display font-bold text-lg text-[#0F2A44] dark:text-[#FFF7E8] flex items-center gap-2">
+                  <Zap className="w-5 h-5 text-[#D97706]" />
                   <span>{lang === 'bn' ? 'অর্জিত ব্যাজসমূহ' : 'Gamification Badges'}</span>
                 </h2>
                 <div className="grid grid-cols-2 gap-3">
@@ -567,30 +567,30 @@ export const StudentDashboardPage: React.FC = () => {
                       key={b.id}
                       className={`p-3.5 rounded-xl border ${
                         b.earned
-                          ? 'border-[#356DFF]/30 bg-[#356DFF]/10'
-                          : 'border-[#E2E8F2] dark:border-slate-800 opacity-50'
+                          ? 'border-[#F97316]/30 bg-[#F97316]/10'
+                          : 'border-[#E0D3AF] dark:border-slate-800 opacity-50'
                       }`}
                     >
-                      <div className="font-semibold text-xs text-[#14213A] dark:text-[#F5F8FF]">
+                      <div className="font-semibold text-xs text-[#0F2A44] dark:text-[#FFF7E8]">
                         {bf(b, 'name', lang)}
                       </div>
-                      <div className="text-[11px] text-[#5D6B82] dark:text-[#A8B7CE] mt-1">{bf(b, 'description', lang)}</div>
+                      <div className="text-[11px] text-[#6B7280] dark:text-[#D9CDB8] mt-1">{bf(b, 'description', lang)}</div>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Recent Orders Preview */}
-              <div className="aurora-card-raised rounded-2xl p-5 sm:p-6 space-y-4 border border-[#E2E8F2] dark:border-slate-800 shadow-md bg-white dark:bg-[#0C1528]">
+              <div className="aurora-card-raised rounded-2xl p-5 sm:p-6 space-y-4 border border-[#E0D3AF] dark:border-slate-800 shadow-md bg-[#FBF3DC] dark:bg-[#102A44]">
                 <div className="flex items-center justify-between">
-                  <h2 className="font-display font-bold text-lg text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
-                    <CreditCard className="w-5 h-5 text-[#356DFF]" />
+                  <h2 className="font-display font-bold text-lg text-[#0F2A44] dark:text-[#FFF7E8] flex items-center gap-2">
+                    <CreditCard className="w-5 h-5 text-[#F97316]" />
                     <span>{lang === 'bn' ? 'সাম্প্রতিক পেমেন্ট' : 'Recent Transactions'}</span>
                   </h2>
                   <button
                     type="button"
                     onClick={() => setActiveTab('orders')}
-                    className="text-xs font-semibold text-[#356DFF] dark:text-[#35C6BE] hover:underline"
+                    className="text-xs font-semibold text-[#F97316] dark:text-[#F97316] hover:underline"
                   >
                     View All →
                   </button>
@@ -599,16 +599,16 @@ export const StudentDashboardPage: React.FC = () => {
                   {invoices.slice(0, 3).map((inv) => (
                     <div
                       key={inv.id}
-                      className="p-3 rounded-xl border border-[#E2E8F2] dark:border-slate-800 bg-[#F5F7FB] dark:bg-[#111F36] flex items-center justify-between gap-3 text-xs"
+                      className="p-3 rounded-xl border border-[#E0D3AF] dark:border-slate-800 bg-[#E9D9B4] dark:bg-[#16324F] flex items-center justify-between gap-3 text-xs"
                     >
                       <div>
-                        <div className="font-mono font-bold text-[#14213A] dark:text-[#F5F8FF]">
+                        <div className="font-mono font-bold text-[#0F2A44] dark:text-[#FFF7E8]">
                           {inv.invoice_number} • ৳{inv.amount}
                         </div>
-                        <div className="text-[#5D6B82] dark:text-[#A8B7CE]">{inv.item_title}</div>
+                        <div className="text-[#6B7280] dark:text-[#D9CDB8]">{inv.item_title}</div>
                       </div>
                       <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
-                        inv.status === 'Approved' ? 'aurora-pill-teal' : 'bg-amber-500/15 text-amber-500'
+                        inv.status === 'Approved' ? 'aurora-pill-accent' : 'bg-[#D97706]/15 text-[#D97706]'
                       }`}>
                         {inv.status}
                       </span>
@@ -620,30 +620,30 @@ export const StudentDashboardPage: React.FC = () => {
 
             <div className="lg:col-span-5 space-y-6">
               {/* Digital ID Card Preview Teaser */}
-              <div className="aurora-card-raised rounded-2xl p-5 border border-[#35C6BE]/30 bg-gradient-to-br from-[#060B18] to-[#0C1528] text-white space-y-4 shadow-xl">
+              <div className="rounded-2xl p-5 border border-[#F97316]/30 bg-[#0F2A44] text-[#FBF3DC] space-y-4 shadow-xl">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <UserCheck className="w-4 h-4 text-[#35C6BE]" />
-                    <span className="text-xs font-mono font-bold tracking-wider text-[#35C6BE]">DIGITAL STUDENT ID</span>
+                    <UserCheck className="w-4 h-4 text-[#FB923C]" />
+                    <span className="text-xs font-mono font-bold tracking-wider text-[#FB923C]">DIGITAL STUDENT ID</span>
                   </div>
                   <button
                     type="button"
                     onClick={() => setActiveTab('id_card')}
-                    className="text-xs text-[#35C6BE] hover:underline font-bold"
+                    className="text-xs text-[#FB923C] hover:underline font-bold"
                   >
                     Full View →
                   </button>
                 </div>
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2 font-mono text-xs">
+                <div className="p-4 rounded-xl bg-[#FBF3DC]/5 border border-white/10 space-y-2 font-mono text-xs">
                   <div className="text-slate-300">Name: <span className="text-white font-bold">{user?.full_name || user?.username}</span></div>
-                  <div className="text-slate-300">Roll: <span className="text-[#35C6BE] font-bold">{idCard?.roll_number || `TP-2026-${user?.id}`}</span></div>
+                  <div className="text-slate-300">Roll: <span className="text-[#FB923C] font-bold">{idCard?.roll_number || `TP-2026-${user?.id}`}</span></div>
                   <div className="text-slate-300">Batch: <span className="text-white">{idCard?.batch || 'Batch 2026-A'}</span></div>
                 </div>
               </div>
 
               {/* Referral Hub */}
-              <div className="aurora-card-raised rounded-2xl border border-[#E2E8F2] dark:border-slate-800 p-5 space-y-3 shadow-md bg-white dark:bg-[#0C1528]">
-                <h3 className="font-display font-bold text-sm text-[#14213A] dark:text-[#F5F8FF]">
+              <div className="aurora-card-raised rounded-2xl border border-[#E0D3AF] dark:border-slate-800 p-5 space-y-3 shadow-md bg-[#FBF3DC] dark:bg-[#102A44]">
+                <h3 className="font-display font-bold text-sm text-[#0F2A44] dark:text-[#FFF7E8]">
                   {lang === 'bn' ? 'বন্ধুকে আমন্ত্রণ জানান ও ২০% ডিসকাউন্ট পান' : 'Invite Friends & Earn 20% Off'}
                 </h3>
                 <div className="flex gap-2">
@@ -651,7 +651,7 @@ export const StudentDashboardPage: React.FC = () => {
                     type="text"
                     readOnly
                     value={referralUrl}
-                    className="flex-1 min-h-[40px] px-3 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 font-mono text-xs text-[#14213A] dark:text-[#F5F8FF]"
+                    className="flex-1 min-h-[40px] px-3 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 font-mono text-xs text-[#0F2A44] dark:text-[#FFF7E8]"
                   />
                   <button
                     type="button"
@@ -670,10 +670,10 @@ export const StudentDashboardPage: React.FC = () => {
               {/* Redeem Gift Code */}
               <form
                 onSubmit={handleRedeemGift}
-                className="aurora-card-raised rounded-2xl border border-[#E2E8F2] dark:border-slate-800 p-5 space-y-3 shadow-md bg-white dark:bg-[#0C1528]"
+                className="aurora-card-raised rounded-2xl border border-[#E0D3AF] dark:border-slate-800 p-5 space-y-3 shadow-md bg-[#FBF3DC] dark:bg-[#102A44]"
               >
-                <h3 className="font-display font-bold text-sm text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
-                  <Gift className="w-4 h-4 text-amber-500" />
+                <h3 className="font-display font-bold text-sm text-[#0F2A44] dark:text-[#FFF7E8] flex items-center gap-2">
+                  <Gift className="w-4 h-4 text-[#D97706]" />
                   <span>{lang === 'bn' ? 'গিফট কোড রিডিম করুন' : 'Redeem a Course Gift Code'}</span>
                 </h3>
                 <div className="flex gap-2">
@@ -682,7 +682,7 @@ export const StudentDashboardPage: React.FC = () => {
                     value={giftCodeInput}
                     onChange={(e) => setGiftCodeInput(e.target.value)}
                     placeholder="GIFT-XXXXXXXX"
-                    className="flex-1 min-h-[40px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 font-mono text-xs uppercase text-[#14213A] dark:text-[#F5F8FF]"
+                    className="flex-1 min-h-[40px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 font-mono text-xs uppercase text-[#0F2A44] dark:text-[#FFF7E8]"
                   />
                   <button
                     type="submit"
@@ -701,10 +701,10 @@ export const StudentDashboardPage: React.FC = () => {
       {activeTab === 'courses' && (
         <div className="space-y-6 animate-fadeIn">
           <div className="flex items-center justify-between">
-            <h2 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF]">
+            <h2 className="font-display font-bold text-xl text-[#0F2A44] dark:text-[#FFF7E8]">
               {lang === 'bn' ? 'আমার এনরোল করা কোর্সসমূহ' : 'My Enrolled Courses'} ({data.enrolled_courses?.length || 0})
             </h2>
-            <Link to="/courses" className="text-xs font-bold text-[#356DFF] dark:text-[#35C6BE] hover:underline">
+            <Link to="/courses" className="text-xs font-bold text-[#F97316] dark:text-[#F97316] hover:underline">
               {lang === 'bn' ? '+ নতুন কোর্স এক্সপ্লোর করুন' : '+ Explore More Courses'}
             </Link>
           </div>
@@ -712,28 +712,28 @@ export const StudentDashboardPage: React.FC = () => {
             {data.enrolled_courses?.map((c: any) => (
               <div
                 key={c.enrollment_id}
-                className="aurora-card rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row gap-4 sm:gap-5 items-center border border-[#E2E8F2] dark:border-slate-800 shadow-md bg-white dark:bg-[#0C1528] hover:border-[#356DFF] transition-all"
+                className="aurora-card rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row gap-4 sm:gap-5 items-center border border-[#E0D3AF] dark:border-slate-800 shadow-md bg-[#FBF3DC] dark:bg-[#102A44] hover:border-[#F97316] transition-all"
               >
                 <img
                   src={c.thumbnail_url}
                   alt={bf(c, 'title', lang)}
                   loading="lazy"
                   decoding="async"
-                  className="w-full sm:w-44 aspect-video rounded-xl object-cover shrink-0 bg-[#060B18]"
+                  className="w-full sm:w-44 aspect-video rounded-xl object-cover shrink-0 bg-[#0A1E33]"
                 />
                 <div className="flex-1 space-y-3 w-full">
                   <div className="flex items-center justify-between text-xs font-mono">
-                    <span className="px-2 py-0.5 rounded aurora-pill-blue font-semibold">
+                    <span className="px-2 py-0.5 rounded aurora-pill-accent font-semibold">
                       {c.variant_type}
                     </span>
-                    <span className="text-[#356DFF] dark:text-[#35C6BE] font-bold">{c.progress}% Complete</span>
+                    <span className="text-[#F97316] dark:text-[#F97316] font-bold">{c.progress}% Complete</span>
                   </div>
-                  <h3 className="font-display font-bold text-base text-[#14213A] dark:text-[#F5F8FF] leading-snug">
+                  <h3 className="font-display font-bold text-base text-[#0F2A44] dark:text-[#FFF7E8] leading-snug">
                     {bf(c, 'title', lang)}
                   </h3>
-                  <div className="w-full h-2 rounded-full bg-[#F5F7FB] dark:bg-slate-800 overflow-hidden">
+                  <div className="w-full h-2 rounded-full bg-[#E9D9B4] dark:bg-slate-800 overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-[#356DFF] to-[#35C6BE] rounded-full transition-all"
+                      className="h-full bg-[#F97316] rounded-full transition-all"
                       style={{ width: `${c.progress}%` }}
                     />
                   </div>
@@ -756,14 +756,14 @@ export const StudentDashboardPage: React.FC = () => {
         <div className="space-y-6 animate-fadeIn">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF]">
+              <h2 className="font-display font-bold text-xl text-[#0F2A44] dark:text-[#FFF7E8]">
                 {lang === 'bn' ? 'ডিজিটাল বুকস ও রেফারেন্স ম্যানুয়াল' : 'Digital Books & Technical Handbooks'}
               </h2>
-              <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE]">
-                Cryptographically protected downloads from TrainingPundit Vault
+              <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8]">
+                Cryptographically protected downloads from Training Pundit Vault
               </p>
             </div>
-            <Link to="/store" className="text-xs font-bold text-[#356DFF] dark:text-[#35C6BE] hover:underline">
+            <Link to="/store" className="text-xs font-bold text-[#F97316] dark:text-[#F97316] hover:underline">
               {lang === 'bn' ? 'বুক স্টোর দেখুন' : 'Browse Store'}
             </Link>
           </div>
@@ -772,24 +772,24 @@ export const StudentDashboardPage: React.FC = () => {
             {books.map((b) => (
               <div
                 key={b.id}
-                className="aurora-card-raised rounded-2xl p-5 border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] shadow-md flex flex-col justify-between space-y-4"
+                className="aurora-card-raised rounded-2xl p-5 border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] shadow-md flex flex-col justify-between space-y-4"
               >
                 <div className="space-y-3">
-                  <div className="h-40 rounded-xl bg-gradient-to-br from-[#111F36] to-[#0C1528] flex items-center justify-center border border-slate-700/60 p-4">
-                    <FileText className="w-14 h-14 text-[#35C6BE] opacity-80" />
+                  <div className="h-40 rounded-xl bg-[#F97316] flex items-center justify-center border border-slate-700/60 p-4">
+                    <FileText className="w-14 h-14 text-[#F97316] opacity-80" />
                   </div>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold aurora-pill-teal">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold aurora-pill-accent">
                     {b.category}
                   </span>
-                  <h3 className="font-display font-bold text-base text-[#14213A] dark:text-[#F5F8FF]">
+                  <h3 className="font-display font-bold text-base text-[#0F2A44] dark:text-[#FFF7E8]">
                     {bf(b, 'title', lang)}
                   </h3>
-                  <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] line-clamp-2">
+                  <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8] line-clamp-2">
                     {bf(b, 'short_description', lang)}
                   </p>
                 </div>
-                <div className="pt-3 border-t border-[#E2E8F2] dark:border-slate-800 flex items-center justify-between">
-                  <div className="font-display font-bold text-sm text-[#14213A] dark:text-[#F5F8FF]">
+                <div className="pt-3 border-t border-[#E0D3AF] dark:border-slate-800 flex items-center justify-between">
+                  <div className="font-display font-bold text-sm text-[#0F2A44] dark:text-[#FFF7E8]">
                     ৳{b.price}
                   </div>
                   <button
@@ -799,7 +799,7 @@ export const StudentDashboardPage: React.FC = () => {
                     }}
                     className="min-h-[38px] px-3.5 rounded-xl aurora-btn-secondary text-xs font-semibold flex items-center gap-1.5 cursor-pointer tactile-press"
                   >
-                    <Download className="w-3.5 h-3.5 text-[#356DFF]" />
+                    <Download className="w-3.5 h-3.5 text-[#F97316]" />
                     <span>Download PDF</span>
                   </button>
                 </div>
@@ -813,10 +813,10 @@ export const StudentDashboardPage: React.FC = () => {
       {activeTab === 'orders' && (
         <div className="space-y-6 animate-fadeIn">
           <div className="flex items-center justify-between">
-            <h2 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF]">
+            <h2 className="font-display font-bold text-xl text-[#0F2A44] dark:text-[#FFF7E8]">
               {lang === 'bn' ? 'অর্ডার ও পেমেন্ট হিস্ট্রি' : 'Order History & Invoices'} ({invoices.length})
             </h2>
-            <span className="text-xs font-mono text-[#5D6B82] dark:text-[#A8B7CE]">
+            <span className="text-xs font-mono text-[#6B7280] dark:text-[#D9CDB8]">
               Official Tax & Tuition Receipts
             </span>
           </div>
@@ -825,24 +825,24 @@ export const StudentDashboardPage: React.FC = () => {
             {invoices.map((inv) => (
               <div
                 key={inv.id}
-                className="aurora-card rounded-2xl p-4 sm:p-5 border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm"
+                className="aurora-card rounded-2xl p-4 sm:p-5 border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm"
               >
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono font-bold text-sm text-[#14213A] dark:text-[#F5F8FF]">
+                    <span className="font-mono font-bold text-sm text-[#0F2A44] dark:text-[#FFF7E8]">
                       {inv.invoice_number}
                     </span>
                     <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
-                      inv.status === 'Approved' ? 'aurora-pill-teal' : 'bg-amber-500/15 text-amber-500'
+                      inv.status === 'Approved' ? 'aurora-pill-accent' : 'bg-[#D97706]/15 text-[#D97706]'
                     }`}>
                       {inv.status}
                     </span>
                   </div>
-                  <div className="text-xs font-semibold text-[#5D6B82] dark:text-[#A8B7CE]">
+                  <div className="text-xs font-semibold text-[#6B7280] dark:text-[#D9CDB8]">
                     {inv.item_title} • Method: <span className="font-mono">{inv.method}</span> • TrxID: <span className="font-mono">{inv.transaction_id}</span>
                   </div>
                   {inv.generated_gift_code && (
-                    <div className="text-xs text-amber-500 font-mono font-bold">
+                    <div className="text-xs text-[#D97706] font-mono font-bold">
                       Gift Code: {inv.generated_gift_code}
                     </div>
                   )}
@@ -850,15 +850,15 @@ export const StudentDashboardPage: React.FC = () => {
 
                 <div className="flex items-center gap-3">
                   <div className="text-right">
-                    <div className="font-display font-bold text-base text-[#14213A] dark:text-[#F5F8FF]">৳{inv.amount}</div>
-                    <div className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE]">BDT Paid</div>
+                    <div className="font-display font-bold text-base text-[#0F2A44] dark:text-[#FFF7E8]">৳{inv.amount}</div>
+                    <div className="text-[10px] font-mono text-[#6B7280] dark:text-[#D9CDB8]">BDT Paid</div>
                   </div>
                   <button
                     type="button"
                     onClick={() => handleDownloadInvoicePdf(inv.id, inv.invoice_number)}
                     className="min-h-[40px] px-4 rounded-xl aurora-btn-secondary text-xs font-bold flex items-center gap-1.5 cursor-pointer tactile-press shadow-sm"
                   >
-                    <Download className="w-3.5 h-3.5 text-[#356DFF]" />
+                    <Download className="w-3.5 h-3.5 text-[#F97316]" />
                     <span>PDF Receipt</span>
                   </button>
                 </div>
@@ -873,10 +873,10 @@ export const StudentDashboardPage: React.FC = () => {
         <div className="space-y-6 animate-fadeIn">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF]">
+              <h2 className="font-display font-bold text-xl text-[#0F2A44] dark:text-[#FFF7E8]">
                 {lang === 'bn' ? 'অনলাইন এক্সাম ও মূল্যায়ন' : 'Online Exams & Certification Assessments'}
               </h2>
-              <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE]">
+              <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8]">
                 Timed MCQ assessments verified for Course Certificate graduation
               </p>
             </div>
@@ -886,32 +886,32 @@ export const StudentDashboardPage: React.FC = () => {
             {exams.map((exam) => (
               <div
                 key={exam.id}
-                className="aurora-card-raised rounded-2xl p-5 border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] shadow-md space-y-4"
+                className="aurora-card-raised rounded-2xl p-5 border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] shadow-md space-y-4"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold aurora-pill-blue">
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold aurora-pill-accent">
                       {exam.difficulty}
                     </span>
-                    <h3 className="font-display font-bold text-base text-[#14213A] dark:text-[#F5F8FF] mt-1.5">
+                    <h3 className="font-display font-bold text-base text-[#0F2A44] dark:text-[#FFF7E8] mt-1.5">
                       {bf(exam, 'title', lang)}
                     </h3>
                   </div>
-                  <HelpCircle className="w-5 h-5 text-[#356DFF] shrink-0" />
+                  <HelpCircle className="w-5 h-5 text-[#F97316] shrink-0" />
                 </div>
 
-                <div className="grid grid-cols-3 gap-2 p-3 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] text-center text-xs">
+                <div className="grid grid-cols-3 gap-2 p-3 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] text-center text-xs">
                   <div>
-                    <div className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE]">Duration</div>
-                    <div className="font-bold text-[#14213A] dark:text-[#F5F8FF]">{exam.duration_minutes} Mins</div>
+                    <div className="text-[10px] font-mono text-[#6B7280] dark:text-[#D9CDB8]">Duration</div>
+                    <div className="font-bold text-[#0F2A44] dark:text-[#FFF7E8]">{exam.duration_minutes} Mins</div>
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE]">Questions</div>
-                    <div className="font-bold text-[#14213A] dark:text-[#F5F8FF]">{exam.total_questions} MCQs</div>
+                    <div className="text-[10px] font-mono text-[#6B7280] dark:text-[#D9CDB8]">Questions</div>
+                    <div className="font-bold text-[#0F2A44] dark:text-[#FFF7E8]">{exam.total_questions} MCQs</div>
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE]">Pass Mark</div>
-                    <div className="font-bold text-[#35C6BE]">{exam.pass_mark_percentage}%</div>
+                    <div className="text-[10px] font-mono text-[#6B7280] dark:text-[#D9CDB8]">Pass Mark</div>
+                    <div className="font-bold text-[#F97316]">{exam.pass_mark_percentage}%</div>
                   </div>
                 </div>
 
@@ -930,16 +930,16 @@ export const StudentDashboardPage: React.FC = () => {
           {/* Interactive Exam Modal */}
           {activeExam && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fadeIn">
-              <div className="w-full max-w-2xl bg-white dark:bg-[#0C1528] rounded-3xl p-6 border border-[#E2E8F2] dark:border-slate-800 shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
+              <div className="w-full max-w-2xl bg-[#FBF3DC] dark:bg-[#102A44] rounded-3xl p-6 border border-[#E0D3AF] dark:border-slate-800 shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
                 {/* Modal Header */}
-                <div className="flex items-center justify-between border-b border-[#E2E8F2] dark:border-slate-800 pb-4">
+                <div className="flex items-center justify-between border-b border-[#E0D3AF] dark:border-slate-800 pb-4">
                   <div>
-                    <span className="text-[10px] font-mono font-bold aurora-pill-teal">TIMED ASSESSMENT</span>
-                    <h3 className="font-display font-bold text-lg text-[#14213A] dark:text-[#F5F8FF] mt-1">
+                    <span className="text-[10px] font-mono font-bold aurora-pill-accent">TIMED ASSESSMENT</span>
+                    <h3 className="font-display font-bold text-lg text-[#0F2A44] dark:text-[#FFF7E8] mt-1">
                       {bf(activeExam, 'title', lang)}
                     </h3>
                   </div>
-                  <div className="flex items-center gap-2 p-2 rounded-xl bg-amber-500/10 text-amber-500 font-mono text-sm font-bold">
+                  <div className="flex items-center gap-2 p-2 rounded-xl bg-[#D97706]/10 text-[#D97706] font-mono text-sm font-bold">
                     <Clock className="w-4 h-4" />
                     <span>
                       {Math.floor(examTimeRemaining / 60)}:
@@ -953,7 +953,7 @@ export const StudentDashboardPage: React.FC = () => {
                   <div className={`p-4 rounded-xl border text-center space-y-1.5 ${
                     (examScore || 0) >= 60 ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-red-500/10 border-red-500/30'
                   }`}>
-                    <div className="font-mono font-bold text-2xl text-[#14213A] dark:text-[#F5F8FF] tabular-nums">
+                    <div className="font-mono font-bold text-2xl text-[#0F2A44] dark:text-[#FFF7E8] tabular-nums">
                       Score: {examScore}%
                     </div>
                     <p className="text-xs text-slate-700 dark:text-slate-300 font-medium">
@@ -967,8 +967,8 @@ export const StudentDashboardPage: React.FC = () => {
                 {/* Questions List */}
                 <div className="space-y-6">
                   {sampleQuestions.map((qObj, qIdx) => (
-                    <div key={qIdx} className="space-y-3 p-4 rounded-2xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800">
-                      <div className="font-bold text-sm text-[#14213A] dark:text-[#F5F8FF]">
+                    <div key={qIdx} className="space-y-3 p-4 rounded-2xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800">
+                      <div className="font-bold text-sm text-[#0F2A44] dark:text-[#FFF7E8]">
                         Question {qIdx + 1}: {qObj.q}
                       </div>
                       <div className="space-y-2">
@@ -981,8 +981,8 @@ export const StudentDashboardPage: React.FC = () => {
                               onClick={() => handleAnswerSelect(qIdx, optIdx)}
                               className={`w-full text-left p-3 rounded-xl border text-xs font-semibold transition-all cursor-pointer flex items-center justify-between ${
                                 isSelected
-                                  ? 'bg-[#356DFF] text-white border-[#356DFF]'
-                                  : 'bg-white dark:bg-[#0C1528] text-[#14213A] dark:text-[#F5F8FF] border-[#E2E8F2] dark:border-slate-800 hover:border-[#356DFF]'
+                                  ? 'bg-[#F97316] text-[#FBF3DC] border-[#F97316]'
+                                  : 'bg-[#FBF3DC] dark:bg-[#102A44] text-[#0F2A44] dark:text-[#FFF7E8] border-[#E0D3AF] dark:border-slate-800 hover:border-[#F97316]'
                               }`}
                             >
                               <span>{opt}</span>
@@ -996,7 +996,7 @@ export const StudentDashboardPage: React.FC = () => {
                 </div>
 
                 {/* Modal Footer */}
-                <div className="flex items-center justify-between pt-4 border-t border-[#E2E8F2] dark:border-slate-800">
+                <div className="flex items-center justify-between pt-4 border-t border-[#E0D3AF] dark:border-slate-800">
                   <button
                     type="button"
                     onClick={() => setActiveExam(null)}
@@ -1025,10 +1025,10 @@ export const StudentDashboardPage: React.FC = () => {
         <div className="space-y-6 animate-fadeIn">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF]">
+              <h2 className="font-display font-bold text-xl text-[#0F2A44] dark:text-[#FFF7E8]">
                 {lang === 'bn' ? 'সেভ করা ভিডিও লেকচার' : 'Saved Lecture Videos'} ({savedVideos.length})
               </h2>
-              <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE]">
+              <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8]">
                 Quick revision bookmarks from your active courses
               </p>
             </div>
@@ -1038,17 +1038,17 @@ export const StudentDashboardPage: React.FC = () => {
             {savedVideos.map((video) => (
               <div
                 key={video.id}
-                className="aurora-card rounded-2xl p-4 border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] flex items-center justify-between gap-4 shadow-sm"
+                className="aurora-card rounded-2xl p-4 border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] flex items-center justify-between gap-4 shadow-sm"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-[#356DFF]/10 flex items-center justify-center shrink-0">
-                    <Video className="w-6 h-6 text-[#356DFF]" />
+                  <div className="w-12 h-12 rounded-xl bg-[#F97316]/10 flex items-center justify-center shrink-0">
+                    <Video className="w-6 h-6 text-[#F97316]" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-sm text-[#14213A] dark:text-[#F5F8FF]">
+                    <h3 className="font-bold text-sm text-[#0F2A44] dark:text-[#FFF7E8]">
                       {bf(video, 'title', lang)}
                     </h3>
-                    <div className="text-xs font-mono text-[#5D6B82] dark:text-[#A8B7CE]">
+                    <div className="text-xs font-mono text-[#6B7280] dark:text-[#D9CDB8]">
                       Duration: {video.duration_minutes} Minutes
                     </div>
                   </div>
@@ -1071,10 +1071,10 @@ export const StudentDashboardPage: React.FC = () => {
         <div className="space-y-6 animate-fadeIn">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF]">
+              <h2 className="font-display font-bold text-xl text-[#0F2A44] dark:text-[#FFF7E8]">
                 {lang === 'bn' ? 'অফিশিয়াল ভেরিফাইড সার্টিফিকেট' : 'Official Verified Certificates'} ({data.certificates?.length || 0})
               </h2>
-              <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE]">
+              <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8]">
                 Cryptographically signed certificates with instant public QR verification
               </p>
             </div>
@@ -1084,25 +1084,25 @@ export const StudentDashboardPage: React.FC = () => {
             {data.certificates?.map((cert: any) => (
               <div
                 key={cert.id}
-                className="aurora-card-raised rounded-3xl p-6 border border-[#35C6BE]/30 bg-gradient-to-br from-white via-white to-teal-50/20 dark:from-[#0C1528] dark:via-[#0C1528] dark:to-[#111F36] shadow-lg space-y-4"
+                className="aurora-card-raised rounded-3xl p-6 border border-[#F97316]/30 bg-[#FBF3DC] dark:bg-[#102A44] shadow-sm space-y-4"
               >
                 <div className="flex items-center justify-between">
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold aurora-pill-teal">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold aurora-pill-accent">
                     ID: {cert.certificate_id}
                   </span>
-                  <div className="text-xs font-mono text-[#35C6BE] font-bold">Grade: {cert.grade_score}%</div>
+                  <div className="text-xs font-mono text-[#F97316] font-bold">Grade: {cert.grade_score}%</div>
                 </div>
 
                 <div>
-                  <h3 className="font-display font-bold text-lg text-[#14213A] dark:text-[#F5F8FF]">
+                  <h3 className="font-display font-bold text-lg text-[#0F2A44] dark:text-[#FFF7E8]">
                     {bf(cert, 'course_name', lang)}
                   </h3>
-                  <div className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] mt-1">
-                    Student: <span className="font-semibold text-[#14213A] dark:text-[#F5F8FF]">{cert.student_name}</span> • Instructor: {cert.instructor_name}
+                  <div className="text-xs text-[#6B7280] dark:text-[#D9CDB8] mt-1">
+                    Student: <span className="font-semibold text-[#0F2A44] dark:text-[#FFF7E8]">{cert.student_name}</span> • Instructor: {cert.instructor_name}
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-[#E2E8F2] dark:border-slate-800 flex items-center justify-between">
+                <div className="pt-3 border-t border-[#E0D3AF] dark:border-slate-800 flex items-center justify-between">
                   <Link
                     to={`/verify-certificate?id=${cert.certificate_id}`}
                     className="min-h-[40px] px-4 rounded-xl aurora-btn-primary text-xs font-bold flex items-center gap-1.5 tactile-press cursor-pointer shadow-md"
@@ -1115,7 +1115,7 @@ export const StudentDashboardPage: React.FC = () => {
                     onClick={() => window.print()}
                     className="min-h-[40px] px-3.5 rounded-xl aurora-btn-secondary text-xs font-bold flex items-center gap-1.5 cursor-pointer tactile-press"
                   >
-                    <Printer className="w-4 h-4 text-[#356DFF]" />
+                    <Printer className="w-4 h-4 text-[#F97316]" />
                     <span>Print</span>
                   </button>
                 </div>
@@ -1130,10 +1130,10 @@ export const StudentDashboardPage: React.FC = () => {
         <div className="space-y-6 animate-fadeIn max-w-4xl mx-auto">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF]">
+              <h2 className="font-display font-bold text-xl text-[#0F2A44] dark:text-[#FFF7E8]">
                 {lang === 'bn' ? 'অফিশিয়াল ডিজিটাল স্টুডেন্ট আইডি কার্ড' : 'Official Digital Student ID Card'}
               </h2>
-              <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE]">
+              <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8]">
                 Autonomous Academy Learner Identity • Printable & QR Verified
               </p>
             </div>
@@ -1150,36 +1150,36 @@ export const StudentDashboardPage: React.FC = () => {
           {/* Realistic Student ID Card Component */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             {/* FRONT OF CARD */}
-            <div className="rounded-3xl p-6 bg-gradient-to-br from-[#060B18] via-[#0C1528] to-[#111F36] border-2 border-[#35C6BE]/40 shadow-2xl text-white relative overflow-hidden flex flex-col justify-between min-h-[380px]">
+            <div className="rounded-3xl p-6 bg-[#0F2A44] border-2 border-[#F97316]/40 shadow-2xl text-[#FBF3DC] relative overflow-hidden flex flex-col justify-between min-h-[380px]">
               {/* Background watermark */}
               <div className="absolute right-0 bottom-0 opacity-5 pointer-events-none">
-                <GraduationCap className="w-64 h-64 text-[#35C6BE]" />
+                <GraduationCap className="w-64 h-64 text-[#FB923C]" />
               </div>
 
               {/* Card Header */}
               <div className="flex items-center justify-between pb-4 border-b border-white/10">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#356DFF] to-[#35C6BE] flex items-center justify-center font-black text-white text-lg">
+                  <div className="w-9 h-9 rounded-xl bg-[#F97316] flex items-center justify-center font-black text-[#FBF3DC] text-lg">
                     TP
                   </div>
                   <div>
                     <div className="font-display font-black text-xs tracking-wider text-white uppercase">
-                      TRAININGPUNDIT
+                      TRAINING PUNDIT
                     </div>
-                    <div className="text-[9px] font-mono tracking-widest text-[#35C6BE] uppercase">
+                    <div className="text-[9px] font-mono tracking-widest text-[#FB923C] uppercase">
                       AUTONOMOUS ACADEMY
                     </div>
                   </div>
                 </div>
-                <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-[#35C6BE]/20 text-[#35C6BE] border border-[#35C6BE]/40">
+                <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-[#FB923C]/15 text-[#FB923C] border border-[#FB923C]/40">
                   VERIFIED
                 </span>
               </div>
 
               {/* Card Body */}
               <div className="my-auto py-4 flex items-center gap-5">
-                <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-slate-700 to-slate-800 border-2 border-[#35C6BE] p-1 flex items-center justify-center shrink-0 overflow-hidden shadow-inner">
-                  <div className="w-full h-full rounded-xl bg-[#060B18] flex items-center justify-center font-display font-black text-2xl text-[#35C6BE]">
+                <div className="w-24 h-24 rounded-2xl bg-[#F97316] border-2 border-[#F97316] p-1 flex items-center justify-center shrink-0 overflow-hidden shadow-inner">
+                  <div className="w-full h-full rounded-xl bg-[#0A1E33] flex items-center justify-center font-display font-black text-2xl text-[#FB923C]">
                     {(user?.full_name || user?.username || 'TP').substring(0, 2).toUpperCase()}
                   </div>
                 </div>
@@ -1187,13 +1187,13 @@ export const StudentDashboardPage: React.FC = () => {
                   <div className="font-display font-extrabold text-lg text-white truncate">
                     {user?.full_name || user?.username}
                   </div>
-                  <div className="text-xs text-[#A8B7CE] font-mono">
-                    Roll: <span className="text-[#35C6BE] font-bold">{idCard?.roll_number || `TP-2026-${user?.id}`}</span>
+                  <div className="text-xs text-[#D9CDB8] font-mono">
+                    Roll: <span className="text-[#FB923C] font-bold">{idCard?.roll_number || `TP-2026-${user?.id}`}</span>
                   </div>
-                  <div className="text-xs text-[#A8B7CE] font-mono">
+                  <div className="text-xs text-[#D9CDB8] font-mono">
                     Batch: <span className="text-white">{idCard?.batch || 'Batch 2026-A'}</span>
                   </div>
-                  <div className="text-xs text-[#A8B7CE] font-mono">
+                  <div className="text-xs text-[#D9CDB8] font-mono">
                     Joined: <span className="text-white">{idCard?.joined_date || 'November 2026'}</span>
                   </div>
                 </div>
@@ -1206,45 +1206,45 @@ export const StudentDashboardPage: React.FC = () => {
                     {[4, 2, 5, 1, 3, 6, 2, 4, 1, 5, 3, 2, 6, 1, 4, 2, 5, 3].map((w, idx) => (
                       <div
                         key={idx}
-                        className="bg-white/80 h-full"
+                        className="bg-[#FBF3DC]/80 h-full"
                         style={{ width: `${w}px` }}
                       />
                     ))}
                   </div>
-                  <div className="text-[9px] font-mono tracking-widest text-[#A8B7CE]">
+                  <div className="text-[9px] font-mono tracking-widest text-[#D9CDB8]">
                     {idCard?.barcode || `TP${user?.id}2026`}
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-[9px] font-mono text-[#A8B7CE]">VALID THRU</div>
+                  <div className="text-[9px] font-mono text-[#D9CDB8]">VALID THRU</div>
                   <div className="text-xs font-mono font-bold text-white">DEC 2026</div>
                 </div>
               </div>
             </div>
 
             {/* BACK OF CARD */}
-            <div className="rounded-3xl p-6 bg-gradient-to-br from-[#060B18] via-[#0C1528] to-[#111F36] border-2 border-slate-700/80 shadow-2xl text-white relative flex flex-col justify-between min-h-[380px]">
+            <div className="rounded-3xl p-6 bg-[#0F2A44] border-2 border-[#F97316]/40 shadow-2xl text-[#FBF3DC] relative flex flex-col justify-between min-h-[380px]">
               {/* Magnetic Strip */}
               <div className="-mx-6 -mt-1 h-12 bg-black border-y border-slate-800" />
 
-              <div className="py-4 space-y-3 text-xs text-[#A8B7CE]">
+              <div className="py-4 space-y-3 text-xs text-[#D9CDB8]">
                 <p className="font-semibold text-white">
-                  This identity card certifies the enrolled learner at TrainingPundit Autonomous Academy.
+                  This identity card certifies the enrolled learner at Training Pundit.
                 </p>
                 <div className="space-y-1 font-mono text-[11px]">
                   <div>Email: <span className="text-white">{user?.email}</span></div>
                   <div>Phone: <span className="text-white">{idCard?.phone || '017XXXXXXXX'}</span></div>
-                  <div>Support: <span className="text-[#35C6BE]">support@trainingpundit.com</span></div>
+                  <div>Support: <span className="text-[#FB923C]">support@trainingpundit.com</span></div>
                 </div>
               </div>
 
               {/* QR Code and Disclaimer */}
               <div className="pt-3 border-t border-white/10 flex items-center justify-between gap-4">
-                <div className="p-2 rounded-xl bg-white text-black shrink-0">
+                <div className="p-2 rounded-xl bg-[#FBF3DC] text-black shrink-0">
                   <QrCode className="w-14 h-14" />
                 </div>
-                <div className="text-[10px] text-[#A8B7CE] font-mono leading-relaxed">
-                  Scan QR code with any mobile camera to verify digital credential integrity directly on <span className="text-[#35C6BE]">trainingpundit.com</span>
+                <div className="text-[10px] text-[#D9CDB8] font-mono leading-relaxed">
+                  Scan QR code with any mobile camera to verify digital credential integrity directly on <span className="text-[#FB923C]">trainingpundit.com</span>
                 </div>
               </div>
             </div>

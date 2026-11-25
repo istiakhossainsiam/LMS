@@ -43,9 +43,9 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({
   }
 
   return (
-    <div className="w-full max-w-6xl mx-auto rounded-2xl sm:rounded-3xl bg-[#0C1528] border border-slate-800 shadow-2xl overflow-hidden transition-all text-slate-100">
+    <div className="w-full max-w-6xl mx-auto rounded-2xl sm:rounded-3xl bg-[#102A44] border border-slate-800 shadow-2xl overflow-hidden transition-all text-slate-100">
       {/* 1. Clean Top Bar & Telemetry Strip */}
-      <div className="px-3.5 sm:px-6 py-3 border-b border-slate-800 bg-[#090F1E] flex flex-wrap items-center justify-between gap-2.5">
+      <div className="px-3.5 sm:px-6 py-3 border-b border-slate-800 bg-[#0A1E33] flex flex-wrap items-center justify-between gap-2.5">
         {/* Left: Window Dots & Platform Status */}
         <div className="flex items-center gap-2.5">
           <div className="flex items-center gap-1.5" aria-hidden="true">
@@ -68,7 +68,7 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({
             <span className="font-medium">{lang === 'bn' ? 'ডিভাইস সেশন ভেরিফাইড' : 'Zero-Trust Lock'}</span>
           </div>
 
-          <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#111F36] border border-slate-800 text-slate-400">
+          <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#16324F] border border-slate-800 text-slate-400">
             <Clock className="w-3 h-3 text-slate-400" />
             <span>{lang === 'bn' ? 'হার্টবিট: ৪২ms' : 'Sync: 42ms'}</span>
           </div>
@@ -81,7 +81,7 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({
       </div>
 
       {/* 3. Internal Navigation Tabs */}
-      <div className="px-3.5 sm:px-6 pt-3 pb-2 border-b border-slate-800/80 bg-[#0C1528] flex items-center gap-2 overflow-x-auto no-scrollbar">
+      <div className="px-3.5 sm:px-6 pt-3 pb-2 border-b border-slate-800/80 bg-[#102A44] flex items-center gap-2 overflow-x-auto no-scrollbar">
         {tabs.map((tab) => {
           const Icon = tab.icon
           const isSelected = activeTab === tab.id
@@ -92,8 +92,8 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({
               onClick={() => setActiveTab(tab.id as any)}
               className={`min-h-[36px] px-3.5 py-1.5 rounded-xl text-xs font-medium flex items-center gap-2 whitespace-nowrap tactile-press cursor-pointer transition-all ${
                 isSelected
-                  ? 'bg-[#356DFF] text-white font-semibold shadow-md shadow-blue-900/40'
-                  : 'bg-[#111F36]/80 text-[#A8B7CE] hover:text-[#F5F8FF] hover:bg-[#111F36] border border-slate-800/80'
+                  ? 'bg-[#F97316] text-[#FBF3DC] font-semibold shadow-md shadow-orange-900/40'
+                  : 'bg-[#16324F]/80 text-[#D9CDB8] hover:text-[#FFF7E8] hover:bg-[#16324F] border border-slate-800/80'
               }`}
             >
               <Icon className="w-3.5 h-3.5" />
@@ -108,26 +108,26 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({
         {/* Top Row: Hero Resume Learning Card + Live Stats */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
           {/* Main Course Progress Hero (Col 7) */}
-          <div className="lg:col-span-7 rounded-2xl bg-[#111F36] border border-slate-800/90 p-4 sm:p-6 space-y-4 shadow-lg relative overflow-hidden">
+          <div className="lg:col-span-7 rounded-2xl bg-[#16324F] border border-slate-800/90 p-4 sm:p-6 space-y-4 shadow-lg relative overflow-hidden">
             {/* Subtle Aurora Ambient Corner Glow */}
-            <div className="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-[#356DFF]/15 blur-2xl pointer-events-none" />
+            <div className="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-[#F97316]/15 blur-2xl pointer-events-none" />
 
             <div className="flex items-center justify-between gap-2">
-              <span className="px-2.5 py-0.5 rounded-full bg-[#356DFF]/20 border border-[#356DFF]/30 text-[#86EFAC] text-[11px] font-mono font-bold">
+              <span className="px-2.5 py-0.5 rounded-full bg-[#F97316]/20 border border-[#F97316]/30 text-[#86EFAC] text-[11px] font-mono font-bold">
                 {lang === 'bn' ? 'চলমান কোর্স • ব্যাচ ৪' : 'Active Track • Batch 4'}
               </span>
-              <span className="text-xs font-mono font-bold text-[#35C6BE]">
+              <span className="text-xs font-mono font-bold text-[#F97316]">
                 {lang === 'bn' ? '৬৮% সম্পন্ন' : '68% Completed'}
               </span>
             </div>
 
             <div>
-              <h3 className="font-display font-bold text-lg sm:text-xl text-[#F5F8FF] leading-snug">
+              <h3 className="font-display font-bold text-lg sm:text-xl text-[#FFF7E8] leading-snug">
                 {lang === 'bn'
                   ? 'প্রোডাকশন-গ্রেড ক্লাউড ও সফটওয়্যার ইঞ্জিনিয়ারিং'
                   : 'Production-Grade Cloud & Software Engineering'}
               </h3>
-              <p className="text-xs sm:text-sm text-[#A8B7CE] mt-1 line-clamp-2">
+              <p className="text-xs sm:text-sm text-[#D9CDB8] mt-1 line-clamp-2">
                 {lang === 'bn'
                   ? 'পরবর্তী পাঠ: মডিউল ১৯ — ডিস্ট্রিবিউটেড মেসেজ কিউ ও রেডিস ক্লাস্টার আর্কিটেকচার'
                   : 'Next: Module 19 — Distributed Message Queues & Redis Cluster Architecture'}
@@ -138,7 +138,7 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({
             <div className="space-y-1.5">
               <div className="w-full h-2 rounded-full bg-slate-900/90 overflow-hidden border border-slate-800">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-[#356DFF] via-[#35C6BE] to-[#86EFAC] transition-all duration-1000"
+                  className="h-full rounded-full bg-[#F97316] transition-all duration-1000"
                   style={{ width: '68%' }}
                 />
               </div>
@@ -153,14 +153,14 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({
               <button
                 type="button"
                 onClick={handleResumeClick}
-                className="min-h-[44px] px-5 rounded-xl bg-gradient-to-r from-[#356DFF] to-[#2E5BE5] hover:from-[#4B7EFF] hover:to-[#356DFF] text-white text-xs sm:text-sm font-semibold flex items-center gap-2 tactile-press cursor-pointer shadow-md shadow-blue-900/40"
+                className="min-h-[44px] px-5 rounded-xl bg-[#F97316] hover:from-[#EA580C] hover:to-[#F97316] text-[#FBF3DC] text-xs sm:text-sm font-semibold flex items-center gap-2 tactile-press cursor-pointer shadow-md shadow-orange-900/40"
               >
                 <Play className="w-4 h-4 fill-current" />
                 <span>{lang === 'bn' ? 'পাঠ চালিয়ে যান (Resume)' : 'Continue Learning'}</span>
               </button>
 
               <span className="text-[11px] font-mono text-slate-400 flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#35C6BE]" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#F97316]" />
                 <span className="hidden sm:inline">{lang === 'bn' ? 'স্বয়ংক্রিয় প্রগ্রেস সিঙ্ক' : 'Auto-synced'}</span>
               </span>
             </div>
@@ -169,7 +169,7 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({
           {/* Side Stack: Live Class & Assignment Cards (Col 5) */}
           <div className="lg:col-span-5 space-y-4">
             {/* Live Class Notification Card */}
-            <div className="rounded-2xl bg-[#111F36] border border-slate-800/90 p-4 space-y-2.5 shadow-md">
+            <div className="rounded-2xl bg-[#16324F] border border-slate-800/90 p-4 space-y-2.5 shadow-md">
               <div className="flex items-center justify-between">
                 <span className="flex items-center gap-1.5 text-xs font-mono font-bold text-amber-400">
                   <Video className="w-3.5 h-3.5" />
@@ -179,12 +179,12 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({
                   {lang === 'bn' ? 'রাত ৯:০০ টা' : '9:00 PM'}
                 </span>
               </div>
-              <h4 className="font-semibold text-xs sm:text-sm text-[#F5F8FF] leading-snug">
+              <h4 className="font-semibold text-xs sm:text-sm text-[#FFF7E8] leading-snug">
                 {lang === 'bn'
                   ? 'সিস্টেম ডিজাইন ডিপ-ডাইভ: মাইক্রোসার্ভিস লোড ব্যালেন্সিং'
                   : 'System Design Deep-Dive: Microservice Load Balancing'}
               </h4>
-              <p className="text-[11px] text-[#A8B7CE]">
+              <p className="text-[11px] text-[#D9CDB8]">
                 {lang === 'bn'
                   ? 'প্রভাষক: মারুফ আহমেদ • জুম রুম ৮:৪৫ এ ওপেন হবে'
                   : 'Instructor: Maruf Ahmed • Room opens at 8:45 PM'}
@@ -192,9 +192,9 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({
             </div>
 
             {/* Upcoming Assignment Tracker */}
-            <div className="rounded-2xl bg-[#111F36] border border-slate-800/90 p-4 space-y-2.5 shadow-md">
+            <div className="rounded-2xl bg-[#16324F] border border-slate-800/90 p-4 space-y-2.5 shadow-md">
               <div className="flex items-center justify-between">
-                <span className="flex items-center gap-1.5 text-xs font-mono font-bold text-[#35C6BE]">
+                <span className="flex items-center gap-1.5 text-xs font-mono font-bold text-[#F97316]">
                   <Code2 className="w-3.5 h-3.5" />
                   <span>{lang === 'bn' ? 'কোডিং ল্যাব অ্যাসাইনমেন্ট' : 'CodeLab Assignment'}</span>
                 </span>
@@ -202,14 +202,14 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({
                   {lang === 'bn' ? '২ দিন বাকি' : '2 days left'}
                 </span>
               </div>
-              <h4 className="font-semibold text-xs sm:text-sm text-[#F5F8FF] leading-snug">
+              <h4 className="font-semibold text-xs sm:text-sm text-[#FFF7E8] leading-snug">
                 {lang === 'bn'
                   ? 'অ্যাসাইনমেন্ট ৪: এএসটি প্যারামিটারাইজড সিকিউরিটি ফিল্টার'
                   : 'Assignment 4: AST Parameterized Security Filter'}
               </h4>
-              <div className="flex items-center justify-between text-[11px] text-[#A8B7CE] pt-1">
+              <div className="flex items-center justify-between text-[11px] text-[#D9CDB8] pt-1">
                 <span>{lang === 'bn' ? 'অটো-গ্রেডার: প্রস্তুত' : 'Auto-Grading: Ready'}</span>
-                <span className="text-[#356DFF] font-semibold font-mono">+৫০ XP</span>
+                <span className="text-[#F97316] font-semibold font-mono">+৫০ XP</span>
               </div>
             </div>
           </div>
@@ -249,15 +249,15 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({
           ].map((m, idx) => (
             <div
               key={idx}
-              className="p-3 rounded-xl bg-[#090F1E]/80 border border-slate-800/70 text-center"
+              className="p-3 rounded-xl bg-[#0A1E33]/80 border border-slate-800/70 text-center"
             >
-              <div className="font-display font-extrabold text-base sm:text-lg text-[#F5F8FF] tabular-nums">
+              <div className="font-display font-extrabold text-base sm:text-lg text-[#FFF7E8] tabular-nums">
                 {lang === 'bn' ? m.val : m.enVal}
               </div>
               <div className="text-[11px] font-medium text-slate-300 mt-0.5 truncate">
                 {lang === 'bn' ? m.bn : m.en}
               </div>
-              <div className="text-[9px] font-mono text-[#35C6BE] mt-0.5 truncate">
+              <div className="text-[9px] font-mono text-[#F97316] mt-0.5 truncate">
                 {m.sub}
               </div>
             </div>

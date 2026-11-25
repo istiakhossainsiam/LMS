@@ -74,15 +74,15 @@ export const ThreeModelViewer: React.FC<ThreeModelViewerProps> = ({
     keyLight.castShadow = true
     scene.add(keyLight)
 
-    const rimLight = new THREE.DirectionalLight(0x35c6be, 2.2)
+    const rimLight = new THREE.DirectionalLight(0xFB923C, 2.2)
     rimLight.position.set(-4, -2, -4)
     scene.add(rimLight)
 
-    const blueLight = new THREE.PointLight(0x356dff, 3, 10)
-    blueLight.position.set(0, 1.5, 0)
-    scene.add(blueLight)
+    const accentLight = new THREE.PointLight(0xF97316, 3, 10)
+    accentLight.position.set(0, 1.5, 0)
+    scene.add(accentLight)
 
-    const ambientLight = new THREE.AmbientLight(0x0c1528, 1.5)
+    const ambientLight = new THREE.AmbientLight(0x102A44, 1.5)
     scene.add(ambientLight)
 
     // 4. Construct Procedural Blender 3D Architectural Node
@@ -93,7 +93,7 @@ export const ThreeModelViewer: React.FC<ThreeModelViewerProps> = ({
 
     // Center Core (Chamfered Tech Hub)
     const coreMat = new THREE.MeshStandardMaterial({
-      color: 0x14213a,
+      color: 0x0F2A44,
       roughness: 0.25,
       metalness: 0.85,
     })
@@ -106,15 +106,15 @@ export const ThreeModelViewer: React.FC<ThreeModelViewerProps> = ({
 
     // Core Edge Wireframe Overlay
     const wireGeo = new THREE.EdgesGeometry(coreGeo)
-    const wireMat = new THREE.LineBasicMaterial({ color: 0x35c6be, linewidth: 2 })
+    const wireMat = new THREE.LineBasicMaterial({ color: 0xFB923C, linewidth: 2 })
     const wireLine = new THREE.LineSegments(wireGeo, wireMat)
     coreMesh.add(wireLine)
 
     // Inner Glowing Crystal (Icosahedron)
     const crystalGeo = new THREE.IcosahedronGeometry(0.55, 0)
     const crystalMat = new THREE.MeshStandardMaterial({
-      color: 0x356dff,
-      emissive: 0x356dff,
+      color: 0xF97316,
+      emissive: 0xF97316,
       emissiveIntensity: 0.6,
       roughness: 0.1,
       metalness: 0.9,
@@ -126,7 +126,7 @@ export const ThreeModelViewer: React.FC<ThreeModelViewerProps> = ({
     // Orbital Data Rings
     const ringGeo = new THREE.TorusGeometry(2.1, 0.04, 16, 64)
     const ringMat = new THREE.MeshStandardMaterial({
-      color: 0x35c6be,
+      color: 0xFB923C,
       metalness: 0.9,
       roughness: 0.2,
     })
@@ -145,7 +145,7 @@ export const ThreeModelViewer: React.FC<ThreeModelViewerProps> = ({
     const satGeo = new THREE.BoxGeometry(0.35, 0.35, 0.35)
     for (let i = 0; i < 4; i++) {
       const satMat = new THREE.MeshStandardMaterial({
-        color: i % 2 === 0 ? 0x356dff : 0x35c6be,
+        color: i % 2 === 0 ? 0xF97316 : 0xFB923C,
         roughness: 0.3,
         metalness: 0.7,
       })
@@ -242,15 +242,15 @@ export const ThreeModelViewer: React.FC<ThreeModelViewerProps> = ({
   }, [])
 
   return (
-    <div className={`aurora-card rounded-2xl overflow-hidden bg-[#060B18] border border-[#E2E8F2] dark:border-slate-800 flex flex-col justify-between relative shadow-lg ${className}`}>
+    <div className={`aurora-card rounded-2xl overflow-hidden bg-[#0A1E33] border border-[#E0D3AF] dark:border-slate-800 flex flex-col justify-between relative shadow-lg ${className}`}>
       {/* Header Bar with 3D Controls */}
-      <div className="p-4 border-b border-slate-800/80 flex items-center justify-between z-10 bg-[#0C1528]/80 backdrop-blur-md">
+      <div className="p-4 border-b border-slate-800/80 flex items-center justify-between z-10 bg-[#102A44]/80 backdrop-blur-md">
         <div>
           <div className="flex items-center gap-2">
-            <Box className="w-4 h-4 text-[#35C6BE]" />
-            <h3 className="font-display font-bold text-sm text-[#F5F8FF]">{title}</h3>
+            <Box className="w-4 h-4 text-[#F97316]" />
+            <h3 className="font-display font-bold text-sm text-[#FFF7E8]">{title}</h3>
           </div>
-          <p className="text-[11px] font-mono text-[#A8B7CE] mt-0.5">{subtitle}</p>
+          <p className="text-[11px] font-mono text-[#D9CDB8] mt-0.5">{subtitle}</p>
         </div>
 
         <div className="flex items-center gap-1.5">
@@ -259,7 +259,7 @@ export const ThreeModelViewer: React.FC<ThreeModelViewerProps> = ({
             onClick={() => toggleWireframeRef.current?.()}
             className={`p-1.5 rounded-lg border text-xs cursor-pointer transition-colors ${
               wireframe
-                ? 'bg-[#356DFF] text-white border-[#356DFF]'
+                ? 'bg-[#F97316] text-[#FBF3DC] border-[#F97316]'
                 : 'bg-slate-800/80 hover:bg-slate-700 border-slate-700 text-slate-300 hover:text-white'
             }`}
             title="Toggle Wireframe Shading"
@@ -285,9 +285,9 @@ export const ThreeModelViewer: React.FC<ThreeModelViewerProps> = ({
       />
 
       {/* Footer Info HUD */}
-      <div className="px-4 py-2.5 bg-[#0C1528]/60 border-t border-slate-800/60 flex items-center justify-between text-[10px] font-mono text-slate-400">
+      <div className="px-4 py-2.5 bg-[#102A44]/60 border-t border-slate-800/60 flex items-center justify-between text-[10px] font-mono text-slate-400">
         <span className="flex items-center gap-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#35C6BE]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#F97316]" />
           <span>THREE.JS WEBGL RENDERER • BLENDER STUDIO LIGHTING</span>
         </span>
         <span className="hidden sm:inline text-slate-500">DRAG TO ORBIT • SCROLL TO ZOOM</span>

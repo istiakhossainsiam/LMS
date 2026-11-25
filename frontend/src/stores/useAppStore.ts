@@ -54,7 +54,7 @@ interface AppState {
 }
 
 const initialLang = (localStorage.getItem('lwma_lang') as Language) || 'bn'
-const initialTheme = (localStorage.getItem('lwma_theme') as ThemeMode) || 'light'
+const initialTheme = (localStorage.getItem('lwma_theme') as ThemeMode) || (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
 
 if (typeof document !== 'undefined') {
   document.documentElement.classList.toggle('dark', initialTheme === 'dark')

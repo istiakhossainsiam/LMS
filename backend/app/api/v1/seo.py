@@ -11,12 +11,12 @@ from app.models.content_and_store import BlogPost
 
 router = APIRouter(tags=["SEO & AI Search (GEO)"])
 
-BASE_URL = "https://learnwithmarufahmed.com"
+BASE_URL = "https://trainingpundit.com"
 
 
 @router.get("/robots.txt", response_class=PlainTextResponse)
 async def get_robots_txt():
-    content = f"""# Robots.txt for Learn With Maruf Ahmed (LWMA 2.0 Cloud LMS)
+    content = f"""# Robots.txt for Training Pundit (LWMA 2.0 Cloud LMS)
 # Complies with Google Search Essentials and Claude SEO Standards
 
 User-agent: *
@@ -130,11 +130,11 @@ async def get_dynamic_sitemap_xml(db: AsyncSession = Depends(get_db)):
 
 @router.get("/llms.txt", response_class=PlainTextResponse)
 async def get_llms_txt():
-    content = f"""# Learn With Maruf Ahmed (LWMA 2.0)
+    content = f"""# Training Pundit (LWMA 2.0)
 > Cloud-Native, Mobile-First Software Engineering Education & Talent Placement Platform
 
 ## Overview
-Learn With Maruf Ahmed ({BASE_URL}/) is a professional engineering academy and career placement network founded by Maruf Ahmed. It offers industry-grade training in full-stack cloud development, async Python (FastAPI), React 19, distributed architecture, and zero-trust security.
+Training Pundit ({BASE_URL}/) is a professional engineering academy and career placement network founded by Maruf Ahmed. It offers industry-grade training in full-stack cloud development, async Python (FastAPI), React 19, distributed architecture, and zero-trust security.
 
 ## Core Features & Offerings
 - **Full-Stack Cloud Engineering**: Live batches + self-paced masterclasses focusing on React 19, FastAPI, PostgreSQL, Docker, and Apple-grade fluid UX.
@@ -162,7 +162,7 @@ Learn With Maruf Ahmed ({BASE_URL}/) is a professional engineering academy and c
 
 @router.get("/llms-full.txt", response_class=PlainTextResponse)
 async def get_llms_full_txt():
-    content = f"""# Learn With Maruf Ahmed (LWMA 2.0) — Complete Architecture & Syllabus
+    content = f"""# Training Pundit (LWMA 2.0) — Complete Architecture & Syllabus
 
 ## Platform Specifications
 - **Frontend Architecture**: React 19, TypeScript, Tailwind CSS v4, Apple WWDC fluid spring physics, full bilingual localization (Bangla/English).

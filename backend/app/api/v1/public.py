@@ -116,8 +116,8 @@ async def get_home_data(db: AsyncSession = Depends(get_db)):
 
     return {
         "site_settings": {
-            "site_title": site_settings.site_title if site_settings else "Learn With Maruf Ahmed",
-            "site_title_bn": site_settings.site_title_bn if site_settings else "লার্ন উইথ মারুফ আহমেদ",
+            "site_title": site_settings.site_title if site_settings else "Training Pundit",
+            "site_title_bn": site_settings.site_title_bn if site_settings else "ট্রেনিং পণ্ডিত",
             "site_description": site_settings.site_description if site_settings else "",
             "site_description_bn": site_settings.site_description_bn if site_settings else "",
             "hero_badge": site_settings.hero_badge if site_settings else "",
@@ -126,7 +126,7 @@ async def get_home_data(db: AsyncSession = Depends(get_db)):
             "hero_title_bn": site_settings.hero_title_bn if site_settings else "",
             "hero_subtitle": site_settings.hero_subtitle if site_settings else "",
             "hero_subtitle_bn": site_settings.hero_subtitle_bn if site_settings else "",
-            "support_email": site_settings.support_email if site_settings else "support@learnwithmarufahmed.com",
+            "support_email": site_settings.support_email if site_settings else "support@trainingpundit.com",
             "support_phone": site_settings.support_phone if site_settings else "+880 1711-223344",
         },
         "flash_sale": {
@@ -379,7 +379,7 @@ async def verify_certificate(certificate_id: str, db: AsyncSession = Depends(get
         "instructor_name": cert.instructor_name,
         "grade_score": cert.grade_score,
         "issued_at": cert.issued_at.isoformat(),
-        "verification_authority": "Learn With Maruf Ahmed — Official Credential Registry",
+        "verification_authority": "Training Pundit — Official Credential Registry",
     }
 
 

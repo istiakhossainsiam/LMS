@@ -53,20 +53,20 @@ export const CoursesPage: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-8">
-      <div className="space-y-3">
-        <span className="text-xs font-mono text-[#5D6B82] dark:text-[#A8B7CE] font-medium">
+      <div className="rounded-2xl bg-[#0F2A44] dark:bg-[#0A1E33] border border-[#16324F] p-5 sm:p-6 space-y-3">
+        <span className="text-xs font-mono text-[#FB923C] dark:text-[#FB923C] font-medium">
           {lang === 'bn' ? 'কোর্স ক্যাটালগ' : 'Engineering curriculum'}
         </span>
-        <h1 className="font-display font-bold text-2xl sm:text-4xl text-slate-900 dark:text-white">
+        <h1 className="font-display font-bold text-2xl sm:text-4xl text-[#FBF3DC] dark:text-[#FFF7E8]">
           {lang === 'bn' ? 'আপনার ক্যারিয়ার ট্র্যাক বেছে নিন' : 'Explore industry-grade learning tracks'}
         </h1>
       </div>
 
       {/* Filter & Search Bar */}
-      <div className="aurora-card rounded-2xl p-4 sm:p-5 space-y-4 bg-white dark:bg-[#0C1528] border border-[#E2E8F2] dark:border-slate-800">
+      <div className="aurora-card rounded-2xl p-4 sm:p-5 space-y-4 bg-[#FBF3DC] dark:bg-[#102A44] border border-[#E0D3AF] dark:border-slate-800">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
           <div className="md:col-span-6 relative">
-            <Search className="w-4 h-4 text-[#5D6B82] dark:text-[#A8B7CE] absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-[#6B7280] dark:text-[#D9CDB8] absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="search"
               value={q}
@@ -76,7 +76,7 @@ export const CoursesPage: React.FC = () => {
                   ? 'কোর্স খুঁজুন (যেমন: React, FastAPI, Python, Security)...'
                   : 'Search courses (e.g., React, FastAPI, Python, Security)...'
               }
-              className="w-full min-h-[44px] pl-10 pr-4 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-700/80 text-sm text-[#14213A] dark:text-[#F5F8FF] focus:outline-none focus:border-[#356DFF]"
+              className="w-full min-h-[44px] pl-10 pr-4 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-700/80 text-sm text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-none focus:border-[#F97316]"
             />
           </div>
 
@@ -85,7 +85,7 @@ export const CoursesPage: React.FC = () => {
               value={sort}
               onChange={(e) => setSort(e.target.value)}
               aria-label="Sort courses"
-              className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-700/80 text-xs sm:text-sm font-medium text-[#14213A] dark:text-[#F5F8FF] focus:outline-none focus:border-[#356DFF]"
+              className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-700/80 text-xs sm:text-sm font-medium text-[#0F2A44] dark:text-[#FFF7E8] focus:outline-none focus:border-[#F97316]"
             >
               <option value="popular">{lang === 'bn' ? 'সবচেয়ে জনপ্রিয়' : 'Most Popular'}</option>
               <option value="rating">{lang === 'bn' ? 'সর্বোচ্চ রেটিং' : 'Highest Rated'}</option>
@@ -100,11 +100,11 @@ export const CoursesPage: React.FC = () => {
               onClick={() => setLiveOnly(!liveOnly)}
               className={`w-full min-h-[44px] px-4 rounded-xl border text-xs font-medium flex items-center justify-center gap-2 tactile-press cursor-pointer transition-colors ${
                 liveOnly
-                  ? 'aurora-pill-teal font-semibold'
+                  ? 'aurora-pill-accent font-semibold'
                   : 'aurora-btn-secondary'
               }`}
             >
-              <Video className="w-4 h-4 text-[#35C6BE]" />
+              <Video className="w-4 h-4 text-[#F97316]" />
               <span>{lang === 'bn' ? 'শুধুমাত্র লাইভ ব্যাচ' : 'Live batches only'}</span>
             </button>
           </div>
@@ -143,10 +143,10 @@ export const CoursesPage: React.FC = () => {
             return (
               <div
                 key={course.id}
-                className="aurora-card rounded-2xl overflow-hidden flex flex-col justify-between hover:border-[#356DFF] dark:hover:border-[#35C6BE] transition-all bg-white dark:bg-[#0C1528]"
+                className="aurora-card rounded-2xl overflow-hidden flex flex-col justify-between hover:border-[#F97316] dark:hover:border-[#FB923C] transition-all bg-[#FBF3DC] dark:bg-[#102A44]"
               >
                 <div>
-                  <div className="relative aspect-video bg-[#060B18] overflow-hidden">
+                  <div className="relative aspect-video bg-[#0A1E33] overflow-hidden">
                     <img
                       src={course.thumbnail_url}
                       alt={bf(course, 'title', lang)}
@@ -154,7 +154,7 @@ export const CoursesPage: React.FC = () => {
                       loading="lazy"
                     />
                     <div className="absolute top-3 left-3 flex items-center gap-2">
-                      <span className="px-2.5 py-1 rounded-lg bg-[#060B18]/90 backdrop-blur-md text-[#F5F8FF] text-[10px] font-mono font-medium border border-slate-700/60 shadow-xs">
+                      <span className="px-2.5 py-1 rounded-lg bg-[#0A1E33]/90 backdrop-blur-md text-[#FFF7E8] text-[10px] font-mono font-medium border border-slate-700/60 shadow-xs">
                         {bf(course, 'category', lang)}
                       </span>
                       {course.is_live_course && (
@@ -166,7 +166,7 @@ export const CoursesPage: React.FC = () => {
                     </div>
                   </div>
                   <div className="p-5 space-y-3">
-                    <div className="flex items-center justify-between text-xs font-mono text-[#5D6B82] dark:text-[#A8B7CE]">
+                    <div className="flex items-center justify-between text-xs font-mono text-[#6B7280] dark:text-[#D9CDB8]">
                       <span className="flex items-center gap-1.5">
                         <Clock className="w-3.5 h-3.5 text-slate-400" />
                         <span className="tabular-nums">{course.duration_hours}h • {course.lesson_count} lessons</span>
@@ -177,29 +177,29 @@ export const CoursesPage: React.FC = () => {
                       </span>
                     </div>
                     <Link to={`/courses/${course.id}`} className="block group">
-                      <h2 className="font-display font-bold text-base sm:text-lg text-[#14213A] dark:text-[#F5F8FF] group-hover:text-[#356DFF] dark:group-hover:text-[#35C6BE] transition-colors line-clamp-2 leading-snug">
+                      <h2 className="font-display font-bold text-base sm:text-lg text-[#0F2A44] dark:text-[#FFF7E8] group-hover:text-[#F97316] dark:group-hover:text-[#FB923C] transition-colors line-clamp-2 leading-snug">
                         {bf(course, 'title', lang)}
                       </h2>
                     </Link>
-                    <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] line-clamp-2 leading-relaxed font-sans">
+                    <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8] line-clamp-2 leading-relaxed font-sans">
                       {bf(course, 'description', lang)}
                     </p>
                   </div>
                 </div>
 
                 <div className="p-5 pt-0 space-y-3.5">
-                  <div className="pt-3 border-t border-[#E2E8F2] dark:border-slate-800/80 flex items-center justify-between">
+                  <div className="pt-3 border-t border-[#E0D3AF] dark:border-slate-800/80 flex items-center justify-between">
                     <div>
-                      <span className="font-mono font-bold text-lg sm:text-xl text-[#14213A] dark:text-[#F5F8FF] tabular-nums">
+                      <span className="font-mono font-bold text-lg sm:text-xl text-[#0F2A44] dark:text-[#FFF7E8] tabular-nums">
                         ৳{course.price.toLocaleString()}
                       </span>
                       {course.original_price > course.price && (
-                        <span className="ml-2 text-xs font-mono line-through text-[#5D6B82] dark:text-[#A8B7CE] tabular-nums">
+                        <span className="ml-2 text-xs font-mono line-through text-[#6B7280] dark:text-[#D9CDB8] tabular-nums">
                           ৳{course.original_price.toLocaleString()}
                         </span>
                       )}
                     </div>
-                    <span className="text-xs font-mono text-[#5D6B82] dark:text-[#A8B7CE]">
+                    <span className="text-xs font-mono text-[#6B7280] dark:text-[#D9CDB8]">
                       {course.instructor_name}
                     </span>
                   </div>
@@ -216,8 +216,8 @@ export const CoursesPage: React.FC = () => {
                       onClick={() => toggleCompareCourse(course)}
                       className={`min-h-[44px] min-w-[44px] rounded-xl border flex items-center justify-center tactile-press cursor-pointer transition-colors ${
                         isCompared
-                          ? 'bg-[#356DFF]/15 border-[#356DFF] text-[#356DFF]'
-                          : 'border-[#E2E8F2] dark:border-slate-800 text-[#5D6B82] dark:text-[#A8B7CE] hover:text-[#14213A] dark:hover:text-white'
+                          ? 'bg-[#F97316]/15 border-[#F97316] text-[#F97316]'
+                          : 'border-[#E0D3AF] dark:border-slate-800 text-[#6B7280] dark:text-[#D9CDB8] hover:text-[#0F2A44] dark:hover:text-white'
                       }`}
                       aria-label="Add to course comparison"
                     >
@@ -270,7 +270,7 @@ export const CourseDetailPage: React.FC = () => {
   if (loading || !course) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-        <div className="h-96 rounded-3xl bg-slate-200/70 dark:bg-slate-900/70 animate-pulse" />
+        <div className="h-96 rounded-2xl bg-slate-200/70 dark:bg-slate-900/70 animate-pulse" />
       </div>
     )
   }
@@ -282,11 +282,11 @@ export const CourseDetailPage: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10 pb-28 lg:pb-12 space-y-8">
       {/* Breadcrumb Navigation */}
       <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400">
-        <Link to="/" className="hover:text-sky-500 transition-colors">
+        <Link to="/" className="hover:text-orange-500 transition-colors">
           {lang === 'bn' ? 'হোম' : 'Home'}
         </Link>
         <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-        <Link to="/courses" className="hover:text-sky-500 transition-colors">
+        <Link to="/courses" className="hover:text-orange-500 transition-colors">
           {lang === 'bn' ? 'সকল কোর্স' : 'Courses'}
         </Link>
         <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
@@ -301,7 +301,7 @@ export const CourseDetailPage: React.FC = () => {
           {/* Main Title & Badges */}
           <div className="space-y-4">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="px-3 py-1 rounded-full bg-sky-500/15 text-sky-600 dark:text-sky-400 font-mono text-xs font-semibold border border-sky-500/20">
+              <span className="px-3 py-1 rounded-full bg-orange-500/15 text-orange-600 dark:text-orange-400 font-mono text-xs font-semibold border border-orange-500/20">
                 {bf(course, 'category', lang)}
               </span>
               {course.is_live_course && (
@@ -343,19 +343,19 @@ export const CourseDetailPage: React.FC = () => {
           {/* Key Course Highlights Bento Strip */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
-              { label: lang === 'bn' ? 'লাইভ ক্লাস ও মেন্টরিং' : 'Live Interactive', sub: 'Interactive Zoom', icon: Video, color: 'text-[#356DFF]' },
-              { label: lang === 'bn' ? 'ক্লাউড কোডল্যাব' : 'AST CodeLab', sub: 'Automated XP & AST', icon: Terminal, color: 'text-[#35C6BE]' },
+              { label: lang === 'bn' ? 'লাইভ ক্লাস ও মেন্টরিং' : 'Live Interactive', sub: 'Interactive Zoom', icon: Video, color: 'text-[#F97316]' },
+              { label: lang === 'bn' ? 'ক্লাউড কোডল্যাব' : 'AST CodeLab', sub: 'Automated XP & AST', icon: Terminal, color: 'text-[#F97316]' },
               { label: lang === 'bn' ? 'সরাসরি জব ইন্টারভিউ' : 'Direct Hiring', sub: 'Top BD Tech Firms', icon: Sparkles, color: 'text-amber-500' },
               { label: lang === 'bn' ? '২৪/৭ ডিসকর্ড সাপোর্ট' : 'Discord Eng Hub', sub: 'TA Resolution', icon: MessageSquare, color: 'text-[#86EFAC]' },
             ].map((item, idx) => {
               const Icon = item.icon
               return (
-                <div key={idx} className="p-3.5 rounded-2xl aurora-card space-y-1 bg-white dark:bg-[#0C1528] border border-[#E2E8F2] dark:border-slate-800">
+                <div key={idx} className="p-3.5 rounded-2xl aurora-card space-y-1 bg-[#FBF3DC] dark:bg-[#102A44] border border-[#E0D3AF] dark:border-slate-800">
                   <Icon className={`w-4 h-4 ${item.color}`} />
-                  <div className="font-display font-bold text-xs text-[#14213A] dark:text-[#F5F8FF] leading-tight">
+                  <div className="font-display font-bold text-xs text-[#0F2A44] dark:text-[#FFF7E8] leading-tight">
                     {item.label}
                   </div>
-                  <div className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE]">
+                  <div className="text-[10px] font-mono text-[#6B7280] dark:text-[#D9CDB8]">
                     {item.sub}
                   </div>
                 </div>
@@ -365,18 +365,18 @@ export const CourseDetailPage: React.FC = () => {
 
           {/* Learning Outcomes */}
           {(course.outcomes || []).length > 0 && (
-            <div className="rounded-3xl aurora-card-raised p-6 sm:p-7 space-y-4 bg-white dark:bg-[#0C1528] border border-[#E2E8F2] dark:border-slate-800">
+            <div className="rounded-2xl aurora-card-raised p-6 sm:p-7 space-y-4 bg-[#FBF3DC] dark:bg-[#102A44] border border-[#E0D3AF] dark:border-slate-800">
               <div className="flex items-center justify-between">
-                <h2 className="font-display font-bold text-lg text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-[#35C6BE]" />
+                <h2 className="font-display font-bold text-lg text-[#0F2A44] dark:text-[#FFF7E8] flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-[#F97316]" />
                   <span>{lang === 'bn' ? 'এই কোর্স শেষে আপনি যা তৈরি করতে পারবেন' : 'What you will build'}</span>
                 </h2>
-                <span className="text-[10px] font-mono text-[#35C6BE] font-semibold">Production ready</span>
+                <span className="text-[10px] font-mono text-[#F97316] font-semibold">Production ready</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 {course.outcomes.map((item: string, i: number) => (
-                  <div key={i} className="flex items-start gap-3 p-3 rounded-2xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs sm:text-sm text-[#14213A] dark:text-[#F5F8FF]">
-                    <Check className="w-4 h-4 text-[#35C6BE] shrink-0 mt-0.5" />
+                  <div key={i} className="flex items-start gap-3 p-3 rounded-2xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs sm:text-sm text-[#0F2A44] dark:text-[#FFF7E8]">
+                    <Check className="w-4 h-4 text-[#F97316] shrink-0 mt-0.5" />
                     <span className="leading-snug">{item}</span>
                   </div>
                 ))}
@@ -388,10 +388,10 @@ export const CourseDetailPage: React.FC = () => {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF]">
+                <h2 className="font-display font-bold text-xl text-[#0F2A44] dark:text-[#FFF7E8]">
                   {lang === 'bn' ? 'কোর্স কারিকুলাম ও মডিউল' : 'Structured Course Curriculum'}
                 </h2>
-                <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] mt-0.5">
+                <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8] mt-0.5">
                   {(course.modules || []).length} Modules • {course.lesson_count || 32} Lessons • Sequential Mastery Unlocked
                 </p>
               </div>
@@ -405,7 +405,7 @@ export const CourseDetailPage: React.FC = () => {
                   }
                   setExpandedModules(nextState)
                 }}
-                className="text-xs font-mono text-[#356DFF] dark:text-[#35C6BE] hover:underline font-semibold cursor-pointer"
+                className="text-xs font-mono text-[#F97316] dark:text-[#F97316] hover:underline font-semibold cursor-pointer"
               >
                 {course.modules?.every((m: any) => expandedModules[m.id])
                   ? (lang === 'bn' ? 'সব গুটিয়ে নিন' : 'Collapse All')
@@ -415,8 +415,8 @@ export const CourseDetailPage: React.FC = () => {
 
             {/* Free Video Preview Modal / Player */}
             {previewVideoId && (
-              <div className="rounded-3xl overflow-hidden border border-[#356DFF]/50 bg-[#060B18] shadow-2xl">
-                <div className="px-5 py-3 flex items-center justify-between bg-[#0C1528] text-xs font-mono text-[#35C6BE] border-b border-slate-800">
+              <div className="rounded-2xl overflow-hidden border border-[#F97316]/50 bg-[#0A1E33] shadow-md">
+                <div className="px-5 py-3 flex items-center justify-between bg-[#102A44] text-xs font-mono text-[#F97316] border-b border-slate-800">
                   <span className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                     <span>Lesson preview</span>
@@ -449,49 +449,49 @@ export const CourseDetailPage: React.FC = () => {
                 return (
                   <div
                     key={mod.id}
-                    className="rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] overflow-hidden transition-all shadow-xs"
+                    className="rounded-2xl border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] overflow-hidden transition-all shadow-xs"
                   >
                     <button
                       type="button"
                       onClick={() => toggleModule(mod.id)}
-                      className="w-full px-5 py-4 bg-[#F5F7FB]/70 dark:bg-[#111F36]/60 hover:bg-[#F5F7FB] dark:hover:bg-[#111F36] transition-colors flex items-center justify-between text-left cursor-pointer"
+                      className="w-full px-5 py-4 bg-[#E9D9B4]/70 dark:bg-[#16324F]/60 hover:bg-[#E9D9B4] dark:hover:bg-[#16324F] transition-colors flex items-center justify-between text-left cursor-pointer"
                     >
                       <div className="flex items-center gap-3 min-w-0">
-                        <span className="w-7 h-7 rounded-lg aurora-pill-blue font-mono text-xs font-bold flex items-center justify-center shrink-0">
+                        <span className="w-7 h-7 rounded-lg aurora-pill-accent font-mono text-xs font-bold flex items-center justify-center shrink-0">
                           {modIdx + 1}
                         </span>
                         <div className="min-w-0">
-                          <h3 className="font-display font-bold text-sm text-[#14213A] dark:text-[#F5F8FF] truncate">
+                          <h3 className="font-display font-bold text-sm text-[#0F2A44] dark:text-[#FFF7E8] truncate">
                             {bf(mod, 'title', lang)}
                           </h3>
-                          <span className="text-[11px] font-mono text-[#5D6B82] dark:text-[#A8B7CE]">
+                          <span className="text-[11px] font-mono text-[#6B7280] dark:text-[#D9CDB8]">
                             {lessonCount} Lessons
                           </span>
                         </div>
                       </div>
                       <div className="flex items-center gap-2 shrink-0">
                         {isOpen ? (
-                          <ChevronUp className="w-4 h-4 text-[#5D6B82] dark:text-[#A8B7CE]" />
+                          <ChevronUp className="w-4 h-4 text-[#6B7280] dark:text-[#D9CDB8]" />
                         ) : (
-                          <ChevronDown className="w-4 h-4 text-[#5D6B82] dark:text-[#A8B7CE]" />
+                          <ChevronDown className="w-4 h-4 text-[#6B7280] dark:text-[#D9CDB8]" />
                         )}
                       </div>
                     </button>
 
                     {isOpen && (
-                      <div className="divide-y divide-[#E2E8F2] dark:divide-slate-800/70 border-t border-[#E2E8F2] dark:border-slate-800">
+                      <div className="divide-y divide-[#E0D3AF] dark:divide-slate-800/70 border-t border-[#E0D3AF] dark:border-slate-800">
                         {(mod.lessons || []).map((les: any) => (
                           <div
                             key={les.id}
-                            className="px-5 py-3.5 flex items-center justify-between gap-3 text-sm hover:bg-[#F5F7FB]/50 dark:hover:bg-slate-900/40 transition-colors"
+                            className="px-5 py-3.5 flex items-center justify-between gap-3 text-sm hover:bg-[#E9D9B4]/50 dark:hover:bg-slate-900/40 transition-colors"
                           >
                             <div className="flex items-center gap-3 min-w-0">
                               {les.is_free_preview ? (
-                                <Play className="w-4 h-4 text-[#356DFF] shrink-0" />
+                                <Play className="w-4 h-4 text-[#F97316] shrink-0" />
                               ) : (
                                 <Lock className="w-4 h-4 text-slate-400 shrink-0" />
                               )}
-                              <span className="text-[#14213A] dark:text-[#F5F8FF] font-medium text-xs sm:text-sm truncate">
+                              <span className="text-[#0F2A44] dark:text-[#FFF7E8] font-medium text-xs sm:text-sm truncate">
                                 {bf(les, 'title', lang)}
                               </span>
                             </div>
@@ -500,12 +500,12 @@ export const CourseDetailPage: React.FC = () => {
                                 <button
                                   type="button"
                                   onClick={() => setPreviewVideoId(les.preview_video_id)}
-                                  className="px-2.5 py-1 rounded-lg aurora-pill-blue text-xs font-mono font-semibold cursor-pointer transition-colors"
+                                  className="px-2.5 py-1 rounded-lg aurora-pill-accent text-xs font-mono font-semibold cursor-pointer transition-colors"
                                 >
                                   {lang === 'bn' ? 'ফ্রি প্রিভিউ' : 'Free Preview'}
                                 </button>
                               )}
-                              <span className="text-xs font-mono text-[#5D6B82] dark:text-[#A8B7CE]">{les.duration_minutes}m</span>
+                              <span className="text-xs font-mono text-[#6B7280] dark:text-[#D9CDB8]">{les.duration_minutes}m</span>
                             </div>
                           </div>
                         ))}
@@ -518,30 +518,30 @@ export const CourseDetailPage: React.FC = () => {
           </div>
 
           {/* Instructor Spotlight Card */}
-          <div className="aurora-card-raised rounded-3xl p-6 sm:p-7 space-y-4 bg-white dark:bg-[#0C1528] border border-[#E2E8F2] dark:border-slate-800">
+          <div className="aurora-card-raised rounded-2xl p-6 sm:p-7 space-y-4 bg-[#FBF3DC] dark:bg-[#102A44] border border-[#E0D3AF] dark:border-slate-800">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-mono uppercase tracking-wider text-[#356DFF] font-bold">
+              <span className="text-xs font-mono uppercase tracking-wider text-[#F97316] font-bold">
                 Lead Instructor
               </span>
-              <span className="px-2.5 py-0.5 rounded-full aurora-pill-teal text-[11px] font-mono font-semibold">
+              <span className="px-2.5 py-0.5 rounded-full aurora-pill-accent text-[11px] font-mono font-semibold">
                 Verified Mentor
               </span>
             </div>
 
             <div className="flex flex-col sm:flex-row sm:items-center gap-5">
-              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#356DFF] to-[#35C6BE] p-0.5 shadow-lg shrink-0">
-                <div className="w-full h-full rounded-[14px] bg-[#060B18] flex items-center justify-center text-white font-display font-extrabold text-2xl">
+              <div className="w-20 h-20 rounded-2xl bg-[#F97316] p-0.5 shadow-lg shrink-0">
+                <div className="w-full h-full rounded-[14px] bg-[#0A1E33] flex items-center justify-center text-white font-display font-extrabold text-2xl">
                   MA
                 </div>
               </div>
               <div className="space-y-1">
-                <h3 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF]">
+                <h3 className="font-display font-bold text-xl text-[#0F2A44] dark:text-[#FFF7E8]">
                   {course.instructor_name}
                 </h3>
-                <p className="text-xs font-mono text-[#356DFF] dark:text-[#35C6BE] font-semibold">
+                <p className="text-xs font-mono text-[#F97316] dark:text-[#F97316] font-semibold">
                   Principal Cloud & Software Architect • Ex-Lead Engineer
                 </p>
-                <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] leading-relaxed font-sans pt-1">
+                <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8] leading-relaxed font-sans pt-1">
                   {lang === 'bn'
                     ? '১০+ বছরের ইন্ডাস্ট্রিয়াল এক্সপেরিয়েন্স সম্পন্ন সিনিয়র সফটওয়্যার আর্কিটেক্ট। ১৫,০০০+ শিক্ষার্থীদের ক্যারিয়ার গাইডেন্স ও মেন্টরিং প্রদান করেছেন।'
                     : '10+ years architecting mission-critical distributed systems. Passionate about empowering the next generation of top 1% software engineers.'}
@@ -553,16 +553,16 @@ export const CourseDetailPage: React.FC = () => {
 
         {/* Right 5 Columns: Elevated Sticky Enrollment & Delivery Variant Selector */}
         <div className="lg:col-span-5 lg:sticky lg:top-24 space-y-4">
-          <div className="aurora-card-raised rounded-3xl p-6 shadow-xl space-y-6 bg-white dark:bg-[#0C1528] border border-[#E2E8F2] dark:border-slate-800">
+          <div className="aurora-card-raised rounded-2xl p-6 shadow-sm space-y-6 bg-[#FBF3DC] dark:bg-[#102A44] border border-[#E0D3AF] dark:border-slate-800">
             {/* Aspect Video Thumbnail with Ambient Border */}
-            <div className="aspect-video rounded-2xl overflow-hidden bg-[#060B18] border border-[#E2E8F2] dark:border-slate-800 shadow-md relative group">
+            <div className="aspect-video rounded-2xl overflow-hidden bg-[#0A1E33] border border-[#E0D3AF] dark:border-slate-800 shadow-md relative group">
               <img
                 src={course.thumbnail_url}
                 alt={bf(course, 'title', lang)}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#060B18]/80 via-transparent to-transparent flex items-end p-4">
-                <span className="text-xs font-mono text-[#F5F8FF] flex items-center gap-1.5">
+              <div className="absolute inset-0 bg-black/40 flex items-end p-4">
+                <span className="text-xs font-mono text-[#FFF7E8] flex items-center gap-1.5">
                   <Play className="w-3.5 h-3.5 text-white fill-current" />
                   Full curriculum unlocked on enrollment
                 </span>
@@ -573,22 +573,22 @@ export const CourseDetailPage: React.FC = () => {
             <div className="space-y-1">
               <div className="flex items-baseline justify-between">
                 <div>
-                  <span className="font-mono font-bold text-3xl sm:text-4xl text-[#14213A] dark:text-[#F5F8FF] tabular-nums">
+                  <span className="font-mono font-bold text-3xl sm:text-4xl text-[#0F2A44] dark:text-[#FFF7E8] tabular-nums">
                     ৳{activePrice.toLocaleString()}
                   </span>
                   {course.original_price > activePrice && (
-                    <span className="ml-2.5 font-mono text-sm line-through text-[#5D6B82] dark:text-[#A8B7CE] tabular-nums">
+                    <span className="ml-2.5 font-mono text-sm line-through text-[#6B7280] dark:text-[#D9CDB8] tabular-nums">
                       ৳{course.original_price.toLocaleString()}
                     </span>
                   )}
                 </div>
                 {savings > 0 && (
-                  <span className="px-2.5 py-1 rounded-lg aurora-pill-teal font-mono text-xs font-medium tabular-nums">
+                  <span className="px-2.5 py-1 rounded-lg aurora-pill-accent font-mono text-xs font-medium tabular-nums">
                     Save ৳{savings.toLocaleString()}
                   </span>
                 )}
               </div>
-              <p className="text-[11px] font-mono text-[#5D6B82] dark:text-[#A8B7CE]">
+              <p className="text-[11px] font-mono text-[#6B7280] dark:text-[#D9CDB8]">
                 Inclusive of all taxes & lifetime access
               </p>
             </div>
@@ -596,7 +596,7 @@ export const CourseDetailPage: React.FC = () => {
             {/* Hybrid Delivery Variant Selector (Recorded / Live / 1-on-1) */}
             {(course.variants || []).length > 0 && (
               <div className="space-y-2.5">
-                <label className="block text-xs font-mono text-[#5D6B82] dark:text-[#A8B7CE] font-semibold">
+                <label className="block text-xs font-mono text-[#6B7280] dark:text-[#D9CDB8] font-semibold">
                   {lang === 'bn' ? 'কোর্স ডেলিভারি ফরম্যাট নির্বাচন করুন:' : 'Select delivery format:'}
                 </label>
                 <div className="space-y-2">
@@ -609,24 +609,24 @@ export const CourseDetailPage: React.FC = () => {
                         onClick={() => setSelectedVariant(v)}
                         className={`w-full p-3.5 rounded-2xl border text-left transition-all cursor-pointer flex items-center justify-between gap-3 tactile-press ${
                           active
-                            ? 'border-[#356DFF] bg-[#356DFF]/10 ring-1 ring-[#356DFF]/30 dark:border-[#35C6BE] dark:bg-[#35C6BE]/10 dark:ring-[#35C6BE]/30 shadow-sm'
-                            : 'border-[#E2E8F2] dark:border-slate-800 bg-[#F5F7FB]/70 dark:bg-[#111F36]/60 hover:border-[#356DFF]'
+                            ? 'border-[#F97316] bg-[#F97316]/10 ring-1 ring-[#F97316]/30 dark:border-[#FB923C] dark:bg-[#F97316]/10 dark:ring-[#F97316]/30 shadow-sm'
+                            : 'border-[#E0D3AF] dark:border-slate-800 bg-[#E9D9B4]/70 dark:bg-[#16324F]/60 hover:border-[#F97316]'
                         }`}
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
-                          <div className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ${active ? 'border-[#356DFF] bg-[#356DFF] dark:border-[#35C6BE] dark:bg-[#35C6BE]' : 'border-slate-400'}`}>
-                            {active && <span className="w-1.5 h-1.5 rounded-full bg-white dark:bg-[#060B18]" />}
+                          <div className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ${active ? 'border-[#F97316] bg-[#F97316] dark:border-[#FB923C] dark:bg-[#F97316]' : 'border-slate-400'}`}>
+                            {active && <span className="w-1.5 h-1.5 rounded-full bg-[#FBF3DC] dark:bg-[#0A1E33]" />}
                           </div>
                           <div className="min-w-0">
-                            <div className="font-semibold text-xs sm:text-sm text-[#14213A] dark:text-[#F5F8FF] truncate">
+                            <div className="font-semibold text-xs sm:text-sm text-[#0F2A44] dark:text-[#FFF7E8] truncate">
                               {bf(v, 'variant_type', lang)}
                             </div>
-                            <div className="text-[11px] text-[#5D6B82] dark:text-[#A8B7CE] truncate">
+                            <div className="text-[11px] text-[#6B7280] dark:text-[#D9CDB8] truncate">
                               {v.description}
                             </div>
                           </div>
                         </div>
-                        <span className="font-mono font-bold text-sm text-[#14213A] dark:text-[#F5F8FF] shrink-0">
+                        <span className="font-mono font-bold text-sm text-[#0F2A44] dark:text-[#FFF7E8] shrink-0">
                           ৳{v.price.toLocaleString()}
                         </span>
                       </button>
@@ -666,7 +666,7 @@ export const CourseDetailPage: React.FC = () => {
             </div>
 
             {/* Included Value Features */}
-            <div className="space-y-2.5 pt-4 border-t border-[#E2E8F2] dark:border-slate-800">
+            <div className="space-y-2.5 pt-4 border-t border-[#E0D3AF] dark:border-slate-800">
               {(course.features || [
                 'Full Lifetime Curriculum Access',
                 'Interactive Cloud CodeLab with XP Rewards',
@@ -674,18 +674,18 @@ export const CourseDetailPage: React.FC = () => {
                 'Verified Digital Certificate with QR Hash',
                 'Direct Employer Job Placement Pipeline',
               ]).map((f: string, idx: number) => (
-                <div key={idx} className="flex items-center gap-2.5 text-xs text-[#5D6B82] dark:text-[#A8B7CE]">
-                  <ShieldCheck className="w-4 h-4 text-[#35C6BE] shrink-0" />
+                <div key={idx} className="flex items-center gap-2.5 text-xs text-[#6B7280] dark:text-[#D9CDB8]">
+                  <ShieldCheck className="w-4 h-4 text-[#F97316] shrink-0" />
                   <span>{f}</span>
                 </div>
               ))}
             </div>
 
             {/* Money-Back Guarantee Seal */}
-            <div className="p-3.5 rounded-2xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 flex items-center gap-3">
+            <div className="p-3.5 rounded-2xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 flex items-center gap-3">
               <Award className="w-6 h-6 text-amber-500 shrink-0" />
-              <div className="text-[11px] leading-tight text-[#5D6B82] dark:text-[#A8B7CE]">
-                <span className="font-bold text-[#14213A] dark:text-[#F5F8FF] block">
+              <div className="text-[11px] leading-tight text-[#6B7280] dark:text-[#D9CDB8]">
+                <span className="font-bold text-[#0F2A44] dark:text-[#FFF7E8] block">
                   {lang === 'bn' ? '১০০% সন্তুষ্টি গ্যারান্টি' : '100% Satisfaction Guarantee'}
                 </span>
                 {lang === 'bn' ? 'প্রথম ৭ দিনের মধ্যে কোনো প্রশ্ন ছাড়াই রিফান্ড পলিসি।' : '7-day no-questions-asked refund policy if not satisfied.'}
@@ -696,17 +696,17 @@ export const CourseDetailPage: React.FC = () => {
       </div>
 
       {/* Floating Mobile Enrollment Action Bar (< 1024px) */}
-      <div className="lg:hidden fixed bottom-16 sm:bottom-18 inset-x-2.5 sm:inset-x-6 z-30 bg-white/95 dark:bg-[#0C1528]/95 backdrop-blur-md rounded-2xl px-4 py-2.5 shadow-2xl border border-[#E2E8F2] dark:border-slate-800/90 flex items-center justify-between gap-3">
+      <div className="lg:hidden fixed bottom-16 sm:bottom-18 inset-x-2.5 sm:inset-x-6 z-30 bg-[#FBF3DC]/95 dark:bg-[#102A44]/95 backdrop-blur-md rounded-2xl px-4 py-2.5 shadow-md border border-[#E0D3AF] dark:border-slate-800/90 flex items-center justify-between gap-3">
         <div className="min-w-0">
-          <div className="text-[10px] font-mono uppercase tracking-wider text-[#5D6B82] dark:text-[#A8B7CE] truncate">
+          <div className="text-[10px] font-mono uppercase tracking-wider text-[#6B7280] dark:text-[#D9CDB8] truncate">
             {selectedVariant ? bf(selectedVariant, 'variant_type', lang) : lang === 'bn' ? 'কোর্স ফি' : 'Tuition Fee'}
           </div>
           <div className="flex items-baseline gap-1.5">
-            <span className="font-mono font-bold text-xl text-[#14213A] dark:text-[#F5F8FF]">
+            <span className="font-mono font-bold text-xl text-[#0F2A44] dark:text-[#FFF7E8]">
               ৳{activePrice.toLocaleString()}
             </span>
             {course.original_price > activePrice && (
-              <span className="text-xs font-mono line-through text-[#5D6B82] dark:text-[#A8B7CE]">
+              <span className="text-xs font-mono line-through text-[#6B7280] dark:text-[#D9CDB8]">
                 ৳{course.original_price.toLocaleString()}
               </span>
             )}
