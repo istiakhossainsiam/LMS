@@ -14,7 +14,7 @@ from app.core.security import sanitize_plain_text, sanitize_rich_html
 from app.models.billing import GiftCode, Payment, PromoCode, TrainerPayout
 from app.models.content_and_store import BlogPost, FlashSale, StoreOrder, StoreProduct
 from app.models.courses import Certificate, Course, CourseBundle
-from app.models.lessons import LessonReport
+from app.models.lessons import Lesson, LessonReport, Module, Question
 from app.models.users import Enrollment, Notification, Profile, User
 from app.services.seed_and_migrate import import_from_legacy_sqlite
 
@@ -1009,5 +1009,176 @@ async def delete_admin_coupon(
     await db.delete(promo)
     await db.commit()
     return {"success": True, "message": f"Coupon {promo.code} deleted."}
+
+
+# ==========================================
+# 1. LIVE NOTIFICATIONS & SYSTEM FEED (PARITY)
+# ==========================================
+class BroadcastNotificationRequest(BaseModel):
+    title: str = Field(..., min_length=2, max_length=200)
+    message: str = Field(..., min_length=5, max_length=1000)
+    target_role: str = Field(default="all", pattern="^(all|students|trainers|staff)$")
+
+
+@router.get("/notifications")
+async def get_admin_notifications(
+    admin: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Returns real-time system activity feeds and broadcast notices
+    matching the live reference LMS notifications engine.
+    """
+    recent_notifs = (
+        await db.execute(select(Notification).order_by(desc(Notification.created_at)).limit(30))
+    ).scalars().all()
+
+    # Also synthesize activity log from recent payments & enrollments
+    recent_payments = (
+        await db.execute(select(Payment).order_by(desc(Payment.created_at)).limit(10))
+    ).scalars().all()
+
+    activity_feed = [
+        {
+            "id": f"pay-{p.id}",
+            "type": "payment",
+            "title": f"Course Payment: {p.item_title}",
+            "description": f"User {p.user_name} submitted ৳{p.amount:,.0f} via {p.method} (TrxID: {p.transaction_id}). Status: {p.status}.",
+            "time": p.created_at.isoformat() if p.created_at else "",
+            "status": p.status,
+        }
+        for p in recent_payments
+    ]
+
+    for n in recent_notifs:
+        activity_feed.append({
+            "id": f"notif-{n.id}",
+            "type": "broadcast",
+            "title": n.title,
+            "description": n.message,
+            "time": n.created_at.isoformat() if n.created_at else "",
+            "is_read": n.is_read,
+        })
+
+    return {
+        "count": len(activity_feed),
+        "activities": activity_feed[:25],
+    }
+
+
+@router.post("/notifications/broadcast", status_code=status.HTTP_201_CREATED)
+async def broadcast_admin_notification(
+    payload: BroadcastNotificationRequest,
+    admin: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db),
+):
+    users = (await db.execute(select(User).where(User.is_active == True))).scalars().all()
+    count = 0
+    for u in users:
+        db.add(Notification(user_id=u.id, title=payload.title, message=payload.message))
+        count += 1
+    await db.commit()
+    return {"success": True, "sent_count": count, "message": f"Broadcast delivered to {count} active users."}
+
+
+# ==========================================
+# 2. QUESTION BANK & ASSESSMENT ENGINE (PARITY)
+# ==========================================
+class QuestionBankCreateRequest(BaseModel):
+    lesson_id: int = Field(..., ge=1)
+    text: str = Field(..., min_length=5)
+    text_bn: str = Field(default="")
+    question_type: str = Field(default="MCQ", pattern="^(MCQ|Short)$")
+    options: list[str] = Field(default=["Option A", "Option B", "Option C", "Option D"])
+    correct_answer: str = Field(..., min_length=1)
+
+
+@router.get("/question-bank")
+async def get_admin_question_bank(
+    admin: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db),
+):
+    questions = (await db.execute(select(Question).order_by(desc(Question.id)))).scalars().all()
+    courses = (await db.execute(select(Course).options(selectinload(Course.modules)).order_by(Course.id))).scalars().all()
+
+    return {
+        "total_questions": len(questions),
+        "questions": [
+            {
+                "id": q.id,
+                "lesson_id": q.lesson_id,
+                "text": q.text,
+                "text_bn": q.text_bn,
+                "question_type": q.question_type,
+                "options": json.loads(q.options_json) if hasattr(q, "options_json") and q.options_json else ["Option A", "Option B", "Option C", "Option D"],
+                "correct_answer": q.correct_answer,
+            }
+            for q in questions
+        ],
+        "courses_summary": [
+            {"id": c.id, "title": c.title, "category": c.category, "module_count": len(c.modules)}
+            for c in courses
+        ],
+    }
+
+
+@router.post("/question-bank/create", status_code=status.HTTP_201_CREATED)
+async def create_admin_question(
+    payload: QuestionBankCreateRequest,
+    admin: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db),
+):
+    lesson = (await db.execute(select(Lesson).where(Lesson.id == payload.lesson_id))).scalar_one_or_none()
+    if not lesson:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Lesson not found.")
+
+    q = Question(
+        lesson_id=lesson.id,
+        text=payload.text,
+        text_bn=payload.text_bn or payload.text,
+        question_type=payload.question_type,
+        options_json=json.dumps(payload.options),
+        correct_answer=payload.correct_answer,
+    )
+    db.add(q)
+    await db.commit()
+    await db.refresh(q)
+    return {"id": q.id, "text": q.text, "question_type": q.question_type, "message": "Question added to Question Bank."}
+
+
+# ==========================================
+# 3. ACADEMY SETTINGS & GATEWAYS STUDIO (PARITY)
+# ==========================================
+_settings_store = {
+    "site_title": "TrainingPundit Autonomous Academy",
+    "support_email": "support@trainingpundit.com",
+    "support_phone": "+880 1712-345678",
+    "trade_license": "TRAD/DNCC/001332/2026",
+    "address": "HM Plaza, Sector 11, Uttara, Dhaka-1230, Bangladesh",
+    "bkash_merchant_number": "017XXXXXXXX",
+    "nagad_merchant_number": "018XXXXXXXX",
+    "ip_blocking_enabled": True,
+    "max_concurrent_sessions": 1,
+    "smtp_server": "smtp.trainingpundit.com",
+    "smtp_port": 587,
+    "seo_keywords": "software engineering, cloud computing, python, react, bangladesh lms, trainingpundit",
+}
+
+
+@router.get("/settings")
+async def get_admin_settings(admin: User = Depends(require_admin)):
+    return _settings_store
+
+
+@router.post("/settings")
+async def update_admin_settings(
+    payload: dict,
+    admin: User = Depends(require_admin),
+):
+    for k, v in payload.items():
+        if k in _settings_store:
+            _settings_store[k] = v
+    return {"success": True, "settings": _settings_store, "message": "Academy settings updated."}
+
 
 

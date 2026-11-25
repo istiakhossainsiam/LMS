@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   Award,
+  Bell,
   BookOpen,
   Check,
   CheckCircle2,
@@ -11,17 +12,21 @@ import {
   Database,
   DollarSign,
   ExternalLink,
+  FileText,
   Filter,
   FolderGit2,
   GraduationCap,
   HelpCircle,
+  Layers,
   Lock,
   Plus,
   Printer,
+  Radio,
   Receipt,
   RefreshCw,
   Search,
   Send,
+  Settings,
   ShieldAlert,
   ShieldCheck,
   ShoppingBag,
@@ -30,6 +35,7 @@ import {
   Trash2,
   TrendingUp,
   Unlock,
+  UploadCloud,
   UserCheck,
   UserPlus,
   Users,
@@ -426,12 +432,73 @@ export const AdminConsolePage: React.FC = () => {
 
   // Primary navigation tab
   const [activeTab, setActiveTab] = useState<
-    'overview' | 'pos' | 'coupons' | 'enrollments' | 'users' | 'certificates' | 'trainers' | 'payouts' | 'payments' | 'ai_sync'
+    | 'overview'
+    | 'courses'
+    | 'question_bank'
+    | 'notifications'
+    | 'settings'
+    | 'pos'
+    | 'coupons'
+    | 'enrollments'
+    | 'users'
+    | 'certificates'
+    | 'trainers'
+    | 'payouts'
+    | 'payments'
+    | 'ai_sync'
   >('overview')
 
   // Global & tab-specific states
   const [data, setData] = useState<any>(null)
   const [loading, setLoading] = useState(true)
+
+  // Courses Filter & Management State
+  const [courseFilter, setCourseFilter] = useState<'all' | 'published' | 'draft'>('all')
+  const [courseSearch, setCourseSearch] = useState('')
+
+  // Notifications & Live Feed State
+  const [notifsData, setNotifsData] = useState<any>({ recent_notifications: [], activity_feed: [] })
+  const [loadingNotifs, setLoadingNotifs] = useState(false)
+  const [broadcastForm, setBroadcastForm] = useState({ title: '', message: '', target_role: 'all' })
+  const [submittingBroadcast, setSubmittingBroadcast] = useState(false)
+
+  // Question Bank State
+  const [questionBankData, setQuestionBankData] = useState<any>({ total_questions: 0, questions: [], available_courses: [] })
+  const [loadingQuestions, setLoadingQuestions] = useState(false)
+  const [qbSearch, setQbSearch] = useState('')
+  const [qbFilterType, setQbFilterType] = useState('all')
+  const [isAddQuestionModalOpen, setIsAddQuestionModalOpen] = useState(false)
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false)
+  const [questionForm, setQuestionForm] = useState({
+    lesson_id: 1,
+    text: '',
+    question_type: 'MCQ',
+    optA: '',
+    optB: '',
+    optC: '',
+    optD: '',
+    correct_answer: 'A',
+  })
+  const [submittingQuestion, setSubmittingQuestion] = useState(false)
+  const [importCsvText, setImportCsvText] = useState('')
+
+  // Academy Settings & Gateway State
+  const [settingsData, setSettingsData] = useState<any>({
+    site_title: 'TrainingPundit Autonomous Academy',
+    support_email: 'support@trainingpundit.com',
+    support_phone: '+880 1712-345678',
+    trade_license: 'TRAD/DNCC/001332/2026',
+    address: 'HM Plaza, Sector 11, Uttara, Dhaka-1230, Bangladesh',
+    bkash_merchant_number: '017XXXXXXXX',
+    nagad_merchant_number: '018XXXXXXXX',
+    ip_blocking_enabled: true,
+    max_concurrent_sessions: 1,
+    smtp_server: 'smtp.trainingpundit.com',
+    smtp_port: 587,
+    seo_keywords: 'software engineering, cloud computing, python, react, bangladesh lms, trainingpundit',
+  })
+  const [loadingSettings, setLoadingSettings] = useState(false)
+  const [savingSettings, setSavingSettings] = useState(false)
 
   // POS System State
   const [posForm, setPosForm] = useState({
@@ -580,6 +647,48 @@ export const AdminConsolePage: React.FC = () => {
     }
   }
 
+  // Load Notifications Tab
+  const loadNotifications = async () => {
+    setLoadingNotifs(true)
+    try {
+      const res = await apiFetch('/admin/notifications')
+      setNotifsData(res)
+    } catch (err: any) {
+      showToast(err.message, 'error')
+    } finally {
+      setLoadingNotifs(false)
+    }
+  }
+
+  // Load Question Bank Tab
+  const loadQuestionBank = async () => {
+    setLoadingQuestions(true)
+    try {
+      const res = await apiFetch('/admin/question-bank')
+      setQuestionBankData(res)
+      if (res.available_courses?.length > 0 && res.available_courses[0].lessons?.length > 0) {
+        setQuestionForm((prev) => ({ ...prev, lesson_id: res.available_courses[0].lessons[0].id }))
+      }
+    } catch (err: any) {
+      showToast(err.message, 'error')
+    } finally {
+      setLoadingQuestions(false)
+    }
+  }
+
+  // Load Settings Tab
+  const loadSettings = async () => {
+    setLoadingSettings(true)
+    try {
+      const res = await apiFetch('/admin/settings')
+      setSettingsData(res)
+    } catch (err: any) {
+      showToast(err.message, 'error')
+    } finally {
+      setLoadingSettings(false)
+    }
+  }
+
   useEffect(() => {
     loadAdmin()
   }, [])
@@ -591,9 +700,113 @@ export const AdminConsolePage: React.FC = () => {
     else if (activeTab === 'trainers') loadTrainers()
     else if (activeTab === 'payouts') loadPayouts()
     else if (activeTab === 'coupons') loadCoupons()
+    else if (activeTab === 'notifications') loadNotifications()
+    else if (activeTab === 'question_bank') loadQuestionBank()
+    else if (activeTab === 'settings') loadSettings()
   }, [activeTab])
 
   // --- Handlers ---
+  const handleBroadcast = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmittingBroadcast(true)
+    try {
+      const res = await apiFetch('/admin/notifications/broadcast', {
+        method: 'POST',
+        body: JSON.stringify(broadcastForm),
+      })
+      showToast(res.message || 'Broadcast announcement delivered!', 'success')
+      setBroadcastForm({ title: '', message: '', target_role: 'all' })
+      loadNotifications()
+    } catch (err: any) {
+      showToast(err.message, 'error')
+    } finally {
+      setSubmittingBroadcast(false)
+    }
+  }
+
+  const handleCreateQuestion = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmittingQuestion(true)
+    try {
+      const options =
+        questionForm.question_type === 'MCQ'
+          ? [questionForm.optA, questionForm.optB, questionForm.optC, questionForm.optD].filter(Boolean)
+          : undefined
+      await apiFetch('/admin/question-bank/create', {
+        method: 'POST',
+        body: JSON.stringify({
+          lesson_id: Number(questionForm.lesson_id),
+          text: questionForm.text,
+          question_type: questionForm.question_type,
+          options,
+          correct_answer: questionForm.correct_answer,
+        }),
+      })
+      showToast('Question added to Question Bank!', 'success')
+      setIsAddQuestionModalOpen(false)
+      setQuestionForm({
+        lesson_id: questionForm.lesson_id,
+        text: '',
+        question_type: 'MCQ',
+        optA: '',
+        optB: '',
+        optC: '',
+        optD: '',
+        correct_answer: 'A',
+      })
+      loadQuestionBank()
+    } catch (err: any) {
+      showToast(err.message, 'error')
+    } finally {
+      setSubmittingQuestion(false)
+    }
+  }
+
+  const handleImportQuestions = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!importCsvText.trim()) return
+    const lines = importCsvText.trim().split('\n')
+    let imported = 0
+    for (const line of lines) {
+      const parts = line.split(',').map((p) => p.trim())
+      if (parts.length >= 3) {
+        try {
+          await apiFetch('/admin/question-bank/create', {
+            method: 'POST',
+            body: JSON.stringify({
+              lesson_id: Number(questionForm.lesson_id) || 1,
+              text: parts[0],
+              question_type: 'MCQ',
+              options: parts.slice(1, -1),
+              correct_answer: parts[parts.length - 1],
+            }),
+          })
+          imported++
+        } catch {}
+      }
+    }
+    showToast(`Successfully imported ${imported} questions into Question Bank!`, 'success')
+    setIsImportModalOpen(false)
+    setImportCsvText('')
+    loadQuestionBank()
+  }
+
+  const handleSaveSettings = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSavingSettings(true)
+    try {
+      const res = await apiFetch('/admin/settings', {
+        method: 'POST',
+        body: JSON.stringify(settingsData),
+      })
+      showToast(res.message || 'Settings saved successfully!', 'success')
+      setSettingsData(res.settings)
+    } catch (err: any) {
+      showToast(err.message, 'error')
+    } finally {
+      setSavingSettings(false)
+    }
+  }
   const handlePosCheckout = async (e: React.FormEvent) => {
     e.preventDefault()
     setSubmittingPos(true)
@@ -888,7 +1101,21 @@ export const AdminConsolePage: React.FC = () => {
       c.course_name?.toLowerCase().includes(certSearch.toLowerCase())
   )
 
-  type AdminTabId = 'overview' | 'pos' | 'coupons' | 'enrollments' | 'users' | 'certificates' | 'trainers' | 'payouts' | 'payments' | 'ai_sync'
+  type AdminTabId =
+    | 'overview'
+    | 'courses'
+    | 'question_bank'
+    | 'notifications'
+    | 'settings'
+    | 'pos'
+    | 'coupons'
+    | 'enrollments'
+    | 'users'
+    | 'certificates'
+    | 'trainers'
+    | 'payouts'
+    | 'payments'
+    | 'ai_sync'
 
   interface AdminTabItem {
     id: AdminTabId
@@ -899,6 +1126,10 @@ export const AdminConsolePage: React.FC = () => {
 
   const tabs: AdminTabItem[] = [
     { id: 'overview', label: 'Overview', icon: TrendingUp },
+    { id: 'courses', label: 'Courses & Tracks', icon: Layers, badge: data.courses?.length || undefined },
+    { id: 'question_bank', label: 'Question Bank', icon: HelpCircle, badge: questionBankData.total_questions || undefined },
+    { id: 'notifications', label: 'Notifications', icon: Bell, badge: notifsData.recent_notifications?.length || undefined },
+    { id: 'settings', label: 'Settings & MFS', icon: Settings },
     { id: 'pos', label: 'POS Counter', icon: ShoppingBag },
     { id: 'coupons', label: 'Coupons', icon: Tag, badge: coupons.length || undefined },
     { id: 'enrollments', label: 'Enrollments', icon: GraduationCap, badge: enrollments.length || undefined },
@@ -1226,6 +1457,560 @@ export const AdminConsolePage: React.FC = () => {
                 </div>
               </div>
             </div>
+          </div>
+        )}
+
+        {/* ----------------- TAB: COURSES CATALOG & TRACKS ----------------- */}
+        {activeTab === 'courses' && (
+          <div className="space-y-6 animate-fadeIn">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <h2 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
+                  <Layers className="w-5 h-5 text-[#356DFF]" />
+                  <span>Course Catalog & Curriculum Architect</span>
+                </h2>
+                <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] mt-0.5">
+                  Manage course syllabi, module tracks, publishing states, and tuition fees.
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => navigate('/courses')}
+                  className="min-h-[40px] px-4 rounded-xl border border-[#E2E8F2] dark:border-slate-800 text-xs font-semibold font-mono flex items-center gap-1.5 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>View Public Catalog</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
+              <div className="relative flex-1 max-w-md">
+                <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  placeholder="Search tracks by title, category, or slug..."
+                  value={courseSearch}
+                  onChange={(e) => setCourseSearch(e.target.value)}
+                  className="w-full min-h-[42px] pl-10 pr-4 rounded-xl bg-white dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs text-[#14213A] dark:text-[#F5F8FF] focus:outline-hidden focus:border-[#356DFF]"
+                />
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setCourseFilter('all')}
+                  className={`min-h-[36px] px-3.5 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer ${
+                    courseFilter === 'all'
+                      ? 'aurora-btn-primary shadow-xs'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                  }`}
+                >
+                  All Tracks ({data.courses?.length || 0})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setCourseFilter('published')}
+                  className={`min-h-[36px] px-3.5 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer ${
+                    courseFilter === 'published'
+                      ? 'aurora-btn-primary shadow-xs'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                  }`}
+                >
+                  Published
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setCourseFilter('draft')}
+                  className={`min-h-[36px] px-3.5 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer ${
+                    courseFilter === 'draft'
+                      ? 'aurora-btn-primary shadow-xs'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                  }`}
+                >
+                  Drafts
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {(data.courses || [])
+                .filter((c: any) => {
+                  const matchesSearch =
+                    c.title?.toLowerCase().includes(courseSearch.toLowerCase()) ||
+                    c.category?.toLowerCase().includes(courseSearch.toLowerCase()) ||
+                    c.slug?.toLowerCase().includes(courseSearch.toLowerCase())
+                  if (!matchesSearch) return false
+                  if (courseFilter === 'published') return c.is_published !== false
+                  if (courseFilter === 'draft') return c.is_published === false
+                  return true
+                })
+                .map((c: any) => (
+                  <div
+                    key={c.id}
+                    className="p-5 rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] shadow-xs flex flex-col justify-between gap-4"
+                  >
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold aurora-pill-teal">
+                          {c.category || 'Engineering'}
+                        </span>
+                        <span
+                          className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
+                            c.is_published !== false
+                              ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
+                              : 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20'
+                          }`}
+                        >
+                          {c.is_published !== false ? 'PUBLISHED' : 'DRAFT'}
+                        </span>
+                      </div>
+                      <h3 className="font-display font-bold text-sm text-[#14213A] dark:text-[#F5F8FF] line-clamp-2">
+                        {c.title}
+                      </h3>
+                      {c.title_bn && (
+                        <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] font-sans line-clamp-1">{c.title_bn}</p>
+                      )}
+                    </div>
+
+                    <div className="pt-3 border-t border-[#E2E8F2] dark:border-slate-800/80 flex items-center justify-between text-xs">
+                      <div>
+                        <span className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] uppercase">Tuition</span>
+                        <div className="font-mono font-bold text-sm text-[#356DFF] dark:text-[#35C6BE]">
+                          ৳{c.price?.toLocaleString()}
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] uppercase">Students</span>
+                        <div className="font-mono font-semibold text-xs text-[#14213A] dark:text-[#F5F8FF]">
+                          {c.students_count || c.students || 0} Enrolled
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        )}
+
+        {/* ----------------- TAB: QUESTION BANK & ASSESSMENTS ----------------- */}
+        {activeTab === 'question_bank' && (
+          <div className="space-y-6 animate-fadeIn">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <h2 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
+                  <HelpCircle className="w-5 h-5 text-[#356DFF]" />
+                  <span>Question Bank & Assessments Central</span>
+                </h2>
+                <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] mt-0.5">
+                  MCQs, short problem prompts, grading keys, and bulk CSV/Excel question ingestion.
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIsImportModalOpen(true)}
+                  className="min-h-[40px] px-3.5 rounded-xl border border-[#E2E8F2] dark:border-slate-800 text-xs font-semibold font-mono flex items-center gap-1.5 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer"
+                >
+                  <UploadCloud className="w-4 h-4 text-[#356DFF]" />
+                  <span>Import Questions (CSV)</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsAddQuestionModalOpen(true)}
+                  className="min-h-[40px] px-4 rounded-xl aurora-btn-primary text-xs font-semibold font-mono flex items-center gap-1.5 shadow-sm cursor-pointer"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>Add Assessment</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
+              <div className="relative flex-1 max-w-md">
+                <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  placeholder="Search questions or course modules..."
+                  value={qbSearch}
+                  onChange={(e) => setQbSearch(e.target.value)}
+                  className="w-full min-h-[42px] pl-10 pr-4 rounded-xl bg-white dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs text-[#14213A] dark:text-[#F5F8FF] focus:outline-hidden focus:border-[#356DFF]"
+                />
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setQbFilterType('all')}
+                  className={`min-h-[36px] px-3 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer ${
+                    qbFilterType === 'all'
+                      ? 'aurora-btn-primary shadow-xs'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                  }`}
+                >
+                  All Types
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setQbFilterType('MCQ')}
+                  className={`min-h-[36px] px-3 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer ${
+                    qbFilterType === 'MCQ'
+                      ? 'aurora-btn-primary shadow-xs'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                  }`}
+                >
+                  MCQ Only
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setQbFilterType('Short')}
+                  className={`min-h-[36px] px-3 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer ${
+                    qbFilterType === 'Short'
+                      ? 'aurora-btn-primary shadow-xs'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                  }`}
+                >
+                  Short Problems
+                </button>
+              </div>
+            </div>
+
+            {loadingQuestions ? (
+              <div className="p-8 text-center text-xs font-mono text-slate-400">Loading Question Bank...</div>
+            ) : (questionBankData.questions || []).length === 0 ? (
+              <div className="p-8 text-center text-xs text-[#5D6B82] dark:text-[#A8B7CE] border border-dashed border-[#E2E8F2] dark:border-slate-800 rounded-2xl">
+                No questions found. Use "+ Add Assessment" or "Import Questions" to populate the question bank.
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {(questionBankData.questions || [])
+                  .filter((q: any) => {
+                    const matchesSearch =
+                      q.text?.toLowerCase().includes(qbSearch.toLowerCase()) ||
+                      q.course_title?.toLowerCase().includes(qbSearch.toLowerCase()) ||
+                      q.lesson_title?.toLowerCase().includes(qbSearch.toLowerCase())
+                    if (!matchesSearch) return false
+                    if (qbFilterType !== 'all') return q.question_type === qbFilterType
+                    return true
+                  })
+                  .map((q: any) => (
+                    <div
+                      key={q.id}
+                      className="p-4 sm:p-5 rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] shadow-xs space-y-3"
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-2">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold aurora-pill-teal">
+                            {q.course_title}
+                          </span>
+                          <span className="text-xs font-mono text-slate-400">Lesson #{q.lesson_id}</span>
+                        </div>
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                          {q.question_type}
+                        </span>
+                      </div>
+
+                      <div className="font-semibold text-sm text-[#14213A] dark:text-[#F5F8FF]">
+                        {q.text}
+                      </div>
+
+                      {q.options && q.options.length > 0 && (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                          {q.options.map((opt: string, idx: number) => {
+                            const optLabel = String.fromCharCode(65 + idx)
+                            const isCorrect = opt === q.correct_answer || optLabel === q.correct_answer
+                            return (
+                              <div
+                                key={idx}
+                                className={`p-2.5 rounded-xl border text-xs flex items-center justify-between ${
+                                  isCorrect
+                                    ? 'border-emerald-500/40 bg-emerald-500/5 text-emerald-700 dark:text-emerald-300 font-semibold'
+                                    : 'border-[#E2E8F2] dark:border-slate-800/80 text-[#5D6B82] dark:text-[#A8B7CE]'
+                                }`}
+                              >
+                                <span className="flex items-center gap-2">
+                                  <span className="w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center font-mono text-[10px] font-bold">
+                                    {optLabel}
+                                  </span>
+                                  <span>{opt}</span>
+                                </span>
+                                {isCorrect && <Check className="w-4 h-4 text-emerald-500" />}
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )}
+
+                      {(!q.options || q.options.length === 0) && (
+                        <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-[#E2E8F2] dark:border-slate-800 text-xs font-mono text-slate-600 dark:text-slate-400">
+                          Expected Answer: <span className="font-bold text-[#356DFF] dark:text-[#35C6BE]">{q.correct_answer}</span>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ----------------- TAB: LIVE NOTIFICATIONS & BROADCAST ----------------- */}
+        {activeTab === 'notifications' && (
+          <div className="space-y-6 animate-fadeIn">
+            <div>
+              <h2 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
+                <Bell className="w-5 h-5 text-[#356DFF]" />
+                <span>Real-time Activity Stream & Announcement Broadcast</span>
+              </h2>
+              <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] mt-0.5">
+                Push global announcements to student dashboards and track real-time payments, enrollments, and cert minting.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+              {/* Broadcast Announcement Form */}
+              <div className="lg:col-span-5 rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] p-6 space-y-4 shadow-xs">
+                <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F2] dark:border-slate-800">
+                  <h3 className="font-display font-bold text-sm text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
+                    <Radio className="w-4 h-4 text-[#356DFF]" />
+                    <span>Broadcast Notice</span>
+                  </h3>
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold aurora-pill-teal">
+                    GLOBAL PUSH
+                  </span>
+                </div>
+
+                <form onSubmit={handleBroadcast} className="space-y-4">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-mono text-slate-500">Notice Title</label>
+                    <input
+                      type="text"
+                      required
+                      value={broadcastForm.title}
+                      onChange={(e) => setBroadcastForm({ ...broadcastForm, title: e.target.value })}
+                      placeholder="e.g. Scheduled Live Q&A Batch Session tonight at 9 PM"
+                      className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs text-[#14213A] dark:text-[#F5F8FF] focus:outline-hidden focus:border-[#356DFF]"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-mono text-slate-500">Message Content</label>
+                    <textarea
+                      required
+                      rows={4}
+                      value={broadcastForm.message}
+                      onChange={(e) => setBroadcastForm({ ...broadcastForm, message: e.target.value })}
+                      placeholder="Provide detailed instructions or notice details..."
+                      className="w-full p-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs text-[#14213A] dark:text-[#F5F8FF] focus:outline-hidden focus:border-[#356DFF]"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-mono text-slate-500">Target Audience</label>
+                    <select
+                      value={broadcastForm.target_role}
+                      onChange={(e) => setBroadcastForm({ ...broadcastForm, target_role: e.target.value })}
+                      className="w-full min-h-[42px] px-3 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs font-semibold text-[#14213A] dark:text-[#F5F8FF]"
+                    >
+                      <option value="all">Broadcast to All Active Users</option>
+                      <option value="students">Enrolled Students Only</option>
+                      <option value="trainers">Faculty & Mentors Only</option>
+                      <option value="staff">Staff & Admins Only</option>
+                    </select>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={submittingBroadcast}
+                    className="w-full min-h-[42px] px-4 rounded-xl aurora-btn-primary text-xs font-semibold font-mono flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                  >
+                    <Send className="w-3.5 h-3.5" />
+                    <span>{submittingBroadcast ? 'Broadcasting...' : 'Send Broadcast to Academy'}</span>
+                  </button>
+                </form>
+              </div>
+
+              {/* Real-time Activity Feed */}
+              <div className="lg:col-span-7 rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] p-6 space-y-4 shadow-xs">
+                <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F2] dark:border-slate-800">
+                  <h3 className="font-display font-bold text-sm text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
+                    <TrendingUp className="w-4 h-4 text-emerald-500" />
+                    <span>Live System Event Stream</span>
+                  </h3>
+                  <span className="text-xs font-mono text-slate-400">Auto-refresh</span>
+                </div>
+
+                <div className="space-y-2.5 max-h-[500px] overflow-y-auto pr-1">
+                  {(notifsData.activity_feed || []).length === 0 ? (
+                    <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] text-center py-6">No recent events logged.</p>
+                  ) : (
+                    (notifsData.activity_feed || []).map((ev: any, idx: number) => (
+                      <div
+                        key={idx}
+                        className="p-3.5 rounded-xl border border-[#E2E8F2] dark:border-slate-800 bg-[#F5F7FB] dark:bg-[#111F36]/50 flex items-start justify-between gap-3 text-xs"
+                      >
+                        <div className="space-y-1 min-w-0">
+                          <div className="flex items-center gap-2">
+                            <span className="font-semibold text-[#14213A] dark:text-[#F5F8FF]">{ev.title}</span>
+                            <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                              {ev.type || 'SYSTEM'}
+                            </span>
+                          </div>
+                          <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE]">{ev.message}</p>
+                        </div>
+                        <span className="text-[10px] font-mono text-slate-400 shrink-0">
+                          {ev.time ? new Date(ev.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Just now'}
+                        </span>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ----------------- TAB: SETTINGS & MFS ----------------- */}
+        {activeTab === 'settings' && (
+          <div className="space-y-6 animate-fadeIn">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <h2 className="font-display font-bold text-xl text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
+                  <Settings className="w-5 h-5 text-[#356DFF]" />
+                  <span>Academy Settings & Payment Gateways</span>
+                </h2>
+                <p className="text-xs text-[#5D6B82] dark:text-[#A8B7CE] mt-0.5">
+                  Configure branding, MFS merchant numbers, SMTP credentials, SEO metadata, and security locks.
+                </p>
+              </div>
+            </div>
+
+            <form onSubmit={handleSaveSettings} className="space-y-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Brand & Organization Information */}
+                <div className="p-6 rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] space-y-4 shadow-xs">
+                  <h3 className="font-display font-bold text-base text-[#14213A] dark:text-[#F5F8FF]">
+                    Academy Identity & Contact
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="space-y-1">
+                      <label className="text-xs font-mono text-slate-500">Platform Title</label>
+                      <input
+                        type="text"
+                        value={settingsData.site_title || ''}
+                        onChange={(e) => setSettingsData({ ...settingsData, site_title: e.target.value })}
+                        className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs font-semibold text-[#14213A] dark:text-[#F5F8FF]"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div className="space-y-1">
+                        <label className="text-xs font-mono text-slate-500">Support Email</label>
+                        <input
+                          type="email"
+                          value={settingsData.support_email || ''}
+                          onChange={(e) => setSettingsData({ ...settingsData, support_email: e.target.value })}
+                          className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs text-[#14213A] dark:text-[#F5F8FF]"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-xs font-mono text-slate-500">Hotline Phone</label>
+                        <input
+                          type="text"
+                          value={settingsData.support_phone || ''}
+                          onChange={(e) => setSettingsData({ ...settingsData, support_phone: e.target.value })}
+                          className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs text-[#14213A] dark:text-[#F5F8FF]"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-xs font-mono text-slate-500">Trade License Number</label>
+                      <input
+                        type="text"
+                        value={settingsData.trade_license || ''}
+                        onChange={(e) => setSettingsData({ ...settingsData, trade_license: e.target.value })}
+                        className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs font-mono text-[#14213A] dark:text-[#F5F8FF]"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-xs font-mono text-slate-500">Headquarters Physical Address</label>
+                      <textarea
+                        rows={2}
+                        value={settingsData.address || ''}
+                        onChange={(e) => setSettingsData({ ...settingsData, address: e.target.value })}
+                        className="w-full p-3 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs text-[#14213A] dark:text-[#F5F8FF]"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* MFS Gateways & Payment Details */}
+                <div className="p-6 rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] space-y-4 shadow-xs">
+                  <h3 className="font-display font-bold text-base text-[#14213A] dark:text-[#F5F8FF]">
+                    MFS Merchant Accounts & Gateways
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="space-y-1">
+                      <label className="text-xs font-mono text-slate-500">bKash Merchant Account Number</label>
+                      <input
+                        type="text"
+                        value={settingsData.bkash_merchant_number || ''}
+                        onChange={(e) => setSettingsData({ ...settingsData, bkash_merchant_number: e.target.value })}
+                        className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs font-mono font-bold text-[#14213A] dark:text-[#F5F8FF]"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-xs font-mono text-slate-500">Nagad Merchant Account Number</label>
+                      <input
+                        type="text"
+                        value={settingsData.nagad_merchant_number || ''}
+                        onChange={(e) => setSettingsData({ ...settingsData, nagad_merchant_number: e.target.value })}
+                        className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs font-mono font-bold text-[#14213A] dark:text-[#F5F8FF]"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-xs font-mono text-slate-500">SEO Keywords (Comma Separated)</label>
+                      <input
+                        type="text"
+                        value={settingsData.seo_keywords || ''}
+                        onChange={(e) => setSettingsData({ ...settingsData, seo_keywords: e.target.value })}
+                        className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs text-[#14213A] dark:text-[#F5F8FF]"
+                      />
+                    </div>
+
+                    <div className="pt-2 flex items-center justify-between">
+                      <div>
+                        <div className="text-xs font-semibold text-[#14213A] dark:text-[#F5F8FF]">
+                          IP Blocking & Zero-Trust Defense
+                        </div>
+                        <div className="text-[11px] text-[#5D6B82] dark:text-[#A8B7CE]">
+                          Enforce rate limiting on login & OTP endpoints
+                        </div>
+                      </div>
+                      <input
+                        type="checkbox"
+                        checked={settingsData.ip_blocking_enabled ?? true}
+                        onChange={(e) => setSettingsData({ ...settingsData, ip_blocking_enabled: e.target.checked })}
+                        className="w-4 h-4 rounded text-[#356DFF]"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-end">
+                <button
+                  type="submit"
+                  disabled={savingSettings}
+                  className="min-h-[44px] px-6 rounded-xl aurora-btn-primary text-xs font-semibold font-mono flex items-center gap-2 cursor-pointer shadow-md"
+                >
+                  <Check className="w-4 h-4" />
+                  <span>{savingSettings ? 'Saving Settings...' : 'Save Academy Settings'}</span>
+                </button>
+              </div>
+            </form>
           </div>
         )}
 
@@ -2741,6 +3526,240 @@ export const AdminConsolePage: React.FC = () => {
                 >
                   {submittingPayout ? 'Recording...' : 'Disburse & Log'}
                 </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* 5. Add Assessment Question Modal */}
+      {isAddQuestionModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className="w-full max-w-lg rounded-3xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#111827] p-6 space-y-4 shadow-2xl">
+            <div className="flex items-center justify-between">
+              <h3 className="font-display font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
+                <HelpCircle className="w-5 h-5 text-[#356DFF]" />
+                <span>Add Assessment Question</span>
+              </h3>
+              <button
+                type="button"
+                onClick={() => setIsAddQuestionModalOpen(false)}
+                className="p-1 rounded-lg text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleCreateQuestion} className="space-y-4">
+              <div className="space-y-1.5">
+                <label className="text-xs font-mono text-slate-500">Target Module / Lesson</label>
+                <select
+                  value={questionForm.lesson_id}
+                  onChange={(e) => setQuestionForm({ ...questionForm, lesson_id: Number(e.target.value) })}
+                  className="w-full min-h-[42px] px-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white"
+                >
+                  {(questionBankData.available_courses || []).map((crs: any) =>
+                    (crs.lessons || []).map((les: any) => (
+                      <option key={les.id} value={les.id}>
+                        {crs.title} • {les.title} (ID #{les.id})
+                      </option>
+                    ))
+                  )}
+                  {(!questionBankData.available_courses || questionBankData.available_courses.length === 0) && (
+                    <option value={1}>Lesson 1: Zero-Trust Foundation</option>
+                  )}
+                </select>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-mono text-slate-500">Question Format</label>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setQuestionForm({ ...questionForm, question_type: 'MCQ' })}
+                    className={`min-h-[38px] rounded-xl text-xs font-semibold font-mono cursor-pointer ${
+                      questionForm.question_type === 'MCQ'
+                        ? 'aurora-btn-primary'
+                        : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                    }`}
+                  >
+                    Multiple Choice (MCQ)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setQuestionForm({ ...questionForm, question_type: 'Short' })}
+                    className={`min-h-[38px] rounded-xl text-xs font-semibold font-mono cursor-pointer ${
+                      questionForm.question_type === 'Short'
+                        ? 'aurora-btn-primary'
+                        : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                    }`}
+                  >
+                    Short Problem Answer
+                  </button>
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-mono text-slate-500">Question Prompt</label>
+                <textarea
+                  required
+                  rows={2}
+                  value={questionForm.text}
+                  onChange={(e) => setQuestionForm({ ...questionForm, text: e.target.value })}
+                  placeholder="e.g. Which algorithm is recommended for password hashing under OWASP 2026?"
+                  className="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-hidden"
+                />
+              </div>
+
+              {questionForm.question_type === 'MCQ' ? (
+                <div className="space-y-2">
+                  <label className="text-xs font-mono text-slate-500">Multiple Options (A - D)</label>
+                  <div className="grid grid-cols-2 gap-2">
+                    <input
+                      type="text"
+                      required
+                      placeholder="Option A (e.g. Argon2id)"
+                      value={questionForm.optA}
+                      onChange={(e) => setQuestionForm({ ...questionForm, optA: e.target.value })}
+                      className="px-3 min-h-[38px] rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white"
+                    />
+                    <input
+                      type="text"
+                      required
+                      placeholder="Option B (e.g. MD5)"
+                      value={questionForm.optB}
+                      onChange={(e) => setQuestionForm({ ...questionForm, optB: e.target.value })}
+                      className="px-3 min-h-[38px] rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Option C (e.g. SHA-1)"
+                      value={questionForm.optC}
+                      onChange={(e) => setQuestionForm({ ...questionForm, optC: e.target.value })}
+                      className="px-3 min-h-[38px] rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Option D (e.g. Plaintext)"
+                      value={questionForm.optD}
+                      onChange={(e) => setQuestionForm({ ...questionForm, optD: e.target.value })}
+                      className="px-3 min-h-[38px] rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white"
+                    />
+                  </div>
+                  <div className="space-y-1 pt-1">
+                    <label className="text-xs font-mono text-slate-500">Correct Option Letter</label>
+                    <select
+                      value={questionForm.correct_answer}
+                      onChange={(e) => setQuestionForm({ ...questionForm, correct_answer: e.target.value })}
+                      className="w-full min-h-[38px] px-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-mono font-bold"
+                    >
+                      <option value="A">Option A</option>
+                      <option value="B">Option B</option>
+                      <option value="C">Option C</option>
+                      <option value="D">Option D</option>
+                    </select>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-1.5">
+                  <label className="text-xs font-mono text-slate-500">Correct Short Answer</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Exact short string (e.g. Argon2id)"
+                    value={questionForm.correct_answer}
+                    onChange={(e) => setQuestionForm({ ...questionForm, correct_answer: e.target.value })}
+                    className="w-full min-h-[42px] px-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-mono font-bold"
+                  />
+                </div>
+              )}
+
+              <div className="pt-2 flex items-center justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIsAddQuestionModalOpen(false)}
+                  className="min-h-[40px] px-4 rounded-xl border border-slate-200 dark:border-slate-800 text-xs font-semibold cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={submittingQuestion}
+                  className="min-h-[40px] px-5 rounded-xl aurora-btn-primary text-xs font-semibold font-mono cursor-pointer shadow-sm"
+                >
+                  {submittingQuestion ? 'Saving Question...' : 'Save Assessment Question'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* 6. Bulk Import Questions Modal */}
+      {isImportModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className="w-full max-w-lg rounded-3xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#111827] p-6 space-y-4 shadow-2xl">
+            <div className="flex items-center justify-between">
+              <h3 className="font-display font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
+                <UploadCloud className="w-5 h-5 text-[#356DFF]" />
+                <span>Bulk Import Questions (CSV)</span>
+              </h3>
+              <button
+                type="button"
+                onClick={() => setIsImportModalOpen(false)}
+                className="p-1 rounded-lg text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleImportQuestions} className="space-y-4">
+              <div className="p-3.5 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs space-y-1 text-[#5D6B82] dark:text-[#A8B7CE]">
+                <div className="font-semibold text-[#14213A] dark:text-[#F5F8FF]">Format Specification (Comma Separated):</div>
+                <div className="font-mono text-[11px]">
+                  Question, Option A, Option B, Option C, Option D, Correct Answer
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-mono text-slate-500">Paste CSV Lines</label>
+                <textarea
+                  required
+                  rows={6}
+                  value={importCsvText}
+                  onChange={(e) => setImportCsvText(e.target.value)}
+                  placeholder={`What is the capital of Bangladesh?,Dhaka,Chittagong,Khulna,Rajshahi,Dhaka\nWhich protocol is secure?,HTTP,HTTPS,FTP,Telnet,HTTPS`}
+                  className="w-full p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-900 dark:text-white focus:outline-hidden"
+                />
+              </div>
+
+              <div className="pt-2 flex items-center justify-between">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setImportCsvText(
+                      `What is Argon2id?,A memory-hard password hash,A symmetric cipher,A TLS certificate,A database engine,A memory-hard password hash\nWhat does JWT stand for?,JSON Web Token,Java Web Target,JavaScript Web Tool,Joint Wire Test,JSON Web Token`
+                    )
+                  }
+                  className="text-xs font-mono text-[#356DFF] dark:text-[#35C6BE] hover:underline cursor-pointer"
+                >
+                  Insert Sample CSV
+                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setIsImportModalOpen(false)}
+                    className="min-h-[40px] px-4 rounded-xl border border-slate-200 dark:border-slate-800 text-xs font-semibold cursor-pointer"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="min-h-[40px] px-5 rounded-xl aurora-btn-primary text-xs font-semibold font-mono cursor-pointer shadow-sm"
+                  >
+                    Import Questions
+                  </button>
+                </div>
               </div>
             </form>
           </div>
