@@ -429,18 +429,18 @@ export const StudentDashboardPage: React.FC = () => {
       <div className="aurora-card-raised rounded-3xl p-5 sm:p-8 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6 border border-[#E2E8F2] dark:border-slate-800 shadow-xl bg-white dark:bg-[#0C1528]">
         <div className="space-y-1.5">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#356DFF] dark:text-[#35C6BE] font-bold">
-              {lang === 'bn' ? 'ট্রেনিং পণ্ডিত স্টুডেন্ট পোর্টাল' : 'TrainingPundit Learner Portal'}
+            <span className="text-xs font-mono tracking-wider text-slate-500 dark:text-slate-400 font-medium">
+              {lang === 'bn' ? 'ট্রেনিং পণ্ডিত একাডেমি' : 'TrainingPundit Academy'}
             </span>
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[#35C6BE]/15 text-[#35C6BE]">
+            <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
               ID: {idCard?.roll_number || `TP-${user?.id}`}
             </span>
           </div>
-          <h1 className="font-display font-extrabold text-2xl sm:text-3xl text-[#14213A] dark:text-[#F5F8FF]">
-            {lang === 'bn' ? `স্বাগতম, ${user?.full_name || user?.username}!` : `Welcome back, ${user?.full_name || user?.username}!`}
+          <h1 className="font-display font-bold text-2xl sm:text-3xl text-[#14213A] dark:text-[#F5F8FF]">
+            {lang === 'bn' ? 'স্টুডেন্ট পোর্টাল' : 'Learner Portal'}
           </h1>
           <p className="text-xs sm:text-sm text-[#5D6B82] dark:text-[#A8B7CE]">
-            Single-Device Session Protected • Referral ID: <code className="font-mono text-[#356DFF] dark:text-[#35C6BE] font-bold">{data.stats?.referral_code}</code>
+            {user?.full_name || user?.username} • Single-device session protected • Referral ID: <code className="font-mono text-slate-800 dark:text-slate-200">{data.stats?.referral_code}</code>
           </p>
         </div>
 

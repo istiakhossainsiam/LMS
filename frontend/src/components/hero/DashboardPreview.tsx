@@ -36,52 +36,46 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({
 
   const handleResumeClick = () => {
     if (onDemoLogin) {
-      onDemoLogin('student@learnwithmarufahmed.com', 'Student@1234', '/learn/1')
+      onDemoLogin('student@trainingpundit.com', 'Student@1234', '/learn/1')
     } else {
       window.location.href = '/learn/1'
     }
   }
 
   return (
-    <div className="w-full max-w-6xl mx-auto rounded-2xl sm:rounded-3xl bg-[#0C1528] border border-slate-800/90 shadow-[0_-10px_40px_-5px_rgba(53,109,255,0.22),0_20px_60px_-15px_rgba(0,0,0,0.8)] overflow-hidden transition-all text-slate-100">
-      {/* 1. Luminous Horizon Top Glow Strip */}
-      <div className="h-1 w-full bg-gradient-to-r from-transparent via-[#356DFF] to-[#35C6BE] opacity-90" />
-
-      {/* 2. Top Bar & Telemetry Strip */}
-      <div className="px-3.5 sm:px-6 py-3 border-b border-slate-800/80 bg-[#090F1E]/95 flex flex-wrap items-center justify-between gap-2.5">
+    <div className="w-full max-w-6xl mx-auto rounded-2xl sm:rounded-3xl bg-[#0C1528] border border-slate-800 shadow-2xl overflow-hidden transition-all text-slate-100">
+      {/* 1. Clean Top Bar & Telemetry Strip */}
+      <div className="px-3.5 sm:px-6 py-3 border-b border-slate-800 bg-[#090F1E] flex flex-wrap items-center justify-between gap-2.5">
         {/* Left: Window Dots & Platform Status */}
         <div className="flex items-center gap-2.5">
           <div className="flex items-center gap-1.5" aria-hidden="true">
-            <span className="w-2.5 h-2.5 rounded-full bg-rose-500/70" />
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-500/70" />
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/70" />
+            <span className="w-2.5 h-2.5 rounded-full bg-slate-700" />
+            <span className="w-2.5 h-2.5 rounded-full bg-slate-700" />
+            <span className="w-2.5 h-2.5 rounded-full bg-slate-700" />
           </div>
           <span className="text-[11px] font-mono font-medium text-slate-400 hidden sm:inline">
-            learnwithmaruf.com/dashboard
+            trainingpundit.com/dashboard
           </span>
-          <span className="px-2 py-0.5 rounded-md bg-sky-950/80 border border-sky-800/60 text-[#35C6BE] text-[10px] font-mono font-bold tracking-wider uppercase">
-            {lang === 'bn' ? 'স্টুডেন্ট ক্লাসরুম ভিউ' : 'Student Studio'}
+          <span className="px-2 py-0.5 rounded-md bg-slate-800/80 border border-slate-700/80 text-slate-300 text-[10px] font-mono font-medium">
+            {lang === 'bn' ? 'স্টুডেন্ট ক্লাসরুম' : 'Student Studio'}
           </span>
         </div>
 
         {/* Right: Live Telemetry Badges */}
         <div className="flex items-center gap-2 sm:gap-4 text-[11px] font-mono">
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-950/60 border border-emerald-800/50 text-emerald-400">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
-            </span>
-            <span className="font-semibold">{lang === 'bn' ? 'সিঙ্গেল-ডিভাইস লক অন' : 'Zero-Trust Lock'}</span>
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-950/40 border border-emerald-800/40 text-emerald-400">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <span className="font-medium">{lang === 'bn' ? 'ডিভাইস সেশন ভেরিফাইড' : 'Zero-Trust Lock'}</span>
           </div>
 
-          <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#111F36] border border-slate-700/60 text-slate-300">
-            <Clock className="w-3 h-3 text-[#356DFF]" />
+          <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#111F36] border border-slate-800 text-slate-400">
+            <Clock className="w-3 h-3 text-slate-400" />
             <span>{lang === 'bn' ? 'হার্টবিট: ৪২ms' : 'Sync: 42ms'}</span>
           </div>
 
-          <div className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-amber-950/50 border border-amber-800/50 text-amber-300 font-bold">
-            <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-            <span>{lang === 'bn' ? '৭ দিনের স্ট্রিক' : '7d Streak'}</span>
+          <div className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700 text-slate-200">
+            <Flame className="w-3.5 h-3.5 text-amber-400" />
+            <span>{lang === 'bn' ? '৭ দিনের স্ট্রিক' : '7d streak'}</span>
           </div>
         </div>
       </div>

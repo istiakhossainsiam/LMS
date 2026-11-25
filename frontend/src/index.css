@@ -387,11 +387,12 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* Academic Aurora Signature Gradient */
+/* Solid Text Accents (No AI hue gradients) */
 .text-gradient-aurora {
-  background: linear-gradient(135deg, #6896FF 0%, #35C6BE 50%, #86EFAC 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #35C6BE;
+  background: none;
+  -webkit-background-clip: border-box;
+  -webkit-text-fill-color: currentColor;
 }
 
 /* Hero Sequential Entrance Animation */

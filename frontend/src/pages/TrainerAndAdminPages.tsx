@@ -930,13 +930,13 @@ export const AdminConsolePage: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 pb-4 border-b border-[#E2E8F2] dark:border-slate-800 w-full min-w-0">
           <div className="min-w-0">
             <div className="flex items-center gap-2">
-              <span className="px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider aurora-pill-teal flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-[#35C6BE]" /> Executive Console
+              <span className="px-2.5 py-0.5 rounded text-xs font-mono font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                Administration Console
               </span>
-              <span className="text-xs font-mono text-[#5D6B82] dark:text-[#A8B7CE]">v2.0 Zero-Trust</span>
+              <span className="text-xs font-mono text-slate-400">Zero-Trust v2.0</span>
             </div>
-            <h1 className="font-display font-extrabold text-xl sm:text-3xl text-[#14213A] dark:text-[#F5F8FF] mt-1 tracking-tight">
-              Admin & Academy Management
+            <h1 className="font-display font-bold text-xl sm:text-2xl text-[#14213A] dark:text-[#F5F8FF] mt-1 tracking-tight">
+              Academy Operations & Management
             </h1>
           </div>
 

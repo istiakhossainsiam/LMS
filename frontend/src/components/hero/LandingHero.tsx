@@ -47,29 +47,24 @@ export const LandingHero: React.FC<LandingHeroProps> = ({
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-4xl mx-auto space-y-6 sm:space-y-8">
           {/* Eyebrow Badge Pill */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#111F36]/90 border border-sky-400/30 text-[#86EFAC] text-xs font-mono font-medium shadow-md animate-hero-1">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#111F36] border border-slate-700/60 text-slate-200 text-xs font-mono font-medium shadow-xs animate-hero-1">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
+            <span className="tracking-wide text-slate-200 font-semibold">
+              {lang === 'bn' ? 'ট্রেনিং পণ্ডিত অটোনোমাস একাডেমি' : 'TrainingPundit Autonomous Academy'}
             </span>
-            <span className="tracking-wide text-slate-100 font-semibold">
-              {lang === 'bn' ? 'আপনার শেখার পরবর্তী ধাপ' : 'The Next Step In Your Learning'}
-            </span>
-            <span className="text-[#35C6BE] hidden sm:inline">•</span>
-            <span className="text-[#35C6BE] hidden sm:inline font-mono">LMS 2.0</span>
           </div>
 
           {/* Main Hero Headline */}
-          <h1 className="font-display font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-[62px] text-[#F5F8FF] leading-[1.2] sm:leading-[1.12] tracking-tight animate-hero-2">
+          <h1 className="font-display font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-[60px] text-[#F5F8FF] leading-[1.2] sm:leading-[1.14] tracking-tight animate-hero-2">
             {lang === 'bn' ? (
               <>
                 শিখুন নিজের গতিতে,<br className="hidden sm:inline" />{' '}
-                <span className="text-gradient-aurora">এগিয়ে যান আত্মবিশ্বাসে।</span>
+                <span className="text-[#35C6BE]">এগিয়ে যান আত্মবিশ্বাসে।</span>
               </>
             ) : (
               <>
                 Learn at your own pace,<br className="hidden sm:inline" />{' '}
-                <span className="text-gradient-aurora">Advance with confidence.</span>
+                <span className="text-[#35C6BE]">advance with confidence</span>
               </>
             )}
           </h1>
@@ -86,7 +81,7 @@ export const LandingHero: React.FC<LandingHeroProps> = ({
             {user ? (
               <Link
                 to="/dashboard"
-                className="w-full sm:w-auto min-h-[48px] sm:min-h-[52px] px-8 rounded-xl bg-gradient-to-r from-[#356DFF] to-[#2E5BE5] hover:from-[#4B7EFF] hover:to-[#356DFF] text-white font-semibold text-sm sm:text-base flex items-center justify-center gap-2.5 tactile-press shadow-lg shadow-blue-900/40"
+                className="w-full sm:w-auto min-h-[48px] sm:min-h-[50px] px-8 rounded-xl bg-[#356DFF] hover:bg-[#4B7EFF] text-white font-semibold text-sm sm:text-base flex items-center justify-center gap-2.5 tactile-press shadow-sm transition-colors"
               >
                 <Play className="w-4 h-4 fill-current" />
                 <span>{lang === 'bn' ? 'শেখা চালিয়ে যান' : 'Continue Learning'}</span>
@@ -95,7 +90,7 @@ export const LandingHero: React.FC<LandingHeroProps> = ({
             ) : (
               <Link
                 to="/courses"
-                className="w-full sm:w-auto min-h-[48px] sm:min-h-[52px] px-8 rounded-xl bg-gradient-to-r from-[#356DFF] to-[#2E5BE5] hover:from-[#4B7EFF] hover:to-[#356DFF] text-white font-semibold text-sm sm:text-base flex items-center justify-center gap-2.5 tactile-press shadow-lg shadow-blue-900/40"
+                className="w-full sm:w-auto min-h-[48px] sm:min-h-[50px] px-8 rounded-xl bg-[#356DFF] hover:bg-[#4B7EFF] text-white font-semibold text-sm sm:text-base flex items-center justify-center gap-2.5 tactile-press shadow-sm transition-colors"
               >
                 <BookOpen className="w-4 h-4" />
                 <span>{lang === 'bn' ? 'কোর্স দেখুন' : 'Explore Courses'}</span>
@@ -106,7 +101,7 @@ export const LandingHero: React.FC<LandingHeroProps> = ({
             <a
               href="#curriculum"
               onClick={scrollToCurriculum}
-              className="w-full sm:w-auto min-h-[48px] sm:min-h-[52px] px-7 rounded-xl bg-[#111F36]/90 hover:bg-[#111F36] border border-slate-700/80 text-[#F5F8FF] font-semibold text-sm sm:text-base flex items-center justify-center gap-2 tactile-press"
+              className="w-full sm:w-auto min-h-[48px] sm:min-h-[50px] px-7 rounded-xl bg-[#111F36] hover:bg-[#162744] border border-slate-700/80 text-[#F5F8FF] font-semibold text-sm sm:text-base flex items-center justify-center gap-2 tactile-press transition-colors"
             >
               <Video className="w-4 h-4 text-[#35C6BE]" />
               <span>{lang === 'bn' ? 'কীভাবে কাজ করে' : 'How It Works'}</span>
