@@ -29,6 +29,8 @@ import { apiFetch } from '../lib/api'
 import { useAppStore, bf } from '../stores/useAppStore'
 import { Card3D } from '../components/common/Card3D'
 import { LandingHero } from '../components/hero/LandingHero'
+import { ThreeModelViewer } from '../components/three/ThreeModelViewer'
+import { Box } from 'lucide-react'
 
 export const HomePage: React.FC = () => {
   const navigate = useNavigate()
@@ -45,6 +47,7 @@ export const HomePage: React.FC = () => {
   )
   const [teaserResult, setTeaserResult] = useState<string | null>(null)
   const [teaserTesting, setTeaserTesting] = useState(false)
+  const [codeLabMode, setCodeLabMode] = useState<'3d' | 'editor'>('3d')
 
   useEffect(() => {
     apiFetch('/public/home')
@@ -218,38 +221,80 @@ export const HomePage: React.FC = () => {
             </div>
 
             <div className="lg:col-span-7 space-y-3">
-              <div className="p-4 rounded-xl bg-[#060B18] text-slate-100 font-mono text-xs space-y-3 border border-slate-800 shadow-xl">
-                <div className="flex items-center justify-between text-[11px] text-slate-400 pb-2 border-b border-slate-800">
-                  <span className="flex items-center gap-1.5">
-                    <Terminal className="w-3.5 h-3.5 text-slate-400" />
-                    <span>ast_query_validator.py</span>
-                  </span>
-                  <span className="text-[#35C6BE] font-medium">Python 3.14 runtime</span>
-                </div>
-
-                <textarea
-                  value={teaserCode}
-                  onChange={(e) => setTeaserCode(e.target.value)}
-                  rows={4}
-                  style={{ touchAction: 'pan-y pinch-zoom' }}
-                  className="w-full bg-transparent text-[#86EFAC] resize-none focus:outline-none leading-relaxed selection:bg-slate-700 font-mono text-xs"
-                />
-
-                <div className="flex items-center justify-between pt-2 border-t border-slate-800">
-                  <span className="text-[11px] text-[#A8B7CE] font-mono">
-                    {teaserResult || 'Input: Safe AST parameters'}
-                  </span>
+              {/* Mode Switcher Tabs */}
+              <div className="flex items-center justify-between pb-1">
+                <div className="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 text-xs font-mono">
                   <button
                     type="button"
-                    onClick={handleRunTeaserCode}
-                    disabled={teaserTesting}
-                    className="px-4 py-1.5 rounded-lg aurora-btn-primary font-medium text-xs flex items-center gap-1.5 tactile-press cursor-pointer shadow-xs disabled:opacity-50"
+                    onClick={() => setCodeLabMode('3d')}
+                    className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors cursor-pointer tactile-press ${
+                      codeLabMode === '3d'
+                        ? 'bg-[#356DFF] text-white font-bold shadow-xs'
+                        : 'text-[#5D6B82] dark:text-[#A8B7CE] hover:text-[#14213A] dark:hover:text-white'
+                    }`}
                   >
-                    <Play className="w-3 h-3 fill-current text-white" />
-                    <span>{teaserTesting ? 'Running...' : 'Run unit tests'}</span>
+                    <Box className="w-3.5 h-3.5" />
+                    <span>{lang === 'bn' ? '৩ডি আর্কিটেকচার (Three.js)' : '3D Architecture (Three.js)'}</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setCodeLabMode('editor')}
+                    className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors cursor-pointer tactile-press ${
+                      codeLabMode === 'editor'
+                        ? 'bg-[#356DFF] text-white font-bold shadow-xs'
+                        : 'text-[#5D6B82] dark:text-[#A8B7CE] hover:text-[#14213A] dark:hover:text-white'
+                    }`}
+                  >
+                    <Terminal className="w-3.5 h-3.5" />
+                    <span>{lang === 'bn' ? 'কোড এডিটর (Python)' : 'Code Editor (AST)'}</span>
                   </button>
                 </div>
+
+                <span className="hidden sm:inline text-[11px] font-mono text-[#5D6B82] dark:text-[#A8B7CE]">
+                  WebGL 2.0 • 60 FPS
+                </span>
               </div>
+
+              {codeLabMode === '3d' ? (
+                <ThreeModelViewer
+                  title={lang === 'bn' ? 'ডিস্ট্রিবিউটেড মাইক্রোসার্ভিস নোড' : 'Distributed Microservice Node'}
+                  subtitle={lang === 'bn' ? 'ব্লেন্ডার ৩ডি প্রসিডিউরাল কোর • থ্রি.জেএস ও অ্যামো.জেএস ভিউয়ার' : 'Blender 3D Procedural Core • Three.js WebGL Inspector'}
+                  height="h-64 sm:h-72"
+                />
+              ) : (
+                <div className="p-4 rounded-xl bg-[#060B18] text-slate-100 font-mono text-xs space-y-3 border border-slate-800 shadow-xl">
+                  <div className="flex items-center justify-between text-[11px] text-slate-400 pb-2 border-b border-slate-800">
+                    <span className="flex items-center gap-1.5">
+                      <Terminal className="w-3.5 h-3.5 text-slate-400" />
+                      <span>ast_query_validator.py</span>
+                    </span>
+                    <span className="text-[#35C6BE] font-medium">Python 3.14 runtime</span>
+                  </div>
+
+                  <textarea
+                    value={teaserCode}
+                    onChange={(e) => setTeaserCode(e.target.value)}
+                    rows={4}
+                    style={{ touchAction: 'pan-y pinch-zoom' }}
+                    className="w-full bg-transparent text-[#86EFAC] resize-none focus:outline-none leading-relaxed selection:bg-slate-700 font-mono text-xs"
+                  />
+
+                  <div className="flex items-center justify-between pt-2 border-t border-slate-800">
+                    <span className="text-[11px] text-[#A8B7CE] font-mono">
+                      {teaserResult || 'Input: Safe AST parameters'}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={handleRunTeaserCode}
+                      disabled={teaserTesting}
+                      className="px-4 py-1.5 rounded-lg aurora-btn-primary font-medium text-xs flex items-center gap-1.5 tactile-press cursor-pointer shadow-xs disabled:opacity-50"
+                    >
+                      <Play className="w-3 h-3 fill-current text-white" />
+                      <span>{teaserTesting ? 'Running...' : 'Run unit tests'}</span>
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
