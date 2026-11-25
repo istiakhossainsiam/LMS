@@ -32,6 +32,8 @@ tools/git/
 tools/*.exe
 tools/*.zip
 .playwright-cli/
+capture_unslop.js
+frontend/capture_unslop.js
 
 # Logs & temp
 *.log

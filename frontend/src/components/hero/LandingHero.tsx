@@ -46,20 +46,20 @@ export const LandingHero: React.FC<LandingHeroProps> = ({
       {/* 2. Centered Content Container */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-4xl mx-auto space-y-6 sm:space-y-8">
-          {/* Eyebrow Badge Pill */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#111F36] border border-slate-700/60 text-slate-200 text-xs font-mono font-medium shadow-xs animate-hero-1">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
-            <span className="tracking-wide text-slate-200 font-semibold">
-              {lang === 'bn' ? 'ট্রেনিং পণ্ডিত অটোনোমাস একাডেমি' : 'TrainingPundit Autonomous Academy'}
+          {/* Eyebrow Badge Pill with Signature Architectural Coordinates */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#111F36] border border-slate-800 text-slate-300 text-xs font-mono">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
+            <span className="text-slate-300">
+              {lang === 'bn' ? 'ঢাকা [২৩.৮১° উ, ৯০.৪১° পূ] • ট্রেনিং পণ্ডিত একাডেমি' : 'Dhaka [23.81° N, 90.41° E] • TrainingPundit Academy'}
             </span>
           </div>
 
           {/* Main Hero Headline */}
-          <h1 className="font-display font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-[60px] text-[#F5F8FF] leading-[1.2] sm:leading-[1.14] tracking-tight animate-hero-2">
+          <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl lg:text-[58px] text-[#F5F8FF] leading-[1.2] sm:leading-[1.15] tracking-tight">
             {lang === 'bn' ? (
               <>
                 শিখুন নিজের গতিতে,<br className="hidden sm:inline" />{' '}
-                <span className="text-[#35C6BE]">এগিয়ে যান আত্মবিশ্বাসে।</span>
+                <span className="text-[#35C6BE]">এগিয়ে যান আত্মবিশ্বাসে</span>
               </>
             ) : (
               <>
@@ -70,30 +70,30 @@ export const LandingHero: React.FC<LandingHeroProps> = ({
           </h1>
 
           {/* Value Proposition Subtitle */}
-          <p className="text-sm sm:text-base md:text-lg text-[#A8B7CE] max-w-2xl mx-auto font-normal font-sans leading-relaxed animate-hero-3">
+          <p className="text-sm sm:text-base md:text-lg text-[#A8B7CE] max-w-2xl mx-auto font-normal font-sans leading-relaxed">
             {lang === 'bn'
               ? 'কোর্স, লাইভ ক্লাস, অ্যাসাইনমেন্ট ও শেখার অগ্রগতি—সব এক জায়গায়। নিজের লক্ষ্য অনুযায়ী শেখা শুরু করুন, আর শেষ করা পাঠের পরের ধাপটি সহজেই খুঁজে নিন।'
               : 'Courses, live classes, assignments, and learning progress—all in one place. Start learning according to your goals, and seamlessly pick up where you left off.'}
           </p>
 
           {/* Action CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-1 animate-hero-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-1">
             {user ? (
               <Link
                 to="/dashboard"
-                className="w-full sm:w-auto min-h-[48px] sm:min-h-[50px] px-8 rounded-xl bg-[#356DFF] hover:bg-[#4B7EFF] text-white font-semibold text-sm sm:text-base flex items-center justify-center gap-2.5 tactile-press shadow-sm transition-colors"
+                className="w-full sm:w-auto min-h-[46px] px-7 rounded-xl bg-[#356DFF] hover:bg-[#4B7EFF] text-white font-medium text-sm sm:text-base flex items-center justify-center gap-2 tactile-press shadow-xs transition-colors"
               >
                 <Play className="w-4 h-4 fill-current" />
-                <span>{lang === 'bn' ? 'শেখা চালিয়ে যান' : 'Continue Learning'}</span>
+                <span>{lang === 'bn' ? 'শেখা চালিয়ে যান' : 'Continue learning'}</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             ) : (
               <Link
                 to="/courses"
-                className="w-full sm:w-auto min-h-[48px] sm:min-h-[50px] px-8 rounded-xl bg-[#356DFF] hover:bg-[#4B7EFF] text-white font-semibold text-sm sm:text-base flex items-center justify-center gap-2.5 tactile-press shadow-sm transition-colors"
+                className="w-full sm:w-auto min-h-[46px] px-7 rounded-xl bg-[#356DFF] hover:bg-[#4B7EFF] text-white font-medium text-sm sm:text-base flex items-center justify-center gap-2 tactile-press shadow-xs transition-colors"
               >
                 <BookOpen className="w-4 h-4" />
-                <span>{lang === 'bn' ? 'কোর্স দেখুন' : 'Explore Courses'}</span>
+                <span>{lang === 'bn' ? 'কোর্স ক্যাটালগ' : 'Explore courses'}</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             )}
@@ -101,39 +101,39 @@ export const LandingHero: React.FC<LandingHeroProps> = ({
             <a
               href="#curriculum"
               onClick={scrollToCurriculum}
-              className="w-full sm:w-auto min-h-[48px] sm:min-h-[50px] px-7 rounded-xl bg-[#111F36] hover:bg-[#162744] border border-slate-700/80 text-[#F5F8FF] font-semibold text-sm sm:text-base flex items-center justify-center gap-2 tactile-press transition-colors"
+              className="w-full sm:w-auto min-h-[46px] px-6 rounded-xl bg-[#111F36] hover:bg-[#162744] border border-slate-800 text-[#F5F8FF] font-medium text-sm sm:text-base flex items-center justify-center gap-2 tactile-press transition-colors"
             >
-              <Video className="w-4 h-4 text-[#35C6BE]" />
-              <span>{lang === 'bn' ? 'কীভাবে কাজ করে' : 'How It Works'}</span>
+              <Video className="w-4 h-4 text-slate-400" />
+              <span>{lang === 'bn' ? 'কীভাবে কাজ করে' : 'How it works'}</span>
             </a>
           </div>
 
           {/* Trust Metrics Strip */}
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-7 pt-2 text-xs sm:text-sm text-[#A8B7CE] font-mono animate-hero-4">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 pt-2 text-xs sm:text-sm text-slate-400 font-mono">
             <div className="flex items-center gap-1.5">
               <div className="flex text-amber-400">
                 {[1, 2, 3, 4, 5].map((i) => (
                   <Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
                 ))}
               </div>
-              <span className="font-bold text-[#F5F8FF]">4.95/5</span>
-              <span className="text-slate-400">Rating</span>
+              <span className="font-bold tabular-nums text-[#F5F8FF]">4.95/5</span>
+              <span>rating</span>
             </div>
 
             <div className="w-1 h-1 rounded-full bg-slate-700 hidden sm:block" />
 
             <div className="flex items-center gap-1.5">
-              <Users className="w-4 h-4 text-[#356DFF]" />
-              <span className="font-bold text-[#F5F8FF]">15,400+</span>
-              <span className="text-slate-400">{lang === 'bn' ? 'গ্র্যাজুয়েট' : 'Graduates'}</span>
+              <Users className="w-4 h-4 text-slate-400" />
+              <span className="font-bold tabular-nums text-[#F5F8FF]">15,400+</span>
+              <span>{lang === 'bn' ? 'গ্র্যাজুয়েট' : 'graduates'}</span>
             </div>
 
             <div className="w-1 h-1 rounded-full bg-slate-700 hidden sm:block" />
 
             <div className="flex items-center gap-1.5">
-              <Briefcase className="w-4 h-4 text-[#35C6BE]" />
-              <span className="font-bold text-[#F5F8FF]">50+</span>
-              <span className="text-slate-400">{lang === 'bn' ? 'হায়ার পার্টনার' : 'Hiring Partners'}</span>
+              <Briefcase className="w-4 h-4 text-slate-400" />
+              <span className="font-bold tabular-nums text-[#F5F8FF]">50+</span>
+              <span>{lang === 'bn' ? 'হায়ার পার্টনার' : 'hiring partners'}</span>
             </div>
 
             <div className="w-1 h-1 rounded-full bg-slate-700 hidden sm:block" />

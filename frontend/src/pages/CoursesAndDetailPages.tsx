@@ -54,11 +54,11 @@ export const CoursesPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-8">
       <div className="space-y-3">
-        <span className="text-xs font-mono uppercase tracking-wider text-sky-600 dark:text-sky-400 font-semibold">
-          {lang === 'bn' ? 'কোর্স ক্যাটালগ' : 'Verified Course Catalog'}
+        <span className="text-xs font-mono text-[#5D6B82] dark:text-[#A8B7CE] font-medium">
+          {lang === 'bn' ? 'কোর্স ক্যাটালগ' : 'Engineering curriculum'}
         </span>
         <h1 className="font-display font-bold text-2xl sm:text-4xl text-slate-900 dark:text-white">
-          {lang === 'bn' ? 'আপনার ক্যারিয়ার ট্র্যাক বেছে নিন' : 'Explore Industry-Grade Learning Tracks'}
+          {lang === 'bn' ? 'আপনার ক্যারিয়ার ট্র্যাক বেছে নিন' : 'Explore industry-grade learning tracks'}
         </h1>
       </div>
 
@@ -98,14 +98,14 @@ export const CoursesPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setLiveOnly(!liveOnly)}
-              className={`w-full min-h-[44px] px-4 rounded-xl border text-xs font-semibold flex items-center justify-center gap-2 tactile-press cursor-pointer transition-colors ${
+              className={`w-full min-h-[44px] px-4 rounded-xl border text-xs font-medium flex items-center justify-center gap-2 tactile-press cursor-pointer transition-colors ${
                 liveOnly
-                  ? 'aurora-pill-teal font-bold'
+                  ? 'aurora-pill-teal font-semibold'
                   : 'aurora-btn-secondary'
               }`}
             >
               <Video className="w-4 h-4 text-[#35C6BE]" />
-              <span>{lang === 'bn' ? 'শুধুমাত্র লাইভ ব্যাচ' : 'Live Batches Only'}</span>
+              <span>{lang === 'bn' ? 'শুধুমাত্র লাইভ ব্যাচ' : 'Live batches only'}</span>
             </button>
           </div>
         </div>
@@ -117,9 +117,9 @@ export const CoursesPage: React.FC = () => {
               key={cat}
               type="button"
               onClick={() => setCategory(cat)}
-              className={`min-h-[38px] px-4 rounded-xl text-xs font-semibold whitespace-nowrap tactile-press cursor-pointer shrink-0 transition-all ${
+              className={`min-h-[38px] px-4 rounded-xl text-xs font-medium whitespace-nowrap tactile-press cursor-pointer shrink-0 transition-all ${
                 category === cat
-                  ? 'aurora-btn-primary shadow-sm'
+                  ? 'aurora-btn-primary shadow-xs'
                   : 'aurora-btn-secondary'
               }`}
             >
@@ -143,24 +143,24 @@ export const CoursesPage: React.FC = () => {
             return (
               <div
                 key={course.id}
-                className="aurora-card rounded-2xl overflow-hidden flex flex-col justify-between hover:shadow-lg hover:border-[#356DFF] dark:hover:border-[#35C6BE] transition-all bg-white dark:bg-[#0C1528]"
+                className="aurora-card rounded-2xl overflow-hidden flex flex-col justify-between hover:border-[#356DFF] dark:hover:border-[#35C6BE] transition-all bg-white dark:bg-[#0C1528]"
               >
                 <div>
                   <div className="relative aspect-video bg-[#060B18] overflow-hidden">
                     <img
                       src={course.thumbnail_url}
                       alt={bf(course, 'title', lang)}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                      className="w-full h-full object-cover"
                       loading="lazy"
                     />
                     <div className="absolute top-3 left-3 flex items-center gap-2">
-                      <span className="px-2.5 py-1 rounded-lg bg-[#060B18]/90 backdrop-blur-md text-[#F5F8FF] text-[10px] font-mono font-semibold border border-slate-700/60 shadow-sm">
+                      <span className="px-2.5 py-1 rounded-lg bg-[#060B18]/90 backdrop-blur-md text-[#F5F8FF] text-[10px] font-mono font-medium border border-slate-700/60 shadow-xs">
                         {bf(course, 'category', lang)}
                       </span>
                       {course.is_live_course && (
-                        <span className="px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 text-[10px] font-mono font-extrabold flex items-center gap-1 shadow-sm">
-                          <span className="w-1.5 h-1.5 rounded-full bg-slate-950 animate-pulse" />
-                          <span>{course.seats_remaining} SEATS LEFT</span>
+                        <span className="px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 text-[10px] font-mono font-semibold flex items-center gap-1 shadow-xs">
+                          <span className="w-1.5 h-1.5 rounded-full bg-slate-950" />
+                          <span>{course.seats_remaining} seats left</span>
                         </span>
                       )}
                     </div>
@@ -168,11 +168,12 @@ export const CoursesPage: React.FC = () => {
                   <div className="p-5 space-y-3">
                     <div className="flex items-center justify-between text-xs font-mono text-[#5D6B82] dark:text-[#A8B7CE]">
                       <span className="flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5 text-[#356DFF]" />
-                        {course.duration_hours} hrs • {course.lesson_count} Lessons
+                        <Clock className="w-3.5 h-3.5 text-slate-400" />
+                        <span className="tabular-nums">{course.duration_hours}h • {course.lesson_count} lessons</span>
                       </span>
-                      <span className="text-amber-500 font-semibold flex items-center gap-1">
-                        <Star className="w-3.5 h-3.5 fill-amber-400" /> {course.rating}
+                      <span className="text-amber-500 font-medium flex items-center gap-1">
+                        <Star className="w-3.5 h-3.5 fill-amber-400" />
+                        <span className="tabular-nums">{course.rating}</span>
                       </span>
                     </div>
                     <Link to={`/courses/${course.id}`} className="block group">
@@ -189,11 +190,11 @@ export const CoursesPage: React.FC = () => {
                 <div className="p-5 pt-0 space-y-3.5">
                   <div className="pt-3 border-t border-[#E2E8F2] dark:border-slate-800/80 flex items-center justify-between">
                     <div>
-                      <span className="font-mono font-bold text-lg sm:text-xl text-[#14213A] dark:text-[#F5F8FF]">
+                      <span className="font-mono font-bold text-lg sm:text-xl text-[#14213A] dark:text-[#F5F8FF] tabular-nums">
                         ৳{course.price.toLocaleString()}
                       </span>
                       {course.original_price > course.price && (
-                        <span className="ml-2 text-xs font-mono line-through text-[#5D6B82] dark:text-[#A8B7CE]">
+                        <span className="ml-2 text-xs font-mono line-through text-[#5D6B82] dark:text-[#A8B7CE] tabular-nums">
                           ৳{course.original_price.toLocaleString()}
                         </span>
                       )}
@@ -205,9 +206,9 @@ export const CoursesPage: React.FC = () => {
                   <div className="flex items-center gap-2">
                     <Link
                       to={`/courses/${course.id}`}
-                      className="aurora-btn-primary flex-1 min-h-[44px] rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 tactile-press"
+                      className="aurora-btn-primary flex-1 min-h-[44px] rounded-xl text-xs font-medium flex items-center justify-center gap-1.5 tactile-press"
                     >
-                      <span>{lang === 'bn' ? 'সিলেবাস ও ভর্তি' : 'View Syllabus'}</span>
+                      <span>{lang === 'bn' ? 'সিলেবাস ও ভর্তি' : 'View track'}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                     <button
@@ -300,21 +301,21 @@ export const CourseDetailPage: React.FC = () => {
           {/* Main Title & Badges */}
           <div className="space-y-4">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="px-3 py-1 rounded-full bg-sky-500/15 text-sky-600 dark:text-sky-400 font-mono text-xs font-bold border border-sky-500/20">
+              <span className="px-3 py-1 rounded-full bg-sky-500/15 text-sky-600 dark:text-sky-400 font-mono text-xs font-semibold border border-sky-500/20">
                 {bf(course, 'category', lang)}
               </span>
               {course.is_live_course && (
-                <span className="px-3 py-1 rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-600 dark:text-amber-400 font-mono text-xs font-bold border border-amber-500/30 flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-                  <span>{bf(course, 'batch_title', lang)} • {course.seats_remaining} SEATS LEFT</span>
+                <span className="px-3 py-1 rounded-full bg-amber-500/15 text-amber-700 dark:text-amber-400 font-mono text-xs font-semibold border border-amber-500/30 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                  <span>{bf(course, 'batch_title', lang)} • {course.seats_remaining} seats remaining</span>
                 </span>
               )}
-              <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-semibold border border-emerald-500/20">
+              <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-medium border border-emerald-500/20">
                 AST CodeLab Included
               </span>
             </div>
 
-            <h1 className="font-display font-extrabold text-2xl sm:text-4xl lg:text-5xl text-slate-900 dark:text-white leading-tight tracking-tight">
+            <h1 className="font-display font-bold text-2xl sm:text-4xl lg:text-5xl text-slate-900 dark:text-white leading-tight tracking-tight">
               {bf(course, 'title', lang)}
             </h1>
 
@@ -325,16 +326,16 @@ export const CourseDetailPage: React.FC = () => {
             {/* Social Trust Metrics */}
             <div className="flex flex-wrap items-center gap-5 text-xs font-mono text-slate-500 dark:text-slate-400 pt-2 border-y border-slate-100 dark:border-slate-800/80 py-3">
               <span className="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-300">
-                <Users className="w-4 h-4 text-sky-500" /> {course.students_count.toLocaleString()}+ Students Enrolled
+                <Users className="w-4 h-4 text-slate-400" /> <span className="tabular-nums">{course.students_count.toLocaleString()}+</span> enrolled
               </span>
               <span className="flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-emerald-500" /> {course.duration_hours} Total Hours
+                <Clock className="w-4 h-4 text-slate-400" /> <span className="tabular-nums">{course.duration_hours}h</span> total
               </span>
-              <span className="flex items-center gap-1.5 text-amber-500 font-bold">
-                <Star className="w-4 h-4 fill-amber-400" /> {course.rating} / 5.0 Rating
+              <span className="flex items-center gap-1.5 text-amber-500 font-medium">
+                <Star className="w-4 h-4 fill-amber-400" /> <span className="tabular-nums">{course.rating}</span>
               </span>
               <span className="flex items-center gap-1 text-slate-600 dark:text-slate-300">
-                <Award className="w-4 h-4 text-purple-500" /> Verified Certificate
+                <Award className="w-4 h-4 text-slate-400" /> Verified certificate
               </span>
             </div>
           </div>
@@ -368,9 +369,9 @@ export const CourseDetailPage: React.FC = () => {
               <div className="flex items-center justify-between">
                 <h2 className="font-display font-bold text-lg text-[#14213A] dark:text-[#F5F8FF] flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-[#35C6BE]" />
-                  <span>{lang === 'bn' ? 'এই কোর্স শেষে আপনি যা তৈরি করতে পারবেন' : 'What You Will Master & Build'}</span>
+                  <span>{lang === 'bn' ? 'এই কোর্স শেষে আপনি যা তৈরি করতে পারবেন' : 'What you will build'}</span>
                 </h2>
-                <span className="text-[10px] font-mono uppercase tracking-wider text-[#35C6BE] font-bold">Production Ready</span>
+                <span className="text-[10px] font-mono text-[#35C6BE] font-semibold">Production ready</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 {course.outcomes.map((item: string, i: number) => (
@@ -417,8 +418,8 @@ export const CourseDetailPage: React.FC = () => {
               <div className="rounded-3xl overflow-hidden border border-[#356DFF]/50 bg-[#060B18] shadow-2xl">
                 <div className="px-5 py-3 flex items-center justify-between bg-[#0C1528] text-xs font-mono text-[#35C6BE] border-b border-slate-800">
                   <span className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>FREE LESSON PREVIEW (Zero-Trust Sandbox)</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    <span>Lesson preview</span>
                   </span>
                   <button
                     type="button"
@@ -558,12 +559,12 @@ export const CourseDetailPage: React.FC = () => {
               <img
                 src={course.thumbnail_url}
                 alt={bf(course, 'title', lang)}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#060B18]/80 via-transparent to-transparent flex items-end p-4">
                 <span className="text-xs font-mono text-[#F5F8FF] flex items-center gap-1.5">
                   <Play className="w-3.5 h-3.5 text-white fill-current" />
-                  Full Curriculum Unlocked on Enrollment
+                  Full curriculum unlocked on enrollment
                 </span>
               </div>
             </div>
@@ -572,31 +573,31 @@ export const CourseDetailPage: React.FC = () => {
             <div className="space-y-1">
               <div className="flex items-baseline justify-between">
                 <div>
-                  <span className="font-mono font-extrabold text-3xl sm:text-4xl text-[#14213A] dark:text-[#F5F8FF]">
+                  <span className="font-mono font-bold text-3xl sm:text-4xl text-[#14213A] dark:text-[#F5F8FF] tabular-nums">
                     ৳{activePrice.toLocaleString()}
                   </span>
                   {course.original_price > activePrice && (
-                    <span className="ml-2.5 font-mono text-sm line-through text-[#5D6B82] dark:text-[#A8B7CE]">
+                    <span className="ml-2.5 font-mono text-sm line-through text-[#5D6B82] dark:text-[#A8B7CE] tabular-nums">
                       ৳{course.original_price.toLocaleString()}
                     </span>
                   )}
                 </div>
                 {savings > 0 && (
-                  <span className="px-2.5 py-1 rounded-lg aurora-pill-teal font-mono text-xs font-bold">
-                    SAVE ৳{savings.toLocaleString()}
+                  <span className="px-2.5 py-1 rounded-lg aurora-pill-teal font-mono text-xs font-medium tabular-nums">
+                    Save ৳{savings.toLocaleString()}
                   </span>
                 )}
               </div>
               <p className="text-[11px] font-mono text-[#5D6B82] dark:text-[#A8B7CE]">
-                Inclusive of all taxes & lifetime access privileges
+                Inclusive of all taxes & lifetime access
               </p>
             </div>
 
             {/* Hybrid Delivery Variant Selector (Recorded / Live / 1-on-1) */}
             {(course.variants || []).length > 0 && (
               <div className="space-y-2.5">
-                <label className="block text-xs font-mono uppercase tracking-wider text-[#5D6B82] dark:text-[#A8B7CE] font-bold">
-                  {lang === 'bn' ? 'কোর্স ডেলিভারি ফরম্যাট নির্বাচন করুন:' : 'Select Delivery Format:'}
+                <label className="block text-xs font-mono text-[#5D6B82] dark:text-[#A8B7CE] font-semibold">
+                  {lang === 'bn' ? 'কোর্স ডেলিভারি ফরম্যাট নির্বাচন করুন:' : 'Select delivery format:'}
                 </label>
                 <div className="space-y-2">
                   {course.variants.map((v: any) => {

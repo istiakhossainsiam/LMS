@@ -21,7 +21,7 @@ import {
   Printer,
   QrCode,
   ShieldCheck,
-  Sparkles,
+  LayoutDashboard,
   UserCheck,
   Video,
   Zap,
@@ -341,7 +341,7 @@ export const StudentDashboardPage: React.FC = () => {
     const answeredCount = Object.keys(examAnswers).length
     const calculatedScore = Math.min(100, Math.round((answeredCount / totalQ) * 85 + 15))
     setExamScore(calculatedScore)
-    showToast(`Exam submitted! Your score: ${calculatedScore}%`, calculatedScore >= 60 ? 'success' : 'info')
+    showToast(`Exam submitted. Score: ${calculatedScore}%`, calculatedScore >= 60 ? 'success' : 'info')
   }
 
   const handleRedeemGift = async (e: React.FormEvent) => {
@@ -352,7 +352,7 @@ export const StudentDashboardPage: React.FC = () => {
         method: 'POST',
         body: JSON.stringify({ code: giftCodeInput }),
       })
-      showToast(`Gift Code Redeemed! Enrolled in: ${res.enrolled_items.join(', ')}`, 'success')
+      showToast(`Gift code redeemed. Enrolled in: ${res.enrolled_items.join(', ')}`, 'success')
       setGiftCodeInput('')
       loadDashboard()
     } catch (err: any) {
@@ -389,7 +389,7 @@ export const StudentDashboardPage: React.FC = () => {
   const referralUrl = `${window.location.origin}/login?mode=signup&ref=${data.stats?.referral_code || ''}`
 
   const tabs: { id: StudentTabId; label: string; icon: any; badge?: number }[] = [
-    { id: 'overview', label: lang === 'bn' ? 'ড্যাশবোর্ড' : 'Overview', icon: Sparkles },
+    { id: 'overview', label: lang === 'bn' ? 'ড্যাশবোর্ড' : 'Overview', icon: LayoutDashboard },
     { id: 'courses', label: lang === 'bn' ? 'আমার কোর্স' : 'My Courses', icon: BookOpen, badge: data.enrolled_courses?.length },
     { id: 'books', label: lang === 'bn' ? 'আমার বইসমূহ' : 'My Books', icon: FileText, badge: books?.length },
     { id: 'orders', label: lang === 'bn' ? 'কেনার রেকর্ড' : 'Order History', icon: CreditCard, badge: invoices?.length },
@@ -446,40 +446,40 @@ export const StudentDashboardPage: React.FC = () => {
 
         {/* 4 KPI Stat Pills */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 w-full lg:w-auto">
-          <div className="p-3 rounded-2xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 flex items-center gap-2.5">
-            <Flame className="w-5 h-5 text-amber-500 shrink-0" />
+          <div className="p-3 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 flex items-center gap-2.5">
+            <Flame className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
             <div className="min-w-0">
-              <div className="font-display font-bold text-base sm:text-lg text-[#14213A] dark:text-[#F5F8FF]">
-                {data.stats?.current_streak || 1} Days
+              <div className="font-mono font-bold text-base sm:text-lg text-[#14213A] dark:text-[#F5F8FF] tabular-nums">
+                {data.stats?.current_streak || 1}d
               </div>
-              <div className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] truncate">Streak</div>
+              <div className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] truncate">Active streak</div>
             </div>
           </div>
-          <div className="p-3 rounded-2xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 flex items-center gap-2.5">
-            <BookOpen className="w-5 h-5 text-[#356DFF] shrink-0" />
+          <div className="p-3 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 flex items-center gap-2.5">
+            <BookOpen className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
             <div className="min-w-0">
-              <div className="font-display font-bold text-base sm:text-lg text-[#14213A] dark:text-[#F5F8FF]">
+              <div className="font-mono font-bold text-base sm:text-lg text-[#14213A] dark:text-[#F5F8FF] tabular-nums">
                 {data.stats?.enrolled_count || 0}
               </div>
-              <div className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] truncate">Enrolled</div>
+              <div className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] truncate">Tracks enrolled</div>
             </div>
           </div>
-          <div className="p-3 rounded-2xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 flex items-center gap-2.5">
-            <CheckCircle2 className="w-5 h-5 text-[#35C6BE] shrink-0" />
+          <div className="p-3 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 flex items-center gap-2.5">
+            <CheckCircle2 className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
             <div className="min-w-0">
-              <div className="font-display font-bold text-base sm:text-lg text-[#14213A] dark:text-[#F5F8FF]">
+              <div className="font-mono font-bold text-base sm:text-lg text-[#14213A] dark:text-[#F5F8FF] tabular-nums">
                 {data.stats?.completed_lessons || 0}
               </div>
-              <div className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] truncate">Completed</div>
+              <div className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] truncate">Lessons passed</div>
             </div>
           </div>
-          <div className="p-3 rounded-2xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 flex items-center gap-2.5">
-            <Award className="w-5 h-5 text-purple-500 shrink-0" />
+          <div className="p-3 rounded-xl bg-[#F5F7FB] dark:bg-[#111F36] border border-[#E2E8F2] dark:border-slate-800 flex items-center gap-2.5">
+            <Award className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
             <div className="min-w-0">
-              <div className="font-display font-bold text-base sm:text-lg text-[#14213A] dark:text-[#F5F8FF]">
+              <div className="font-mono font-bold text-base sm:text-lg text-[#14213A] dark:text-[#F5F8FF] tabular-nums">
                 {data.stats?.certificates_earned || 0}
               </div>
-              <div className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] truncate">Certs</div>
+              <div className="text-[10px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] truncate">Certificates</div>
             </div>
           </div>
         </div>
@@ -623,7 +623,7 @@ export const StudentDashboardPage: React.FC = () => {
               <div className="aurora-card-raised rounded-2xl p-5 border border-[#35C6BE]/30 bg-gradient-to-br from-[#060B18] to-[#0C1528] text-white space-y-4 shadow-xl">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-[#35C6BE]" />
+                    <UserCheck className="w-4 h-4 text-[#35C6BE]" />
                     <span className="text-xs font-mono font-bold tracking-wider text-[#35C6BE]">DIGITAL STUDENT ID</span>
                   </div>
                   <button
@@ -657,7 +657,7 @@ export const StudentDashboardPage: React.FC = () => {
                     type="button"
                     onClick={() => {
                       navigator.clipboard?.writeText(referralUrl)
-                      showToast('Referral link copied!', 'success')
+                      showToast('Referral link copied.', 'success')
                     }}
                     className="min-h-[40px] px-3.5 rounded-xl aurora-btn-primary text-xs font-semibold flex items-center gap-1 cursor-pointer"
                   >
@@ -950,16 +950,16 @@ export const StudentDashboardPage: React.FC = () => {
 
                 {/* Score Alert if Submitted */}
                 {examSubmitted && (
-                  <div className={`p-4 rounded-2xl border text-center space-y-2 ${
+                  <div className={`p-4 rounded-xl border text-center space-y-1.5 ${
                     (examScore || 0) >= 60 ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-red-500/10 border-red-500/30'
                   }`}>
-                    <div className="font-display font-extrabold text-2xl text-[#14213A] dark:text-[#F5F8FF]">
-                      Your Score: {examScore}%
+                    <div className="font-mono font-bold text-2xl text-[#14213A] dark:text-[#F5F8FF] tabular-nums">
+                      Score: {examScore}%
                     </div>
-                    <p className="text-xs font-semibold">
+                    <p className="text-xs text-slate-700 dark:text-slate-300 font-medium">
                       {(examScore || 0) >= 60
-                        ? '🎉 Congratulations! You have passed this certification evaluation.'
-                        : 'Keep practicing! Review the lesson modules and try again.'}
+                        ? 'Assessment passed. Result recorded toward course graduation.'
+                        : 'Score below pass threshold (60%). Review course modules and retake.'}
                     </p>
                   </div>
                 )}

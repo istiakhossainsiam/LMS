@@ -25,7 +25,7 @@ import {
   ShieldAlert,
   ShieldCheck,
   ShoppingBag,
-  Sparkles,
+  Cpu,
   Tag,
   Trash2,
   TrendingUp,
@@ -99,7 +99,7 @@ export const TrainerStudioPage: React.FC = () => {
         method: 'POST',
         body: JSON.stringify(courseForm),
       })
-      showToast('New course track published!', 'success')
+      showToast('New course track published.', 'success')
       setCourseForm({
         title: '',
         title_bn: '',
@@ -122,7 +122,7 @@ export const TrainerStudioPage: React.FC = () => {
         method: 'POST',
         body: JSON.stringify(lessonForm),
       })
-      showToast('Lesson added to course!', 'success')
+      showToast('Lesson added to course.', 'success')
       setLessonForm({ ...lessonForm, title: '', order: lessonForm.order + 1 })
       loadStudio()
     } catch (err: any) {
@@ -137,7 +137,7 @@ export const TrainerStudioPage: React.FC = () => {
         method: 'POST',
         body: JSON.stringify(quizForm),
       })
-      showToast('Quiz question added (Normalized Short/MCQ schema)!', 'success')
+      showToast('Quiz question added.', 'success')
       setQuizForm({ ...quizForm, text: '', correct_answer: '' })
     } catch (err: any) {
       showToast(err.message, 'error')
@@ -907,7 +907,7 @@ export const AdminConsolePage: React.FC = () => {
     { id: 'trainers', label: 'Trainer Studio', icon: BookOpen },
     { id: 'payouts', label: 'Trainer Payouts', icon: Wallet },
     { id: 'payments', label: 'MFS Approvals', icon: CreditCard, badge: data.kpis.pending_verifications || undefined },
-    { id: 'ai_sync', label: 'AI & Sync', icon: Sparkles },
+    { id: 'ai_sync', label: 'AI & Sync', icon: Cpu },
   ]
 
   return (
@@ -1041,24 +1041,24 @@ export const AdminConsolePage: React.FC = () => {
             {/* 6 Metric KPI Cards */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
               {[
-                { label: 'Total Revenue', value: `৳${data.kpis.total_revenue_bdt.toLocaleString()}`, icon: DollarSign, color: 'text-emerald-500', glow: 'from-emerald-500/10' },
-                { label: 'Active Learners', value: data.kpis.total_users, icon: Users, color: 'text-sky-500', glow: 'from-sky-500/10' },
-                { label: 'Live Tracks', value: data.kpis.active_courses, icon: BookOpen, color: 'text-indigo-500', glow: 'from-indigo-500/10' },
-                { label: 'Pending Approvals', value: data.kpis.pending_verifications, icon: CheckCircle2, color: 'text-amber-500', glow: 'from-amber-500/10' },
-                { label: 'Minted Certs', value: data.kpis.issued_certificates, icon: Award, color: 'text-purple-500', glow: 'from-purple-500/10' },
-                { label: 'Security Audit', value: '6/6 Verified', icon: ShieldCheck, color: 'text-emerald-500', glow: 'from-teal-500/10' },
+                { label: 'Total revenue', value: `৳${data.kpis.total_revenue_bdt.toLocaleString()}`, icon: DollarSign },
+                { label: 'Active learners', value: data.kpis.total_users, icon: Users },
+                { label: 'Live tracks', value: data.kpis.active_courses, icon: BookOpen },
+                { label: 'Pending approvals', value: data.kpis.pending_verifications, icon: CheckCircle2 },
+                { label: 'Certificates issued', value: data.kpis.issued_certificates, icon: Award },
+                { label: 'Security audit', value: '6/6 verified', icon: ShieldCheck },
               ].map((kpi, idx) => {
                 const Icon = kpi.icon
                 return (
                   <div
                     key={idx}
-                    className="p-3.5 sm:p-5 rounded-2xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] relative overflow-hidden shadow-xs min-w-0"
+                    className="p-3.5 sm:p-5 rounded-xl border border-[#E2E8F2] dark:border-slate-800 bg-white dark:bg-[#0C1528] relative overflow-hidden shadow-xs min-w-0"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-[10px] sm:text-[11px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] uppercase tracking-wider truncate">{kpi.label}</span>
-                      <Icon className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${kpi.color} shrink-0`} />
+                      <span className="text-[10px] sm:text-[11px] font-mono text-[#5D6B82] dark:text-[#A8B7CE] truncate">{kpi.label}</span>
+                      <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-400 dark:text-slate-500 shrink-0" />
                     </div>
-                    <div className="font-display font-black text-lg sm:text-2xl text-[#14213A] dark:text-[#F5F8FF] mt-1.5 sm:mt-2 truncate">
+                    <div className="font-mono font-bold text-lg sm:text-2xl text-[#14213A] dark:text-[#F5F8FF] mt-1.5 sm:mt-2 truncate tabular-nums">
                       {kpi.value}
                     </div>
                   </div>
@@ -2359,7 +2359,7 @@ export const AdminConsolePage: React.FC = () => {
                 className="rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-[#111827]/80 backdrop-blur-md p-6 space-y-4"
               >
                 <h2 className="font-display font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-amber-500" /> Gemini AI Bilingual Technical Blog Writer
+                  <Cpu className="w-5 h-5 text-slate-500" /> Technical blog generator (Gemini)
                 </h2>
                 <p className="text-xs text-slate-500">
                   Generate SEO-optimized articles with structured engineering roadmaps, code examples, and bilingual support.

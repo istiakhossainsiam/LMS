@@ -17,7 +17,6 @@ import {
   Wrench,
   X,
   ArrowRight,
-  Sparkles,
   FileText,
   Briefcase,
   Code2,
@@ -99,43 +98,43 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
           {isAdminRoute ? (
             <Link
               to="/admin"
-              className="flex items-center gap-2.5 tactile-press focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-xl shrink-0 group select-none"
+              className="flex items-center gap-2.5 tactile-press focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-xl shrink-0 select-none"
             >
-              <div className="w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center shadow-md shrink-0 font-bold group-hover:scale-105 transition-transform">
-                <Sparkles className="w-4.5 h-4.5 sm:w-5.5 sm:h-5.5 stroke-[2.2]" />
+              <div className="w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center shadow-xs shrink-0 font-bold">
+                <ShieldCheck className="w-4.5 h-4.5 sm:w-5.5 sm:h-5.5 stroke-[2.2]" />
               </div>
               <div className="leading-tight shrink-0">
                 <div className="flex items-center gap-1.5">
-                  <span className="font-display font-extrabold text-sm sm:text-base tracking-tight text-slate-950 dark:text-white whitespace-nowrap">
+                  <span className="font-display font-bold text-sm sm:text-base tracking-tight text-slate-950 dark:text-white whitespace-nowrap">
                     {lang === 'bn' ? 'অ্যাডমিন কনসোল' : 'Admin Console'}
                   </span>
-                  <span className="px-1.5 py-0.2 rounded-md bg-amber-500/20 border border-amber-500/30 text-amber-700 dark:text-amber-400 font-mono text-[9px] font-bold uppercase">
-                    Executive
+                  <span className="px-1.5 py-0.2 rounded-md bg-amber-500/20 border border-amber-500/30 text-amber-700 dark:text-amber-400 font-mono text-[9px] font-semibold">
+                    Console
                   </span>
                 </div>
-                <span className="text-[10px] font-mono font-semibold tracking-wider text-slate-500 dark:text-slate-400 whitespace-nowrap block">
-                  TrainingPundit • Executive
+                <span className="text-[10px] font-mono font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap block">
+                  TrainingPundit • Management
                 </span>
               </div>
             </Link>
           ) : isTrainerRoute ? (
             <Link
               to="/trainer"
-              className="flex items-center gap-2.5 tactile-press focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 rounded-xl shrink-0 group select-none"
+              className="flex items-center gap-2.5 tactile-press focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 rounded-xl shrink-0 select-none"
             >
-              <div className="w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-xl bg-sky-500 text-slate-950 flex items-center justify-center shadow-md shrink-0 font-bold group-hover:scale-105 transition-transform">
+              <div className="w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-xl bg-sky-500 text-slate-950 flex items-center justify-center shadow-xs shrink-0 font-bold">
                 <Wrench className="w-4.5 h-4.5 sm:w-5.5 sm:h-5.5 stroke-[2.2]" />
               </div>
               <div className="leading-tight shrink-0">
                 <div className="flex items-center gap-1.5">
-                  <span className="font-display font-extrabold text-sm sm:text-base tracking-tight text-slate-950 dark:text-white whitespace-nowrap">
+                  <span className="font-display font-bold text-sm sm:text-base tracking-tight text-slate-950 dark:text-white whitespace-nowrap">
                     {lang === 'bn' ? 'ইন্সট্রাক্টর স্টুডিও' : 'Trainer Studio'}
                   </span>
-                  <span className="px-1.5 py-0.2 rounded-md bg-sky-500/20 border border-sky-500/30 text-sky-700 dark:text-sky-400 font-mono text-[9px] font-bold uppercase">
+                  <span className="px-1.5 py-0.2 rounded-md bg-sky-500/20 border border-sky-500/30 text-sky-700 dark:text-sky-400 font-mono text-[9px] font-semibold">
                     Studio
                   </span>
                 </div>
-                <span className="text-[10px] font-mono font-semibold tracking-wider text-slate-500 dark:text-slate-400 whitespace-nowrap block">
+                <span className="text-[10px] font-mono font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap block">
                   TrainingPundit Authoring
                 </span>
               </div>
@@ -143,21 +142,21 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
           ) : isStudentRoute ? (
             <Link
               to="/dashboard"
-              className="flex items-center gap-2.5 tactile-press focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-xl shrink-0 group select-none"
+              className="flex items-center gap-2.5 tactile-press focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-xl shrink-0 select-none"
             >
-              <div className="w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-xl bg-emerald-500 text-slate-950 flex items-center justify-center shadow-md shrink-0 font-bold group-hover:scale-105 transition-transform">
+              <div className="w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-xl bg-emerald-500 text-slate-950 flex items-center justify-center shadow-xs shrink-0 font-bold">
                 <BookOpen className="w-4.5 h-4.5 sm:w-5.5 sm:h-5.5 stroke-[2.2]" />
               </div>
               <div className="leading-tight shrink-0">
                 <div className="flex items-center gap-1.5">
-                  <span className="font-display font-extrabold text-sm sm:text-base tracking-tight text-slate-950 dark:text-white whitespace-nowrap">
+                  <span className="font-display font-bold text-sm sm:text-base tracking-tight text-slate-950 dark:text-white whitespace-nowrap">
                     {lang === 'bn' ? 'লার্নিং পোর্টাল' : 'Student Hub'}
                   </span>
-                  <span className="px-1.5 py-0.2 rounded-md bg-emerald-500/20 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 font-mono text-[9px] font-bold uppercase">
+                  <span className="px-1.5 py-0.2 rounded-md bg-emerald-500/20 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 font-mono text-[9px] font-semibold">
                     Classroom
                   </span>
                 </div>
-                <span className="text-[10px] font-mono font-semibold tracking-wider text-slate-500 dark:text-slate-400 whitespace-nowrap block">
+                <span className="text-[10px] font-mono font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap block">
                   TrainingPundit Academy
                 </span>
               </div>
@@ -165,17 +164,17 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
           ) : (
             <Link
               to="/"
-              className="flex items-center gap-2.5 tactile-press focus:outline-none focus-visible:ring-2 focus-visible:ring-[#356DFF] rounded-xl shrink-0 group select-none"
+              className="flex items-center gap-2.5 tactile-press focus:outline-none focus-visible:ring-2 focus-visible:ring-[#356DFF] rounded-xl shrink-0 select-none"
             >
-              <div className="w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-xl bg-[#356DFF] text-white flex items-center justify-center shadow-md shrink-0 border border-[#356DFF]/50 group-hover:scale-105 transition-transform">
+              <div className="w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-xl bg-[#356DFF] text-white flex items-center justify-center shadow-xs shrink-0 border border-[#356DFF]/50">
                 <GraduationCap className="w-4.5 h-4.5 sm:w-5.5 sm:h-5.5 stroke-[2.2]" aria-hidden="true" />
               </div>
               <div className="leading-tight shrink-0 hidden xs:block">
-                <span className="font-display font-extrabold text-sm sm:text-base tracking-tight text-slate-950 dark:text-white whitespace-nowrap block">
+                <span className="font-display font-bold text-sm sm:text-base tracking-tight text-slate-950 dark:text-white whitespace-nowrap block">
                   {lang === 'bn' ? 'ট্রেনিং পণ্ডিত' : 'TrainingPundit'}
                 </span>
-                <span className="text-[10px] font-mono font-bold tracking-wider text-[#356DFF] dark:text-[#35C6BE] whitespace-nowrap block">
-                  Academy 2.0 • LMS
+                <span className="text-[10px] font-mono font-medium text-[#356DFF] dark:text-[#35C6BE] whitespace-nowrap block">
+                  Autonomous Academy
                 </span>
               </div>
             </Link>
@@ -185,61 +184,61 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
           {isAdminRoute ? (
             /* Admin Center Navigation */
             <nav className="hidden lg:flex items-center gap-1 xl:gap-2 shrink-0" aria-label="Admin Navigation">
-              <span className="px-2.5 py-1 rounded-lg bg-amber-500/15 border border-amber-500/30 text-amber-800 dark:text-amber-300 font-mono text-xs font-bold flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-                <span>Executive Command</span>
+              <span className="px-2.5 py-1 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-800 dark:text-amber-300 font-mono text-xs font-semibold flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                <span>Console mode</span>
               </span>
               <Link
                 to="/trainer"
-                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap tactile-press text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium flex items-center gap-1.5 whitespace-nowrap tactile-press text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
               >
                 <Wrench className="w-3.5 h-3.5 text-sky-500" />
-                <span>{lang === 'bn' ? 'ইন্সট্রাক্টর স্টুডিও' : 'Trainer Studio'}</span>
+                <span>{lang === 'bn' ? 'ইন্সট্রাক্টর স্টুডিও' : 'Trainer studio'}</span>
               </Link>
               <Link
                 to="/dashboard"
-                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap tactile-press text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium flex items-center gap-1.5 whitespace-nowrap tactile-press text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
               >
                 <BookOpen className="w-3.5 h-3.5 text-emerald-500" />
-                <span>{lang === 'bn' ? 'স্টুডেন্ট ভিউ' : 'Student View'}</span>
+                <span>{lang === 'bn' ? 'স্টুডেন্ট ভিউ' : 'Student view'}</span>
               </Link>
               <Link
                 to="/courses"
-                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap tactile-press text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium flex items-center gap-1.5 whitespace-nowrap tactile-press text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
               >
                 <Compass className="w-3.5 h-3.5 text-slate-500" />
-                <span>{lang === 'bn' ? 'কোর্স ক্যাটালগ' : 'Course Catalog'}</span>
+                <span>{lang === 'bn' ? 'কোর্স ক্যাটালগ' : 'Course catalog'}</span>
               </Link>
             </nav>
           ) : isTrainerRoute ? (
             /* Trainer Studio Center Navigation */
             <nav className="hidden lg:flex items-center gap-1 xl:gap-2 shrink-0" aria-label="Trainer Navigation">
-              <span className="px-2.5 py-1 rounded-lg bg-sky-500/15 border border-sky-500/30 text-sky-800 dark:text-sky-300 font-mono text-xs font-bold flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-sky-500 animate-pulse" />
-                <span>Studio Workspace</span>
+              <span className="px-2.5 py-1 rounded-lg bg-sky-500/10 border border-sky-500/20 text-sky-800 dark:text-sky-300 font-mono text-xs font-semibold flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-sky-500" />
+                <span>Studio workspace</span>
               </span>
               <Link
                 to="/dashboard"
-                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap tactile-press text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium flex items-center gap-1.5 whitespace-nowrap tactile-press text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
               >
                 <BookOpen className="w-3.5 h-3.5 text-emerald-500" />
-                <span>{lang === 'bn' ? 'লার্নিং ক্লাসরুম' : 'Student Classroom'}</span>
+                <span>{lang === 'bn' ? 'লার্নিং ক্লাসরুম' : 'Student classroom'}</span>
               </Link>
               {(user?.is_staff || user?.is_superuser) && (
                 <Link
                   to="/admin"
-                  className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap tactile-press bg-amber-500/10 text-amber-700 dark:text-amber-400 hover:bg-amber-500/20"
+                  className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium flex items-center gap-1.5 whitespace-nowrap tactile-press bg-amber-500/10 text-amber-700 dark:text-amber-400 hover:bg-amber-500/20"
                 >
-                  <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-                  <span>{lang === 'bn' ? 'অ্যাডমিন কনসোল' : 'Admin Console'}</span>
+                  <ShieldCheck className="w-3.5 h-3.5 text-amber-500" />
+                  <span>{lang === 'bn' ? 'অ্যাডমিন কনসোল' : 'Admin console'}</span>
                 </Link>
               )}
               <Link
                 to="/courses"
-                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap tactile-press text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium flex items-center gap-1.5 whitespace-nowrap tactile-press text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
               >
                 <Compass className="w-3.5 h-3.5 text-slate-500" />
-                <span>{lang === 'bn' ? 'কোর্স ক্যাটালগ' : 'Course Catalog'}</span>
+                <span>{lang === 'bn' ? 'কোর্স ক্যাটালগ' : 'Course catalog'}</span>
               </Link>
             </nav>
           ) : isStudentRoute ? (
@@ -403,7 +402,7 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                     className="h-8 sm:h-8.5 px-2.5 sm:px-3 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-700 dark:text-amber-300 text-xs font-semibold flex items-center gap-1.5 tactile-press shadow-2xs hover:bg-amber-500/25"
                     title="Executive Admin Console"
                   >
-                    <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                    <ShieldCheck className="w-3.5 h-3.5 text-amber-500" />
                     <span>{lang === 'bn' ? 'অ্যাডমিন' : 'Admin'}</span>
                   </Link>
                 )}
@@ -544,8 +543,8 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                             onClick={() => setUserMenuOpen(false)}
                             className="w-full px-3 py-2 rounded-xl text-amber-700 dark:text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 font-semibold flex items-center gap-2.5 transition-colors"
                           >
-                            <Sparkles className="w-4 h-4 text-amber-500" />
-                            <span>{lang === 'bn' ? 'অ্যাডমিন কনসোল' : 'Executive Admin Console'}</span>
+                            <ShieldCheck className="w-4 h-4 text-amber-500" />
+                            <span>{lang === 'bn' ? 'অ্যাডমিন কনসোল' : 'Admin Console'}</span>
                           </Link>
                         )}
 
@@ -784,10 +783,10 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
         </div>
       )}
 
-      {/* Mobile Native Floating Bottom Navigation Dock (< 768px) — Academic Aurora Dock */}
+      {/* Mobile Native Floating Bottom Navigation Dock (< 768px) — Clean Floating Dock */}
       <nav
         aria-label="Mobile Primary Navigation"
-        className="md:hidden fixed bottom-2 inset-x-2.5 sm:inset-x-6 z-40 bg-white/95 dark:bg-[#0C1528]/95 rounded-2xl border border-slate-200/90 dark:border-slate-800/90 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(53,109,255,0.18)] backdrop-blur-md transform-gpu"
+        className="md:hidden fixed bottom-2 inset-x-2.5 sm:inset-x-6 z-40 bg-white/95 dark:bg-[#0C1528]/95 rounded-2xl border border-slate-200/90 dark:border-slate-800/90 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.45)] backdrop-blur-md transform-gpu"
         style={{ touchAction: 'manipulation' }}
       >
         <div className="grid grid-cols-5 gap-1 px-1.5 py-1.5 items-center">
@@ -799,7 +798,7 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
             {
               to: user ? (user.is_staff ? '/admin' : user.is_trainer ? '/trainer' : '/dashboard') : '/login',
               label: user ? (user.is_staff ? 'Admin' : user.is_trainer ? 'Studio' : 'Profile') : lang === 'bn' ? 'অ্যাকাউন্ট' : 'Account',
-              icon: user?.is_staff ? Sparkles : user?.is_trainer ? Wrench : User,
+              icon: user?.is_staff ? ShieldCheck : user?.is_trainer ? Wrench : User,
             },
           ].map((tab) => {
             const Icon = tab.icon
@@ -808,10 +807,10 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
               <Link
                 key={tab.label}
                 to={tab.to}
-                className={`min-h-[46px] rounded-xl flex flex-col items-center justify-center gap-0.5 tactile-press transition-all duration-200 ${
+                className={`min-h-[46px] rounded-xl flex flex-col items-center justify-center gap-0.5 tactile-press transition-colors duration-150 ${
                   active
-                    ? 'bg-[#356DFF] text-white font-extrabold shadow-sm scale-[1.02]'
-                    : 'text-[#5D6B82] dark:text-[#A8B7CE] hover:text-[#14213A] dark:hover:text-[#F5F8FF] hover:bg-slate-100/60 dark:hover:bg-slate-800/40 font-semibold'
+                    ? 'bg-[#356DFF] text-white font-bold shadow-xs'
+                    : 'text-[#5D6B82] dark:text-[#A8B7CE] hover:text-[#14213A] dark:hover:text-[#F5F8FF] hover:bg-slate-100/60 dark:hover:bg-slate-800/40 font-medium'
                 }`}
               >
                 <Icon className="w-4 h-4 stroke-[2.2]" aria-hidden="true" />
