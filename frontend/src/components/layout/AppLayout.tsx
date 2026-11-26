@@ -375,7 +375,7 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
             {(isAdminRoute || isTrainerRoute) && (
               <Link
                 to="/"
-                className="h-8 sm:h-8.5 px-2.5 sm:px-3 rounded-xl border border-[#16324F] bg-[#16324F] dark:bg-[#16324F] text-xs font-semibold flex items-center gap-1.5 text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-600 tactile-press shadow-2xs"
+                className="h-8 sm:h-8.5 px-2.5 sm:px-3 rounded-xl border border-[#16324F] bg-[#16324F] dark:bg-[#16324F] text-xs font-semibold flex items-center gap-1.5 text-[#FBF3DC] dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-600 tactile-press shadow-2xs"
                 title="View Live Platform"
               >
                 <ExternalLink className="w-3.5 h-3.5 text-[#F97316]" />
@@ -411,7 +411,7 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                 {!isStudentRoute && (
                   <Link
                     to="/dashboard"
-                    className="h-8 sm:h-8.5 px-2.5 sm:px-3 rounded-xl border border-[#16324F] bg-[#16324F] dark:bg-[#16324F] text-xs font-semibold flex items-center gap-1.5 text-slate-800 dark:text-slate-200 hover:border-slate-400 tactile-press shadow-2xs"
+                    className="h-8 sm:h-8.5 px-2.5 sm:px-3 rounded-xl border border-[#16324F] bg-[#16324F] dark:bg-[#16324F] text-xs font-semibold flex items-center gap-1.5 text-[#FBF3DC] dark:text-slate-200 hover:border-slate-400 tactile-press shadow-2xs"
                     title="My Learning Dashboard"
                   >
                     <BookOpen className="w-3.5 h-3.5 text-[#F97316]" />
@@ -462,7 +462,7 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                 {theme === 'dark' ? (
                   <Sun className="w-3.5 h-3.5 text-[#FB923C]" />
                 ) : (
-                  <Moon className="w-3.5 h-3.5 text-slate-700" />
+                  <Moon className="w-3.5 h-3.5 text-[#FBF3DC]" />
                 )}
               </button>
             </div>
