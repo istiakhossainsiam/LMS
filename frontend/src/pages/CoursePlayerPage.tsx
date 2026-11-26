@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import {
   AlertTriangle,
@@ -13,7 +13,9 @@ import {
   FolderGit2,
   HelpCircle,
   Lock,
+  Maximize,
   MessageSquare,
+  Minimize,
   Play,
   Plus,
   Send,
@@ -57,6 +59,25 @@ export const CoursePlayerPage: React.FC = () => {
   // Issue report state
   const [reportText, setReportText] = useState('')
   const [showReportModal, setShowReportModal] = useState(false)
+
+  // No-YouTube-chrome player: the iframe's own title bar carries the
+  // "Watch on YouTube" / Share button, so a solid LMS header bar covers
+  // the top strip of the video and fullscreen runs on the wrapper (not
+  // the iframe), keeping the bar visible in fullscreen too.
+  const playerRef = useRef<HTMLDivElement>(null)
+  const [isFullscreen, setIsFullscreen] = useState(false)
+  const toggleFullscreen = () => {
+    if (document.fullscreenElement) {
+      void document.exitFullscreen()
+    } else {
+      void playerRef.current?.requestFullscreen()
+    }
+  }
+  useEffect(() => {
+    const onFsChange = () => setIsFullscreen(Boolean(document.fullscreenElement))
+    document.addEventListener('fullscreenchange', onFsChange)
+    return () => document.removeEventListener('fullscreenchange', onFsChange)
+  }, [])
 
   const loadPlayer = async (keepLessonId?: number) => {
     try {
@@ -328,15 +349,14 @@ export const CoursePlayerPage: React.FC = () => {
         <div className="lg:col-span-8 space-y-4">
           {/* Sticky 16:9 Video Viewport on Mobile */}
           <div className="sticky top-14 sm:top-16 z-30 sm:static bg-slate-950 sm:rounded-3xl overflow-hidden border-y sm:border border-slate-800 shadow-2xl">
-            <div className="relative aspect-video bg-slate-950">
+            <div ref={playerRef} className="relative aspect-video bg-slate-950">
               {activeLesson?.video_id ? (
                 <iframe
                   key={activeLesson.id}
                   title={bf(activeLesson, 'title', lang)}
-                  src={`https://www.youtube.com/embed/${activeLesson.video_id}?rel=0&modestbranding=1`}
+                  src={`https://www.youtube.com/embed/${activeLesson.video_id}?rel=0&modestbranding=1&iv_load_policy=3&fs=0&playsinline=1`}
                   className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-slate-400 text-sm">
@@ -344,10 +364,31 @@ export const CoursePlayerPage: React.FC = () => {
                 </div>
               )}
 
+              {/* LMS header bar over the video: covers YouTube's own title
+                  bar (the "Watch on YouTube" / Share button lives there),
+                  so students stay inside the LMS. */}
+              {activeLesson?.video_id && (
+                <div className="absolute top-0 inset-x-0 z-10 h-12 sm:h-14 bg-[#0F2A44] border-b border-[#16324F] flex items-center gap-2 px-3 sm:px-4">
+                  <Play className="w-3.5 h-3.5 text-[#F97316] fill-current shrink-0" />
+                  <span className="flex-1 min-w-0 truncate text-xs sm:text-sm font-semibold text-[#FBF3DC]">
+                    {bf(activeLesson, 'title', lang)}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={toggleFullscreen}
+                    className="shrink-0 w-8 h-8 rounded-lg bg-[#16324F] hover:bg-[#1d4066] text-[#FBF3DC] flex items-center justify-center cursor-pointer"
+                    title={isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}
+                    aria-label={isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}
+                  >
+                    {isFullscreen ? <Minimize className="w-4 h-4" /> : <Maximize className="w-4 h-4" />}
+                  </button>
+                </div>
+              )}
+
               {/* Anti-Piracy Floating Student Watermark */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none select-none absolute top-3 right-3 px-2.5 py-1 rounded-md bg-slate-950/65 backdrop-blur-sm border border-white/10 text-[10px] font-mono text-white/65"
+                className="pointer-events-none select-none absolute top-16 right-3 z-20 px-2.5 py-1 rounded-md bg-slate-950/65 backdrop-blur-sm border border-white/10 text-[10px] font-mono text-white/65"
               >
                 {data.watermark}
               </div>
