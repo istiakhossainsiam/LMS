@@ -10,13 +10,14 @@ from fastapi.staticfiles import StaticFiles
 from app.api.v1 import admin, auth, billing, public, store_and_blog, student, trainer, jobs_and_codelab, seo
 from app.core.config import settings
 from app.core.database import AsyncSessionLocal, Base, engine
-from app.services.seed_and_migrate import seed_demo_content_if_missing, seed_initial_data, seed_jobs_and_challenges_if_empty
+from app.services.seed_and_migrate import ensure_certificate_template_column, seed_demo_content_if_missing, seed_initial_data, seed_jobs_and_challenges_if_empty
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+    await ensure_certificate_template_column()
     async with AsyncSessionLocal() as session:
         await seed_initial_data(session)
         await seed_jobs_and_challenges_if_empty(session)

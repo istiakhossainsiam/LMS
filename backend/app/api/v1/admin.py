@@ -1,7 +1,9 @@
 import json
+import os
 import re
 import secrets
-from fastapi import APIRouter, Depends, HTTPException, status
+from datetime import datetime
+from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
 from pydantic import BaseModel, Field
 from sqlalchemy import desc, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -12,7 +14,7 @@ from app.core.database import get_db
 from app.core.deps import require_admin
 from app.core.security import sanitize_plain_text, sanitize_rich_html
 from app.models.billing import GiftCode, Payment, PromoCode, TrainerPayout
-from app.models.content_and_store import BlogPost, FlashSale, StoreOrder, StoreProduct
+from app.models.content_and_store import BlogPost, FlashSale, SiteSettings, StoreOrder, StoreProduct
 from app.models.courses import Certificate, Course, CourseBundle
 from app.models.lessons import Lesson, LessonReport, Module, Question
 from app.models.users import Enrollment, Notification, Profile, User
@@ -1179,6 +1181,109 @@ async def update_admin_settings(
         if k in _settings_store:
             _settings_store[k] = v
     return {"success": True, "settings": _settings_store, "message": "Academy settings updated."}
+
+
+# ==========================================
+# CERTIFICATE DESIGN TEMPLATE (ADMIN)
+# ==========================================
+# Uploaded template images live under backend/media_vault/certificates/ and
+# are served publicly via /api/v1/public/certificate-template/file/<filename>.
+# The URL is stored on the single SiteSettings row (NOT in _settings_store).
+_BACKEND_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+_CERT_TEMPLATE_DIR = os.path.join(_BACKEND_DIR, "media_vault", "certificates")
+_CERT_TEMPLATE_MAX_BYTES = 5 * 1024 * 1024  # 5 MB
+_CERT_TEMPLATE_CONTENT_TYPES = {"image/png", "image/jpeg"}
+_CERT_TEMPLATE_EXTENSIONS = {".png", ".jpg", ".jpeg"}
+_CERT_TEMPLATE_URL_PREFIX = "/api/v1/public/certificate-template/file/"
+
+
+def _cert_template_public_url(filename: str) -> str:
+    return f"{_CERT_TEMPLATE_URL_PREFIX}{filename}"
+
+
+def _cert_template_filename_from_url(url: str | None) -> str | None:
+    if not url or not url.startswith(_CERT_TEMPLATE_URL_PREFIX):
+        return None
+    name = url[len(_CERT_TEMPLATE_URL_PREFIX):]
+    if not name or "/" in name or "\\" in name or ".." in name:
+        return None
+    return name
+
+
+async def _get_or_create_site_settings(db: AsyncSession) -> SiteSettings:
+    row = (await db.execute(select(SiteSettings).limit(1))).scalar_one_or_none()
+    if row is None:
+        row = SiteSettings()
+        db.add(row)
+        await db.flush()
+    return row
+
+
+@router.post("/certificate-template")
+async def upload_certificate_template(
+    file: UploadFile = File(...),
+    db: AsyncSession = Depends(get_db),
+    admin: User = Depends(require_admin),
+):
+    if file.content_type not in _CERT_TEMPLATE_CONTENT_TYPES:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Only PNG and JPG/JPEG images are accepted.",
+        )
+    original_name = os.path.basename(file.filename or "")
+    _, ext = os.path.splitext(original_name)
+    ext = ext.lower()
+    if ext not in _CERT_TEMPLATE_EXTENSIONS:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Only PNG and JPG/JPEG images are accepted.",
+        )
+    contents = await file.read()
+    if len(contents) > _CERT_TEMPLATE_MAX_BYTES:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Certificate template must be 5 MB or smaller.",
+        )
+    sanitized = re.sub(r"[^A-Za-z0-9._-]", "_", original_name)
+    sanitized = sanitized.strip(".") or f"template{ext}"
+    if not os.path.splitext(sanitized)[1]:
+        sanitized = f"{sanitized}{ext}"
+    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+    filename = f"cert-template-{timestamp}-{sanitized}"
+
+    os.makedirs(_CERT_TEMPLATE_DIR, exist_ok=True)
+
+    settings_row = await _get_or_create_site_settings(db)
+    old_filename = _cert_template_filename_from_url(settings_row.certificate_template_url)
+    if old_filename:
+        old_path = os.path.join(_CERT_TEMPLATE_DIR, old_filename)
+        if os.path.exists(old_path):
+            os.remove(old_path)
+
+    file_path = os.path.join(_CERT_TEMPLATE_DIR, filename)
+    with open(file_path, "wb") as f:
+        f.write(contents)
+
+    settings_row.certificate_template_url = _cert_template_public_url(filename)
+    await db.commit()
+    return {"template_url": settings_row.certificate_template_url}
+
+
+@router.delete("/certificate-template")
+async def delete_certificate_template(
+    db: AsyncSession = Depends(get_db),
+    admin: User = Depends(require_admin),
+):
+    settings_row = (await db.execute(select(SiteSettings).limit(1))).scalar_one_or_none()
+    if settings_row is not None and settings_row.certificate_template_url:
+        filename = _cert_template_filename_from_url(settings_row.certificate_template_url)
+        if filename:
+            file_path = os.path.join(_CERT_TEMPLATE_DIR, filename)
+            if os.path.exists(file_path):
+                os.remove(file_path)
+        settings_row.certificate_template_url = ""
+        await db.commit()
+    return {"template_url": ""}
 
 
 

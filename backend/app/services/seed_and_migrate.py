@@ -73,6 +73,24 @@ def ensure_vault_files() -> None:
                 f.write(text)
 
 
+async def ensure_certificate_template_column() -> None:
+    """Lightweight schema patch: Base.metadata.create_all() never adds a
+    column to an already-created table, so older DBs lack
+    site_settings.certificate_template_url. Add it in place; fresh DBs
+    already have it from create_all, so this is a no-op there."""
+    from sqlalchemy import text
+
+    from app.core.database import engine
+
+    async with engine.begin() as conn:
+        rows = (await conn.execute(text("PRAGMA table_info(site_settings)"))).fetchall()
+        cols = {row[1] for row in rows}
+        if rows and "certificate_template_url" not in cols:
+            await conn.execute(
+                text("ALTER TABLE site_settings ADD COLUMN certificate_template_url VARCHAR(500) DEFAULT ''")
+            )
+
+
 async def seed_initial_data(db: AsyncSession) -> None:
     ensure_vault_files()
 

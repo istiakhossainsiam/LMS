@@ -1,7 +1,9 @@
 import json
+import os
 from enum import Enum
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
+from fastapi.responses import FileResponse
 from pydantic import BaseModel, EmailStr, Field
 from sqlalchemy import desc, func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -370,6 +372,7 @@ async def verify_certificate(certificate_id: str, db: AsyncSession = Depends(get
             status_code=status.HTTP_404_NOT_FOUND,
             detail="No verified certificate found matching this Certificate ID.",
         )
+    site_settings = (await db.execute(select(SiteSettings).limit(1))).scalar_one_or_none()
     return {
         "verified": True,
         "certificate_id": cert.certificate_id,
@@ -380,7 +383,27 @@ async def verify_certificate(certificate_id: str, db: AsyncSession = Depends(get
         "grade_score": cert.grade_score,
         "issued_at": cert.issued_at.isoformat(),
         "verification_authority": "Training Pundit — Official Credential Registry",
+        "certificate_template_url": site_settings.certificate_template_url if site_settings else "",
     }
+
+
+@router.get("/certificate-template/file/{filename}")
+async def get_certificate_template_file(filename: str):
+    if "/" in filename or "\\" in filename or ".." in filename:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Invalid filename.",
+        )
+    backend_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+    file_path = os.path.join(backend_dir, "media_vault", "certificates", filename)
+    if not os.path.exists(file_path):
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Certificate template not found.",
+        )
+    ext = os.path.splitext(filename)[1].lower()
+    media_type = "image/png" if ext == ".png" else "image/jpeg"
+    return FileResponse(path=file_path, filename=filename, media_type=media_type)
 
 
 @router.get("/leaderboard")

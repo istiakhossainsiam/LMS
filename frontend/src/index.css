@@ -580,3 +580,49 @@
 
 /* Unified focus state (redesign): every interactive element gets a visible accent ring. */
 :focus-visible { outline: 2px solid #F97316; outline-offset: 2px; }
+
+/* Certificate printing — only the certificate card prints, landscape, full page.
+   Screen rendering is untouched: everything in this block lives under @media print. */
+@media print {
+  @page {
+    size: landscape;
+    margin: 0;
+  }
+
+  /* Collapse the document to a single page: the hidden header, search
+     form and layout still occupy flow height, which would otherwise
+     paginate onto a blank second page. */
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #certificate-print-area,
+  #certificate-print-area * {
+    visibility: visible;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  #certificate-print-area {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    /* Keep the certificate on exactly one landscape page: the card is
+       taller than A4 landscape, so cap it and clip instead of spilling
+       onto a blank second page. */
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

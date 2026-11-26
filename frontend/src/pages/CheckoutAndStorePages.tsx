@@ -515,7 +515,23 @@ export const VerifyCertificatePage: React.FC = () => {
       </form>
 
       {certData && (
-        <div className="rounded-2xl border-2 border-[#F97316]/40 aurora-card-raised p-6 sm:p-10 shadow-md space-y-6 relative overflow-hidden bg-[#FBF3DC] dark:bg-[#102A44]">
+        <div
+          id="certificate-print-area"
+          className="certificate-print-area rounded-2xl border-2 border-[#F97316]/40 aurora-card-raised p-6 sm:p-10 shadow-md space-y-6 relative overflow-hidden bg-[#FBF3DC] dark:bg-[#102A44]"
+          style={
+            certData.certificate_template_url
+              ? {
+                  backgroundImage: `url(${certData.certificate_template_url})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }
+              : undefined
+          }
+        >
+          {certData.certificate_template_url ? (
+            <div className="absolute inset-0 bg-[#FBF3DC]/85 pointer-events-none z-0" aria-hidden="true" />
+          ) : null}
+          <div className="relative z-10 space-y-6">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#E0D3AF] dark:border-slate-800 pb-6">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-2xl bg-[#F97316]/15 text-[#F97316] flex items-center justify-center">
@@ -533,7 +549,7 @@ export const VerifyCertificatePage: React.FC = () => {
             <button
               type="button"
               onClick={() => window.print()}
-              className="min-h-[42px] px-4 rounded-xl aurora-btn-secondary text-xs font-semibold flex items-center gap-1.5 cursor-pointer shadow-xs"
+              className="no-print min-h-[42px] px-4 rounded-xl aurora-btn-secondary text-xs font-semibold flex items-center gap-1.5 cursor-pointer shadow-xs"
             >
               <Download className="w-4 h-4 text-[#0F2A44] dark:text-[#FFF7E8]" />
               <span>Print / Save PDF</span>
@@ -574,6 +590,7 @@ export const VerifyCertificatePage: React.FC = () => {
                 {new Date(certData.issued_at).toLocaleDateString()}
               </span>
             </div>
+          </div>
           </div>
         </div>
       )}

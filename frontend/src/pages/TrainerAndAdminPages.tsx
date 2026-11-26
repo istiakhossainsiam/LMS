@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   Award,
@@ -500,6 +500,14 @@ export const AdminConsolePage: React.FC = () => {
   const [loadingSettings, setLoadingSettings] = useState(false)
   const [savingSettings, setSavingSettings] = useState(false)
 
+  // Certificate Design State (custom certificate background for the verify page + print)
+  const [certTemplateUrl, setCertTemplateUrl] = useState('')
+  const [certTemplateFile, setCertTemplateFile] = useState<File | null>(null)
+  const [uploadingCertTemplate, setUploadingCertTemplate] = useState(false)
+  const [removingCertTemplate, setRemovingCertTemplate] = useState(false)
+  const [certTemplateLoaded, setCertTemplateLoaded] = useState(false)
+  const certTemplateInputRef = useRef<HTMLInputElement>(null)
+
   // POS System State
   const [posForm, setPosForm] = useState({
     full_name: '',
@@ -689,6 +697,79 @@ export const AdminConsolePage: React.FC = () => {
     }
   }
 
+  // Load current certificate template URL for the Certificate Design preview.
+  // There is no dedicated "current template" endpoint, so the template URL is
+  // read off the public verify payload of the first certificate in the
+  // registry (the verify response carries certificate_template_url). Any
+  // failure just leaves the preview empty — never a crash or toast spam.
+  const loadCertTemplateUrl = async () => {
+    if (certTemplateLoaded || certTemplateUrl) return
+    try {
+      let certs = certificates
+      if (!certs || certs.length === 0) {
+        const res = await apiFetch<any[]>('/admin/certificates')
+        setCertificates(res)
+        certs = res
+      }
+      const first = certs?.[0]
+      if (!first?.certificate_id) return
+      const res = await apiFetch<any>(`/public/certificates/verify/${encodeURIComponent(first.certificate_id)}`)
+      if (typeof res?.certificate_template_url === 'string') {
+        setCertTemplateUrl(res.certificate_template_url)
+      }
+      setCertTemplateLoaded(true)
+    } catch {
+      // Preview stays empty; admin can still upload a new design.
+    }
+  }
+
+  // Upload a new certificate design (multipart; apiFetch leaves Content-Type unset for FormData)
+  const handleUploadCertTemplate = async () => {
+    if (!certTemplateFile) {
+      showToast('Choose a PNG or JPG image first.', 'error')
+      return
+    }
+    if (certTemplateFile.size > 5 * 1024 * 1024) {
+      showToast('Image must be under 5 MB.', 'error')
+      return
+    }
+    const formData = new FormData()
+    formData.append('file', certTemplateFile)
+    setUploadingCertTemplate(true)
+    try {
+      const res = await apiFetch<any>('/admin/certificate-template', {
+        method: 'POST',
+        body: formData,
+      })
+      setCertTemplateUrl(res?.template_url || '')
+      setCertTemplateLoaded(true)
+      setCertTemplateFile(null)
+      if (certTemplateInputRef.current) certTemplateInputRef.current.value = ''
+      showToast('Certificate design uploaded successfully!', 'success')
+    } catch (err: any) {
+      showToast(err.message, 'error')
+    } finally {
+      setUploadingCertTemplate(false)
+    }
+  }
+
+  // Remove the custom certificate design (falls back to the default design)
+  const handleRemoveCertTemplate = async () => {
+    setRemovingCertTemplate(true)
+    try {
+      await apiFetch('/admin/certificate-template', { method: 'DELETE' })
+      setCertTemplateUrl('')
+      setCertTemplateLoaded(true)
+      setCertTemplateFile(null)
+      if (certTemplateInputRef.current) certTemplateInputRef.current.value = ''
+      showToast('Certificate design removed. Default design will be used.', 'success')
+    } catch (err: any) {
+      showToast(err.message, 'error')
+    } finally {
+      setRemovingCertTemplate(false)
+    }
+  }
+
   useEffect(() => {
     loadAdmin()
   }, [])
@@ -702,7 +783,10 @@ export const AdminConsolePage: React.FC = () => {
     else if (activeTab === 'coupons') loadCoupons()
     else if (activeTab === 'notifications') loadNotifications()
     else if (activeTab === 'question_bank') loadQuestionBank()
-    else if (activeTab === 'settings') loadSettings()
+    else if (activeTab === 'settings') {
+      loadSettings()
+      loadCertTemplateUrl()
+    }
   }, [activeTab])
 
   // --- Handlers ---
@@ -1996,6 +2080,69 @@ export const AdminConsolePage: React.FC = () => {
                     </div>
                   </div>
                 </div>
+              </div>
+
+              {/* Certificate Design */}
+              <div className="p-6 rounded-2xl border border-[#E0D3AF] dark:border-slate-800 bg-[#FBF3DC] dark:bg-[#102A44] space-y-4 shadow-xs">
+                <h3 className="font-display font-bold text-base text-[#0F2A44] dark:text-[#FFF7E8] flex items-center gap-2">
+                  <Award className="w-4 h-4 text-[#F97316]" />
+                  <span>Certificate Design</span>
+                </h3>
+                <p className="text-xs text-[#6B7280] dark:text-[#D9CDB8]">
+                  Recommended landscape image ~1754x1240 (A4 landscape) or 1920x1080, PNG/JPG, max 5 MB. Used as the
+                  certificate background on the verify page and in print.
+                </p>
+
+                {certTemplateUrl ? (
+                  <div className="rounded-xl overflow-hidden border border-[#E0D3AF] dark:border-slate-800">
+                    <img
+                      src={certTemplateUrl}
+                      alt="Current certificate design"
+                      className="w-full aspect-[1.414/1] object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="rounded-xl border border-dashed border-[#E0D3AF] dark:border-slate-800 p-6 text-center text-xs text-[#6B7280] dark:text-[#D9CDB8]">
+                    No custom design — default certificate design is used.
+                  </div>
+                )}
+
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                  <input
+                    ref={certTemplateInputRef}
+                    type="file"
+                    accept="image/png,image/jpeg"
+                    onChange={(e) => setCertTemplateFile(e.target.files?.[0] || null)}
+                    className="flex-1 min-h-[42px] px-3.5 rounded-xl bg-[#E9D9B4] dark:bg-[#16324F] border border-[#E0D3AF] dark:border-slate-800 text-xs text-[#0F2A44] dark:text-[#FFF7E8] file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-[#F97316] file:text-[#FBF3DC] file:cursor-pointer"
+                  />
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      type="button"
+                      onClick={handleUploadCertTemplate}
+                      disabled={!certTemplateFile || uploadingCertTemplate}
+                      className="min-h-[42px] px-4 rounded-xl aurora-btn-primary text-xs font-semibold flex items-center gap-1.5 cursor-pointer shadow-xs disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <UploadCloud className="w-4 h-4" />
+                      <span>{uploadingCertTemplate ? 'Uploading...' : 'Upload'}</span>
+                    </button>
+                    {certTemplateUrl && (
+                      <button
+                        type="button"
+                        onClick={handleRemoveCertTemplate}
+                        disabled={removingCertTemplate}
+                        className="min-h-[42px] px-4 rounded-xl border border-rose-500/30 text-rose-500 hover:bg-rose-500/10 text-xs font-semibold flex items-center gap-1.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                        <span>{removingCertTemplate ? 'Removing...' : 'Remove'}</span>
+                      </button>
+                    )}
+                  </div>
+                </div>
+                {certTemplateFile && (
+                  <p className="text-[11px] font-mono text-[#6B7280] dark:text-[#D9CDB8]">
+                    Selected: {certTemplateFile.name} ({(certTemplateFile.size / 1024).toFixed(0)} KB)
+                  </p>
+                )}
               </div>
 
               <div className="flex items-center justify-end">

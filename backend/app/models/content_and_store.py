@@ -37,6 +37,7 @@ class SiteSettings(Base):
     )
     support_email: Mapped[str] = mapped_column(String(150), default="support@trainingpundit.com")
     support_phone: Mapped[str] = mapped_column(String(50), default="+880 1711-223344")
+    certificate_template_url: Mapped[str] = mapped_column(String(500), default="")
     maintenance_mode: Mapped[bool] = mapped_column(Boolean, default=False)
     invoice_company_name: Mapped[str] = mapped_column(String(150), default="TrainingPundit Technologies Ltd.")
     invoice_address: Mapped[str] = mapped_column(String(255), default="Dhaka, Bangladesh")

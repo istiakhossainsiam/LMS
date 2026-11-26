@@ -1110,14 +1110,15 @@ export const StudentDashboardPage: React.FC = () => {
                     <ShieldCheck className="w-4 h-4" />
                     <span>View & Verify</span>
                   </Link>
-                  <button
-                    type="button"
-                    onClick={() => window.print()}
+                  <a
+                    href={`/verify-certificate?id=${cert.certificate_id}`}
+                    target="_blank"
+                    rel="noreferrer"
                     className="min-h-[40px] px-3.5 rounded-xl aurora-btn-secondary text-xs font-bold flex items-center gap-1.5 cursor-pointer tactile-press"
                   >
                     <Printer className="w-4 h-4 text-[#F97316]" />
                     <span>Print</span>
-                  </button>
+                  </a>
                 </div>
               </div>
             ))}
